@@ -24,3 +24,6 @@ https://blog.csdn.net/eguid_1/article/details/53236923
 
 目标检测&目标追踪&人脸检测&人脸识别:
 https://github.com/kongqw/OpenCVForAndroid
+
+二维码/条码识别、身份证识别、银行卡识别、车牌识别、图片文字识别、黄图识别、驾驶证（驾照）识别:
+https://github.com/shouzhong/Scanner
