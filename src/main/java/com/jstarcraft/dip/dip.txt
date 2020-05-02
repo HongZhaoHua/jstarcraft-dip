@@ -22,6 +22,12 @@ https://blog.csdn.net/eguid_1/article/details/81369055
 OpenCV系列文章:
 https://blog.csdn.net/eguid_1/article/details/53236923
 
+OpenCV教程:
+https://www.w3cschool.cn/opencv
+
+Mastering OpenCV 4 - Third Edition:
+https://github.com/PacktPublishing/Mastering-OpenCV-4-Third-Edition
+
 目标检测&目标追踪&人脸检测&人脸识别:
 https://github.com/kongqw/OpenCVForAndroid
 
