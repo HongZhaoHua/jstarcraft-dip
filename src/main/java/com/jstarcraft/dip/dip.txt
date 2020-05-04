@@ -19,6 +19,10 @@ https://eguid.blog.csdn.net/category_9266896.html
 Java流媒体技术汇总:
 https://eguid.blog.csdn.net/category_9266736.html
 
+JavaCV通过RTSP获取视频流设置帧率:
+https://www.cnblogs.com/svenwu/p/9663038.html
+https://www.cnblogs.com/svenwu/p/11044370.html
+
 FFmpeg系列文章:
 https://blog.csdn.net/eguid_1/article/details/81369055
 
