@@ -48,6 +48,13 @@
             <version>1.0</version>
         </dependency>
 
+        <!-- 数字图像处理框架依赖 -->
+        <dependency>
+            <groupId>org.bytedeco</groupId>
+            <artifactId>javacv-platform</artifactId>
+            <version>1.5.3</version>
+        </dependency>
+
         <!-- Test框架依赖 -->
         <dependency>
             <groupId>org.junit.platform</groupId>
