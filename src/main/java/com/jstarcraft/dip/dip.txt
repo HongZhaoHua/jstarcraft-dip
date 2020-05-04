@@ -28,6 +28,19 @@ https://www.w3cschool.cn/opencv
 Mastering OpenCV 4 - Third Edition:
 https://github.com/PacktPublishing/Mastering-OpenCV-4-Third-Edition
 
+最简单的基于FFmpeg的封装格式处理系列文章:
+https://blog.csdn.net/leixiaohua1020/article/details/25422685
+https://blog.csdn.net/leixiaohua1020/article/details/39767055
+https://blog.csdn.net/leixiaohua1020/article/details/39802819
+https://blog.csdn.net/leixiaohua1020/article/details/39802913
+
+雷霄骅(leixiaohua1020)的专栏
+https://blog.csdn.net/leixiaohua1020
+https://gitee.com/leixiaohua1020
+
+整理雷霄骅CSDN上面的代码资源:
+https://gitee.com/leixiaohua
+
 目标检测&目标追踪&人脸检测&人脸识别:
 https://github.com/kongqw/OpenCVForAndroid
 
