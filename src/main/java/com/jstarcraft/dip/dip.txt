@@ -28,6 +28,9 @@ https://www.w3cschool.cn/opencv
 Mastering OpenCV 4 - Third Edition:
 https://github.com/PacktPublishing/Mastering-OpenCV-4-Third-Edition
 
+Java使用FFmpeg处理视频文件指南:
+https://www.cnblogs.com/Dreamer-1/p/10394011.html
+
 最简单的基于FFmpeg的封装格式处理系列文章:
 https://blog.csdn.net/leixiaohua1020/article/details/25422685
 https://blog.csdn.net/leixiaohua1020/article/details/39767055
