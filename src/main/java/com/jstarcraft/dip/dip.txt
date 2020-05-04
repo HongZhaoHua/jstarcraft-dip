@@ -1,6 +1,9 @@
 计算机视觉四大基本任务的应用知识分享:
 https://blog.csdn.net/u011707542/article/details/79151978
 
+Java音视频解决方案:
+https://blog.csdn.net/cuiyaonan2000/category_9050288.html
+
 eguid流媒体技术博客:
 https://blog.csdn.net/eguid_1
 
