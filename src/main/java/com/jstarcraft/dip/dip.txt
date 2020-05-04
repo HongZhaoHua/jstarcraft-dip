@@ -34,7 +34,7 @@ https://www.cnblogs.com/Dreamer-1/p/10394011.html
 FFmpeg 使用说明:
 https://github.com/tonydeng/fmj/blob/master/ffmpeg.md
 
-FMJ (FFMpeg for Java)-通过Java调用FFMpeg命令的方式来对音视频进行处理:
+FMJ (FFmpeg for Java)-通过Java调用FFMpeg命令的方式来对音视频进行处理:
 https://github.com/tonydeng/fmj
 
 最简单的基于FFmpeg的封装格式处理系列文章:
