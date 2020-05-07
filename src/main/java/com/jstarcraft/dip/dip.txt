@@ -29,8 +29,14 @@ https://www.cnblogs.com/svenwu/p/11044370.html
 FFmpeg系列文章:
 https://blog.csdn.net/eguid_1/article/details/81369055
 
+JavaCPP-FFmpeg视频编解码系列:
+https://blog.csdn.net/eguid_1/category_9958268.html
+
 OpenCV系列文章:
 https://blog.csdn.net/eguid_1/article/details/53236923
+
+JavaCPP-OpenCV图像处理系列:
+https://blog.csdn.net/eguid_1/category_9267647.html
 
 OpenCV教程:
 https://www.w3cschool.cn/opencv
