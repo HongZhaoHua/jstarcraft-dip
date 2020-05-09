@@ -4,6 +4,9 @@ https://www.zhihu.com/question/20672053
 计算机视觉四大基本任务的应用知识分享:
 https://blog.csdn.net/u011707542/article/details/79151978
 
+学习JavaCV:
+https://blog.csdn.net/qiao_198911/category_2390021.html
+
 Java音视频解决方案:
 https://blog.csdn.net/cuiyaonan2000/category_9050288.html
 
