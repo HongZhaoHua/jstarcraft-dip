@@ -6,3 +6,21 @@ https://blog.csdn.net/u011707542/article/details/79151978
 
 二维码/条码识别、身份证识别、银行卡识别、车牌识别、图片文字识别、黄图识别、驾驶证（驾照）识别:
 https://github.com/shouzhong/Scanner
+
+Java实现二维码的生成与解析:
+https://blog.csdn.net/jam_fanatic/article/details/82818857
+
+Java生成二维码/Java解析二维码
+https://www.cnblogs.com/sonder/p/10007876.html
+
+Java实现二维码的生成和解析：QRCode、zxing 两种方式
+https://www.cnblogs.com/codingcc1/p/11099788.html
+
+Java 创建/识别条形码、二维码
+https://www.cnblogs.com/Yesi/p/11527369.html
+
+Java生成读取条形码和二维码图片
+https://www.open-open.com/code/view/1453520722495
+
+This repository accompanies Java Image Processing Recipes by Nicolas Modrzyk:
+https://github.com/Apress/java-image-processing-recipes
