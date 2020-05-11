@@ -7,6 +7,9 @@ https://blog.csdn.net/u011707542/article/details/79151978
 二维码/条码识别、身份证识别、银行卡识别、车牌识别、图片文字识别、黄图识别、驾驶证（驾照）识别:
 https://github.com/shouzhong/Scanner
 
+ZXing应用详解:
+https://www.jianshu.com/p/6607e69b1121
+
 Java实现二维码的生成与解析:
 https://blog.csdn.net/jam_fanatic/article/details/82818857
 
