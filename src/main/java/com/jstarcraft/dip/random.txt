@@ -1,0 +1,5 @@
+PCG, A Family of Better Random Number Generators:
+https://www.pcg-random.org
+
+PCG — Java Implementation. High quality fast random number generator:
+https://github.com/KilianB/pcg-java
