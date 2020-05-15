@@ -1,5 +1,11 @@
 Java实现快速傅里叶变换(FFT):
 https://www.jianshu.com/p/a765679b1826
 
+傅里叶变换看不懂,5分钟教你快速理解!
+https://baijiahao.baidu.com/s?id=1636833728798493906
+
+傅里叶分析之掐死教程:
+https://zhuanlan.zhihu.com/p/19763358
+
 JTransforms is the first, open source, multithreaded FFT library written in pure Java:
 https://github.com/wendykierp/JTransforms
