@@ -3,3 +3,9 @@ https://blog.csdn.net/weixin_42078760/article/details/80652062
 
 图像处理中常用的彩色模型:
 https://blog.csdn.net/u012507022/article/details/51523385
+
+色彩空间RGB/CMYK/HSL/HSB/HSV/Lab/YUV基础理论及转换方法:
+https://www.zhoulujun.cn/html/theory/multimedia/CG-CV-IP/6112.html
+
+Convert color between RGB,HSL,HSB,CMYK,YUV,YIQ,XYZ,xyY,Lab,Luv,LCH:
+https://github.com/ibireme/yy_color_convertor
