@@ -60,7 +60,7 @@ public interface Pixel {
 	 * @since 1.3.0
 	 */
 	default int getRGB(int x, int y) {
-		return getRGB(getOffset(x, y));
+		return getRGB(getIndex(x, y));
 	}
 
 	/**
@@ -92,7 +92,7 @@ public interface Pixel {
 	 * @since 1.3.0
 	 */
 	default int getTransparency(int x, int y) {
-		return getTransparency(getOffset(x, y));
+		return getTransparency(getIndex(x, y));
 	}
 
 	/**
@@ -114,7 +114,7 @@ public interface Pixel {
 	 * @since 1.3.0
 	 */
 	default void setTransparency(int x, int y, int transparency) {
-		setTransparency(getOffset(x, y), transparency);
+		setTransparency(getIndex(x, y), transparency);
 	}
 
 	/**
@@ -152,7 +152,7 @@ public interface Pixel {
 	 * @since 1.3.0
 	 */
 	default int getRed(int x, int y) {
-		return getRed(getOffset(x, y));
+		return getRed(getIndex(x, y));
 	}
 
 	/**
@@ -181,7 +181,7 @@ public interface Pixel {
 	 * @since 1.3.0
 	 */
 	default void setRed(int x, int y, int newRed) {
-		setRed(getOffset(x, y), newRed);
+		setRed(getIndex(x, y), newRed);
 	}
 
 	/**
@@ -219,7 +219,7 @@ public interface Pixel {
 	 * @since 1.3.0
 	 */
 	default int getGreen(int x, int y) {
-		return getGreen(getOffset(x, y));
+		return getGreen(getIndex(x, y));
 	}
 
 	/**
@@ -231,7 +231,7 @@ public interface Pixel {
 	 * @since 1.3.0
 	 */
 	default void setGreen(int x, int y, int newGreen) {
-		setGreen(getOffset(x, y), newGreen);
+		setGreen(getIndex(x, y), newGreen);
 	}
 
 	/**
@@ -286,7 +286,7 @@ public interface Pixel {
 	 * @since 1.3.0
 	 */
 	default int getBlue(int x, int y) {
-		return getBlue(getOffset(x, y));
+		return getBlue(getIndex(x, y));
 	}
 
 	/**
@@ -298,7 +298,7 @@ public interface Pixel {
 	 * @since 1.3.0
 	 */
 	default void setBlue(int x, int y, int newBlue) {
-		setBlue(getOffset(x, y), newBlue);
+		setBlue(getIndex(x, y), newBlue);
 	}
 
 	void setBlue(int index, int newBlue);
@@ -357,7 +357,7 @@ public interface Pixel {
 	 * @since 1.5.0
 	 */
 	default int getAverageGrayscale(int x, int y) {
-		return getAverageGrayscale(getOffset(x, y));
+		return getAverageGrayscale(getIndex(x, y));
 	}
 
 	/**
@@ -413,7 +413,7 @@ public interface Pixel {
 	 * @since 1.5.0
 	 */
 	default void setAverageGrayscale(int x, int y, int newGrayValue) {
-		setAverageGrayscale(getOffset(x, y), newGrayValue);
+		setAverageGrayscale(getIndex(x, y), newGrayValue);
 	}
 
 	/**
@@ -456,7 +456,7 @@ public interface Pixel {
 	 * @since 1.3.0
 	 */
 	default int getLuma(int x, int y) {
-		return getLuma(getOffset(x, y));
+		return getLuma(getIndex(x, y));
 	}
 
 	/**
@@ -491,7 +491,7 @@ public interface Pixel {
 	 * @since 1.3.0
 	 */
 	default int getCr(int x, int y) {
-		return getCr(getOffset(x, y));
+		return getCr(getIndex(x, y));
 	}
 
 	/**
@@ -517,7 +517,7 @@ public interface Pixel {
 	 * @since 1.3.0
 	 */
 	default int getCb(int x, int y) {
-		return getCb(getOffset(x, y));
+		return getCb(getIndex(x, y));
 	}
 
 	/**
@@ -571,7 +571,7 @@ public interface Pixel {
 	 * @since 1.3.0
 	 */
 	default int getHue(int x, int y) {
-		return getHue(getOffset(x, y));
+		return getHue(getIndex(x, y));
 	}
 
 	/**
@@ -616,7 +616,7 @@ public interface Pixel {
 	 * @since 1.3.0
 	 */
 	default double getSat(int x, int y) {
-		return getSat(getOffset(x, y));
+		return getSat(getIndex(x, y));
 	}
 
 	/**
@@ -642,7 +642,7 @@ public interface Pixel {
 	 * @return the value component in range [0-255].
 	 */
 	default int getVal(int x, int y) {
-		return getVal(getOffset(x, y));
+		return getVal(getIndex(x, y));
 	}
 
 	/**
@@ -659,6 +659,6 @@ public interface Pixel {
 	 * @param y the y coordinate
 	 * @return the corresponding 1d array index
 	 */
-	int getOffset(int x, int y);
+	int getIndex(int x, int y);
 
 }

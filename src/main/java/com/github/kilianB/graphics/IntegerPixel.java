@@ -93,7 +93,7 @@ public class IntegerPixel extends AbstractPixel {
 	 */
 	@Override
 	public int getRGB(int x, int y) {
-		return getRGB(getOffset(x, y));
+		return getRGB(getIndex(x, y));
 	}
 
 	/**
@@ -137,7 +137,7 @@ public class IntegerPixel extends AbstractPixel {
 	 */
 	@Override
 	public int getTransparency(int x, int y) {
-		return getTransparency(getOffset(x, y));
+		return getTransparency(getIndex(x, y));
 	}
 
 	/**
@@ -202,7 +202,7 @@ public class IntegerPixel extends AbstractPixel {
 	 */
 	@Override
 	public int getRed(int x, int y) {
-		return getRed(getOffset(x, y));
+		return getRed(getIndex(x, y));
 	}
 
 	/**
@@ -244,7 +244,7 @@ public class IntegerPixel extends AbstractPixel {
 	 */
 	@Override
 	public void setRed(int x, int y, int newRed) {
-		setRed(getOffset(x, y), newRed);
+		setRed(getIndex(x, y), newRed);
 	}
 
 	/**
@@ -278,7 +278,7 @@ public class IntegerPixel extends AbstractPixel {
 	 */
 	@Override
 	public int getGreen(int x, int y) {
-		return getGreen(getOffset(x, y));
+		return getGreen(getIndex(x, y));
 	}
 
 	@Override
@@ -297,7 +297,7 @@ public class IntegerPixel extends AbstractPixel {
 	 */
 	@Override
 	public void setGreen(int x, int y, int newGreen) {
-		setGreen(getOffset(x, y), newGreen);
+		setGreen(getIndex(x, y), newGreen);
 	}
 
 	/**
@@ -354,7 +354,7 @@ public class IntegerPixel extends AbstractPixel {
 	 */
 	@Override
 	public int getBlue(int x, int y) {
-		return getBlue(getOffset(x, y));
+		return getBlue(getIndex(x, y));
 	}
 
 	@Override
@@ -372,7 +372,7 @@ public class IntegerPixel extends AbstractPixel {
 	 */
 	@Override
 	public void setBlue(int x, int y, int newBlue) {
-		setBlue(getOffset(x, y), newBlue);
+		setBlue(getIndex(x, y), newBlue);
 	}
 
 	/**
@@ -474,7 +474,7 @@ public class IntegerPixel extends AbstractPixel {
 		return luma;
 	}
 
-	public int getOffset(int x, int y) {
+	public int getIndex(int x, int y) {
 		return (y * width) + x;
 	}
 

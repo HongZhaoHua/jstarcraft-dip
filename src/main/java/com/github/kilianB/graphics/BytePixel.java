@@ -328,7 +328,7 @@ public class BytePixel extends AbstractPixel {
 		return luma;
 	}
 
-	public int getOffset(int x, int y) {
+	public int getIndex(int x, int y) {
 		return (y * bytesPerColor * width) + (x * bytesPerColor);
 	}
 
