@@ -17,7 +17,6 @@ public class AverageColorHash extends AverageHash {
 
 	private static final long serialVersionUID = -5234612717498362659L;
 
-
 	/**
 	 * @param bitResolution The bit resolution specifies the final length of the
 	 *                      generated hash. A higher resolution will increase
@@ -57,7 +56,7 @@ public class AverageColorHash extends AverageHash {
 		double avgPixelValue = ArrayUtil.average(grayscale);
 
 		// Create hash
-		return computeHash(hash,grayscale,avgPixelValue);
+		return computeHash(hash, grayscale, avgPixelValue);
 	}
 
 }

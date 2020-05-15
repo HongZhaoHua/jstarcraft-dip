@@ -10,10 +10,8 @@ import java.util.HashSet;
  */
 public class JaccardIndex implements DistanceFunction {
 
-	
-	//TODO jmh performance benchmarking! This can't be optimal
-	
-	
+	// TODO jmh performance benchmarking! This can't be optimal
+
 	@Override
 	public double distance(double[] v0, double[] v1) {
 		HashSet<Double> a = new HashSet(Arrays.asList(v0));
@@ -21,10 +19,8 @@ public class JaccardIndex implements DistanceFunction {
 		HashSet union = new HashSet<>(a);
 		union.addAll(b);
 		b.retainAll(a);
-		return b.size() / (double)union.size();
+		return b.size() / (double) union.size();
 	}
-	
-	
 
 	@Override
 	public double distance(DoubleSummaryStatistics[] v0, double[] v1) {

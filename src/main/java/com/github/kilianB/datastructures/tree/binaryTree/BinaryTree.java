@@ -70,9 +70,9 @@ public class BinaryTree<T> extends AbstractBinaryTree<T> implements Serializable
 	}
 
 	protected BinaryTree() {
-		
+
 	}
-	
+
 	public void addHash(Hash hash, T value) {
 		// Expose method
 		super.addHash(hash, value);
@@ -232,7 +232,5 @@ public class BinaryTree<T> extends AbstractBinaryTree<T> implements Serializable
 		}
 		return result;
 	}
-	
-	
 
 }

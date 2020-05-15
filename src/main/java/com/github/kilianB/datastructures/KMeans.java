@@ -18,7 +18,7 @@ import com.github.kilianB.pcg.fast.PcgRSFast;
 public class KMeans {
 
 	private static final Logger LOGGER = Logger.getLogger(KMeans.class.getSimpleName());
-	
+
 	/**
 	 * The number of cluster the data will be partitioned into
 	 */
@@ -41,13 +41,14 @@ public class KMeans {
 
 		int[] cluster = new int[hashes.length];
 
-		
 		// If only one cluster is available return an array indicating all data
 		// belonging to this one cluster
 		if (k == 1) {
 			return new ClusterResult(cluster, hashes);
 		} else if (k > hashes.length) {
-			ArrayUtil.fillArray(cluster, i ->{ return i;});
+			ArrayUtil.fillArray(cluster, i -> {
+				return i;
+			});
 			LOGGER.info("Not enough images present for k categories. Assume: " + hashes.length + " cluster/s");
 			return new ClusterResult(cluster, hashes);
 		}
@@ -56,8 +57,7 @@ public class KMeans {
 		FuzzyHash[] clusterMeans = computeStartingClusters(hashes);
 
 		System.out.println("starting cluster");
-		
-		
+
 		// Iteratively improve clusters
 		computeKMeans(cluster, clusterMeans, hashes, maxIter);
 
@@ -80,7 +80,7 @@ public class KMeans {
 		FuzzyHash[] startingClusters = new FuzzyHash[k];
 
 		System.out.println(randomIndices);
-		
+
 		for (int i = 0; i < k; i++) {
 			startingClusters[i] = new FuzzyHash();
 			startingClusters[i].mergeFast(hashes[randomIndices.remove(0)]);

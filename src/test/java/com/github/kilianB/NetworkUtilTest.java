@@ -53,7 +53,6 @@ class NetworkUtilTest {
 			io.printStackTrace();
 		}
 	}
-	
 
 	@Test
 	public void collectSocket() {
@@ -119,14 +118,13 @@ class NetworkUtilTest {
 	}
 
 	@Test
-	public void publicIpAddress(){
+	public void publicIpAddress() {
 		try {
 			NetworkUtil.resolvePublicAddress();
-		}catch(IOException io) {
+		} catch (IOException io) {
 			fail(io);
 		}
-		
+
 	}
-	
 
 }

@@ -16,16 +16,16 @@ import com.github.kilianB.Require;
  * A linked hashmap only keeping the newest n entries. Useful for caching.
  * 
  * <p>
- * Hash table and linked list implementation of the <code>Map</code> interface, with
- * predictable iteration order. This implementation differs from
- * <code>HashMap</code> in that it maintains a doubly-linked list running through
- * all of its entries. This linked list defines the iteration ordering, which is
- * normally the order in which keys were inserted into the map
+ * Hash table and linked list implementation of the <code>Map</code> interface,
+ * with predictable iteration order. This implementation differs from
+ * <code>HashMap</code> in that it maintains a doubly-linked list running
+ * through all of its entries. This linked list defines the iteration ordering,
+ * which is normally the order in which keys were inserted into the map
  * (<i>insertion-order</i>). Note that insertion order is not affected if a key
- * is <i>re-inserted</i> into the map. (A key <code>k</code> is reinserted into a
- * map <code>m</code> if <code>m.put(k, v)</code> is invoked when
- * <code>m.containsKey(k)</code> would return <code>true</code> immediately prior to the
- * invocation.)
+ * is <i>re-inserted</i> into the map. (A key <code>k</code> is reinserted into
+ * a map <code>m</code> if <code>m.put(k, v)</code> is invoked when
+ * <code>m.containsKey(k)</code> would return <code>true</code> immediately
+ * prior to the invocation.)
  *
  * <p>
  * This implementation spares its clients from the unspecified, generally
@@ -47,24 +47,25 @@ import com.github.kilianB.Require;
  * they were presented.)
  *
  * <p>
- * This class provides all of the optional <code>Map</code> operations, and permits
- * null elements. Like <code>HashMap</code>, it provides constant-time performance
- * for the basic operations (<code>add</code>, <code>contains</code> and
- * <code>remove</code>), assuming the hash function disperses elements properly
- * among the buckets. Performance is likely to be just slightly below that of
- * <code>HashMap</code>, due to the added expense of maintaining the linked list,
- * with one exception: Iteration over the collection-views of a
- * <code>LinkedHashMap</code> requires time proportional to the <i>size</i> of the
- * map, regardless of its capacity. Iteration over a <code>HashMap</code> is likely
- * to be more expensive, requiring time proportional to its <i>capacity</i>.
+ * This class provides all of the optional <code>Map</code> operations, and
+ * permits null elements. Like <code>HashMap</code>, it provides constant-time
+ * performance for the basic operations (<code>add</code>, <code>contains</code>
+ * and <code>remove</code>), assuming the hash function disperses elements
+ * properly among the buckets. Performance is likely to be just slightly below
+ * that of <code>HashMap</code>, due to the added expense of maintaining the
+ * linked list, with one exception: Iteration over the collection-views of a
+ * <code>LinkedHashMap</code> requires time proportional to the <i>size</i> of
+ * the map, regardless of its capacity. Iteration over a <code>HashMap</code> is
+ * likely to be more expensive, requiring time proportional to its
+ * <i>capacity</i>.
  *
  * <p>
  * A linked hash map has two parameters that affect its performance: <i>initial
  * capacity</i> and <i>load factor</i>. They are defined precisely as for
- * <code>HashMap</code>. Note, however, that the penalty for choosing an excessively
- * high value for initial capacity is less severe for this class than for
- * <code>HashMap</code>, as iteration times for this class are unaffected by
- * capacity.
+ * <code>HashMap</code>. Note, however, that the penalty for choosing an
+ * excessively high value for initial capacity is less severe for this class
+ * than for <code>HashMap</code>, as iteration times for this class are
+ * unaffected by capacity.
  *
  * <p>
  * <strong>Note that this implementation is not synchronized.</strong> If
@@ -87,7 +88,8 @@ import com.github.kilianB.Require;
  * iteration order. In insertion-ordered linked hash maps, merely changing the
  * value associated with a key that is already contained in the map is not a
  * structural modification. <strong>In access-ordered linked hash maps, merely
- * querying the map with <code>get</code> is a structural modification. </strong>)
+ * querying the map with <code>get</code> is a structural modification.
+ * </strong>)
  *
  * <p>
  * The iterators returned by the <code>iterator</code> method of the collections
@@ -103,10 +105,10 @@ import com.github.kilianB.Require;
  * Note that the fail-fast behavior of an iterator cannot be guaranteed as it
  * is, generally speaking, impossible to make any hard guarantees in the
  * presence of unsynchronized concurrent modification. Fail-fast iterators throw
- * <code>ConcurrentModificationException</code> on a best-effort basis. Therefore,
- * it would be wrong to write a program that depended on this exception for its
- * correctness: <i>the fail-fast behavior of iterators should be used only to
- * detect bugs.</i>
+ * <code>ConcurrentModificationException</code> on a best-effort basis.
+ * Therefore, it would be wrong to write a program that depended on this
+ * exception for its correctness: <i>the fail-fast behavior of iterators should
+ * be used only to detect bugs.</i>
  *
  * <p>
  * The spliterators returned by the spliterator method of the collections
@@ -161,9 +163,10 @@ public class CircularLinkedHashMap<K, V> extends LinkedHashMap<K, V> {
 
 	/**
 	 * <p>
-	 * Constructs an insertion-ordered <code>CircularLinkedHashMap</code> instance with
-	 * the same mappings as the specified map. The <code>CircularLinkedHashMap</code>
-	 * instance is created with a default buffer size of 12.
+	 * Constructs an insertion-ordered <code>CircularLinkedHashMap</code> instance
+	 * with the same mappings as the specified map. The
+	 * <code>CircularLinkedHashMap</code> instance is created with a default buffer
+	 * size of 12.
 	 * 
 	 * <p>
 	 * If a different buffer size is required use another constructor and invoke the

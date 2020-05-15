@@ -50,8 +50,7 @@ public class MaximumKernel extends NonAveragingKernel {
 		super(EdgeHandlingStrategy.EXPAND);
 
 		if (width <= 0 || width % 2 == 0 || height <= 0 || height % 2 == 0) {
-			throw new IllegalArgumentException(
-					"Currently only odd dimensional kernels are supported. Width & height have to be positive");
+			throw new IllegalArgumentException("Currently only odd dimensional kernels are supported. Width & height have to be positive");
 		}
 		// Create mask
 		double[][] mask = new double[height][width];
@@ -86,7 +85,7 @@ public class MaximumKernel extends NonAveragingKernel {
 	protected double calcValue(double[][] input, int x, int y) {
 		return resolveMax(computePotentialValues(input, x, y));
 	}
-	
+
 	protected double resolveMax(double[][] values) {
 		if (values[1].length == 1 && values[1][0] == Double.MIN_VALUE) {
 			return values[0][0];

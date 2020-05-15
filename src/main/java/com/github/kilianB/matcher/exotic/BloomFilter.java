@@ -318,8 +318,7 @@ public class BloomFilter extends PlainImageMatcher {
 			this.k = getOptimalNumberHashFunctions(bits, n);
 			System.out.println("k " + k + " " + numHashingAlgorithms);
 			if (this.k < numHashingAlgorithms) {
-				LOGGER.warning(
-						"Fewer hashing algorithms needed as supplied. Discard algos. If desired increase the bit size of the bloom filter.");
+				LOGGER.warning("Fewer hashing algorithms needed as supplied. Discard algos. If desired increase the bit size of the bloom filter.");
 				numOfHashesUsed = this.k;
 			} else {
 				numOfHashesUsed = numHashingAlgorithms;

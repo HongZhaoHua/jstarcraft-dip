@@ -66,7 +66,7 @@ class MutableIntegerTest {
 	void testSetValue() {
 		MutableInteger i = new MutableInteger(1);
 		i.setValue(Integer.valueOf(3));
-		assertEquals(Integer.valueOf(3),i.getValue());
+		assertEquals(Integer.valueOf(3), i.getValue());
 	}
 
 	/**
@@ -77,7 +77,7 @@ class MutableIntegerTest {
 	void testSetValuePrimitive() {
 		MutableInteger i = new MutableInteger(1);
 		i.setValue(3);
-		assertEquals(Integer.valueOf(3),i.getValue());
+		assertEquals(Integer.valueOf(3), i.getValue());
 	}
 
 	/**
@@ -88,8 +88,8 @@ class MutableIntegerTest {
 	void testEqualsObject() {
 		MutableInteger i = new MutableInteger(4);
 		MutableInteger i2 = new MutableInteger(4);
-		assertEquals(i,i2);
-		
+		assertEquals(i, i2);
+
 	}
 
 	/**
@@ -99,8 +99,8 @@ class MutableIntegerTest {
 	@Test
 	void testGetAndIncrement() {
 		MutableInteger i = new MutableInteger(4);
-		assertEquals(Integer.valueOf(4),i.getAndIncrement());
-		assertEquals(Integer.valueOf(5),i.getValue());
+		assertEquals(Integer.valueOf(4), i.getAndIncrement());
+		assertEquals(Integer.valueOf(5), i.getValue());
 	}
 
 	/**
@@ -110,7 +110,7 @@ class MutableIntegerTest {
 	@Test
 	void testIncrementAndGet() {
 		MutableInteger i = new MutableInteger(4);
-		assertEquals(Integer.valueOf(5),i.incrementAndGet());
+		assertEquals(Integer.valueOf(5), i.incrementAndGet());
 	}
 
 	/**
@@ -120,8 +120,8 @@ class MutableIntegerTest {
 	@Test
 	void testGetAndDecrement() {
 		MutableInteger i = new MutableInteger(4);
-		assertEquals(Integer.valueOf(4),i.getAndDecrement());
-		assertEquals(Integer.valueOf(3),i.getValue());
+		assertEquals(Integer.valueOf(4), i.getAndDecrement());
+		assertEquals(Integer.valueOf(3), i.getValue());
 	}
 
 	/**
@@ -131,7 +131,7 @@ class MutableIntegerTest {
 	@Test
 	void testDecrementAndGet() {
 		MutableInteger i = new MutableInteger(4);
-		assertEquals(Integer.valueOf(3),i.decrementAndGet());
+		assertEquals(Integer.valueOf(3), i.decrementAndGet());
 	}
 
 }

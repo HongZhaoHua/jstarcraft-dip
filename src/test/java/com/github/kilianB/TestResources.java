@@ -25,7 +25,7 @@ public class TestResources {
 	public static BufferedImage highQuality;
 	public static BufferedImage lowQuality;
 	public static BufferedImage thumbnail;
-	
+
 	public static BufferedImage lenna;
 	public static BufferedImage lenna90;
 	public static BufferedImage lenna180;
@@ -61,13 +61,13 @@ public class TestResources {
 			assertTrue(lowQuality.getWidth() > 0);
 		}, () -> {
 			assertTrue(thumbnail.getWidth() > 0);
-		},() -> {
+		}, () -> {
 			assertTrue(lenna.getWidth() > 0);
-		},() -> {
+		}, () -> {
 			assertTrue(lenna90.getWidth() > 0);
-		},() -> {
+		}, () -> {
 			assertTrue(lenna180.getWidth() > 0);
-		},() -> {
+		}, () -> {
 			assertTrue(lenna270.getWidth() > 0);
 		});
 	}

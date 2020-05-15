@@ -25,7 +25,8 @@ import com.github.kilianB.graphics.FastPixel;
  * 
  * @author Kilian
  * @since 2.0.0
- * @see <a href="https://en.wikipedia.org/wiki/Sobel_operator">Sobel Operator</a>
+ * @see <a href="https://en.wikipedia.org/wiki/Sobel_operator">Sobel
+ *      Operator</a>
  */
 public class ScharrFilter implements Filter {
 
@@ -42,32 +43,29 @@ public class ScharrFilter implements Filter {
 	/**
 	 * Create a scharr filter
 	 * 
-	 * @param threshold the cutoff beneath which gray values will be set to 0. [0 - 1].
+	 * @param threshold the cutoff beneath which gray values will be set to 0. [0 -
+	 *                  1].
 	 */
 	public ScharrFilter(double threshold) {
 
 		this.threshold = (double) Require.inRange(threshold, 0, 1, "Threshold must be in range of [0-1]");
 
 		// x Kernel
-		/* @formatter:off
+		/*
+		 * @formatter:off
 		 * 
-		 * xKernel Separated 
-		 *  1  0  -1    1
-		 *  2  0  -2 => 2  1 0 -1 
-		 *  1  0  -1    1
-		 *  
+		 * xKernel Separated 1 0 -1 1 2 0 -2 => 2 1 0 -1 1 0 -1 1
+		 * 
 		 * @formatter:on
 		 */
 
 		double[][] x0Mask = { { 3 }, { 10 }, { 3 } };
 		double[][] x1Mask = { { 1, 0, -1 } };
 
-		/* @formatter:off
+		/*
+		 * @formatter:off
 		 * 
-		 * yKernel Separated 
-		 *  1  2  1     1 
-		 *  0  0  0 =>  0 x 1 2 1 
-		 * -1 -2 -1    -1
+		 * yKernel Separated 1 2 1 1 0 0 0 => 0 x 1 2 1 -1 -2 -1 -1
 		 * 
 		 * @formatter:on
 		 */
@@ -97,8 +95,8 @@ public class ScharrFilter implements Filter {
 		for (int x = 0; x < xGradient.length; x++) {
 			for (int y = 0; y < xGradient[x].length; y++) {
 				result[x][y] = (int) Math.sqrt(xGradient[x][y] * xGradient[x][y] + yGradient[x][y] * yGradient[x][y]);
-				
-				if(result[x][y] < 0) {
+
+				if (result[x][y] < 0) {
 					result[x][y] -= result[x][y];
 				}
 				if (result[x][y] < cutOffValue) {
@@ -112,7 +110,7 @@ public class ScharrFilter implements Filter {
 
 		fpSet.setAverageGrayscale(result);
 
-		if(fpSet.hasAlpha()) {
+		if (fpSet.hasAlpha()) {
 			fpSet.setAlpha(fp.getAlpha());
 		}
 

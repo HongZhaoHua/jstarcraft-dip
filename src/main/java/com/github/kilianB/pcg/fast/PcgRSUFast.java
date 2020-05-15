@@ -4,13 +4,16 @@ import com.github.kilianB.pcg.IncompatibleGeneratorException;
 import com.github.kilianB.pcg.sync.PcgRS;
 
 /**
- * A 64 bit State PcgRNG with 32 bit output. PCG-XSH-RR <p>
+ * A 64 bit State PcgRNG with 32 bit output. PCG-XSH-RR
+ * <p>
  * 
  * The pcg family combines a linear congruential generators with a permutation
- * output function resulting in high quality pseudo random numbers. <p>
+ * output function resulting in high quality pseudo random numbers.
+ * <p>
  * 
- * The original concept was introduced by Melissa O’Neill please refer to <a
- * href="http://www.pcg-random.org/">pcg-random</a> for more information. <p>
+ * The original concept was introduced by Melissa O’Neill please refer to
+ * <a href="http://www.pcg-random.org/">pcg-random</a> for more information.
+ * <p>
  * Opposed to RR this version performs a random shift rather than a random
  * rotation.
  * 
@@ -70,18 +73,19 @@ public class PcgRSUFast {
 	 * Seed the rng with the given seed and stream number. The seed defines the
 	 * current state in which the rng is in and corresponds to seeds usually found
 	 * in other RNG implementations. RNGs with different seeds are able to catch up
-	 * after they exhaust their period and produce the same numbers. <p>
+	 * after they exhaust their period and produce the same numbers.
+	 * <p>
 	 * 
 	 * Different stream numbers alter the increment of the rng and ensure distinct
-	 * state sequences <p>
+	 * state sequences
+	 * <p>
 	 * 
 	 * Only generators with the same seed AND stream numbers will produce identical
-	 * values <p>
+	 * values
+	 * <p>
 	 * 
-	 * @param seed
-	 *            used to compute the starting state of the RNG
-	 * @param streamNumber
-	 *            used to compute the increment for the lcg.
+	 * @param seed         used to compute the starting state of the RNG
+	 * @param streamNumber used to compute the increment for the lcg.
 	 */
 	public static void seed(long seed, long streamNumber) {
 		state = 0;
@@ -109,19 +113,20 @@ public class PcgRSUFast {
 	 * 
 	 * Be aware that this relationship is only true for deterministic generation
 	 * calls. {@link #nextGaussian()} or any bound limited number generations might
-	 * loop and consume more than one step to generate a number. <p>
+	 * loop and consume more than one step to generate a number.
+	 * <p>
 	 * 
 	 * To advance n steps the function performs <code>Math.ceil( log2(n) )</code>
 	 * iterations. So you may go ahead and skip as many steps as you like without
-	 * any performance implications. <p>
+	 * any performance implications.
+	 * <p>
 	 * 
 	 * Negative indices can be used to jump backwards in time going the long way
 	 * around
 	 * 
 	 * 
-	 * @param steps
-	 *            the amount of steps to advance or in case of a negative number go
-	 *            back in history
+	 * @param steps the amount of steps to advance or in case of a negative number
+	 *              go back in history
 	 */
 	public static void advance(long steps) {
 		long acc_mult = 1;
@@ -131,7 +136,7 @@ public class PcgRSUFast {
 		long cur_mult = MULT_64;
 
 		while (Long.compareUnsigned(steps, 0) > 0) {
-			if ((steps & 1) == 1) { 	// Last significant bit is 1
+			if ((steps & 1) == 1) { // Last significant bit is 1
 				acc_mult *= cur_mult;
 				acc_plus = acc_plus * cur_mult + cur_plus;
 			}
@@ -188,17 +193,16 @@ public class PcgRSUFast {
 	 * (inclusive) and the specified value (exclusive), drawn from this random
 	 * number generator's sequence.
 	 * 
-	 * @param n
-	 *            the upper bound (exclusive). Must be positive.
+	 * @param n the upper bound (exclusive). Must be positive.
 	 * @return the next pseudorandom, uniformly distributed {@code int} value
 	 *         between zero (inclusive) and {@code bound} (exclusive) from this
 	 *         random number generator's sequence
 	 */
 	public static int nextInt(int n) {
 		state = (state * MULT_64) + inc;
-		int r = (int) (((state >>> 22) ^ state) >>> ((state >>> 61) + 22)) >>> 1;	// Unsigned!
+		int r = (int) (((state >>> 22) ^ state) >>> ((state >>> 61) + 22)) >>> 1; // Unsigned!
 		int m = n - 1;
-		if ((n & m) == 0)  // i.e., bound is a power of 2
+		if ((n & m) == 0) // i.e., bound is a power of 2
 			r = (int) ((n * (long) r) >> 31);
 		else {
 			for (int u = r; u - (r = u % n) + m < 0;) {
@@ -237,8 +241,7 @@ public class PcgRSUFast {
 
 		state = (state * MULT_64) + inc;
 
-		return (((l >>> 6) << 27) + (((((state >>> 22) ^ state) >>> ((state >>> 61) + 22)) & INTEGER_MASK) >>> 5))
-				/ DOUBLE_MASK < probability;
+		return (((l >>> 6) << 27) + (((((state >>> 22) ^ state) >>> ((state >>> 61) + 22)) & INTEGER_MASK) >>> 5)) / DOUBLE_MASK < probability;
 	}
 
 	public static long nextLong() {
@@ -277,8 +280,7 @@ public class PcgRSUFast {
 		state = (state * MULT_64) + inc;
 		long l = ((((state >>> 22) ^ state) >>> ((state >>> 61) + 22))) & INTEGER_MASK;
 		state = (state * MULT_64) + inc;
-		return (((l >>> 6) << 27) + (((((state >>> 22) ^ state) >>> ((state >>> 61) + 22)) & INTEGER_MASK) >>> 5))
-				/ DOUBLE_MASK;
+		return (((l >>> 6) << 27) + (((((state >>> 22) ^ state) >>> ((state >>> 61) + 22)) & INTEGER_MASK) >>> 5)) / DOUBLE_MASK;
 	}
 
 	// TODO
@@ -288,8 +290,7 @@ public class PcgRSUFast {
 			state = (state * MULT_64) + inc;
 			long l = ((((state >>> 22) ^ state) >>> ((state >>> 61) + 22))) & INTEGER_MASK;
 			state = (state * MULT_64) + inc;
-			d = (((l >>> 6) << 27) + (((((state >>> 22) ^ state) >>> ((state >>> 61) + 22)) & INTEGER_MASK) >>> 5))
-					/ DOUBLE_MASK;
+			d = (((l >>> 6) << 27) + (((((state >>> 22) ^ state) >>> ((state >>> 61) + 22)) & INTEGER_MASK) >>> 5)) / DOUBLE_MASK;
 
 			// grab a value, initially from half-open [0.0, 1.0)
 			if (includeOne) {
@@ -301,8 +302,8 @@ public class PcgRSUFast {
 
 			}
 
-		} while ((d > 1.0) ||                            // everything above 1.0 is always invalid
-				(!includeZero && d == 0.0));            // if we're not including zero, 0.0 is invalid
+		} while ((d > 1.0) || // everything above 1.0 is always invalid
+		        (!includeZero && d == 0.0)); // if we're not including zero, 0.0 is invalid
 		return d;
 	}
 
@@ -317,12 +318,12 @@ public class PcgRSUFast {
 		do {
 			state = (state * MULT_64) + inc;
 			d = (((((state >>> 22) ^ state) >>> ((state >>> 61) + 22)) & INTEGER_MASK) >>> 8) / FLOAT_UNIT; // grab a
-																											 // value,
-																											 // initially
-																											 // from
-																											 // half-open
-																											 // [0.0f,
-																											 // 1.0f)
+			                                                                                                // value,
+			                                                                                                // initially
+			                                                                                                // from
+			                                                                                                // half-open
+			                                                                                                // [0.0f,
+			                                                                                                // 1.0f)
 			if (includeOne) {
 				// Only generate the boolean if it really is the case or we scramble the state
 				state = (state * MULT_64) + inc;
@@ -331,7 +332,7 @@ public class PcgRSUFast {
 				}
 			}
 		} while ((d > 1.0f) || // everything above 1.0f is always invalid
-				(!includeZero && d == 0.0f)); // if we're not including zero, 0.0f is invalid
+		        (!includeZero && d == 0.0f)); // if we're not including zero, 0.0f is invalid
 		return d;
 	}
 
@@ -370,20 +371,18 @@ public class PcgRSUFast {
 	}
 
 	/**
-	 * Calculate the distance of this generator to another RS instance. The distance is defined
-	 * in the numbers of steps one generator has to perform to catch up and produce the same 
-	 * results as the other generator.
+	 * Calculate the distance of this generator to another RS instance. The distance
+	 * is defined in the numbers of steps one generator has to perform to catch up
+	 * and produce the same results as the other generator.
 	 * 
-	 * @param other
-	 *            the generator to compare this state to
+	 * @param other the generator to compare this state to
 	 * @return the distance between the two generators
 	 */
 	public static long distance(PcgRS other) {
 
 		// Check if they are the same stream...
 		if (inc != other.getInc()) {
-			throw new IncompatibleGeneratorException(
-					"Can not compare generators with different" + " streams. Those generators will never converge");
+			throw new IncompatibleGeneratorException("Can not compare generators with different" + " streams. Those generators will never converge");
 		}
 
 		long curState = state;
@@ -392,13 +391,13 @@ public class PcgRSUFast {
 		long curPlus = inc;
 		long curMult = MULT_64;
 
-		long bit = 1;	// Fix bit was overflowing as an int was used!
+		long bit = 1; // Fix bit was overflowing as an int was used!
 		long distance = 0;
 
 		// why should we mask here? This does exactly nothing!
 		// long mask = ~0;
 
-		while ((curState /*& mask*/) != (newState /*& mask*/)) {
+		while ((curState /* & mask */) != (newState /* & mask */)) {
 			if ((curState & bit) != (newState & bit)) {
 				curState = curState * curMult + curPlus;
 				distance |= bit;
@@ -412,11 +411,12 @@ public class PcgRSUFast {
 		return distance - 1;
 	}
 
-	/* It doesn't make sense for a static class to return a new copy of itself
-	@Deprecated
-	public SpecificStreamRR split() {
-		throw new NoSuchAlgorithmException("");
-	}*/
+	/*
+	 * It doesn't make sense for a static class to return a new copy of itself
+	 * 
+	 * @Deprecated public SpecificStreamRR split() { throw new
+	 * NoSuchAlgorithmException(""); }
+	 */
 
 	private static long getRandomSeed(long input) {
 		// xorshift64*

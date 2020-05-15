@@ -6,6 +6,4 @@ package com.github.kilianB.clustering;
  */
 class KMeansTest {
 
-
-
 }

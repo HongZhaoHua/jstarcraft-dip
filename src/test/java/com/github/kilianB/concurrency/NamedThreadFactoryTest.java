@@ -18,14 +18,16 @@ class NamedThreadFactoryTest {
 	@Test
 	void createsNonDaemonThread() {
 		NamedThreadFactory factory = new NamedThreadFactory();
-		Thread t = factory.newThread(() -> {});
+		Thread t = factory.newThread(() -> {
+		});
 		assertFalse(t.isDaemon());
 	}
-	
+
 	@Test
 	void createsDaemonThread() {
 		NamedThreadFactory factory = new NamedThreadFactory(true);
-		Thread t = factory.newThread(() -> {});
+		Thread t = factory.newThread(() -> {
+		});
 		assertTrue(t.isDaemon());
 	}
 
@@ -41,20 +43,20 @@ class NamedThreadFactoryTest {
 
 	@Test
 	void exceptionHandler() {
-		
+
 		CountDownLatch latch = new CountDownLatch(1);
 		NamedThreadFactory factory = new NamedThreadFactory((thread, throwable) -> {
 			latch.countDown();
 		});
-		
+
 		Thread t = factory.newThread(() -> {
 			throw new IllegalArgumentException();
 		});
 		t.start();
-		
+
 		try {
 			assertTrue(latch.await(150, TimeUnit.MILLISECONDS));
-		}catch(InterruptedException e) {
+		} catch (InterruptedException e) {
 			fail("Interrupted");
 		}
 	}

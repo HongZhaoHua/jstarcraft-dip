@@ -171,8 +171,7 @@ public class CumulativeMatcher extends PersitentBinaryTreeMatcher {
 	protected PriorityQueue<Result<String>> getMatchingImagesInternal(BufferedImage image, String uniqueId) {
 
 		if (steps.isEmpty())
-			throw new IllegalStateException(
-					"Please supply at least one hashing algorithm prior to invoking the match method");
+			throw new IllegalStateException("Please supply at least one hashing algorithm prior to invoking the match method");
 
 		// The maximum distance we have to search in our tree until we can't find any
 		// more images
@@ -196,8 +195,7 @@ public class CumulativeMatcher extends PersitentBinaryTreeMatcher {
 			BinaryTree<String> binTree = binTreeMap.get(algo);
 
 			// Init temporary hashmap
-			int optimalCapacity = (int) (Math
-					.ceil((first ? binTree.getHashCount() : distanceMap.size()) / optimalLoadFactor) + 1);
+			int optimalCapacity = (int) (Math.ceil((first ? binTree.getHashCount() : distanceMap.size()) / optimalLoadFactor) + 1);
 			temporaryMap = new HashMap<>(optimalCapacity, optimalLoadFactor);
 
 			Hash needleHash = getHash(algo, uniqueId, image);

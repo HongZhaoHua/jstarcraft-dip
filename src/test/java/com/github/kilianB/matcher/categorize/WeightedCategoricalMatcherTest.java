@@ -16,7 +16,7 @@ import com.github.kilianB.matcher.categorize.WeightedCategoricalMatcher.DimReduc
  *
  */
 class WeightedCategoricalMatcherTest extends CategorizeBaseTest {
-	
+
 	@ParameterizedTest
 	@MethodSource(value = "com.github.kilianB.matcher.categorize.WeightedCategoricalMatcherTest#getMatcher")
 	void sameDistanceAfterClusterRecomputation(WeightedCategoricalMatcher wMatcher) {
@@ -27,14 +27,12 @@ class WeightedCategoricalMatcherTest extends CategorizeBaseTest {
 	}
 
 	public static Stream<WeightedCategoricalMatcher> getMatcher() {
-		return Stream.of(new WeightedCategoricalMatcher(.2,DimReduction.NONE),
-				new WeightedCategoricalMatcher(.2,DimReduction.K_MEANS_APPROXIMATION),
-				new WeightedCategoricalMatcher(.2,DimReduction.BINARY_TREE));
+		return Stream.of(new WeightedCategoricalMatcher(.2, DimReduction.NONE), new WeightedCategoricalMatcher(.2, DimReduction.K_MEANS_APPROXIMATION), new WeightedCategoricalMatcher(.2, DimReduction.BINARY_TREE));
 	}
 
 	@Override
 	CategoricalMatcher getInstance() {
-		CategoricalMatcher matcher = new WeightedCategoricalMatcher(.2,DimReduction.NONE);
+		CategoricalMatcher matcher = new WeightedCategoricalMatcher(.2, DimReduction.NONE);
 		matcher.addHashingAlgorithm(new AverageHash(32));
 		return matcher;
 	}

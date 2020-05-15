@@ -44,7 +44,7 @@ class MaximumKernelTest {
 
 	@Test
 	public void sameDimension2D() {
-		double[][] input = { { 0, 1, 2 }, { 0, 1, 2 }};
+		double[][] input = { { 0, 1, 2 }, { 0, 1, 2 } };
 		Kernel k = new MaximumKernel(3, 1);
 		double[][] result = k.apply(input);
 		assertEquals(input.length, result.length);

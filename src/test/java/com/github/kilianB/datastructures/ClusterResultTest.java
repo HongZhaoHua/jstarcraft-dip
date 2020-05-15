@@ -15,9 +15,9 @@ class ClusterResultTest {
 	@Test
 	void lookupEquality() {
 
-		//TODO
-		//fail();
-		
+		// TODO
+		// fail();
+
 	}
 
 }

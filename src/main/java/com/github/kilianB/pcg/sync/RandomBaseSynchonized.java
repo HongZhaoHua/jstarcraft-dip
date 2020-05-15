@@ -8,7 +8,8 @@ import com.github.kilianB.pcg.RandomBase64;
  * critical components to ensure thread safety using synchronized monitors. This
  * implementations shines in single threaded and normal congestion situation due
  * to good support by the compiler and should generally be the preferred class
- * to extend from when implementing new rngs. <p>
+ * to extend from when implementing new rngs.
+ * <p>
  * 
  * See {@link RandomBase64 } for more information regarding the internal working
  * of the pcg family
@@ -34,20 +35,21 @@ public abstract class RandomBaseSynchonized extends RandomBase64 {
 	/**
 	 * Create a random number generator with the given seed and stream number. The
 	 * seed defines the current state in which the rng is in and corresponds to
-	 * seeds usually found in other RNG implementations. RNGs with different seeds are
-	 * able to catch up after they exhaust their period and produce the same
-	 * numbers. <p>
+	 * seeds usually found in other RNG implementations. RNGs with different seeds
+	 * are able to catch up after they exhaust their period and produce the same
+	 * numbers.
+	 * <p>
 	 * 
 	 * Different stream numbers alter the increment of the rng and ensure distinct
-	 * state sequences <p>
+	 * state sequences
+	 * <p>
 	 * 
 	 * Only generators with the same seed AND stream numbers will produce identical
-	 * values <p>
+	 * values
+	 * <p>
 	 * 
-	 * @param seed
-	 *            used to compute the starting state of the RNG
-	 * @param streamNumber
-	 *            used to compute the increment for the lcg.
+	 * @param seed         used to compute the starting state of the RNG
+	 * @param streamNumber used to compute the increment for the lcg.
 	 */
 	public RandomBaseSynchonized(long seed, long streamNumber) {
 		super(seed, streamNumber);
@@ -75,7 +77,7 @@ public abstract class RandomBaseSynchonized extends RandomBase64 {
 		long cur_mult = MULT_64;
 
 		while (Long.compareUnsigned(steps, 0) > 0) {
-			if ((steps & 1) == 1) { 	// Last significant bit is 1
+			if ((steps & 1) == 1) { // Last significant bit is 1
 				acc_mult *= cur_mult;
 				acc_plus = acc_plus * cur_mult + cur_plus;
 			}

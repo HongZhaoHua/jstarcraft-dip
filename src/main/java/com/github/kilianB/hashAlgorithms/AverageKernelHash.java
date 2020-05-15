@@ -122,8 +122,8 @@ public class AverageKernelHash extends AverageHash implements Serializable {
 
 	@Override
 	protected int precomputeAlgoId() {
-		//*31 to create a distinct id compare to v 2.0.0 bugfix
-		return Objects.hash(getClass().getName(), height, width, filters) *31;
+		// *31 to create a distinct id compare to v 2.0.0 bugfix
+		return Objects.hash(getClass().getName(), height, width, filters) * 31;
 	}
 
 	@Override

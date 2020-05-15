@@ -7,7 +7,7 @@ import com.github.kilianB.hashAlgorithms.HashingAlgorithm;
  * @author Kilian
  *
  */
-class CategoricalMatcherTest extends CategorizeBaseTest{
+class CategoricalMatcherTest extends CategorizeBaseTest {
 
 	@Override
 	CategoricalMatcher getInstance() {
@@ -16,6 +16,5 @@ class CategoricalMatcherTest extends CategorizeBaseTest{
 		matcher.addHashingAlgorithm(hasher);
 		return matcher;
 	}
-	
 
 }

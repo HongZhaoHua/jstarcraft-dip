@@ -48,8 +48,7 @@ class FastPixelByteTest {
 			green = ImageIO.read(FastPixelByteTest.class.getClassLoader().getResourceAsStream("green.png"));
 			blue = ImageIO.read(FastPixelByteTest.class.getClassLoader().getResourceAsStream("blue.png"));
 			brown = ImageIO.read(FastPixelByteTest.class.getClassLoader().getResourceAsStream("brown.png"));
-			brownOpacity = ImageIO
-					.read(FastPixelByteTest.class.getClassLoader().getResourceAsStream("brownOpacity.png"));
+			brownOpacity = ImageIO.read(FastPixelByteTest.class.getClassLoader().getResourceAsStream("brownOpacity.png"));
 		} catch (IOException e) {
 			e.printStackTrace();
 		}

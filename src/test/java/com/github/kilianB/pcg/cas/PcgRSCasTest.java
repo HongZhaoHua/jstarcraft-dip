@@ -21,7 +21,7 @@ import com.github.kilianB.pcg.RandomBurdenTest;
  * @author Kilian
  *
  */
-class PcgRSCasTest extends PcgBaseTest{
+class PcgRSCasTest extends PcgBaseTest {
 
 	@Override
 	public Pcg getInstance() {
@@ -37,9 +37,9 @@ class PcgRSCasTest extends PcgBaseTest{
 	public boolean isFast() {
 		return false;
 	}
-	
+
 	@Nested
-	class RandomBurden extends RandomBurdenTest{
+	class RandomBurden extends RandomBurdenTest {
 		@Override
 		protected Random getInstance() {
 			return new PcgRSCas();

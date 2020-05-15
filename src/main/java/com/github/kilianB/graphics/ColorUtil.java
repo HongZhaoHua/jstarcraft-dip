@@ -29,35 +29,31 @@ public class ColorUtil {
 
 	//
 
-	//@formatter:off
+	// @formatter:off
 	/**
 	 * Convert a JavaFX color to it's awt sibling
+	 * 
 	 * @param fxColor The fx color to convert
 	 * @return The awt color
 	 * @since 1.0.0
 	 */
-	public static java.awt.Color fxToAwtColor(Color fxColor){
-		return new java.awt.Color((float)fxColor.getRed(),
-				(float)fxColor.getGreen(),
-				(float)fxColor.getBlue(),
-				(float)fxColor.getOpacity());
+	public static java.awt.Color fxToAwtColor(Color fxColor) {
+		return new java.awt.Color((float) fxColor.getRed(), (float) fxColor.getGreen(), (float) fxColor.getBlue(), (float) fxColor.getOpacity());
 	}
-	//@formatter:on
+	// @formatter:on
 
-	//@formatter:off
+	// @formatter:off
 	/**
 	 * Convert a Java AWT color to it's JavaFX sibling
+	 * 
 	 * @param awtColor The awt color to convert
 	 * @return The fx color
 	 * @since 1.0.0
 	 */
 	public static Color awtToFxColor(java.awt.Color awtColor) {
-		return new Color(awtColor.getRed()/255d,
-				awtColor.getGreen()/255d,
-				awtColor.getBlue()/255d,
-				awtColor.getAlpha()/255d);
+		return new Color(awtColor.getRed() / 255d, awtColor.getGreen() / 255d, awtColor.getBlue() / 255d, awtColor.getAlpha() / 255d);
 	}
-	//@formatter:on
+	// @formatter:on
 
 	/**
 	 * Convert an argb value to it's individual components in range of 0 - 255
@@ -96,8 +92,7 @@ public class ColorUtil {
 	 */
 	public static javafx.scene.paint.Color argbToFXColor(int argb) {
 		int[] components = argbToComponents(argb);
-		return new javafx.scene.paint.Color(components[1] / 255d, components[2] / 255d, components[3] / 255d,
-				components[0] / 255d);
+		return new javafx.scene.paint.Color(components[1] / 255d, components[2] / 255d, components[3] / 255d, components[0] / 255d);
 	}
 
 	/**
@@ -108,8 +103,7 @@ public class ColorUtil {
 	 * @since 1.0.0
 	 */
 	public static String fxToHex(Color color) {
-		return String.format("#%02X%02X%02X", (int) (color.getRed() * 255), (int) (color.getGreen() * 255),
-				(int) (color.getBlue() * 255));
+		return String.format("#%02X%02X%02X", (int) (color.getRed() * 255), (int) (color.getGreen() * 255), (int) (color.getBlue() * 255));
 	}
 
 	// https://stackoverflow.com/a/2103608/3244464
@@ -163,27 +157,28 @@ public class ColorUtil {
 	}
 
 	/**
-	 * Get the  Y (luma component) of the YCrCb color model 
+	 * Get the Y (luma component) of the YCrCb color model
+	 * 
 	 * @param c an javaFX color
 	 * @return the luma component in the tange [0-1]
 	 * @since 1.3.2
 	 */
 	public static double getLuma(Color c) {
-		return LUMA_RED*c.getRed() + LUMA_GREEN*c.getGreen() + LUMA_BLUE*c.getBlue();
+		return LUMA_RED * c.getRed() + LUMA_GREEN * c.getGreen() + LUMA_BLUE * c.getBlue();
 	}
-	
+
 	/**
-	 * Get the  Y (luma component) of the YCrCb color model 
+	 * Get the Y (luma component) of the YCrCb color model
+	 * 
 	 * @param c an awt color
 	 * @return the luma component in the tange [0-255]
 	 * @since 1.3.2
 	 */
 	public static int getLuma(java.awt.Color c) {
-		int luma = (int) Math.round(LUMA_RED*c.getRed() + LUMA_GREEN*c.getGreen() + LUMA_BLUE*c.getBlue());
+		int luma = (int) Math.round(LUMA_RED * c.getRed() + LUMA_GREEN * c.getGreen() + LUMA_BLUE * c.getBlue());
 		return luma > 255 ? 255 : luma;
 	}
-	
-	
+
 	/**
 	 * Return either white or black depending on the supplied color to guarantee
 	 * readability. The contrast color is assumed to be used as text overlay on top
@@ -203,7 +198,7 @@ public class ColorUtil {
 			return Color.WHITE;
 		}
 	}
-	
+
 	/**
 	 * Return either white or black depending on the supplied color to guarantee
 	 * readability. The contrast color is assumed to be used as text overlay on top

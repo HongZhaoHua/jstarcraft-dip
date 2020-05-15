@@ -61,8 +61,7 @@ class FastPixelIntTest {
 			brown = ImageIO.read(FastPixelByteTest.class.getClassLoader().getResourceAsStream("brown.png"));
 			brown = ImageUtil.toNewType(brown, BImageType.TYPE_INT_BGR);
 
-			brownOpacity = ImageIO
-					.read(FastPixelByteTest.class.getClassLoader().getResourceAsStream("brownOpacity.png"));
+			brownOpacity = ImageIO.read(FastPixelByteTest.class.getClassLoader().getResourceAsStream("brownOpacity.png"));
 			brownOpacity = ImageUtil.toNewType(brownOpacity, BImageType.TYPE_INT_ARGB);
 		} catch (IOException e) {
 			e.printStackTrace();
@@ -195,7 +194,7 @@ class FastPixelIntTest {
 		int[] green = fp.getBlue1D();
 		int[][] green2D = fp.getBlue();
 		int i = 0;
-		
+
 		for (int y = 0; y < lena.getHeight(); y++) {
 			for (int x = 0; x < lena.getWidth(); x++) {
 				assertEquals(green[i++], green2D[x][y]);

@@ -70,25 +70,18 @@ public abstract class HashingAlgorithm implements Serializable {
 	 */
 	protected boolean immutableState = false;
 
-	private static final String LOCKED_MODIFICATION_EXCEPTION = "Hashing algorithms may only be "
-			+ "modified as long as no hash has been generated or hashcode has been used by this object. This limitation is "
-			+ "imposed to ensure that each hash is associated with the correct algorithm id which "
-			+ "might change if the internal state of the algorithm is altered. Be aware"
-			+ " that method like getKeyResolution() already perform a hashing operation "
-			+ "and therefore invalidate further modification requests";
+	private static final String LOCKED_MODIFICATION_EXCEPTION = "Hashing algorithms may only be " + "modified as long as no hash has been generated or hashcode has been used by this object. This limitation is " + "imposed to ensure that each hash is associated with the correct algorithm id which " + "might change if the internal state of the algorithm is altered. Be aware" + " that method like getKeyResolution() already perform a hashing operation " + "and therefore invalidate further modification requests";
 
 	/**
-	 * Promises a key with approximately bit resolution. Due to
-	 * geometric requirements the key might be marginally larger or smaller than
-	 * specified. Hashing algorithms shall try to at least provide the number of
-	 * bits specified
+	 * Promises a key with approximately bit resolution. Due to geometric
+	 * requirements the key might be marginally larger or smaller than specified.
+	 * Hashing algorithms shall try to at least provide the number of bits specified
 	 * 
 	 * @param bitResolution The bit count of the final hash
 	 */
 	public HashingAlgorithm(int bitResolution) {
 
-		this.bitResolution = Require.positiveValue(bitResolution,
-				"The bit resolution for hashing algorithms has to be positive");
+		this.bitResolution = Require.positiveValue(bitResolution, "The bit resolution for hashing algorithms has to be positive");
 	}
 
 	/**
@@ -104,13 +97,13 @@ public abstract class HashingAlgorithm implements Serializable {
 	 */
 	public Hash[] hash(BufferedImage... images) {
 		Hash[] returnValue = new Hash[images.length];
-		
-		for(int i = 0; i < images.length; i++) {
+
+		for (int i = 0; i < images.length; i++) {
 			returnValue[i] = this.hash(images[i]);
 		}
 		return returnValue;
 	}
-	
+
 	/**
 	 * Calculate hashes for the given images. Invoking the hash function on the same
 	 * image has to return the same hash value. A comparison of the hashes relates
@@ -125,14 +118,13 @@ public abstract class HashingAlgorithm implements Serializable {
 	 */
 	public Hash[] hash(File... imageFiles) throws IOException {
 		Hash[] returnValue = new Hash[imageFiles.length];
-		
-		for(int i = 0; i < imageFiles.length; i++) {
+
+		for (int i = 0; i < imageFiles.length; i++) {
 			returnValue[i] = this.hash(imageFiles[i]);
 		}
 		return returnValue;
 	}
-	
-	
+
 	/**
 	 * Calculate a hash for the given image. Invoking the hash function on the same
 	 * image has to return the same hash value. A comparison of the hashes relates
@@ -224,8 +216,8 @@ public abstract class HashingAlgorithm implements Serializable {
 	public final int algorithmId() {
 		if (algorithmId == 0) {
 			algorithmId = 31 * precomputeAlgoId();
-			//Make sure the algo id doesn't collide with version 2.0.0 id's
-			algorithmId = 31 * algorithmId + 5  + preProcessing.hashCode();
+			// Make sure the algo id doesn't collide with version 2.0.0 id's
+			algorithmId = 31 * algorithmId + 5 + preProcessing.hashCode();
 			immutableState = true;
 		}
 		return algorithmId;

@@ -173,8 +173,7 @@ public class ClusterResult {
 		}
 
 		StringBuilder sb = new StringBuilder();
-		sb.append("Observations: ").append(clusterIndex.length).append("\n").append("Number of Clusters: ")
-				.append(numberOfClusters).append("\n");
+		sb.append("Observations: ").append(clusterIndex.length).append("\n").append("Number of Clusters: ").append(numberOfClusters).append("\n");
 
 		int clusterLength = StringUtil.charsNeeded(numberOfClusters);
 		int obsLength = StringUtil.charsNeeded(clusterIndex.length);
@@ -205,8 +204,7 @@ public class ClusterResult {
 
 		sb.append("SSE: " + df.format(sseSum)).append("\n");
 		if (includeSilhouetteCoefficient) {
-			sb.append("Silhouette Coef/#clusters: " + df.format(silouetteCoeffificient / numberOfClusters))
-					.append("\n");
+			sb.append("Silhouette Coef/#clusters: " + df.format(silouetteCoeffificient / numberOfClusters)).append("\n");
 		}
 		System.out.println(sb.toString());
 	}
@@ -361,10 +359,9 @@ public class ClusterResult {
 		/// get all
 
 		// Sort it by distance (TODO should it be distance - error?)
-		resultValue = resultValue.entrySet().stream().sorted(Map.Entry.comparingByValue())
-				.collect(Collectors.toMap(e -> e.getKey(), e -> e.getValue(), (u, v) -> {
-					throw new IllegalStateException(String.format("Duplicate key %s", u));
-				}, LinkedHashMap::new));
+		resultValue = resultValue.entrySet().stream().sorted(Map.Entry.comparingByValue()).collect(Collectors.toMap(e -> e.getKey(), e -> e.getValue(), (u, v) -> {
+			throw new IllegalStateException(String.format("Duplicate key %s", u));
+		}, LinkedHashMap::new));
 
 //		System.out.println("Values: " + resultValue);
 

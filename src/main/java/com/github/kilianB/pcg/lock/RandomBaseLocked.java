@@ -23,11 +23,10 @@ import com.github.kilianB.pcg.RandomBase64;
 public abstract class RandomBaseLocked extends RandomBase64 {
 
 	private static final long serialVersionUID = 6005012112047562156L;
-	
+
 	private ReentrantReadWriteLock lock;
 	private ReadLock readLock;
 	private WriteLock writeLock;
-	
 
 	/** 64 bit internal state */
 	protected long state;
@@ -43,20 +42,21 @@ public abstract class RandomBaseLocked extends RandomBase64 {
 	/**
 	 * Create a random number generator with the given seed and stream number. The
 	 * seed defines the current state in which the rng is in and corresponds to
-	 * seeds usually found in other RNG implementations. RNGs with different seeds are
-	 * able to catch up after they exhaust their period and produce the same
-	 * numbers. <p>
+	 * seeds usually found in other RNG implementations. RNGs with different seeds
+	 * are able to catch up after they exhaust their period and produce the same
+	 * numbers.
+	 * <p>
 	 * 
 	 * Different stream numbers alter the increment of the rng and ensure distinct
-	 * state sequences <p>
+	 * state sequences
+	 * <p>
 	 * 
 	 * Only generators with the same seed AND stream numbers will produce identical
-	 * values <p>
+	 * values
+	 * <p>
 	 * 
-	 * @param seed
-	 *            used to compute the starting state of the RNG
-	 * @param streamNumber
-	 *            used to compute the increment for the lcg.
+	 * @param seed         used to compute the starting state of the RNG
+	 * @param streamNumber used to compute the increment for the lcg.
 	 */
 	public RandomBaseLocked(long seed, long streamNumber) {
 		super(seed, streamNumber);
@@ -69,8 +69,6 @@ public abstract class RandomBaseLocked extends RandomBase64 {
 		initLocks();
 	}
 
-	
-	
 	@Override
 	protected long stepRight() {
 		writeLock.lock();
@@ -90,7 +88,7 @@ public abstract class RandomBaseLocked extends RandomBase64 {
 		long cur_mult = MULT_64;
 
 		while (Long.compareUnsigned(steps, 0) > 0) {
-			if ((steps & 1) == 1) { 	// Last significant bit is 1
+			if ((steps & 1) == 1) { // Last significant bit is 1
 				acc_mult *= cur_mult;
 				acc_plus = acc_plus * cur_mult + cur_plus;
 			}
@@ -102,7 +100,7 @@ public abstract class RandomBaseLocked extends RandomBase64 {
 		this.state = (acc_mult * state) + acc_plus;
 		writeLock.unlock();
 	}
-	
+
 	@Override
 	protected void setInc(long increment) {
 		if (increment == 0 || increment % 2 == 0) {
@@ -116,12 +114,12 @@ public abstract class RandomBaseLocked extends RandomBase64 {
 	@Override
 	protected void setState(long initialState) {
 
-		/* The super class constructor will call setState as the first function in it's
-		* own constructor
-		* before we had time to initialize our low. Lets check if already exists. We
-		* only use set state sparingly,
-		* during constructor and copy calls so it does not alter much performance wise.
-		*/
+		/*
+		 * The super class constructor will call setState as the first function in it's
+		 * own constructor before we had time to initialize our low. Lets check if
+		 * already exists. We only use set state sparingly, during constructor and copy
+		 * calls so it does not alter much performance wise.
+		 */
 		initLocks();
 
 		writeLock.lock();
@@ -153,12 +151,12 @@ public abstract class RandomBaseLocked extends RandomBase64 {
 	}
 
 	private void initLocks() {
-		/* The super class constructor will call setState as the first function in it's
-		* own constructor
-		* before we had time to initialize our low. Lets check if already exists. We
-		* only use set state sparingly,
-		* during constructor and copy calls so it does not alter much performance wise.
-		*/
+		/*
+		 * The super class constructor will call setState as the first function in it's
+		 * own constructor before we had time to initialize our low. Lets check if
+		 * already exists. We only use set state sparingly, during constructor and copy
+		 * calls so it does not alter much performance wise.
+		 */
 		if (lock == null) {
 			lock = new ReentrantReadWriteLock();
 			readLock = lock.readLock();
@@ -166,5 +164,5 @@ public abstract class RandomBaseLocked extends RandomBase64 {
 		}
 
 	}
-	
+
 }

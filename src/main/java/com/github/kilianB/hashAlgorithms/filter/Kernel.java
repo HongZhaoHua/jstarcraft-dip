@@ -59,7 +59,7 @@ public class Kernel implements Serializable, Filter {
 	// calls and maybe increase performance instead of on the fly calculation of
 	// those values?
 	// int[][] pixelAccessMap
-	
+
 	/**
 	 * Return an identity kernel. This kernel is a 1x1 kernel and copies the
 	 * original value to the new array
@@ -190,8 +190,7 @@ public class Kernel implements Serializable, Filter {
 	public static Kernel gaussianFilter(int width, int height, double std) {
 
 		if (width % 2 == 0 || height % 2 == 0 || width < 1 || height < 1) {
-			throw new IllegalArgumentException(
-					"Currently only odd sized kernels are suppoted. Width and height have to be positive");
+			throw new IllegalArgumentException("Currently only odd sized kernels are suppoted. Width and height have to be positive");
 		}
 		Require.positiveValue(std, "Std has to be positive");
 
@@ -350,7 +349,7 @@ public class Kernel implements Serializable, Filter {
 
 	// Many many more sobel laplacian etc ...
 	// https://web.eecs.umich.edu/~jjcorso/t/598F14/files/lecture_0924_filtering.pdf
-	
+
 	/**
 	 * Create a clone of the supplied kernel
 	 * 
@@ -771,7 +770,6 @@ public class Kernel implements Serializable, Filter {
 			this.compute = func;
 		}
 
-	
 		/**
 		 * Return the array index to compute the kernel value
 		 * 

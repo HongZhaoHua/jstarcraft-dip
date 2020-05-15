@@ -45,7 +45,8 @@ public class MinimumKernel extends NonAveragingKernel {
 
 	/**
 	 * Create a minimum kernel with a uniform weight mask (no weighting takes place)
-	 * @param width of the kernel. has to be odd
+	 * 
+	 * @param width  of the kernel. has to be odd
 	 * @param height of the kernel. has to be odd
 	 * 
 	 */
@@ -54,8 +55,7 @@ public class MinimumKernel extends NonAveragingKernel {
 		super(EdgeHandlingStrategy.EXPAND);
 
 		if (width <= 0 || width % 2 == 0 || height <= 0 || height % 2 == 0) {
-			throw new IllegalArgumentException(
-					"Currently only odd dimensional kernels are supported. Width & height have to be positive");
+			throw new IllegalArgumentException("Currently only odd dimensional kernels are supported. Width & height have to be positive");
 		}
 		// Create mask
 		double[][] mask = new double[width][height];
@@ -90,7 +90,7 @@ public class MinimumKernel extends NonAveragingKernel {
 	protected double calcValue(double[][] input, int x, int y) {
 		return resolveMax(computePotentialValues(input, x, y));
 	}
-	
+
 	protected double resolveMax(double[][] values) {
 		if (values[1].length == 1 && values[1][0] == Double.MIN_VALUE) {
 			return values[0][0];

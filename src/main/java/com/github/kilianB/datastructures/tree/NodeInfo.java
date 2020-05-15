@@ -12,7 +12,7 @@ public class NodeInfo<T> implements Comparable<NodeInfo<T>> {
 	public Node node;
 	public double distance;
 	public int depth;
-	
+
 	public NodeInfo(Node node, double distance, int depth) {
 		this.node = node;
 		this.distance = distance;
@@ -21,9 +21,9 @@ public class NodeInfo<T> implements Comparable<NodeInfo<T>> {
 
 	@Override
 	public int compareTo(NodeInfo<T> o) {
-		int compareTo = Integer.compare(depth,o.depth);
-		if(compareTo == 0) {
-			return Double.compare(this.distance,o.distance);
+		int compareTo = Integer.compare(depth, o.depth);
+		if (compareTo == 0) {
+			return Double.compare(this.distance, o.distance);
 		}
 		return compareTo;
 	}
@@ -32,6 +32,5 @@ public class NodeInfo<T> implements Comparable<NodeInfo<T>> {
 	public String toString() {
 		return "NodeInfo [node=" + node + ", distance=" + distance + ", depth=" + depth + "]";
 	}
-	
-	
+
 }

@@ -18,8 +18,8 @@ import com.github.kilianB.hashAlgorithms.AverageHash;
 
 class HashTest {
 
-	@Nested 
-	class IncompatibleAlgorithms{
+	@Nested
+	class IncompatibleAlgorithms {
 		@Test
 		public void normalizedHammingDistance() {
 			int algoId = new AverageHash(14).algorithmId();
@@ -30,7 +30,7 @@ class HashTest {
 				hash0.hammingDistance(hash1);
 			});
 		}
-		
+
 		@Test
 		public void hammingDistance() {
 			int algoId = new AverageHash(14).algorithmId();
@@ -42,7 +42,6 @@ class HashTest {
 			});
 		}
 	}
-	
 
 	@Nested
 	class Equality {
@@ -162,7 +161,7 @@ class HashTest {
 				hash0.getBit(-1);
 			});
 		}
-		
+
 		@Test
 		public void positiveOutOfBounds() {
 			String bits = "10101010";
@@ -171,21 +170,21 @@ class HashTest {
 				hash0.getBit(100);
 			});
 		}
-		
+
 		@Test
 		public void trueBit() {
 			String bits = "10101010";
 			Hash hash0 = new Hash(new BigInteger(bits, 2), bits.length(), 0);
 			assertTrue(hash0.getBit(1));
 		}
-		
+
 		@Test
 		public void falseBit() {
 			String bits = "10101010";
 			Hash hash0 = new Hash(new BigInteger(bits, 2), bits.length(), 0);
 			assertFalse(hash0.getBit(0));
 		}
-		
+
 		@Test
 		public void falseBitOutOfBounds() {
 			String bits = "10101010";
@@ -193,44 +192,45 @@ class HashTest {
 			assertFalse(hash0.getBitUnsafe(100));
 		}
 	}
-	
+
 	@Nested
-	class ToString{
-		
+	class ToString {
+
 		@Test
 		public void displayAllBits() {
 			String bits = "10101010";
 			String toString = new Hash(new BigInteger(bits, 2), bits.length(), 0).toString();
-			
-			//Leading zeros
-			
+
+			// Leading zeros
+
 			String bitsLZero = "00001000";
 			String toStringLZero = new Hash(new BigInteger(bitsLZero, 2), bitsLZero.length(), 0).toString();
-			
+
 			String bitsOnlyZero = "00000000";
-			String toStringOZero = new Hash(new BigInteger(bitsOnlyZero, 2), bitsOnlyZero.length(), 0).toString();	
-			
-			assertAll(
-					()->{assertEquals(toString.length(),toStringLZero.length());},
-					()->{assertEquals(toString.length(),toStringOZero.length());}
-					);
-		}		
+			String toStringOZero = new Hash(new BigInteger(bitsOnlyZero, 2), bitsOnlyZero.length(), 0).toString();
+
+			assertAll(() -> {
+				assertEquals(toString.length(), toStringLZero.length());
+			}, () -> {
+				assertEquals(toString.length(), toStringOZero.length());
+			});
+		}
 	}
 
 	@Nested
-	class Serialization{
-		
+	class Serialization {
+
 		@Test
 		public void reconstructHash() throws IOException, ClassNotFoundException {
-			
-			Hash h = new Hash(BigInteger.valueOf(5121),16,2);
+
+			Hash h = new Hash(BigInteger.valueOf(5121), 16, 2);
 			File serTestFile = new File("testHash.ser");
 			serTestFile.deleteOnExit();
 			h.toFile(serTestFile);
 			Hash h2 = Hash.fromFile(serTestFile);
-			//Equality
-			assertEquals(h,h2);
+			// Equality
+			assertEquals(h, h2);
 		}
 	}
-	
+
 }

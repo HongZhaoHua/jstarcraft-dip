@@ -21,12 +21,13 @@ public class KMeansPlusPlus extends KMeans {
 	public KMeansPlusPlus(int clusters) {
 		super(clusters);
 	}
-	
+
 	/**
 	 * Create a KMeans clusterer
 	 * 
-	 * @param clusters the number of cluster to partition the data into
-	 * @param distanceFunction the distanceFunction used to compute the distance between data points
+	 * @param clusters         the number of cluster to partition the data into
+	 * @param distanceFunction the distanceFunction used to compute the distance
+	 *                         between data points
 	 */
 	public KMeansPlusPlus(int clusters, DistanceFunction distanceFunction) {
 		super(clusters, distanceFunction);

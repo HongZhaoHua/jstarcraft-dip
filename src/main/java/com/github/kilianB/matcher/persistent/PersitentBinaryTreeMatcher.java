@@ -104,7 +104,7 @@ public abstract class PersitentBinaryTreeMatcher extends PersistentImageMatcher 
 	 * hashes using the {@link #getHash(HashingAlgorithm, String, BufferedImage)}
 	 * method call.
 	 * 
-	 * @param bi the buffered image to match or null
+	 * @param bi       the buffered image to match or null
 	 * @param uniqueId the uniqueId of a previously cached image or null
 	 * @return a list of unique id's identifying the previously matched images
 	 *         sorted by distance.

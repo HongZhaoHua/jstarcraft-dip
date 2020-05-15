@@ -31,7 +31,7 @@ class AverageColorHashTest {
 				assertEquals(1901048899, new AverageColorHash(25).algorithmId());
 			});
 		}
-		
+
 		@Test
 		@DisplayName("Consistent AlgorithmIds v 2.0.0 collision")
 		public void notVersionTwo() {
@@ -42,16 +42,16 @@ class AverageColorHashTest {
 			});
 		}
 	}
-	
-	//Base Hashing algorithm tests
+
+	// Base Hashing algorithm tests
 	@Nested
-	class AlgorithmBaseTests extends HashTestBase{
+	class AlgorithmBaseTests extends HashTestBase {
 
 		@Override
 		protected HashingAlgorithm getInstance(int bitResolution) {
 			return new AverageColorHash(bitResolution);
 		}
-		
+
 		@Override
 		protected double differenceBallonHqHash() {
 			return 76;
@@ -61,7 +61,7 @@ class AverageColorHashTest {
 		protected double normDifferenceBallonHqHash() {
 			return 76 / 132d;
 		}
-		
+
 	}
 
 }

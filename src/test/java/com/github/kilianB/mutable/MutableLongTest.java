@@ -20,8 +20,7 @@ class MutableLongTest {
 	}
 
 	/**
-	 * Test method for
-	 * {@link com.github.kilianB.mutable.MutableLong#longValue()}.
+	 * Test method for {@link com.github.kilianB.mutable.MutableLong#longValue()}.
 	 */
 	@Test
 	void testLongValue() {
@@ -30,8 +29,7 @@ class MutableLongTest {
 	}
 
 	/**
-	 * Test method for
-	 * {@link com.github.kilianB.mutable.MutableLong#floatValue()}.
+	 * Test method for {@link com.github.kilianB.mutable.MutableLong#floatValue()}.
 	 */
 	@Test
 	void testFloatValue() {
@@ -40,8 +38,7 @@ class MutableLongTest {
 	}
 
 	/**
-	 * Test method for
-	 * {@link com.github.kilianB.mutable.MutableLong#doubleValue()}.
+	 * Test method for {@link com.github.kilianB.mutable.MutableLong#doubleValue()}.
 	 */
 	@Test
 	void testDoubleValue() {
@@ -66,7 +63,7 @@ class MutableLongTest {
 	void testSetValue() {
 		MutableLong i = new MutableLong(1);
 		i.setValue(Long.valueOf(3));
-		assertEquals(Long.valueOf(3),i.getValue());
+		assertEquals(Long.valueOf(3), i.getValue());
 	}
 
 	/**
@@ -77,7 +74,7 @@ class MutableLongTest {
 	void testSetValuePrimitive() {
 		MutableLong i = new MutableLong(1);
 		i.setValue(3l);
-		assertEquals(Long.valueOf(3),i.getValue());
+		assertEquals(Long.valueOf(3), i.getValue());
 	}
 
 	/**
@@ -88,8 +85,8 @@ class MutableLongTest {
 	void testEqualsObject() {
 		MutableLong i = new MutableLong(4);
 		MutableLong i2 = new MutableLong(4);
-		assertEquals(i,i2);
-		
+		assertEquals(i, i2);
+
 	}
 
 	/**
@@ -99,8 +96,8 @@ class MutableLongTest {
 	@Test
 	void testGetAndIncrement() {
 		MutableLong i = new MutableLong(4);
-		assertEquals(Long.valueOf(4),i.getAndIncrement());
-		assertEquals(Long.valueOf(5),i.getValue());
+		assertEquals(Long.valueOf(4), i.getAndIncrement());
+		assertEquals(Long.valueOf(5), i.getValue());
 	}
 
 	/**
@@ -110,7 +107,7 @@ class MutableLongTest {
 	@Test
 	void testIncrementAndGet() {
 		MutableLong i = new MutableLong(4);
-		assertEquals(Long.valueOf(5),i.incrementAndGet());
+		assertEquals(Long.valueOf(5), i.incrementAndGet());
 	}
 
 	/**
@@ -120,8 +117,8 @@ class MutableLongTest {
 	@Test
 	void testGetAndDecrement() {
 		MutableLong i = new MutableLong(4);
-		assertEquals(Long.valueOf(4),i.getAndDecrement());
-		assertEquals(Long.valueOf(3),i.getValue());
+		assertEquals(Long.valueOf(4), i.getAndDecrement());
+		assertEquals(Long.valueOf(3), i.getValue());
 	}
 
 	/**
@@ -131,7 +128,7 @@ class MutableLongTest {
 	@Test
 	void testDecrementAndGet() {
 		MutableLong i = new MutableLong(4);
-		assertEquals(Long.valueOf(3),i.decrementAndGet());
+		assertEquals(Long.valueOf(3), i.decrementAndGet());
 	}
 
 }

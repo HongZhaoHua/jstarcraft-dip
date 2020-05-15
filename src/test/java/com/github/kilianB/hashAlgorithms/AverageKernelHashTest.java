@@ -73,8 +73,7 @@ class AverageKernelHashTest {
 	public void addMultipleKernel() {
 		HashingAlgorithm h0 = new AverageKernelHash(32);
 		HashingAlgorithm h1 = new AverageKernelHash(32, Kernel.gaussianFilter(3, 3, 2));
-		HashingAlgorithm h2 = new AverageKernelHash(32, Kernel.gaussianFilter(3, 3, 2),
-				Kernel.boxFilterNormalized(3, 3));
+		HashingAlgorithm h2 = new AverageKernelHash(32, Kernel.gaussianFilter(3, 3, 2), Kernel.boxFilterNormalized(3, 3));
 		assertNotEquals(h0.algorithmId(), h1.algorithmId());
 		assertNotEquals(h0.algorithmId(), h2.algorithmId());
 		assertNotEquals(h1.algorithmId(), h2.algorithmId());

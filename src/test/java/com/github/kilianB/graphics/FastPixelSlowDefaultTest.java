@@ -62,8 +62,7 @@ class FastPixelSlowDefaultTest {
 			brown = ImageIO.read(FastPixelSlowDefaultTest.class.getClassLoader().getResourceAsStream("brown.png"));
 			brown = ImageUtil.toNewType(brown, BImageType.TYPE_4BYTE_ABGR_PRE);
 
-			brownOpacity = ImageIO
-					.read(FastPixelSlowDefaultTest.class.getClassLoader().getResourceAsStream("brownOpacity.png"));
+			brownOpacity = ImageIO.read(FastPixelSlowDefaultTest.class.getClassLoader().getResourceAsStream("brownOpacity.png"));
 			brownOpacity = ImageUtil.toNewType(brownOpacity, BImageType.TYPE_INT_ARGB_PRE);
 
 			// Type custom

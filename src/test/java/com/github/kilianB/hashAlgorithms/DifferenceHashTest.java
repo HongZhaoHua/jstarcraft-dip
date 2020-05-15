@@ -78,7 +78,7 @@ class DifferenceHashTest {
 				assertNotEquals(911303114, new DifferenceHash(25, Precision.Triple).algorithmId());
 			});
 		}
-		
+
 		@Test
 		@DisplayName("Unique AlgorithmsIds")
 		public void uniquely() {
@@ -252,8 +252,7 @@ class DifferenceHashTest {
 
 	@SuppressWarnings("unused")
 	private static Stream<HashingAlgorithm> algoInstances() {
-		return Stream.of(new DifferenceHash(32, Precision.Simple), new DifferenceHash(32, Precision.Double),
-				new DifferenceHash(32, Precision.Triple));
+		return Stream.of(new DifferenceHash(32, Precision.Simple), new DifferenceHash(32, Precision.Double), new DifferenceHash(32, Precision.Triple));
 	}
 
 	@SuppressWarnings("unused")

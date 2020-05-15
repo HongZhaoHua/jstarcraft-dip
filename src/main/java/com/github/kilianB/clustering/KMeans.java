@@ -118,8 +118,7 @@ public class KMeans implements ClusterAlgorithm {
 		return clusterMeans;
 	}
 
-	protected void computeKMeans(DoubleSummaryStatistics[][] clusterMeans, double[][] data, int[] cluster,
-			int dataDimension) {
+	protected void computeKMeans(DoubleSummaryStatistics[][] clusterMeans, double[][] data, int[] cluster, int dataDimension) {
 		lastIterationCount = 0;
 		boolean dirty = false;
 		do {

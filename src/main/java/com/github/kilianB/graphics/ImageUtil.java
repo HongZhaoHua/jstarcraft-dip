@@ -37,12 +37,13 @@ public class ImageUtil {
 	 * @return the resized image
 	 * @since 1.0.0
 	 * @since 1.4.2 fixed not using awt rescale
-	 * @since 1.5.3 fixed using ImageTypeSpecifier to create compatible images for custom type
+	 * @since 1.5.3 fixed using ImageTypeSpecifier to create compatible images for
+	 *        custom type
 	 */
 	public static BufferedImage getScaledInstance(BufferedImage source, int width, int height) {
-		
-		BufferedImage target = ImageTypeSpecifier.createFromRenderedImage(source).createBufferedImage(width,height);
-		
+
+		BufferedImage target = ImageTypeSpecifier.createFromRenderedImage(source).createBufferedImage(width, height);
+
 		Graphics g = target.getGraphics();
 		g.drawImage(source, 0, 0, width, height, null);
 		g.dispose();
@@ -75,8 +76,7 @@ public class ImageUtil {
 		boolean isTranslucent = true;// image.getTransparency() != Transparency.OPAQUE;
 
 		if (newWidth >= width || newHeight >= height) {
-			throw new IllegalArgumentException(
-					"newWidth and newHeight cannot" + " be greater than the image" + " dimensions");
+			throw new IllegalArgumentException("newWidth and newHeight cannot" + " be greater than the image" + " dimensions");
 		} else if (newWidth <= 0 || newHeight <= 0) {
 			throw new IllegalArgumentException("newWidth and newHeight must" + " be greater than 0");
 		}
@@ -204,8 +204,7 @@ public class ImageUtil {
 
 		int[] pixels = new int[(int) (image.getWidth() * image.getHeight())];
 
-		pr.getPixels(0, 0, (int) image.getWidth(), (int) image.getHeight(), PixelFormat.getIntArgbInstance(), pixels, 0,
-				(int) image.getWidth());
+		pr.getPixels(0, 0, (int) image.getWidth(), (int) image.getHeight(), PixelFormat.getIntArgbInstance(), pixels, 0, (int) image.getWidth());
 
 		for (int argb : pixels) {
 			// Do we even need to put it back in? Can't be simply change the Integer object?
@@ -213,8 +212,7 @@ public class ImageUtil {
 			colorCount.put(argb, curValue == null ? 1 : curValue.intValue() + 1);
 		}
 
-		int argb = colorCount.entrySet().stream().max((entry, entry2) -> entry.getValue().compareTo(entry2.getValue()))
-				.get().getKey().intValue();
+		int argb = colorCount.entrySet().stream().max((entry, entry2) -> entry.getValue().compareTo(entry2.getValue())).get().getKey().intValue();
 
 		return ColorUtil.argbToFXColor(argb);
 	}
@@ -233,8 +231,7 @@ public class ImageUtil {
 		PixelReader pr = image.getPixelReader();
 		int[] pixels = new int[(int) (image.getWidth() * image.getHeight())];
 
-		pr.getPixels(0, 0, (int) image.getWidth(), (int) image.getHeight(), PixelFormat.getIntArgbInstance(), pixels, 0,
-				(int) image.getWidth());
+		pr.getPixels(0, 0, (int) image.getWidth(), (int) image.getHeight(), PixelFormat.getIntArgbInstance(), pixels, 0, (int) image.getWidth());
 
 		double meanAlpha = 0;
 		double meanRed = 0;
@@ -254,8 +251,7 @@ public class ImageUtil {
 			meanBlue += (Math.pow(colorComponents[3], 2) / pixelCount);
 		}
 
-		int argbMean = ColorUtil.componentsToARGB((int) Math.sqrt(meanAlpha) * 255, (int) Math.sqrt(meanRed),
-				(int) Math.sqrt(meanGreen), (int) Math.sqrt(meanBlue));
+		int argbMean = ColorUtil.componentsToARGB((int) Math.sqrt(meanAlpha) * 255, (int) Math.sqrt(meanRed), (int) Math.sqrt(meanGreen), (int) Math.sqrt(meanBlue));
 
 		return ColorUtil.argbToFXColor(argbMean);
 	}

@@ -64,13 +64,9 @@ public class FuzzyHash extends Hash {
 	protected int[] bits;
 
 	/**
-	 * //@formatter:off
-	 * The probability of a bit being a 0 or 1
-	 * In range of [-1,1]. 
-	 * -1 Indicating that a bit is always 0 
-	 *  1 that the bit is always 1 
-	 *  0 that the bit is equally likely to be 0 or 1
-	 *  //@formatter:on
+	 * //@formatter:off The probability of a bit being a 0 or 1 In range of [-1,1].
+	 * -1 Indicating that a bit is always 0 1 that the bit is always 1 0 that the
+	 * bit is equally likely to be 0 or 1 //@formatter:on
 	 */
 	private double[] bitWeights;
 
@@ -414,8 +410,7 @@ public class FuzzyHash extends Hash {
 			}
 			return hammingDistance / hashLength;
 		} catch (NullPointerException np) {
-			LOGGER.severe(
-					"Null pointer exception in weighted distance calculation. One of the hashes is empty and not initialized");
+			LOGGER.severe("Null pointer exception in weighted distance calculation. One of the hashes is empty and not initialized");
 			throw np;
 		}
 	}
@@ -480,8 +475,7 @@ public class FuzzyHash extends Hash {
 			}
 			return hammingDistance / hashLength;
 		} catch (NullPointerException np) {
-			LOGGER.severe(
-					"Null pointer exception in weighted distance calculation. One of the hashes is empty and not initialized");
+			LOGGER.severe("Null pointer exception in weighted distance calculation. One of the hashes is empty and not initialized");
 			throw np;
 		}
 	}

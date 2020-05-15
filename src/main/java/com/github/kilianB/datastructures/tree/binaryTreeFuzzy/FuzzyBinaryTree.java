@@ -37,20 +37,19 @@ public class FuzzyBinaryTree extends AbstractBinaryTree<FuzzyHash> {
 		super(ensureHashConsistency);
 		root = new FuzzyNode();
 	}
-	
 
 	public void addHash(FuzzyHash hash) {
 		addHash(hash, hash);
 	}
-	
-	public void addHashes(FuzzyHash...fuzzyHashs) {
-		for(FuzzyHash h: fuzzyHashs) {
+
+	public void addHashes(FuzzyHash... fuzzyHashs) {
+		for (FuzzyHash h : fuzzyHashs) {
 			this.addHash(h);
 		}
 	}
-	
+
 	public void addHashes(Collection<FuzzyHash> fuzzyHashs) {
-		for(FuzzyHash h: fuzzyHashs) {
+		for (FuzzyHash h : fuzzyHashs) {
 			this.addHash(h);
 		}
 	}

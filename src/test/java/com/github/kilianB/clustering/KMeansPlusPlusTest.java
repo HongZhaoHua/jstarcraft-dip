@@ -23,8 +23,7 @@ class KMeansPlusPlusTest {
 	@BeforeAll
 	private static void loadTestset() {
 
-		try (BufferedReader br = new BufferedReader(new InputStreamReader(
-				KMeansPlusPlusTest.class.getClassLoader().getResourceAsStream("clusterTestData.txt")))) {
+		try (BufferedReader br = new BufferedReader(new InputStreamReader(KMeansPlusPlusTest.class.getClassLoader().getResourceAsStream("clusterTestData.txt")))) {
 			String line;
 			List<double[]> dataPoints = new ArrayList<>();
 			while ((line = br.readLine()) != null) {
@@ -42,13 +41,13 @@ class KMeansPlusPlusTest {
 	void compareKMeans() {
 		KMeans kmeans = new KMeans(10);
 		KMeans kmeansPp = new KMeansPlusPlus(10);
-		
+
 		int kCount = 0;
 		int kppCount = 0;
-		for(int i = 0; i < 15; i++) {
+		for (int i = 0; i < 15; i++) {
 			kmeans.cluster(clusterTestData);
 			kmeansPp.cluster(clusterTestData);
-			
+
 			kCount += kmeans.iterations();
 			kppCount += kmeansPp.iterations();
 		}

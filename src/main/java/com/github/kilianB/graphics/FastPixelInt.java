@@ -10,7 +10,7 @@ import com.github.kilianB.MathUtil;
  *
  */
 public class FastPixelInt extends FastPixelImpl {
-	
+
 	/** Full alpha constant */
 	private static final int FULL_ALPHA = 255 << 24;
 
@@ -43,30 +43,30 @@ public class FastPixelInt extends FastPixelImpl {
 	 */
 	public FastPixelInt(BufferedImage bImage) {
 
-		super(bImage.getWidth(),bImage.getHeight());
-		
+		super(bImage.getWidth(), bImage.getHeight());
+
 		imageData = ((DataBufferInt) bImage.getRaster().getDataBuffer()).getData();
 
 		switch (bImage.getType()) {
 
 		case BufferedImage.TYPE_INT_ARGB:
-			redMask 	= 0x00ff0000;
-			greenMask 	= 0x0000ff00;
-			blueMask 	= 0x000000ff;
-			alphaMask 	= 0xff000000;
+			redMask = 0x00ff0000;
+			greenMask = 0x0000ff00;
+			blueMask = 0x000000ff;
+			alphaMask = 0xff000000;
 			alpha = true;
 			break;
 		case BufferedImage.TYPE_INT_RGB:
-			redMask 	= 0x00ff0000;
-			greenMask 	= 0x0000ff00;
-			blueMask 	= 0x000000ff;
-			alphaMask 	= 0x00000000;
+			redMask = 0x00ff0000;
+			greenMask = 0x0000ff00;
+			blueMask = 0x000000ff;
+			alphaMask = 0x00000000;
 			break;
 		case BufferedImage.TYPE_INT_BGR:
-			redMask 	= 0x000000ff;
-			greenMask 	= 0x0000ff00;
-			blueMask 	= 0x00ff0000;
-			alphaMask 	= 0x00000000;
+			redMask = 0x000000ff;
+			greenMask = 0x0000ff00;
+			blueMask = 0x00ff0000;
+			alphaMask = 0x00000000;
 			break;
 		}
 
@@ -76,13 +76,11 @@ public class FastPixelInt extends FastPixelImpl {
 		alphaOffset = MathUtil.getLowerShiftBitMask(alphaMask);
 
 	}
-	
+
 	@Override
 	public int getRGB(int index) {
-		return (alpha ? (getAlpha(index) << 24) : FULL_ALPHA) | (getRed(index) << 16)
-			| (getGreen(index) << 8) | (getBlue(index));
+		return (alpha ? (getAlpha(index) << 24) : FULL_ALPHA) | (getRed(index) << 16) | (getGreen(index) << 8) | (getBlue(index));
 	}
-	
 
 	/**
 	 * Returns an integer pixel in the default RGB color model(TYPE_INT_ARGB). There
@@ -100,7 +98,7 @@ public class FastPixelInt extends FastPixelImpl {
 	 */
 	@Override
 	public int getRGB(int x, int y) {
-		return getRGB(getOffset(x,y));
+		return getRGB(getOffset(x, y));
 	}
 
 	/**
@@ -133,7 +131,7 @@ public class FastPixelInt extends FastPixelImpl {
 			return -1;
 		return (imageData[index] & alphaMask) >>> alphaOffset;
 	}
-	
+
 	/**
 	 * Get the alpha value of the specified pixel
 	 * 
@@ -144,7 +142,7 @@ public class FastPixelInt extends FastPixelImpl {
 	 */
 	@Override
 	public int getAlpha(int x, int y) {
-		return getAlpha(getOffset(x,y));
+		return getAlpha(getOffset(x, y));
 	}
 
 	/**
@@ -171,8 +169,6 @@ public class FastPixelInt extends FastPixelImpl {
 		}
 		return alpha;
 	}
-	
-
 
 	@Override
 	public void setAlpha(int index, int newAlpha) {
@@ -180,7 +176,7 @@ public class FastPixelInt extends FastPixelImpl {
 			return;
 		imageData[index] |= (newAlpha << alphaOffset);
 	}
-	
+
 	/**
 	 * Set the alpha value of the specified pixel. This method is a NOP if alpha is
 	 * not supported.
@@ -192,7 +188,7 @@ public class FastPixelInt extends FastPixelImpl {
 	 */
 	@Override
 	public void setAlpha(int x, int y, int newAlpha) {
-		setAlpha(getOffset(x,y), newAlpha);
+		setAlpha(getOffset(x, y), newAlpha);
 	}
 
 	/**
@@ -215,7 +211,6 @@ public class FastPixelInt extends FastPixelImpl {
 		return (imageData[index] & redMask) >>> redOffset;
 	}
 
-	
 	/**
 	 * Get the red value of the specified pixel
 	 * 
@@ -251,10 +246,10 @@ public class FastPixelInt extends FastPixelImpl {
 		}
 		return red;
 	}
-		
+
 	@Override
 	public void setRed(int index, int newRed) {
-		//Clear red part first	
+		// Clear red part first
 		imageData[index] = (imageData[index] & (~redMask)) | (newRed << redOffset);
 	}
 
@@ -268,7 +263,7 @@ public class FastPixelInt extends FastPixelImpl {
 	 */
 	@Override
 	public void setRed(int x, int y, int newRed) {
-		setRed(getOffset(x,y),newRed);
+		setRed(getOffset(x, y), newRed);
 	}
 
 	/**
@@ -291,7 +286,7 @@ public class FastPixelInt extends FastPixelImpl {
 	public int getGreen(int index) {
 		return (imageData[index] & greenMask) >>> greenOffset;
 	}
-	
+
 	/**
 	 * Get the green value of the specified pixel
 	 * 
@@ -307,11 +302,10 @@ public class FastPixelInt extends FastPixelImpl {
 
 	@Override
 	public void setGreen(int index, int newGreen) {
-		//Clear green part first	
+		// Clear green part first
 		imageData[index] = (imageData[index] & (~greenMask)) | (newGreen << greenOffset);
 	}
 
-	
 	/**
 	 * Set the green value of the specified pixel
 	 * 
@@ -322,7 +316,7 @@ public class FastPixelInt extends FastPixelImpl {
 	 */
 	@Override
 	public void setGreen(int x, int y, int newGreen) {
-		setGreen(getOffset(x,y),newGreen);
+		setGreen(getOffset(x, y), newGreen);
 	}
 
 	/**
@@ -363,7 +357,7 @@ public class FastPixelInt extends FastPixelImpl {
 		}
 		return green;
 	}
-	
+
 	@Override
 	public int getBlue(int index) {
 		return (imageData[index] & blueMask) >>> blueOffset;
@@ -386,8 +380,7 @@ public class FastPixelInt extends FastPixelImpl {
 	public void setBlue(int index, int newBlue) {
 		imageData[index] = (imageData[index] & (~blueMask)) | (newBlue << blueOffset);
 	}
-	
-	
+
 	/**
 	 * Set the blue value of the specified pixel
 	 * 
@@ -398,7 +391,7 @@ public class FastPixelInt extends FastPixelImpl {
 	 */
 	@Override
 	public void setBlue(int x, int y, int newBlue) {
-		setBlue(getOffset(x,y),newBlue);
+		setBlue(getOffset(x, y), newBlue);
 	}
 
 	/**
@@ -438,9 +431,8 @@ public class FastPixelInt extends FastPixelImpl {
 			}
 		}
 	}
-	
+
 	// grayscale
-	
 
 	@Override
 	public int[][] getAverageGrayscale() {
@@ -448,7 +440,7 @@ public class FastPixelInt extends FastPixelImpl {
 		int x = 0;
 		int y = 0;
 		for (int i = 0; i < imageData.length; i++) {
-			gray[x][y] = getAverageGrayscale(x,y);
+			gray[x][y] = getAverageGrayscale(x, y);
 			x++;
 			if (x >= width) {
 				x = 0;
@@ -458,7 +450,6 @@ public class FastPixelInt extends FastPixelImpl {
 		return gray;
 	}
 
-
 	@Override
 	public void setAverageGrayscale(int[][] newGrayValue) {
 		for (int x = 0; x < width; x++) {
@@ -467,11 +458,9 @@ public class FastPixelInt extends FastPixelImpl {
 			}
 		}
 	}
-	
 
 	// YCrCb
 
-	
 	/**
 	 * Return the Y(Luma) component of the YCbCr color model fof the entire image
 	 * mapped to a 2d array representing the x and y coordinates of the pixel.
@@ -504,7 +493,6 @@ public class FastPixelInt extends FastPixelImpl {
 		return luma;
 	}
 
-
 	public int getOffset(int x, int y) {
 		return (y * width) + x;
 	}
@@ -514,5 +502,4 @@ public class FastPixelInt extends FastPixelImpl {
 		return alpha;
 	}
 
-	
 }

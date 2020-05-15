@@ -26,7 +26,7 @@ import com.github.kilianB.pcg.fast.PcgRSFast;
  * @author Kilian
  *
  */
-class FuzzyHashTest{
+class FuzzyHashTest {
 
 	@Nested
 	class MergeHash {
@@ -82,7 +82,7 @@ class FuzzyHashTest{
 				hash.mergeFast(new FuzzyHash[0]);
 			});
 		}
-		
+
 	}
 
 	@Nested
@@ -447,7 +447,7 @@ class FuzzyHashTest{
 	class WeightedDistance {
 
 		@Nested
-		class FuzzyNormal{
+		class FuzzyNormal {
 			@Test
 			public void identity() {
 				int bits = 10;
@@ -537,13 +537,13 @@ class FuzzyHashTest{
 				hash.merge(h);
 				hash.merge(h);
 				hash.merge(h1);
-				assertEquals(2 / 3d, hash.weightedDistance(h1),1e-8);
-				assertEquals(1 / 3d, hash.weightedDistance(h),1e-8);
+				assertEquals(2 / 3d, hash.weightedDistance(h1), 1e-8);
+				assertEquals(1 / 3d, hash.weightedDistance(h), 1e-8);
 			}
 		}
-		
-		@Nested 
-		class FuzzyFuzzy{
+
+		@Nested
+		class FuzzyFuzzy {
 			@Test
 			public void identity() {
 				int bits = 10;
@@ -560,7 +560,7 @@ class FuzzyHashTest{
 				Hash h = new Hash(new BigInteger("1111111111", 2), bits, 0);
 				hash.merge(h);
 				FuzzyHash hash2 = new FuzzyHash(h);
-				
+
 				assertEquals(0, hash2.weightedDistance(hash));
 			}
 
@@ -571,7 +571,7 @@ class FuzzyHashTest{
 				Hash h = new Hash(new BigInteger("0000000000", 2), bits, 0);
 				hash.merge(h);
 				FuzzyHash hash2 = new FuzzyHash(h);
-				
+
 				assertEquals(0, hash2.weightedDistance(hash));
 			}
 
@@ -594,9 +594,9 @@ class FuzzyHashTest{
 				Hash h1 = new Hash(new BigInteger("0000000000", 2), bits, 0);
 				hash.merge(h);
 				FuzzyHash hash2 = new FuzzyHash(h1);
-				
+
 				System.out.println(hash + " " + hash2);
-				
+
 				assertEquals(1, hash.weightedDistance(hash2));
 			}
 
@@ -611,8 +611,6 @@ class FuzzyHashTest{
 				assertEquals(.6, hash.weightedDistance(hash2));
 			}
 
-		
-
 			@Test
 			public void weightedDistZero() {
 				Hash h = new Hash(new BigInteger("0", 2), 1, 0);
@@ -621,18 +619,17 @@ class FuzzyHashTest{
 				FuzzyHash hash = new FuzzyHash();
 				hash.merge(h);
 				hash.merge(h);
-				hash.merge(h1);  
-				
+				hash.merge(h1);
+
 				FuzzyHash hash2 = new FuzzyHash();
 				hash2.merge(h1);
 				hash2.merge(h1);
-				hash2.merge(h1); 
-				
-				assertEquals(2 / 3d, hash.weightedDistance(hash2),1e-8);
-				assertEquals(2 / 3d, hash2.weightedDistance(hash),1e-8);
+				hash2.merge(h1);
+
+				assertEquals(2 / 3d, hash.weightedDistance(hash2), 1e-8);
+				assertEquals(2 / 3d, hash2.weightedDistance(hash), 1e-8);
 			}
 		}
-		
 
 	}
 
@@ -645,7 +642,7 @@ class FuzzyHashTest{
 			hash.mergeFast(new Hash(BigInteger.ZERO, 1, 0));
 			assertEquals(0, hash.getWeightedDistance(0, false));
 		}
-		
+
 		@Test
 		public void zeroBitAloneCheckForOne() {
 			FuzzyHash hash = new FuzzyHash();
@@ -659,7 +656,7 @@ class FuzzyHashTest{
 			hash.mergeFast(new Hash(BigInteger.ONE, 1, 0));
 			assertEquals(1, hash.getWeightedDistance(0, false));
 		}
-		
+
 		@Test
 		public void oneBitAloneCheckForOne() {
 			FuzzyHash hash = new FuzzyHash();
@@ -674,7 +671,7 @@ class FuzzyHashTest{
 			hash.mergeFast(new Hash(BigInteger.ONE, 1, 0));
 			assertEquals(0.5, hash.getWeightedDistance(0, false));
 		}
-		
+
 		@Test
 		public void equalBitCheckForOne() {
 			FuzzyHash hash = new FuzzyHash();
@@ -682,62 +679,62 @@ class FuzzyHashTest{
 			hash.mergeFast(new Hash(BigInteger.ONE, 1, 0));
 			assertEquals(0.5, hash.getWeightedDistance(0, true));
 		}
-		
+
 		@Test
 		public void oneMajorCheckForOne() {
 			FuzzyHash hash = new FuzzyHash();
 			hash.mergeFast(new Hash(BigInteger.ZERO, 1, 0));
 			hash.mergeFast(new Hash(BigInteger.ONE, 1, 0));
 			hash.mergeFast(new Hash(BigInteger.ONE, 1, 0));
-			assertEquals(1/3d, hash.getWeightedDistance(0, true),1e-8);
+			assertEquals(1 / 3d, hash.getWeightedDistance(0, true), 1e-8);
 		}
-		
+
 		@Test
 		public void oneMajorCheckForZero() {
 			FuzzyHash hash = new FuzzyHash();
 			hash.mergeFast(new Hash(BigInteger.ZERO, 1, 0));
 			hash.mergeFast(new Hash(BigInteger.ONE, 1, 0));
 			hash.mergeFast(new Hash(BigInteger.ONE, 1, 0));
-			assertEquals(2/3d, hash.getWeightedDistance(0, false),1e-8);
+			assertEquals(2 / 3d, hash.getWeightedDistance(0, false), 1e-8);
 		}
-		
+
 		@Test
 		public void zeroMajorCheckForOne() {
 			FuzzyHash hash = new FuzzyHash();
 			hash.mergeFast(new Hash(BigInteger.ZERO, 1, 0));
 			hash.mergeFast(new Hash(BigInteger.ZERO, 1, 0));
 			hash.mergeFast(new Hash(BigInteger.ONE, 1, 0));
-			assertEquals(2/3d, hash.getWeightedDistance(0, true),1e-8);
+			assertEquals(2 / 3d, hash.getWeightedDistance(0, true), 1e-8);
 		}
-		
+
 		@Test
 		public void zeroMajorCheckForZero() {
 			FuzzyHash hash = new FuzzyHash();
 			hash.mergeFast(new Hash(BigInteger.ZERO, 1, 0));
 			hash.mergeFast(new Hash(BigInteger.ZERO, 1, 0));
 			hash.mergeFast(new Hash(BigInteger.ONE, 1, 0));
-			assertEquals(1/3d, hash.getWeightedDistance(0, false),1e-8);
+			assertEquals(1 / 3d, hash.getWeightedDistance(0, false), 1e-8);
 		}
-		
+
 		@Test
 		public void zeroMajorCheckForZero2() {
 			FuzzyHash hash = new FuzzyHash(new Hash(BigInteger.ZERO, 1, 0));
-			assertEquals(0, hash.getWeightedDistance(0, false),1e-8);
+			assertEquals(0, hash.getWeightedDistance(0, false), 1e-8);
 		}
-		
+
 		@Test
 		public void zeroMajorCheckForOne2() {
 			FuzzyHash hash = new FuzzyHash(new Hash(BigInteger.ZERO, 1, 0));
-			assertEquals(1, hash.getWeightedDistance(0, true),1e-8);
+			assertEquals(1, hash.getWeightedDistance(0, true), 1e-8);
 		}
-		
+
 		@Test
 		public void test() {
-			FuzzyHash fuzzy = new FuzzyHash(TestResources.createHash("10",0));
-			assertEquals(0, fuzzy.getWeightedDistance(0, false),1e-8);
-			assertEquals(1, fuzzy.getWeightedDistance(1, false),1e-8);
+			FuzzyHash fuzzy = new FuzzyHash(TestResources.createHash("10", 0));
+			assertEquals(0, fuzzy.getWeightedDistance(0, false), 1e-8);
+			assertEquals(1, fuzzy.getWeightedDistance(1, false), 1e-8);
 		}
-		
+
 	}
 
 	@Test
@@ -770,37 +767,36 @@ class FuzzyHashTest{
 			fuzzyImpl[i] = hash.getBitUnsafe(i);
 			baseImpl[i] = (boolean) fuzzyHandle.invoke(hash, i);
 		}
-		assertArrayEquals(baseImpl,fuzzyImpl);
+		assertArrayEquals(baseImpl, fuzzyImpl);
 	}
 
 	@Nested
-	class Serialization{
-		
+	class Serialization {
+
 		@Test
 		public void reconstructHash() throws IOException, ClassNotFoundException {
-			
-			Hash h = new Hash(BigInteger.valueOf(5),16,2);
-			Hash h1 = new Hash(BigInteger.valueOf(6),16,2);
-			
-			FuzzyHash fuzzy = new FuzzyHash(h1,h);
-			
+
+			Hash h = new Hash(BigInteger.valueOf(5), 16, 2);
+			Hash h1 = new Hash(BigInteger.valueOf(6), 16, 2);
+
+			FuzzyHash fuzzy = new FuzzyHash(h1, h);
+
 			File serTestFile = new File("testFuzzyHash.ser");
 			serTestFile.deleteOnExit();
 			fuzzy.toFile(serTestFile);
 			FuzzyHash fuzzy2 = (FuzzyHash) Hash.fromFile(serTestFile);
-			//Equality
-			
+			// Equality
+
 			System.out.println(Arrays.toString(fuzzy.bits) + " " + fuzzy.hashLength);
 			System.out.println(Arrays.toString(fuzzy2.bits) + " " + fuzzy2.hashLength);
-			
-			
+
 			System.out.println(fuzzy);
 			System.out.println(fuzzy2);
-			
-			assertEquals(0,fuzzy.hammingDistance(fuzzy2));
+
+			assertEquals(0, fuzzy.hammingDistance(fuzzy2));
 		}
 	}
-	
+
 	//
 //	class UncertainHash{
 //		

@@ -12,7 +12,8 @@ import com.github.kilianB.hashAlgorithms.AverageHash;
 import com.github.kilianB.hashAlgorithms.HashingAlgorithm;
 
 /**
- * An example demonstrating how two images can be compared at a time using a single algorithm
+ * An example demonstrating how two images can be compared at a time using a
+ * single algorithm
  * 
  * @author Kilian
  *
@@ -28,7 +29,6 @@ public class CompareImages {
 	// Images used for testing
 	private HashMap<String, BufferedImage> images = new HashMap<>();
 
-	
 	public CompareImages() {
 
 		loadImages();
@@ -43,33 +43,35 @@ public class CompareImages {
 
 	/**
 	 * Compares the similarity of two images.
-	 * @param image1	First image to be matched against 2nd image
-	 * @param image2	The second image
-	 * @return	true if the algorithm defines the images to be similar.
+	 * 
+	 * @param image1 First image to be matched against 2nd image
+	 * @param image2 The second image
+	 * @return true if the algorithm defines the images to be similar.
 	 */
 	public boolean compareTwoImages(BufferedImage image1, BufferedImage image2) {
 
-		//Generate the hash for each image
+		// Generate the hash for each image
 		Hash hash1 = hasher.hash(image1);
 		Hash hash2 = hasher.hash(image2);
 
-		//Compute a similarity score
+		// Compute a similarity score
 		// Ranges between 0 - 1. The lower the more similar the images are.
 		double similarityScore = hash1.normalizedHammingDistance(hash2);
 
 		return similarityScore < 0.4d;
 	}
-	
+
 	/**
 	 * Compares the similarity of two images.
-	 * @param image1	First image to be matched against 2nd image
-	 * @param image2	The second image
-	 * @return	true if the algorithm defines the images to be similar.
+	 * 
+	 * @param image1 First image to be matched against 2nd image
+	 * @param image2 The second image
+	 * @return true if the algorithm defines the images to be similar.
 	 * @throws IOException IOerror occurred during image loading
 	 */
 	public boolean compareTwoImages2(File image1, File image2) throws IOException {
 
-		//Generate the hash for each image
+		// Generate the hash for each image
 		Hash hash1 = hasher.hash(image1);
 		Hash hash2 = hasher.hash(image2);
 
@@ -79,13 +81,12 @@ public class CompareImages {
 		return similarityScore < 41;
 	}
 
-	
-	//Utility function
+	// Utility function
 	private void formatOutput(String image1, String image2, boolean similar) {
 		String format = "| %-11s | %-11s | %-8b |%n";
 		System.out.printf(format, image1, image2, similar);
 	}
-	
+
 	private void loadImages() {
 		// Load images
 		try {
@@ -97,8 +98,8 @@ public class CompareImages {
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
-		
-		//Print header
+
+		// Print header
 		System.out.println("|   Image 1   |   Image 2   | Similar  |");
 	}
 

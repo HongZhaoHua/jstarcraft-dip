@@ -66,11 +66,9 @@ public abstract class TypedImageMatcher {
 	public void addHashingAlgorithm(HashingAlgorithm algo, double threshold, boolean normalized) {
 
 		if (threshold < 0) {
-			throw new IllegalArgumentException(
-					"Fatal error adding algorithm. Threshold has to be in the range of [0-X)");
+			throw new IllegalArgumentException("Fatal error adding algorithm. Threshold has to be in the range of [0-X)");
 		} else if (normalized && threshold > 1) {
-			throw new IllegalArgumentException(
-					"Fatal error adding algorithm. Normalized threshold has to be in the range of [0-1]");
+			throw new IllegalArgumentException("Fatal error adding algorithm. Normalized threshold has to be in the range of [0-1]");
 		}
 
 		steps.put(algo, new AlgoSettings(threshold, normalized));

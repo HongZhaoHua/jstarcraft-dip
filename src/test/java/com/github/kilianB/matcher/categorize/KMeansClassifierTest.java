@@ -18,15 +18,15 @@ class KMeansClassifierTest extends CategorizeBaseTest {
 		return new KMeansClassifier(3, new AverageHash(32));
 	}
 
-	@Test 
+	@Test
 	void distanceIdentity() {
 		CategoricalImageMatcher matcher = getInstance();
-		
-		CategorizationResult pair = matcher.categorizeImageAndAdd(ballon,"ballon");
-		//Category
-		assertEquals(0,(int)pair.getCategory());
-		//Dostance
-		assertEquals(Double.NaN,(double)pair.getQuality());
-		
+
+		CategorizationResult pair = matcher.categorizeImageAndAdd(ballon, "ballon");
+		// Category
+		assertEquals(0, (int) pair.getCategory());
+		// Dostance
+		assertEquals(Double.NaN, (double) pair.getQuality());
+
 	}
 }

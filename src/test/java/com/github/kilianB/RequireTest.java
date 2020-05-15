@@ -26,70 +26,69 @@ class RequireTest {
 
 			@Test
 			void testZero() {
-				assertEquals(0,(int)Require.exact(0,0));
+				assertEquals(0, (int) Require.exact(0, 0));
 			}
 
 			@Test
 			void testMinimal() {
-				assertEquals(java.lang.Integer.MIN_VALUE,(int)Require.exact(java.lang.Integer.MIN_VALUE,java.lang.Integer.MIN_VALUE));
+				assertEquals(java.lang.Integer.MIN_VALUE, (int) Require.exact(java.lang.Integer.MIN_VALUE, java.lang.Integer.MIN_VALUE));
 			}
 
 			@Test
 			void testMaximal() {
-				assertEquals(java.lang.Integer.MAX_VALUE,(int)Require.exact(java.lang.Integer.MAX_VALUE,java.lang.Integer.MAX_VALUE));
+				assertEquals(java.lang.Integer.MAX_VALUE, (int) Require.exact(java.lang.Integer.MAX_VALUE, java.lang.Integer.MAX_VALUE));
 			}
 
 			@Test
 			void testInvalid() {
 				assertThrows(IllegalArgumentException.class, () -> {
-					Require.exact(2,1);
+					Require.exact(2, 1);
 				});
 			}
-			
+
 			@Test
 			void testInvalidNegative() {
 				assertThrows(IllegalArgumentException.class, () -> {
-					Require.exact(-1,1);
+					Require.exact(-1, 1);
 				});
 			}
 		}
-		
+
 		@Nested
 		class Double {
 
 			@Test
 			void testZero() {
-				assertEquals(0d,(double)Require.exact(0d,0d));
+				assertEquals(0d, (double) Require.exact(0d, 0d));
 			}
 
 			@Test
 			void testMinimal() {
-				assertEquals(-java.lang.Double.MAX_VALUE,(double)Require.exact(-java.lang.Double.MAX_VALUE,-java.lang.Double.MAX_VALUE));
+				assertEquals(-java.lang.Double.MAX_VALUE, (double) Require.exact(-java.lang.Double.MAX_VALUE, -java.lang.Double.MAX_VALUE));
 			}
 
 			@Test
 			void testMax() {
-				assertEquals(java.lang.Double.MAX_VALUE,(double)Require.exact(java.lang.Double.MAX_VALUE,java.lang.Double.MAX_VALUE));
+				assertEquals(java.lang.Double.MAX_VALUE, (double) Require.exact(java.lang.Double.MAX_VALUE, java.lang.Double.MAX_VALUE));
 			}
-
 
 			@Test
 			void testInvalid() {
 				assertThrows(IllegalArgumentException.class, () -> {
-					Require.exact(2d,1d);
+					Require.exact(2d, 1d);
 				});
 			}
-			
+
 			@Test
 			void testInvalidNegative() {
 				assertThrows(IllegalArgumentException.class, () -> {
-					Require.exact(-1d,1d);
+					Require.exact(-1d, 1d);
 				});
 			}
 		}
 
 	}
-	
+
 	@Nested
 	class RequirePositiveValue {
 
@@ -405,7 +404,7 @@ class RequireTest {
 
 			@Test
 			void testPositiveInfinity() {
-				assertEquals(java.lang.Double.POSITIVE_INFINITY, (double)Require.oddValue(java.lang.Double.POSITIVE_INFINITY));
+				assertEquals(java.lang.Double.POSITIVE_INFINITY, (double) Require.oddValue(java.lang.Double.POSITIVE_INFINITY));
 			}
 
 			@Test
@@ -526,7 +525,7 @@ class RequireTest {
 				});
 			}
 
-			//TODO define
+			// TODO define
 			@Test
 			@Disabled
 			void testPositiveInfinity() {
@@ -539,7 +538,7 @@ class RequireTest {
 			@Disabled
 			void testNegativeInfinity() {
 				assertThrows(IllegalArgumentException.class, () -> {
-					
+
 				});
 			}
 

@@ -14,7 +14,7 @@ public class MutableByteTest {
 	 */
 	@Test
 	void testIntValue() {
-		MutableByte i = new MutableByte((byte)1);
+		MutableByte i = new MutableByte((byte) 1);
 		assertEquals(1, i.intValue());
 	}
 
@@ -23,7 +23,7 @@ public class MutableByteTest {
 	 */
 	@Test
 	void testByteValue() {
-		MutableByte i = new MutableByte((byte)1);
+		MutableByte i = new MutableByte((byte) 1);
 		assertEquals(1l, i.longValue());
 	}
 
@@ -32,7 +32,7 @@ public class MutableByteTest {
 	 */
 	@Test
 	void testFloatValue() {
-		MutableByte i = new MutableByte((byte)1);
+		MutableByte i = new MutableByte((byte) 1);
 		assertEquals(1f, i.floatValue());
 	}
 
@@ -41,7 +41,7 @@ public class MutableByteTest {
 	 */
 	@Test
 	void testDoubleValue() {
-		MutableByte i = new MutableByte((byte)1);
+		MutableByte i = new MutableByte((byte) 1);
 		assertEquals(1d, i.doubleValue());
 	}
 
@@ -50,8 +50,8 @@ public class MutableByteTest {
 	 */
 	@Test
 	void testGetValue() {
-		MutableByte i = new MutableByte((byte)1);
-		assertEquals(Byte.valueOf((byte)1), i.getValue());
+		MutableByte i = new MutableByte((byte) 1);
+		assertEquals(Byte.valueOf((byte) 1), i.getValue());
 	}
 
 	/**
@@ -60,9 +60,9 @@ public class MutableByteTest {
 	 */
 	@Test
 	void testSetValue() {
-		MutableByte i = new MutableByte((byte)1);
-		i.setValue(Byte.valueOf((byte)3));
-		assertEquals(Byte.valueOf((byte)3), i.getValue());
+		MutableByte i = new MutableByte((byte) 1);
+		i.setValue(Byte.valueOf((byte) 3));
+		assertEquals(Byte.valueOf((byte) 3), i.getValue());
 	}
 
 	/**
@@ -71,9 +71,9 @@ public class MutableByteTest {
 	 */
 	@Test
 	void testSetValuePrimitive() {
-		MutableByte i = new MutableByte((byte)1);
-		i.setValue((byte)3);
-		assertEquals(Byte.valueOf((byte)3), i.getValue());
+		MutableByte i = new MutableByte((byte) 1);
+		i.setValue((byte) 3);
+		assertEquals(Byte.valueOf((byte) 3), i.getValue());
 	}
 
 	/**
@@ -82,8 +82,8 @@ public class MutableByteTest {
 	 */
 	@Test
 	void testEqualsObject() {
-		MutableByte i = new MutableByte((byte)4);
-		MutableByte i2 = new MutableByte((byte)4);
+		MutableByte i = new MutableByte((byte) 4);
+		MutableByte i2 = new MutableByte((byte) 4);
 		assertEquals(i, i2);
 
 	}
@@ -94,9 +94,9 @@ public class MutableByteTest {
 	 */
 	@Test
 	void testGetAndIncrement() {
-		MutableByte i = new MutableByte((byte)4);
-		assertEquals(Byte.valueOf((byte)4), i.getAndIncrement());
-		assertEquals(Byte.valueOf((byte)5), i.getValue());
+		MutableByte i = new MutableByte((byte) 4);
+		assertEquals(Byte.valueOf((byte) 4), i.getAndIncrement());
+		assertEquals(Byte.valueOf((byte) 5), i.getValue());
 	}
 
 	/**
@@ -105,8 +105,8 @@ public class MutableByteTest {
 	 */
 	@Test
 	void testIncrementAndGet() {
-		MutableByte i = new MutableByte((byte)4);
-		assertEquals(Byte.valueOf((byte)5), i.incrementAndGet());
+		MutableByte i = new MutableByte((byte) 4);
+		assertEquals(Byte.valueOf((byte) 5), i.incrementAndGet());
 	}
 
 	/**
@@ -115,9 +115,9 @@ public class MutableByteTest {
 	 */
 	@Test
 	void testGetAndDecrement() {
-		MutableByte i = new MutableByte((byte)4);
-		assertEquals(Byte.valueOf((byte)4), i.getAndDecrement());
-		assertEquals(Byte.valueOf((byte)3), i.getValue());
+		MutableByte i = new MutableByte((byte) 4);
+		assertEquals(Byte.valueOf((byte) 4), i.getAndDecrement());
+		assertEquals(Byte.valueOf((byte) 3), i.getValue());
 	}
 
 	/**
@@ -126,7 +126,7 @@ public class MutableByteTest {
 	 */
 	@Test
 	void testDecrementAndGet() {
-		MutableByte i = new MutableByte((byte)4);
-		assertEquals(Byte.valueOf((byte)3), i.decrementAndGet());
+		MutableByte i = new MutableByte((byte) 4);
+		assertEquals(Byte.valueOf((byte) 3), i.decrementAndGet());
 	}
 }

@@ -36,8 +36,8 @@ public class KMeansClassifier implements CategoricalImageMatcher {
 	 */
 	private LinkedHashMap<String, Hash> addedHashes = new LinkedHashMap<>();
 
-	private Map<String, Integer> hashesToDataIndex  = new HashMap<>();
-	
+	private Map<String, Integer> hashesToDataIndex = new HashMap<>();
+
 	/**
 	 * The current clusters of this algorithm
 	 */
@@ -87,17 +87,16 @@ public class KMeansClassifier implements CategoricalImageMatcher {
 
 	private void addImage(Hash hash, String uniqueId) {
 		addedHashes.put(uniqueId, hash);
-		hashesToDataIndex.put(uniqueId,addedHashes.size()-1);
+		hashesToDataIndex.put(uniqueId, addedHashes.size() - 1);
 	}
 
 	@Override
 	public CategorizationResult categorizeImageAndAdd(BufferedImage bi, String uniqueId) {
 		Hash hash = hasher.hash(bi);
-		//Only add it to the queue
+		// Only add it to the queue
 		this.addImage(hash, uniqueId);
 		return this.categorizeImage(hash);
 	}
-
 
 	@Override
 	public List<Integer> getCategories() {
@@ -121,7 +120,6 @@ public class KMeansClassifier implements CategoricalImageMatcher {
 		}
 		return ids;
 	}
-
 
 	@Override
 	public int getCategory(String uniqueId) {

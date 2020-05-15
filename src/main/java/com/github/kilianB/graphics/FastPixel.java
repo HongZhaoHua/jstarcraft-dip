@@ -35,8 +35,7 @@ public interface FastPixel {
 		case BufferedImage.TYPE_INT_RGB:
 			return new FastPixelInt(bufferedImage);
 		default:
-			LOGGER.info("No fast implementation available for " + bufferedImage.getType()
-					+ ". Fallback to slow default variant.");
+			LOGGER.info("No fast implementation available for " + bufferedImage.getType() + ". Fallback to slow default variant.");
 			return new FastPixelSlowDefault(bufferedImage);
 //			throw new UnsupportedOperationException(
 //					"The image type is currently not supported: " + bufferedImage.getType());
@@ -134,8 +133,7 @@ public interface FastPixel {
 	 * @since 1.4.5
 	 */
 	void setAlpha(int[][] newAlpha);
-	
-	
+
 	/**
 	 * Get the red value at the specified offset
 	 * 
@@ -167,13 +165,13 @@ public interface FastPixel {
 	int[][] getRed();
 
 	/**
-	 * Get the red component of the entire image mapped to a 1d array 
+	 * Get the red component of the entire image mapped to a 1d array
 	 * 
 	 * @return the red values
 	 * @since 1.5.5
 	 */
 	int[] getRed1D();
-	
+
 	/**
 	 * Set the red value of the specified pixel
 	 * 
@@ -263,13 +261,13 @@ public interface FastPixel {
 	int[][] getGreen();
 
 	/**
-	 * Get the green component of the entire image mapped to a 1d array 
+	 * Get the green component of the entire image mapped to a 1d array
 	 * 
 	 * @return the green values
 	 * @since 1.5.5
 	 */
 	int[] getGreen1D();
-	
+
 	/**
 	 * Get the blue value of the specified offset
 	 * 
@@ -315,13 +313,13 @@ public interface FastPixel {
 	int[][] getBlue();
 
 	/**
-	 * Get the blue component of the entire image mapped to a 1d array 
+	 * Get the blue component of the entire image mapped to a 1d array
 	 * 
 	 * @return the red values
 	 * @since 1.5.5
 	 */
 	int[] getBlue1D();
-	
+
 	/**
 	 * Set new blue values for the entire picture
 	 * 
@@ -444,8 +442,7 @@ public interface FastPixel {
 	 * @since 1.3.0
 	 */
 	default int getLuma(int index) {
-		int lum = (int) ((getRed(index)) * ColorUtil.LUMA_RED + (getGreen(index)) * ColorUtil.LUMA_GREEN
-				+ (getBlue(index)) * ColorUtil.LUMA_BLUE);
+		int lum = (int) ((getRed(index)) * ColorUtil.LUMA_RED + (getGreen(index)) * ColorUtil.LUMA_GREEN + (getBlue(index)) * ColorUtil.LUMA_BLUE);
 		return lum > 255 ? 255 : lum;
 	}
 
@@ -480,8 +477,7 @@ public interface FastPixel {
 	int[] getLuma1D();
 
 	default int getCr(int index) {
-		int cr = (int) (getRed(index) * ColorUtil.CR_RED + getGreen(index) * ColorUtil.CR_GREEN
-				+ getBlue(index) * ColorUtil.CR_BLUE);
+		int cr = (int) (getRed(index) * ColorUtil.CR_RED + getGreen(index) * ColorUtil.CR_GREEN + getBlue(index) * ColorUtil.CR_BLUE);
 		return cr > 255 ? 255 : cr;
 	}
 
@@ -507,8 +503,7 @@ public interface FastPixel {
 	 * @since 1.5.0
 	 */
 	default int getCb(int index) {
-		int cb = (int) (getRed(index) * ColorUtil.CB_RED + getGreen(index) * ColorUtil.CB_GREEN
-				+ getBlue(index) * ColorUtil.CB_BLUE);
+		int cb = (int) (getRed(index) * ColorUtil.CB_RED + getGreen(index) * ColorUtil.CB_GREEN + getBlue(index) * ColorUtil.CB_BLUE);
 		return cb > 255 ? 255 : cb;
 	}
 

@@ -14,9 +14,10 @@ public interface Mutable<T> {
 	 * @return The current value as an immutable base object
 	 */
 	T getValue();
-	
+
 	/**
 	 * Set the internal field to the new value
+	 * 
 	 * @param newValue the new value
 	 */
 	void setValue(T newValue);

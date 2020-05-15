@@ -56,11 +56,10 @@ class ConsecutiveImageMatcherTest {
 
 		PersitentBinaryTreeMatcher matcher;
 
-		matcher =  new ConsecutiveMatcher(true);
-		matcher.addHashingAlgorithm(new AverageHash(64),.4);
-		matcher.addHashingAlgorithm(new PerceptiveHash(64),.3);
+		matcher = new ConsecutiveMatcher(true);
+		matcher.addHashingAlgorithm(new AverageHash(64), .4);
+		matcher.addHashingAlgorithm(new PerceptiveHash(64), .3);
 
-		
 		matcher.addImage("Ballon", ballon);
 		matcher.addImage("Copyright", copyright);
 		matcher.addImage("HighQuality", highQuality);
@@ -121,8 +120,7 @@ class ConsecutiveImageMatcherTest {
 			File target = new File("ConsecutiveMatcherTest.ser");
 			matcher.serializeState(target);
 
-			PersitentBinaryTreeMatcher deserialized = (PersitentBinaryTreeMatcher) ConsecutiveMatcher
-					.reconstructState(target, true);
+			PersitentBinaryTreeMatcher deserialized = (PersitentBinaryTreeMatcher) ConsecutiveMatcher.reconstructState(target, true);
 			assertMatches(deserialized);
 
 		} catch (IOException | ClassNotFoundException e) {
@@ -138,8 +136,7 @@ class ConsecutiveImageMatcherTest {
 		try {
 			File target = new File("ConsecutiveMatcherTest.ser");
 			matcher.serializeState(target);
-			PersitentBinaryTreeMatcher deserialized = (PersitentBinaryTreeMatcher) ConsecutiveMatcher
-					.reconstructState(target, true);
+			PersitentBinaryTreeMatcher deserialized = (PersitentBinaryTreeMatcher) ConsecutiveMatcher.reconstructState(target, true);
 			assertEquals(matcher, deserialized);
 		} catch (IOException | ClassNotFoundException e) {
 			e.printStackTrace();

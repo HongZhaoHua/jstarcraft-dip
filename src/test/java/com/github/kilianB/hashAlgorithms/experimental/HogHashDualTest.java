@@ -38,7 +38,7 @@ class HogHashDualTest {
 				assertEquals(-1261848523, new HogHashDual(25).algorithmId());
 			});
 		}
-		
+
 		@Test
 		@DisplayName("Consistent AlgorithmIds v 2.0.0 collision")
 		public void notVersionTwo() {
@@ -48,7 +48,7 @@ class HogHashDualTest {
 				assertNotEquals(236389874, new HogHashDual(14).algorithmId());
 			});
 		}
-		
+
 	}
 
 	@SuppressWarnings("deprecation")
@@ -67,7 +67,7 @@ class HogHashDualTest {
 		protected HashingAlgorithm getInstance(int bitResolution) {
 			return new HogHashDual(bitResolution);
 		}
-		
+
 		@Override
 		protected double differenceBallonHqHash() {
 			return 66;

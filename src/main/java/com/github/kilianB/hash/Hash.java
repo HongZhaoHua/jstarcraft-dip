@@ -368,8 +368,9 @@ public class Hash implements Serializable {
 	}
 
 	/**
-	 * Reads a hash from a serialization file and returns it. Only hashes can be read from file
-	 * that got saved by the same class instance using {@link #toFile(File)};
+	 * Reads a hash from a serialization file and returns it. Only hashes can be
+	 * read from file that got saved by the same class instance using
+	 * {@link #toFile(File)};
 	 * 
 	 * @param source The file this hash can be read from.
 	 * @return a hash object
@@ -381,8 +382,8 @@ public class Hash implements Serializable {
 	public static Hash fromFile(File source) throws IOException, ClassNotFoundException {
 		try (ObjectInputStream ois = new ObjectInputStream(new FileInputStream(source))) {
 			Object o = ois.readObject();
-			//Ugly. This is not oop.
-			if(o.getClass() == FuzzyHash.class) {
+			// Ugly. This is not oop.
+			if (o.getClass() == FuzzyHash.class) {
 				return FuzzyHash.fromFile(source);
 			}
 			return (Hash) o;
@@ -417,8 +418,7 @@ public class Hash implements Serializable {
 	}
 
 	public String toString() {
-		return "Hash: " + StringUtil.fillStringBeginning("0", hashLength, hashValue.toString(2)) + " [algoId: "
-				+ algorithmId + "]";
+		return "Hash: " + StringUtil.fillStringBeginning("0", hashLength, hashValue.toString(2)) + " [algoId: " + algorithmId + "]";
 	}
 
 	@Override

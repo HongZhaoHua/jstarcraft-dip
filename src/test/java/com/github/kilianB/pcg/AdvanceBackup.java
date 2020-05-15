@@ -1,9 +1,11 @@
 package com.github.kilianB.pcg;
 
 /**
- * Test the step back and advance functionality for uniformity. Due to unsigned long math
- * first this method wasn't working as expected and the output was compared to the original 
- * c++ source whose code can be found at src/test/c++/UnsignedMath.cpp
+ * Test the step back and advance functionality for uniformity. Due to unsigned
+ * long math first this method wasn't working as expected and the output was
+ * compared to the original c++ source whose code can be found at
+ * src/test/c++/UnsignedMath.cpp
+ * 
  * @author Kilian
  *
  */
@@ -21,10 +23,10 @@ public class AdvanceBackup {
 
 		// Single step backwards
 		performAdvance(-1, 10);
-		
+
 		performAdvance(3, 10);
 		performAdvance(-3, 10);
-		
+
 	}
 
 	public static void performAdvance(long delta, int iterations) {
@@ -50,7 +52,7 @@ public class AdvanceBackup {
 		long cur_mult = mult;
 
 		while (Long.compareUnsigned(steps, 0) > 0) {
-			if ((steps & 1) == 1) { 	// Last significant bit is 1
+			if ((steps & 1) == 1) { // Last significant bit is 1
 				acc_mult *= cur_mult;
 				acc_plus = acc_plus * cur_mult + cur_plus;
 			}

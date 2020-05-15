@@ -73,7 +73,8 @@ public class HogHash extends HashingAlgorithm {
 	 *                  The gradients will be sorted into buckets equivalent of the
 	 *                  size of 180°/numBins
 	 * @throws IllegalArgumentException if width or height can't be divided by
-	 *                                  cellWidth or if any of the arguments is smaller or equal 0
+	 *                                  cellWidth or if any of the arguments is
+	 *                                  smaller or equal 0
 	 */
 	public HogHash(int width, int height, int cellWidth, int numBins) {
 		super(numBins);
@@ -173,7 +174,7 @@ public class HogHash extends HashingAlgorithm {
 		int[][][] hog = computeHogFeatures(lum);
 
 		// Block normalization 2 x 2 hist kernel "shifting window"
-		//double[][][] normalizedHog = blockNormalization(hog);
+		// double[][][] normalizedHog = blockNormalization(hog);
 
 		// toImage(new File("HogNormalized" + image.hashCode() + ".png"), image,
 		// Color.RED, normalizedHog);
@@ -337,10 +338,11 @@ public class HogHash extends HashingAlgorithm {
 	/**
 	 * Create a visual representation of the hog features. Debug method
 	 * 
-	 * @param outputFile 	The file to save the image to
-	 * @param originalImage	The original image used to create the features. Used as background
-	 * @param gradientColor	Color of the vectors the vectors
-	 * @param hog	hog features to draw
+	 * @param outputFile    The file to save the image to
+	 * @param originalImage The original image used to create the features. Used as
+	 *                      background
+	 * @param gradientColor Color of the vectors the vectors
+	 * @param hog           hog features to draw
 	 */
 	protected void toImage(File outputFile, BufferedImage originalImage, Color gradientColor, int[][][] hog) {
 
@@ -425,13 +427,13 @@ public class HogHash extends HashingAlgorithm {
 	/**
 	 * Create a visual representation of the normalized hog features. Debug method
 	 * 
-	 * @param outputFile 	The file to save the image to
-	 * @param originalImage	The original image used to create the features. Used as background
-	 * @param gradientColor	Color of the vectors the vectors
-	 * @param normalizedHog	hog features to draw
+	 * @param outputFile    The file to save the image to
+	 * @param originalImage The original image used to create the features. Used as
+	 *                      background
+	 * @param gradientColor Color of the vectors the vectors
+	 * @param normalizedHog hog features to draw
 	 */
-	protected void toImage(File outputFile, BufferedImage originalImage, Color gradientColor,
-			double[][][] normalizedHog) {
+	protected void toImage(File outputFile, BufferedImage originalImage, Color gradientColor, double[][][] normalizedHog) {
 
 		// Compute dimensions for the unscaled image!
 		int width = originalImage.getWidth();
@@ -494,14 +496,14 @@ public class HogHash extends HashingAlgorithm {
 			e.printStackTrace();
 		}
 	}
-	
+
 	@Override
 	public String toString() {
-		return getClass().getSimpleName()+ " [numBins=" + numBins + "]";
+		return getClass().getSimpleName() + " [numBins=" + numBins + "]";
 	}
 
 	@Override
 	protected int precomputeAlgoId() {
-		return Objects.hash(getClass().getName(), width,height,cellWidth,numBins);
+		return Objects.hash(getClass().getName(), width, height, cellWidth, numBins);
 	}
 }

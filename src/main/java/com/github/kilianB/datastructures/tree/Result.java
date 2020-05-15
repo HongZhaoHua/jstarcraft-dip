@@ -15,7 +15,7 @@ public class Result<T> implements Comparable<Result<T>> {
 	 * The hamming distance to the actual hash supplied during the search
 	 */
 	public double distance;
-	
+
 	/**
 	 * The normalized hamming distance to the actual hash supplied during the search
 	 */

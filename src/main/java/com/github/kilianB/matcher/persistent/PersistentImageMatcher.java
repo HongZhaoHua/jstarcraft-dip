@@ -117,12 +117,10 @@ public abstract class PersistentImageMatcher extends TypedImageMatcher implement
 	 */
 	public void addImage(String uniqueId, File imageFile) throws IOException {
 		if (steps.isEmpty())
-			throw new IllegalStateException(
-					"Please supply at least one hashing algorithm prior to invoking the match method");
+			throw new IllegalStateException("Please supply at least one hashing algorithm prior to invoking the match method");
 
 		if (!imageFile.isFile()) {
-			throw new IllegalArgumentException(
-					"Please make sure you add an image to the matcher. Directories are not supported");
+			throw new IllegalArgumentException("Please make sure you add an image to the matcher. Directories are not supported");
 		}
 
 		addImage(uniqueId, ImageIO.read(imageFile));
@@ -211,8 +209,7 @@ public abstract class PersistentImageMatcher extends TypedImageMatcher implement
 	 * @throws ClassNotFoundException Class of a serialized object cannot be found
 	 * @throws IOException            if an IOerror occurs during reading the file
 	 */
-	public static PersistentImageMatcher reconstructState(File saveLocation, boolean deleteSerFile)
-			throws ClassNotFoundException, IOException {
+	public static PersistentImageMatcher reconstructState(File saveLocation, boolean deleteSerFile) throws ClassNotFoundException, IOException {
 		PersistentImageMatcher pImageMatcher;
 		try (ObjectInputStream ois = new ObjectInputStream(new FileInputStream(saveLocation))) {
 			pImageMatcher = (PersistentImageMatcher) ois.readObject();
@@ -225,8 +222,7 @@ public abstract class PersistentImageMatcher extends TypedImageMatcher implement
 
 	protected void checkLockedState() {
 		if (lockedState) {
-			throw new IllegalStateException(
-					"Images have already been added to the matcher. Changing hashing algorithms would invalidate the internal state.");
+			throw new IllegalStateException("Images have already been added to the matcher. Changing hashing algorithms would invalidate the internal state.");
 		}
 	}
 

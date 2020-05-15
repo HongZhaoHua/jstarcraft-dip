@@ -173,10 +173,8 @@ public abstract class RandomBase64 extends Random implements Pcg {
 	@SuppressWarnings("unchecked")
 	public <T> T split() throws ReflectiveOperationException {
 		try {
-			return (T) getClass().getDeclaredConstructor(long.class, long.class, boolean.class).newInstance(getState(),
-					getInc(), true);
-		} catch (InstantiationException | IllegalAccessException | IllegalArgumentException | InvocationTargetException
-				| NoSuchMethodException | SecurityException e) {
+			return (T) getClass().getDeclaredConstructor(long.class, long.class, boolean.class).newInstance(getState(), getInc(), true);
+		} catch (InstantiationException | IllegalAccessException | IllegalArgumentException | InvocationTargetException | NoSuchMethodException | SecurityException e) {
 			e.printStackTrace();
 			throw new ReflectiveOperationException("Failed to instantiate clone constructor");
 		}
@@ -200,10 +198,8 @@ public abstract class RandomBase64 extends Random implements Pcg {
 				curState = (nextLong(Math.abs(getState())) ^ (~System.nanoTime()));
 			} while (curState == getState());
 
-			return (T) getClass().getDeclaredConstructor(long.class, long.class, boolean.class).newInstance(curState,
-					curInc, true);
-		} catch (InstantiationException | IllegalAccessException | IllegalArgumentException | InvocationTargetException
-				| NoSuchMethodException | SecurityException e) {
+			return (T) getClass().getDeclaredConstructor(long.class, long.class, boolean.class).newInstance(curState, curInc, true);
+		} catch (InstantiationException | IllegalAccessException | IllegalArgumentException | InvocationTargetException | NoSuchMethodException | SecurityException e) {
 			e.printStackTrace();
 			e.getCause().printStackTrace();
 			throw new ReflectiveOperationException("Failed to instantiate clone constructor");
@@ -312,7 +308,7 @@ public abstract class RandomBase64 extends Random implements Pcg {
 			if (includeOne && nextBoolean())
 				d += 1.0f; // if includeOne, with 1/2 probability, push to [1.0f, 2.0f)
 		} while ((d > 1.0f) || // everything above 1.0f is always invalid
-				(!includeZero && d == 0.0f)); // if we're not including zero, 0.0f is invalid
+		        (!includeZero && d == 0.0f)); // if we're not including zero, 0.0f is invalid
 		return d;
 	}
 
@@ -324,7 +320,7 @@ public abstract class RandomBase64 extends Random implements Pcg {
 			if (includeOne && nextBoolean())
 				d += 1.0; // if includeOne, with 1/2 probability, push to [1.0, 2.0)
 		} while ((d > 1.0) || // everything above 1.0 is always invalid
-				(!includeZero && d == 0.0)); // if we're not including zero, 0.0 is invalid
+		        (!includeZero && d == 0.0)); // if we're not including zero, 0.0 is invalid
 		return d;
 	}
 

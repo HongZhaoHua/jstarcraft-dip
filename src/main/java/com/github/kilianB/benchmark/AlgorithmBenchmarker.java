@@ -221,9 +221,9 @@ public class AlgorithmBenchmarker {
 	public void display() {
 		String html = constructHTML(false);
 		new Thread(() -> {
-			// As long as https://bugs.openjdk.java.net/browse/JDK-8090933 isn't fixed we
-			// have to use this construct
-			try {
+		    // As long as https://bugs.openjdk.java.net/browse/JDK-8090933 isn't fixed we
+		    // have to use this construct
+		    try {
 				Application.launch(BenchmarkApplication.class, html);
 			} catch (IllegalStateException state) {
 				// JavaFX already running
@@ -246,15 +246,12 @@ public class AlgorithmBenchmarker {
 
 		/*
 		 * Statistics for each hashing algorithm
-		 * @formatter:off
-		 * 0 Supposed matches distances 
-		* 1 Supposed distinct distance 
-		* 2 True positive 
-		* 3 False Positive  
-		* 4 False Negative 
-		* 5 True Negative
-		* @formatter:on
-		*/
+		 * 
+		 * @formatter:off 0 Supposed matches distances 1 Supposed distinct distance 2
+		 * True positive 3 False Positive 4 False Negative 5 True Negative
+		 * 
+		 * @formatter:on
+		 */
 		Map<HashingAlgorithm, DoubleSummaryStatistics[]> statMap = new HashMap<>();
 		algorithmsToTest = imageMatcher.getAlgorithms();
 
@@ -328,10 +325,7 @@ public class AlgorithmBenchmarker {
 	 * @param htmlBuilder the builder used to construct the output
 	 */
 	protected void appendHeader(StringBuilderI htmlBuilder) {
-		htmlBuilder
-				.append("<table id='rootTable'>\n").append("<thead><tr> <th>Images</th> <th>Category</th> <th colspan="
-						+ algorithmsToTest.size() + ">Distance</th> </tr></thead>\n")
-				.append("<tbody><tr><td colspan = 2></td>");
+		htmlBuilder.append("<table id='rootTable'>\n").append("<thead><tr> <th>Images</th> <th>Category</th> <th colspan=" + algorithmsToTest.size() + ">Distance</th> </tr></thead>\n").append("<tbody><tr><td colspan = 2></td>");
 
 		// KeySet call is cached in hashmap
 		for (HashingAlgorithm h : algorithmsToTest.keySet()) {
@@ -371,9 +365,7 @@ public class AlgorithmBenchmarker {
 	 *                    able to display the chart)
 	 * @param scatterMap  map with all distance data points sorted by algorithm
 	 */
-	protected void appendHashingDistances(StringBuilderI htmlBuilder, Map<HashingAlgorithm, Map<LabeledImage, Hash>> hashes,
-			Map<HashingAlgorithm, DoubleSummaryStatistics[]> statMap, Map<HashingAlgorithm, List<Double>[]> scatterMap,
-			boolean initChart) {
+	protected void appendHashingDistances(StringBuilderI htmlBuilder, Map<HashingAlgorithm, Map<LabeledImage, Hash>> hashes, Map<HashingAlgorithm, DoubleSummaryStatistics[]> statMap, Map<HashingAlgorithm, List<Double>[]> scatterMap, boolean initChart) {
 		int lastCategory = 0;
 
 		List<LabeledImage> sortedKeys = new ArrayList<>(imagesToTest);
@@ -434,9 +426,7 @@ public class AlgorithmBenchmarker {
 					}
 
 					if (first) {
-						htmlBuilder.append("<td>").append(base.getName()).append("-").append(cross.getName())
-								.append("</td><td class='category'>").append("[").append(base.getCategory()).append("-")
-								.append(cross.getCategory()).append("]</td>");
+						htmlBuilder.append("<td>").append(base.getName()).append("-").append(cross.getName()).append("</td><td class='category'>").append("[").append(base.getCategory()).append("-").append(cross.getCategory()).append("]</td>");
 						first = false;
 					}
 
@@ -460,16 +450,14 @@ public class AlgorithmBenchmarker {
 	/**
 	 * Append statistics regarding the hashing algorithms to the table
 	 * 
-	 * @param htmlBuilder      The stringbuilder to append the output to
-	 * @param statMap          map holding statistics
+	 * @param htmlBuilder The stringbuilder to append the output to
+	 * @param statMap     map holding statistics
 	 */
-	protected void appendStatistics(StringBuilderI htmlBuilder,
-			Map<HashingAlgorithm, DoubleSummaryStatistics[]> statMap) {
+	protected void appendStatistics(StringBuilderI htmlBuilder, Map<HashingAlgorithm, DoubleSummaryStatistics[]> statMap) {
 
 		int numberOfPairs = MathUtil.triangularNumber(imagesToTest.size() - 1);
 
-		String[] columnNames = { "Avg match:", "Avg distinct:", "Min/Max match:", "Min/Max distinct:",
-				"True Positive / False Positive", "", "False Negative / True Negative", "Accuracy", "Precision" };
+		String[] columnNames = { "Avg match:", "Avg distinct:", "Min/Max match:", "Min/Max distinct:", "True Positive / False Positive", "", "False Negative / True Negative", "Accuracy", "Precision" };
 
 		for (int i = 0; i < columnNames.length; i++) {
 
@@ -484,25 +472,21 @@ public class AlgorithmBenchmarker {
 					DoubleSummaryStatistics dSum0 = statMap.get(h)[i - 2];
 
 					if (algorithmsToTest.get(h).isNormalized()) {
-						htmlBuilder.append("<td>").append(df.format(dSum0.getMin())).append("/")
-								.append(df.format(dSum0.getMax())).append("</td>");
+						htmlBuilder.append("<td>").append(df.format(dSum0.getMin())).append("/").append(df.format(dSum0.getMax())).append("</td>");
 					} else {
-						htmlBuilder.append("<td>").append((int) dSum0.getMin()).append("/").append((int) dSum0.getMax())
-								.append("</td>");
+						htmlBuilder.append("<td>").append((int) dSum0.getMin()).append("/").append((int) dSum0.getMax()).append("</td>");
 					}
 
 				} else if (i < 7) {
 					DoubleSummaryStatistics dSum0 = statMap.get(h)[i - 2];
 					DoubleSummaryStatistics dSum1 = statMap.get(h)[i - 1];
 
-					htmlBuilder.append("<td>").append(dSum0.getCount()).append("/").append(dSum1.getCount())
-							.append("</td>");
+					htmlBuilder.append("<td>").append(dSum0.getCount()).append("/").append(dSum1.getCount()).append("</td>");
 				} else if (i == 7) {
 					// Accuracy = (TP + TN) / (TP + TN + FP + FN) => TP + TN / (testData.size())
 					int truePositive = (int) statMap.get(h)[2].getCount();
 					int trueNegative = (int) statMap.get(h)[5].getCount();
-					htmlBuilder.append("<td>").append(df.format((truePositive + trueNegative) / (double) numberOfPairs))
-							.append("</td>");
+					htmlBuilder.append("<td>").append(df.format((truePositive + trueNegative) / (double) numberOfPairs)).append("</td>");
 				} else if (i == 8) {
 					// Precision
 					int truePositive = (int) statMap.get(h)[2].getCount();
@@ -526,11 +510,11 @@ public class AlgorithmBenchmarker {
 
 	/**
 	 * Append an empty table row to the table. Used as spacer.
+	 * 
 	 * @param builder The stringbuilder to append the output tos
 	 */
 	private void emptyTableRow(StringBuilderI builder) {
-		builder.append("<tr class='spacerRow'><td colspan='2'></td><td colspan='").append(algorithmsToTest.size())
-				.row("'></td></tr>");
+		builder.append("<tr class='spacerRow'><td colspan='2'></td><td colspan='").append(algorithmsToTest.size()).row("'></td></tr>");
 	}
 
 	//
@@ -585,10 +569,7 @@ public class AlgorithmBenchmarker {
 		htmlBuilder.append("</tr>");
 
 		// Disclaimer
-		htmlBuilder.append("<tfoot><tr>" + "<td  style='text-align:center;' colspan =")
-				.append(algorithmsToTest.size() + 2).append(">")
-				.append("* Please note that speed benchmarks are not representative and should only be used to get a rough estimated of the magnitude of the speed.")
-				.append("</td></tr></tfoot>");
+		htmlBuilder.append("<tfoot><tr>" + "<td  style='text-align:center;' colspan =").append(algorithmsToTest.size() + 2).append(">").append("* Please note that speed benchmarks are not representative and should only be used to get a rough estimated of the magnitude of the speed.").append("</td></tr></tfoot>");
 
 		return sum;
 	}
@@ -629,8 +610,7 @@ public class AlgorithmBenchmarker {
 	 *                       valuzes
 	 * @return dummy value
 	 */
-	private long performBenchmark(Map<HashingAlgorithm, Double> averageRuntime,
-			Map<HashingAlgorithm, Integer> actualLoops) {
+	private long performBenchmark(Map<HashingAlgorithm, Double> averageRuntime, Map<HashingAlgorithm, Integer> actualLoops) {
 		// Testing
 		int loops = 500;
 		long testCutoff = (60 * (long) 1e9);
@@ -668,8 +648,7 @@ public class AlgorithmBenchmarker {
 		return sum;
 	}
 
-	protected void appendChartSection(StringBuilderI htmlBuilder, Map<HashingAlgorithm, List<Double>[]> scatterMap,
-			Map<HashingAlgorithm, DoubleSummaryStatistics[]> statMap) {
+	protected void appendChartSection(StringBuilderI htmlBuilder, Map<HashingAlgorithm, List<Double>[]> scatterMap, Map<HashingAlgorithm, DoubleSummaryStatistics[]> statMap) {
 
 		// Inject javascript charting library
 
@@ -739,15 +718,13 @@ public class AlgorithmBenchmarker {
 				// Average between max match and min distinct
 
 				scatterDatBuilder.append("dataDictScatter['").append(hasher.algorithmId()).append("']=[");
-				centeroidBuilder.append("dataDictCenter['").append(hasher.algorithmId()).append("']=[").append(avg)
-						.row("];");
+				centeroidBuilder.append("dataDictCenter['").append(hasher.algorithmId()).append("']=[").append(avg).row("];");
 
 				int dataPoints = occurances[0].size();
 				for (int i = 0; i < dataPoints; i++) {
 
 					matchBucket[(int) (occurances[0].get(i) * buckets) + (stepped ? 0 : 1)]++;
-					scatterDatBuilder.append("{x:").append(occurances[0].get(i)).append(",y:").append(i / 2d)
-							.append("},");
+					scatterDatBuilder.append("{x:").append(occurances[0].get(i)).append(",y:").append(i / 2d).append("},");
 				}
 
 				dataPoints = occurances[1].size();
@@ -757,8 +734,7 @@ public class AlgorithmBenchmarker {
 				for (int i = 0; i < dataPoints; i++) {
 
 					distinctBucket[(int) (occurances[1].get(i) * buckets) + (stepped ? 0 : 1)]++;
-					scatterDatBuilder.append("{x:").append(occurances[1].get(i)).append(",y:").append(i / 2d)
-							.append("}");
+					scatterDatBuilder.append("{x:").append(occurances[1].get(i)).append(",y:").append(i / 2d).append("}");
 					if (i != dataPoints - 1) {
 						scatterDatBuilder.append(",");
 					}
@@ -769,10 +745,8 @@ public class AlgorithmBenchmarker {
 				negativeDatBuilder.append("dataDictDistinct['").append(hasher.algorithmId()).append("']=[");
 
 				for (int i = 0; i < buckets; i++) {
-					positiveDatBuilder.append("{x:").append(i / (double) buckets).append(",y:").append(matchBucket[i])
-							.append("}");
-					negativeDatBuilder.append("{x:").append(i / (double) buckets).append(",y:")
-							.append(distinctBucket[i]).append("}");
+					positiveDatBuilder.append("{x:").append(i / (double) buckets).append(",y:").append(matchBucket[i]).append("}");
+					negativeDatBuilder.append("{x:").append(i / (double) buckets).append(",y:").append(distinctBucket[i]).append("}");
 
 					if (i != buckets - 1) {
 						positiveDatBuilder.append(",");
@@ -784,153 +758,32 @@ public class AlgorithmBenchmarker {
 				negativeDatBuilder.row("];");
 			}
 
-			htmlBuilder.row("<div style='width:40%; margin:auto;'>")
-					.row("<canvas id ='chartCanvas' width='600' height='400' style='background-color:' />")
-					.row("</div>");
-			//@formatter:off 
-			//append javascript to initialize chart data
-			htmlBuilder.row("<script>")
-			.append(positiveDatBuilder.toString())
-			.append(negativeDatBuilder.toString())
-			.append(scatterDatBuilder.toString())
-			.append(centeroidBuilder.toString())
-			.row(" Chart.defaults.global.defaultFontColor='white';")
-			.row("var canvas = document.getElementById('chartCanvas').getContext('2d')")
-			.row("var chart = new Chart(canvas, {")
-			.row("	data: {\n")
-			//.append("	labels: [0.0,'0.1', '0.2', '0.3', '0.4', '0.5', '0.6', '0.7', '0.8', '0.9','1.0'],\n")
-			.row("		datasets: [{\n")
-			.row("				label: 'points',")
-			.row("				type: 'scatter',")
-			.row("				fill: false,")
-			.row("				showLine: false,")
-			.row("				pointRadius: 5,")
-			.row("				backgroundColor: 'orange'")
-			.row("			},")
-			.row("			{")
-			.row("				type: 'line',")
-			.row("				label: 'match',")
-			.row("				steppedLine: "+stepped+",")	
-			.row("				pointRadius: 0,")
-			.row("				backgroundColor: 'rgba(32,178,170,0.65)'")
-			.row("				},")		
-			.row("			{")
-			.row("				type: 'line',")
-			.row("				label: 'distinct',")
-			.row("				steppedLine: "+stepped+",")	
-			.row("				pointRadius: 0,")
-			.row("				backgroundColor: 'rgba(250,128,114,0.8)'")
-			.row("			}")
-			.row("		]")
-			.row("	},")
-			.row("	options: {")
-			.row("		responsive: true,")
-			.row("		scales: {")
-			.row("				yAxes: [{") 
-			.row("					gridLines: {")
-			.row("						color: 'white'") 
-			.row("					},")
-			.row("					scaleLabel: {")
-			.row("						display: true,")
-			.row("						labelString: 'Occurances',")
-			.row("					}")
-			.row("				}],")
-			.row("				xAxes: [{") 
-			.row("					type:'linear',")			
-			.row("					gridLines: {") 
-			.row("						color: 'white'")
-			.row("					},")
-			.row("					ticks: {")
-			.row("						min:0,")
-			.row("						max:1,")
-			.row("						stepSize:0.1")
-			.row("					},")
-			.row("					scaleLabel: {")
-			.row("						display: true,")
-			.row("						labelString: 'Distance',")
-			.row("					}")
-			.row("				}]")
-			.row("			},")
-			.row("		title:{")
-			.row("			display:true,")
-			.row("			text: 'Test'")
-			.row("		}")
-			.row("	}")
-			.row("})")
-			//Register javascript callback
-			//tiny bit javascript magic
-			
-			.row("var table = document.getElementById('rootTable');")
-			.row("var lastIndex = -1;")
-			.row("var lastObject = undefined;")
-			.row("table.addEventListener('mousemove',function(e){")
-			.row("	var parentTr = e.path[1];")
-			.row("	var target = e.path[0];")
-			.row("	if(target == lastObject){")
-			.row("		return;" )
-			.row("	}")
-			.row("	lastObject = target;")
-			.row("	var correctCellIndex = 0;")
-			.row("	//Fix: Compute correct cellindex due to colspans")
-			.row("	for(let cell of parentTr.cells){")
-			.row(" 		if(cell == target){")
-			.row("			break;")
-			.row("		}else{")
-			.row("			correctCellIndex += cell.colSpan;")
-			.row("		}")
-			.row("	}")
-			.row("	if(correctCellIndex != lastIndex) {")
-			.row("		lastIndex = correctCellIndex;")
-			.row("		//First tr in tbody with cellIndex - 1")
-			.row("		var id = table.rows[1].cells[correctCellIndex-1].id")
-			.row("		if(id === undefined){")
-			.row("			return;")
-			.row("		}\n")
-			.row("		//Repopulate table\n")
-			.row("		chart.options.title.text = table.rows[1].cells[correctCellIndex-1].innerText;\n")
-			.row("		chart.data.datasets[1].data = dataDictMatch[id];")
-			.row("		chart.data.datasets[2].data = dataDictDistinct[id];")
-			.row("		chart.data.datasets[0].data = dataDictScatter[id];")
-			.row("		chart.config.verticalMarker = dataDictCenter[id]")	
-			.row("		chart.update();")
-			.row("	}")
-			
-			//Adapted from https://stackoverflow.com/a/43092029/3244464
-			.row("const verticalLinePlugin = {\r\n" + 
-					"  getLinePosition: function (chart, value) {\r\n" + 
-					"		return chart.scales['x-axis-0'].getPixelForValue(value);"+
-					"  },\r\n" + 
-					"  renderVerticalLine: function (chartInstance, xValue) {\r\n" + 
-					"      const lineLeftOffset = this.getLinePosition(chartInstance, xValue);\r\n" + 
-					"      const scale = chartInstance.scales['y-axis-0'];\r\n" + 
-					"      const context = chartInstance.chart.ctx;\r\n" + 
-					"\r\n" + 
-					"      // render vertical line\r\n" + 
-					"      context.beginPath();\r\n" + 
-					"      context.strokeStyle = 'white';\r\n" + 
-					"      context.lineWidth = 2;\n" +
-					"      context.moveTo(lineLeftOffset, scale.top);\r\n" + 
-					"      context.lineTo(lineLeftOffset, scale.bottom);\r\n" + 
-					"      context.stroke();\r\n" + 
-					"\r\n" + 
-					"      // write label\r\n" + 
-					//"      context.font =\"20px 'Helvetica Neue'\";\n"+		
-					//"      context.fillStyle = \"white\";\r\n" + 
-					//"      context.textAlign = 'center';\r\n" + 
-					//"      context.fillText('Centeroid:'+xValue.toFixed(3), lineLeftOffset, (scale.bottom - scale.top) / 8 + scale.top);\r\n" + 
-					"  },\r\n" + 
-					"\r\n" + 
-					"  afterDatasetsDraw: function (chart, easing) {\r\n" + 
-					"      if (chart.config.verticalMarker) {\r\n" + 
-					"          chart.config.verticalMarker.forEach(xValue => this.renderVerticalLine(chart, xValue));\r\n" + 
-					"      }\r\n" + 
-					"  }\r\n" + 
-					"  };\r\n" + 
-					"\r\n" + 
-					"  Chart.plugins.register(verticalLinePlugin);")
-			
-			.row("});</script>");
-			//@formatter:on
+			htmlBuilder.row("<div style='width:40%; margin:auto;'>").row("<canvas id ='chartCanvas' width='600' height='400' style='background-color:' />").row("</div>");
+			// @formatter:off
+			// append javascript to initialize chart data
+			htmlBuilder.row("<script>").append(positiveDatBuilder.toString()).append(negativeDatBuilder.toString()).append(scatterDatBuilder.toString()).append(centeroidBuilder.toString()).row(" Chart.defaults.global.defaultFontColor='white';").row("var canvas = document.getElementById('chartCanvas').getContext('2d')").row("var chart = new Chart(canvas, {").row("	data: {\n")
+			        // .append(" labels: [0.0,'0.1', '0.2', '0.3', '0.4', '0.5', '0.6', '0.7',
+			        // '0.8', '0.9','1.0'],\n")
+			        .row("		datasets: [{\n").row("				label: 'points',").row("				type: 'scatter',").row("				fill: false,").row("				showLine: false,").row("				pointRadius: 5,").row("				backgroundColor: 'orange'").row("			},").row("			{").row("				type: 'line',").row("				label: 'match',").row("				steppedLine: " + stepped + ",").row("				pointRadius: 0,").row("				backgroundColor: 'rgba(32,178,170,0.65)'").row("				},").row("			{").row("				type: 'line',").row("				label: 'distinct',").row("				steppedLine: " + stepped + ",").row("				pointRadius: 0,").row("				backgroundColor: 'rgba(250,128,114,0.8)'").row("			}").row("		]").row("	},").row("	options: {").row("		responsive: true,").row("		scales: {").row("				yAxes: [{")
+			        .row("					gridLines: {").row("						color: 'white'").row("					},").row("					scaleLabel: {").row("						display: true,").row("						labelString: 'Occurances',").row("					}").row("				}],").row("				xAxes: [{").row("					type:'linear',").row("					gridLines: {").row("						color: 'white'").row("					},").row("					ticks: {").row("						min:0,").row("						max:1,").row("						stepSize:0.1").row("					},").row("					scaleLabel: {").row("						display: true,").row("						labelString: 'Distance',").row("					}").row("				}]").row("			},").row("		title:{").row("			display:true,").row("			text: 'Test'").row("		}")
+			        .row("	}").row("})")
+			        // Register javascript callback
+			        // tiny bit javascript magic
+
+			        .row("var table = document.getElementById('rootTable');").row("var lastIndex = -1;").row("var lastObject = undefined;").row("table.addEventListener('mousemove',function(e){").row("	var parentTr = e.path[1];").row("	var target = e.path[0];").row("	if(target == lastObject){").row("		return;").row("	}").row("	lastObject = target;").row("	var correctCellIndex = 0;").row("	//Fix: Compute correct cellindex due to colspans").row("	for(let cell of parentTr.cells){").row(" 		if(cell == target){").row("			break;").row("		}else{").row("			correctCellIndex += cell.colSpan;").row("		}").row("	}").row("	if(correctCellIndex != lastIndex) {").row("		lastIndex = correctCellIndex;").row("		//First tr in tbody with cellIndex - 1").row("		var id = table.rows[1].cells[correctCellIndex-1].id").row("		if(id === undefined){").row("			return;").row("		}\n").row("		//Repopulate table\n")
+			        .row("		chart.options.title.text = table.rows[1].cells[correctCellIndex-1].innerText;\n").row("		chart.data.datasets[1].data = dataDictMatch[id];").row("		chart.data.datasets[2].data = dataDictDistinct[id];").row("		chart.data.datasets[0].data = dataDictScatter[id];").row("		chart.config.verticalMarker = dataDictCenter[id]").row("		chart.update();").row("	}")
+
+			        // Adapted from https://stackoverflow.com/a/43092029/3244464
+			        .row("const verticalLinePlugin = {\r\n" + "  getLinePosition: function (chart, value) {\r\n" + "		return chart.scales['x-axis-0'].getPixelForValue(value);" + "  },\r\n" + "  renderVerticalLine: function (chartInstance, xValue) {\r\n" + "      const lineLeftOffset = this.getLinePosition(chartInstance, xValue);\r\n" + "      const scale = chartInstance.scales['y-axis-0'];\r\n" + "      const context = chartInstance.chart.ctx;\r\n" + "\r\n" + "      // render vertical line\r\n" + "      context.beginPath();\r\n" + "      context.strokeStyle = 'white';\r\n" + "      context.lineWidth = 2;\n" + "      context.moveTo(lineLeftOffset, scale.top);\r\n" + "      context.lineTo(lineLeftOffset, scale.bottom);\r\n" + "      context.stroke();\r\n" + "\r\n" + "      // write label\r\n" +
+					// " context.font =\"20px 'Helvetica Neue'\";\n"+
+					// " context.fillStyle = \"white\";\r\n" +
+					// " context.textAlign = 'center';\r\n" +
+					// " context.fillText('Centeroid:'+xValue.toFixed(3), lineLeftOffset,
+					// (scale.bottom - scale.top) / 8 + scale.top);\r\n" +
+			                "  },\r\n" + "\r\n" + "  afterDatasetsDraw: function (chart, easing) {\r\n" + "      if (chart.config.verticalMarker) {\r\n" + "          chart.config.verticalMarker.forEach(xValue => this.renderVerticalLine(chart, xValue));\r\n" + "      }\r\n" + "  }\r\n" + "  };\r\n" + "\r\n" + "  Chart.plugins.register(verticalLinePlugin);")
+
+			        .row("});</script>");
+			// @formatter:on
 		} else {
 			LOGGER.warning("Could not link to chartjs library. skip chart generation.");
 		}
@@ -943,29 +796,14 @@ public class AlgorithmBenchmarker {
 	 */
 	private static String buildHtmlBase() {
 		StringBuilderI htmlBuilder = new StringBuilderI();
-		htmlBuilder.row("<!DOCTYPE html>").row("<html>").row("	<head>")
-				.row("		<title>Algorithm Benchmarking</title>")
-				/*
-				 * CSS
-				 * @formatter:off
-				 */
-				.row("		<style>")
-				.row("			html{min-height:100%;}")
-				.row("			body{min-height:100%; margin: 0; background: linear-gradient(45deg, #49a09d, #5f2c82); font-family: sans-serif; font-weight: 100; margin-bottom:25px;}")
-				.row("			table{margin:auto; border-collapse: collapse; box-shadow: 0 0 20px rgba(0,0,0,0.1); margin-top:40px;}")
-				.row("			thead th, td:first-child, .category{background-color: #55608f;}")
-				.row("			tr:nth-child(1) {background-color:#3d54b9;}")
-				.row("			th,td{padding: 10px;background-color: rgba(255,255,255,0.2);color: #fff;}")
-				.row("			tbody tr:hover{background-color: rgba(255,255,255,0.3);}")
-				.row("			.spacerRow td{ padding:7px;}")
-				.row("			.circle{width:10px; height: 10px; background-color:green; border-radius:50%; display:inline-block; margin-right:5px;}")
-				.row("			.fault{color:#fff700;}")
-				.row("		</style>")
-				.row("	</head>")
-				.row("	<body>")
-				.row("		$body")
-				.row("	</body>")
-				.row("</html>");
+		htmlBuilder.row("<!DOCTYPE html>").row("<html>").row("	<head>").row("		<title>Algorithm Benchmarking</title>")
+		        /*
+		         * CSS
+		         * 
+		         * @formatter:off
+		         */
+		        .row("		<style>").row("			html{min-height:100%;}").row("			body{min-height:100%; margin: 0; background: linear-gradient(45deg, #49a09d, #5f2c82); font-family: sans-serif; font-weight: 100; margin-bottom:25px;}").row("			table{margin:auto; border-collapse: collapse; box-shadow: 0 0 20px rgba(0,0,0,0.1); margin-top:40px;}").row("			thead th, td:first-child, .category{background-color: #55608f;}").row("			tr:nth-child(1) {background-color:#3d54b9;}").row("			th,td{padding: 10px;background-color: rgba(255,255,255,0.2);color: #fff;}").row("			tbody tr:hover{background-color: rgba(255,255,255,0.3);}").row("			.spacerRow td{ padding:7px;}").row("			.circle{width:10px; height: 10px; background-color:green; border-radius:50%; display:inline-block; margin-right:5px;}").row("			.fault{color:#fff700;}").row("		</style>").row("	</head>").row("	<body>").row("		$body").row("	</body>")
+		        .row("</html>");
 		return htmlBuilder.toString();
 	}
 
@@ -977,12 +815,12 @@ public class AlgorithmBenchmarker {
 	 */
 	private static class StringBuilderI {
 		private StringBuilder internal = new StringBuilder();
-	
+
 		public StringBuilderI append(String s) {
 			internal.append(s);
 			return this;
 		}
-		
+
 		/**
 		 * @param double1
 		 * @return
@@ -1006,7 +844,7 @@ public class AlgorithmBenchmarker {
 			internal.append(s).append("\n");
 			return this;
 		}
-		
+
 		public String toString() {
 			return internal.toString();
 		}

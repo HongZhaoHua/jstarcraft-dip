@@ -17,9 +17,9 @@ import com.github.kilianB.matcher.TypedImageMatcher;
 
 /**
  * Convenience class allowing to chain multiple hashing algorithms to find
- * similar images. The ConsecutiveMatcher keeps the hashes and buffered
- * images in cache, allowing to add and remove hashing algorithms on the fly as
- * well as retrieving the bufferedimage object of matches. On the flip side this
+ * similar images. The ConsecutiveMatcher keeps the hashes and buffered images
+ * in cache, allowing to add and remove hashing algorithms on the fly as well as
+ * retrieving the bufferedimage object of matches. On the flip side this
  * approach requires much more memory and is unsuited for large collection of
  * images.
  * 
@@ -104,8 +104,7 @@ public class ConsecutiveMatcher extends TypedImageMatcher {
 	 */
 	public void addImage(BufferedImage image) {
 		if (steps.isEmpty())
-			throw new IllegalStateException(
-					"Please supply at least one hashing algorithm prior to invoking the match method");
+			throw new IllegalStateException("Please supply at least one hashing algorithm prior to invoking the match method");
 
 		if (addedImages.contains(image)) {
 			return;
@@ -144,8 +143,7 @@ public class ConsecutiveMatcher extends TypedImageMatcher {
 	public PriorityQueue<Result<BufferedImage>> getMatchingImages(BufferedImage image) {
 
 		if (steps.isEmpty())
-			throw new IllegalStateException(
-					"Please supply at least one hashing algorithm prior to invoking the match method");
+			throw new IllegalStateException("Please supply at least one hashing algorithm prior to invoking the match method");
 
 		PriorityQueue<Result<BufferedImage>> returnValues = null;
 

@@ -20,25 +20,24 @@ public class PractRandInterface {
 
 		// Pract rand settings
 
-		int bitsPerData = 32;		// Integer are 32 bits
-		int bytesToTest = 36;		// 2^n -> 2^36 bytes = 64 gb data
-		int transformFolding = 2; 	// Transform the input for additional statistical tests
+		int bitsPerData = 32; // Integer are 32 bits
+		int bytesToTest = 36; // 2^n -> 2^36 bytes = 64 gb data
+		int transformFolding = 2; // Transform the input for additional statistical tests
 
 		File practRandExecutable = new File("benchmark/win_binary/PractRand_094/RNG_test");
 
-		//Terminal command on windows ->  Output | RNG_test [Parameters]
-		ProcessBuilder p = new ProcessBuilder(practRandExecutable.getAbsolutePath().toString(), "stdin" + bitsPerData,
-				"-a", "-tf", Integer.toString(transformFolding), "-tlmax", Integer.toString(bytesToTest));
+		// Terminal command on windows -> Output | RNG_test [Parameters]
+		ProcessBuilder p = new ProcessBuilder(practRandExecutable.getAbsolutePath().toString(), "stdin" + bitsPerData, "-a", "-tf", Integer.toString(transformFolding), "-tlmax", Integer.toString(bytesToTest));
 
 		Process practRandProcess = p.start();
 
-		//Handle the output returned by the test
+		// Handle the output returned by the test
 		Thread t = new Thread(() -> {
 			try (BufferedReader br = new BufferedReader(new InputStreamReader(practRandProcess.getInputStream()))) {
 				String line;
 				while ((line = br.readLine()) != null) {
-					
-					//Print it to the console ... and additionally to a file?
+
+					// Print it to the console ... and additionally to a file?
 					System.out.println(line);
 				}
 			} catch (IOException e) {
@@ -48,7 +47,6 @@ public class PractRandInterface {
 
 		t.start();
 
-		
 		// Pipe input data to the process
 		DataOutputStream out = new DataOutputStream(practRandProcess.getOutputStream());
 
@@ -70,7 +68,7 @@ public class PractRandInterface {
 				}
 			} else if (bitsPerData == 8) {
 				while (true) {
-					//Same out.write takes an int...
+					// Same out.write takes an int...
 					out.write(rngToTest.nextByte());
 				}
 			}

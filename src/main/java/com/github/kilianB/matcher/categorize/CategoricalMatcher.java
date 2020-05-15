@@ -33,18 +33,16 @@ import com.github.kilianB.matcher.categorize.supervised.LabeledImage;
  * Cluster centeroids are represented as FuzzyHashes a prot hash represented as
  * mode hash of all added images.
  * 
- * <b>ImplNote:</b> TODO the weighted categorical matcher employs different techniques
- * to speed up cluster recomputation because it was so slow. While this class is 
- * usually faster there is no reason to not port the improvements over to this class
- * as well.
+ * <b>ImplNote:</b> TODO the weighted categorical matcher employs different
+ * techniques to speed up cluster recomputation because it was so slow. While
+ * this class is usually faster there is no reason to not port the improvements
+ * over to this class as well.
  * 
  * @author Kilian
  * @since 3.0.0
  */
 public class CategoricalMatcher extends AbstractCategoricalMatcher {
 
-	
-	
 	private static final Logger LOGGER = Logger.getLogger(WeightedCategoricalMatcher.class.getSimpleName());
 
 	// per hashing algorithm / per category / per bit / count
@@ -304,8 +302,7 @@ public class CategoricalMatcher extends AbstractCategoricalMatcher {
 			if (cachedHashes.containsKey(uniqueId)) {
 				cachedHashes.get(uniqueId).put(hashAlgorithm, createdHash);
 			} else {
-				Map<HashingAlgorithm, Hash> hashMap = new HashMap<HashingAlgorithm, Hash>(
-						(int) (this.steps.size() / 0.75 + 1));
+				Map<HashingAlgorithm, Hash> hashMap = new HashMap<HashingAlgorithm, Hash>((int) (this.steps.size() / 0.75 + 1));
 				hashMap.put(hashAlgorithm, createdHash);
 				cachedHashes.put(uniqueId, hashMap);
 			}
@@ -541,10 +538,9 @@ public class CategoricalMatcher extends AbstractCategoricalMatcher {
 
 		Comparator<Map.Entry<Integer, Integer>> comp = (c1, c2) -> c1.getValue().compareTo(c2.getValue());
 
-		return map.entrySet().stream().sorted(comp.reversed())
-				.collect(Collectors.toMap(e -> e.getKey(), e -> e.getValue(), (u, v) -> {
-					throw new IllegalStateException(String.format("Duplicate key %s", u));
-				}, LinkedHashMap::new));
+		return map.entrySet().stream().sorted(comp.reversed()).collect(Collectors.toMap(e -> e.getKey(), e -> e.getValue(), (u, v) -> {
+			throw new IllegalStateException(String.format("Duplicate key %s", u));
+		}, LinkedHashMap::new));
 	}
 
 	// Debug functions
@@ -559,8 +555,7 @@ public class CategoricalMatcher extends AbstractCategoricalMatcher {
 	public void printClusterInfo(int minImagesInCluster) {
 		for (Entry<Integer, DoubleSummaryStatistics> entry : clusterQuality.entrySet()) {
 			if (entry.getValue().getCount() >= minImagesInCluster) {
-				System.out
-						.println("Category: " + entry.getKey() + " Average Distance: " + entry.getValue().getAverage());
+				System.out.println("Category: " + entry.getKey() + " Average Distance: " + entry.getValue().getAverage());
 			}
 		}
 	}

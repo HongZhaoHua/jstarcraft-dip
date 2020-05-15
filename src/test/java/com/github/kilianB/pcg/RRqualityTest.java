@@ -10,7 +10,6 @@ import com.github.kilianB.pcg.cas.PcgRRCas;
 import com.github.kilianB.pcg.lock.PcgRRLocked;
 import com.github.kilianB.pcg.sync.PcgRR;
 
-
 /**
  * Ensure that all RS Random number generators, no matter if fast locked synched
  * or cased perform the same in single threaded context
@@ -286,5 +285,5 @@ public class RRqualityTest {
 
 		assertAll(() -> assertArrayEquals(cas, syn), () -> assertArrayEquals(cas, lock));
 	}
-	
+
 }

@@ -17,23 +17,21 @@ public abstract class RandomBurdenTest {
 	@Test
 	public void setSeed() {
 		Random rng = getInstance();
-		
+
 		rng.setSeed(15);
 		int[] randomInts = new int[10];
-		for(int i = 0; i < randomInts.length; i++) {
+		for (int i = 0; i < randomInts.length; i++) {
 			randomInts[i] = rng.nextInt();
 		}
-		
+
 		rng.setSeed(15);
 		int[] randomInts2 = new int[10];
-		for(int i = 0; i < randomInts.length; i++) {
+		for (int i = 0; i < randomInts.length; i++) {
 			randomInts2[i] = rng.nextInt();
 		}
-		assertArrayEquals(randomInts,randomInts2);
+		assertArrayEquals(randomInts, randomInts2);
 	}
-	
+
 	protected abstract Random getInstance();
-	
-	
 
 }

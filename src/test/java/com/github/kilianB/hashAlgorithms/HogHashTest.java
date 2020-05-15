@@ -37,7 +37,7 @@ class HogHashTest {
 				assertEquals(-1850254951, new HogHash(25).algorithmId());
 			});
 		}
-		
+
 		@Test
 		@DisplayName("Consistent AlgorithmIds v 2.0.0 collision")
 		public void notVersionTwo() {
@@ -64,13 +64,13 @@ class HogHashTest {
 		protected HashingAlgorithm getInstance(int bitResolution) {
 			return new HogHash(bitResolution);
 		}
-		
-		//Hog hash requires higher bit resolution. override default offset
+
+		// Hog hash requires higher bit resolution. override default offset
 		@Override
 		protected int offsetBitResolution() {
 			return 10;
 		}
-		
+
 		@Override
 		protected double differenceBallonHqHash() {
 			return 50;

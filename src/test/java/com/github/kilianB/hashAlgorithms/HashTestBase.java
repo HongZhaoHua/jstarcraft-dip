@@ -237,11 +237,9 @@ public abstract class HashTestBase {
 			Hash ballonHash = h.hash(ballon);
 
 			assertAll(() -> {
-				assertTrue(
-						lowQualityHash.hammingDistance(highQualityHash) < lowQualityHash.hammingDistance(ballonHash));
+				assertTrue(lowQualityHash.hammingDistance(highQualityHash) < lowQualityHash.hammingDistance(ballonHash));
 			}, () -> {
-				assertTrue(
-						highQualityHash.hammingDistance(lowQualityHash) < highQualityHash.hammingDistance(ballonHash));
+				assertTrue(highQualityHash.hammingDistance(lowQualityHash) < highQualityHash.hammingDistance(ballonHash));
 			});
 		}
 
@@ -260,11 +258,9 @@ public abstract class HashTestBase {
 			Hash ballonHash = h.hash(ballon);
 
 			assertAll(() -> {
-				assertTrue(lowQualityHash.normalizedHammingDistance(highQualityHash) < lowQualityHash
-						.normalizedHammingDistance(ballonHash));
+				assertTrue(lowQualityHash.normalizedHammingDistance(highQualityHash) < lowQualityHash.normalizedHammingDistance(ballonHash));
 			}, () -> {
-				assertTrue(highQualityHash.normalizedHammingDistance(lowQualityHash) < highQualityHash
-						.normalizedHammingDistance(ballonHash));
+				assertTrue(highQualityHash.normalizedHammingDistance(lowQualityHash) < highQualityHash.normalizedHammingDistance(ballonHash));
 			});
 		}
 	}

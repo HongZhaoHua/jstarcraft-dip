@@ -116,22 +116,18 @@ class CountHashCollectionTest {
 		assertEquals(2, c.containsCount(ONE));
 		assertEquals(1, c.containsCount(TWO));
 	}
-	
-	@Test 
+
+	@Test
 	void removeFullyNotPresent() {
 		assertFalse(c.removeFully(ZERO));
 	}
-	
+
 	@Test
 	void removeFully() {
 		c.add(ZERO);
 		c.add(ZERO);
-		
-		assertAll(
-				() -> assertEquals(2,c.size()),
-				() -> assertTrue(c.removeFully(ZERO)),
-				() -> assertEquals(0,c.size())
-				);
+
+		assertAll(() -> assertEquals(2, c.size()), () -> assertTrue(c.removeFully(ZERO)), () -> assertEquals(0, c.size()));
 	}
 
 	// iterator
@@ -143,7 +139,7 @@ class CountHashCollectionTest {
 			c.add(ONE);
 			c.add(TWO);
 		}
-		
+
 		int count = 0;
 		Iterator<Integer> iter = c.iterator();
 		while (iter.hasNext()) {
@@ -160,19 +156,15 @@ class CountHashCollectionTest {
 			c.add(ONE);
 			c.add(TWO);
 		}
-		
+
 		Iterator<Integer> iter = c.iterator();
-		while(iter.hasNext()) {
+		while (iter.hasNext()) {
 			iter.next();
 			iter.remove();
 
 		}
-		
-		assertAll(
-			()-> assertEquals(0,c.size()),
-			()-> assertEquals(0,c.sizeUnique()),
-			() ->assertEquals(0,c.containsCount(ZERO))
-			);	
+
+		assertAll(() -> assertEquals(0, c.size()), () -> assertEquals(0, c.sizeUnique()), () -> assertEquals(0, c.containsCount(ZERO)));
 	}
 
 }

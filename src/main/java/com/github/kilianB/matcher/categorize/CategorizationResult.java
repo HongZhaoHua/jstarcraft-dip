@@ -29,7 +29,7 @@ public class CategorizationResult {
 	protected int category;
 	protected double qualityMeasurement;
 
-	//TODO not yet implemented
+	// TODO not yet implemented
 //	/** In case of nested matchers this will point to the next result */
 	protected CategorizationResult subResult = null;
 
@@ -48,7 +48,6 @@ public class CategorizationResult {
 		return category;
 	}
 
-	
 //	public List<CategorizationResult> getAllCategories() {
 //		List<CategorizationResult> cRes = new ArrayList<>();
 //		CategorizationResult temp = subResult;
@@ -68,8 +67,7 @@ public class CategorizationResult {
 
 	@Override
 	public String toString() {
-		return "CategorizationResult [category=" + category + ", qualityMeasurement=" + qualityMeasurement+  "]";
+		return "CategorizationResult [category=" + category + ", qualityMeasurement=" + qualityMeasurement + "]";
 	}
-	
-	
+
 }

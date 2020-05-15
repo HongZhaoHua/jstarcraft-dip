@@ -1,8 +1,8 @@
 package com.github.kilianB.pcg;
 
 /**
- * Exception thrown when random number generators interact with each other but are not in the 
- * correct state to be compared.
+ * Exception thrown when random number generators interact with each other but
+ * are not in the correct state to be compared.
  * 
  * @author Kilian
  *

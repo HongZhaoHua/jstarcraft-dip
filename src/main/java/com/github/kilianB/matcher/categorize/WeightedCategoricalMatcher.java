@@ -45,15 +45,15 @@ public class WeightedCategoricalMatcher extends CategoricalMatcher {
 		NONE,
 		/**
 		 * Use KMeans cluster to fit multiple clusters into subcategories reducing the
-		 * number of clusters images have to be checked against.
-		 * This approach usually performs well if enough images are added to the matcher but may
-		 * fail at other occasions. Usually the fastest approach. It still is an approximation.!
+		 * number of clusters images have to be checked against. This approach usually
+		 * performs well if enough images are added to the matcher but may fail at other
+		 * occasions. Usually the fastest approach. It still is an approximation.!
 		 */
-		K_MEANS_APPROXIMATION, 
+		K_MEANS_APPROXIMATION,
 		/**
-		 * Construct a binary tree prior to recomputing the clusters. This step takes time
-		 * and the tree might not be able to be pruned quickly. It's usually slower than 
-		 * KMeans but results in correct computation.
+		 * Construct a binary tree prior to recomputing the clusters. This step takes
+		 * time and the tree might not be able to be pruned quickly. It's usually slower
+		 * than KMeans but results in correct computation.
 		 */
 		BINARY_TREE
 	}
@@ -146,8 +146,7 @@ public class WeightedCategoricalMatcher extends CategoricalMatcher {
 
 		if (steps.size() > 1 && dimensionalityReduction.equals(DimReduction.BINARY_TREE)) {
 			dimensionalityReduction = DimReduction.K_MEANS_APPROXIMATION;
-			LOGGER.warning(
-					"Binary tree approximation not supported for multiple hashes. Fall back to K_Means_approximation");
+			LOGGER.warning("Binary tree approximation not supported for multiple hashes. Fall back to K_Means_approximation");
 		}
 
 		return added;

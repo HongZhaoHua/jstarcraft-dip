@@ -3,9 +3,9 @@ package com.github.kilianB.mutable;
 import java.io.Serializable;
 
 /**
- * Mutable class wrapper for boolean values. Mutable classes are useful
- * in lambda expressions or anonymous classes which want to alter the content of
- * a variable but are limited to final or effective final variables.
+ * Mutable class wrapper for boolean values. Mutable classes are useful in
+ * lambda expressions or anonymous classes which want to alter the content of a
+ * variable but are limited to final or effective final variables.
  * 
  * @author Kilian
  * @since 1.0.0
@@ -40,9 +40,10 @@ public class MutableBoolean implements Mutable<Boolean>, Comparable<MutableBoole
 	public void setValue(Boolean newValue) {
 		this.field = newValue;
 	}
-	
+
 	/**
 	 * Set the internal field to the new value
+	 * 
 	 * @param newValue the new value
 	 * @since 1.2.0
 	 */
@@ -53,7 +54,7 @@ public class MutableBoolean implements Mutable<Boolean>, Comparable<MutableBoole
 	public boolean booleanValue() {
 		return field;
 	}
-	
+
 	/**
 	 * Invert the value of the internal field
 	 */

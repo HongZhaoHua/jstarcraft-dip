@@ -1,4 +1,5 @@
 package com.github.kilianB.hashAlgorithms;
+
 import static com.github.kilianB.TestResources.lenna;
 import static org.junit.jupiter.api.Assertions.assertAll;
 import static org.junit.jupiter.api.Assertions.assertEquals;
@@ -33,7 +34,7 @@ class RotPHashTest {
 				assertEquals(-1425651611, new RotPHash(25, true).algorithmId());
 			});
 		}
-		
+
 		@Test
 		@DisplayName("Consistent AlgorithmIds v 2.0.0 collision")
 		public void notVersionTwo() {
@@ -44,7 +45,6 @@ class RotPHashTest {
 			});
 		}
 	}
-
 
 	/**
 	 * RotPHash has a setting specifying that the key length is truly the one
@@ -63,21 +63,21 @@ class RotPHashTest {
 		assertEquals(200, hasher.hash(lenna).getBitResolution());
 	}
 
-	//Base Hashing algorithm tests
+	// Base Hashing algorithm tests
 	@Nested
-	class AlgorithmBaseTests extends RotationalTestBase{
+	class AlgorithmBaseTests extends RotationalTestBase {
 		@Override
 		protected HashingAlgorithm getInstance(int bitResolution) {
 			return new RotPHash(bitResolution);
 		}
-		
+
 		/**
 		 * PHash requires a higher bit resolution.
 		 */
 		protected int offsetBitResolution() {
 			return 10;
 		}
-		
+
 		@Override
 		protected double differenceBallonHqHash() {
 			return 54;
@@ -87,7 +87,7 @@ class RotPHashTest {
 		protected double normDifferenceBallonHqHash() {
 			return 54 / 137d;
 		}
-		
+
 	}
 
 }

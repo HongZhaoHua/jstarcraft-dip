@@ -39,8 +39,7 @@ public class ConsecutiveMatcher extends PersitentBinaryTreeMatcher {
 	protected PriorityQueue<Result<String>> getMatchingImagesInternal(BufferedImage image, String uniqueId) {
 
 		if (steps.isEmpty())
-			throw new IllegalStateException(
-					"Please supply at least one hashing algorithm prior to invoking the match method");
+			throw new IllegalStateException("Please supply at least one hashing algorithm prior to invoking the match method");
 
 		PriorityQueue<Result<String>> returnValues = null;
 

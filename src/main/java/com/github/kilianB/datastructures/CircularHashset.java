@@ -10,13 +10,14 @@ import java.util.Set;
  */
 public class CircularHashset {
 
-	private CircularHashset() {};
-	
-	public static <K> Set<K> create(int capacity){
-		//return  Collections.newSetFromMap(new Base<K,Boolean>(capacity));
-		return Collections.newSetFromMap(new CircularLinkedHashMap<K,Boolean>(capacity));
+	private CircularHashset() {
+	};
+
+	public static <K> Set<K> create(int capacity) {
+		// return Collections.newSetFromMap(new Base<K,Boolean>(capacity));
+		return Collections.newSetFromMap(new CircularLinkedHashMap<K, Boolean>(capacity));
 	}
-	
+
 //	private static class Base<K,V> extends LinkedHashMap<K,V>{
 //		
 //		private static final long serialVersionUID = 4853774520170918913L;

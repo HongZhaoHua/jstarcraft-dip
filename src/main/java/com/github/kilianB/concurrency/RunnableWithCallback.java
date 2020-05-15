@@ -26,7 +26,7 @@ public class RunnableWithCallback implements Runnable {
 	private Runnable task, callback;
 
 	/**
-	 * @param task The task to execute
+	 * @param task     The task to execute
 	 * @param callback executed after task finished
 	 */
 	public RunnableWithCallback(Runnable task, Runnable callback) {

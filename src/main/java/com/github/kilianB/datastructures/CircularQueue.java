@@ -30,20 +30,22 @@ import java.util.Queue;
  * Apache commons CircularFifoQueue without the entire apache dependency
  * 
  * CircularFifoQueue is a first-in first-out queue with a fixed size that
- * replaces its oldest element if full. <p> The removal order of a
- * {@link CircularQueue} is based on the insertion order; elements are
- * removed in the same order in which they were added. The iteration order is
- * the same as the removal order. <p> The {@link #add(Object)},
- * {@link #remove()}, {@link #peek()}, {@link #poll}, {@link #offer(Object)}
- * operations all perform in constant time. All other operations perform in
- * linear time or worse. <p> This queue prevents null objects from being added.
+ * replaces its oldest element if full.
+ * <p>
+ * The removal order of a {@link CircularQueue} is based on the insertion order;
+ * elements are removed in the same order in which they were added. The
+ * iteration order is the same as the removal order.
+ * <p>
+ * The {@link #add(Object)}, {@link #remove()}, {@link #peek()}, {@link #poll},
+ * {@link #offer(Object)} operations all perform in constant time. All other
+ * operations perform in linear time or worse.
+ * <p>
+ * This queue prevents null objects from being added.
  *
- * @param <E>
- *            the type of elements in this collection
+ * @param <E> the type of elements in this collection
  * @since 1.1.0
  */
-public class CircularQueue<E> extends AbstractCollection<E>
-		implements Queue<E>, Serializable {
+public class CircularQueue<E> extends AbstractCollection<E> implements Queue<E>, Serializable {
 
 	/** Serialization version. */
 	private static final long serialVersionUID = -8423413834657610406L;
@@ -78,10 +80,8 @@ public class CircularQueue<E> extends AbstractCollection<E>
 	/**
 	 * Constructor that creates a queue with the specified size.
 	 *
-	 * @param size
-	 *            the size of the queue (cannot be changed)
-	 * @throws IllegalArgumentException
-	 *             if the size is &lt; 1
+	 * @param size the size of the queue (cannot be changed)
+	 * @throws IllegalArgumentException if the size is &lt; 1
 	 */
 	@SuppressWarnings("unchecked")
 	public CircularQueue(final int size) {
@@ -96,10 +96,8 @@ public class CircularQueue<E> extends AbstractCollection<E>
 	 * Constructor that creates a queue from the specified collection. The
 	 * collection size also sets the queue size.
 	 *
-	 * @param coll
-	 *            the collection to copy into the queue, may not be null
-	 * @throws NullPointerException
-	 *             if the collection is null
+	 * @param coll the collection to copy into the queue, may not be null
+	 * @throws NullPointerException if the collection is null
 	 */
 	public CircularQueue(final Collection<? extends E> coll) {
 		this(coll.size());
@@ -110,10 +108,8 @@ public class CircularQueue<E> extends AbstractCollection<E>
 	/**
 	 * Write the queue out using a custom routine.
 	 *
-	 * @param out
-	 *            the output stream
-	 * @throws IOException
-	 *             if an I/O error occurs while writing to the output stream
+	 * @param out the output stream
+	 * @throws IOException if an I/O error occurs while writing to the output stream
 	 */
 	private void writeObject(final ObjectOutputStream out) throws IOException {
 		out.defaultWriteObject();
@@ -126,12 +122,11 @@ public class CircularQueue<E> extends AbstractCollection<E>
 	/**
 	 * Read the queue in using a custom routine.
 	 *
-	 * @param in
-	 *            the input stream
-	 * @throws IOException
-	 *             if an I/O error occurs while writing to the output stream
-	 * @throws ClassNotFoundException
-	 *             if the class of a serialized object can not be found
+	 * @param in the input stream
+	 * @throws IOException            if an I/O error occurs while writing to the
+	 *                                output stream
+	 * @throws ClassNotFoundException if the class of a serialized object can not be
+	 *                                found
 	 */
 	@SuppressWarnings("unchecked")
 	private void readObject(final ObjectInputStream in) throws IOException, ClassNotFoundException {
@@ -181,7 +176,6 @@ public class CircularQueue<E> extends AbstractCollection<E>
 		return size() == 0;
 	}
 
-
 	/**
 	 * Returns {@code true} if the capacity limit of this queue has been reached,
 	 * i.e. the number of elements stored in the queue equals its maximum size.
@@ -193,7 +187,6 @@ public class CircularQueue<E> extends AbstractCollection<E>
 	public boolean isAtFullCapacity() {
 		return size() == maxElements;
 	}
-
 
 	/**
 	 * Clears this queue.
@@ -210,11 +203,9 @@ public class CircularQueue<E> extends AbstractCollection<E>
 	 * Adds the given element to this queue. If the queue is full, the least
 	 * recently added element is discarded so that a new element can be inserted.
 	 *
-	 * @param element
-	 *            the element to add
+	 * @param element the element to add
 	 * @return true, always
-	 * @throws NullPointerException
-	 *             if the given element is null
+	 * @throws NullPointerException if the given element is null
 	 */
 	@Override
 	public boolean add(final E element) {
@@ -242,18 +233,15 @@ public class CircularQueue<E> extends AbstractCollection<E>
 	/**
 	 * Returns the element at the specified position in this queue.
 	 *
-	 * @param index
-	 *            the position of the element in the queue
+	 * @param index the position of the element in the queue
 	 * @return the element at position {@code index}
-	 * @throws NoSuchElementException
-	 *             if the requested position is outside the range [0, size)
+	 * @throws NoSuchElementException if the requested position is outside the range
+	 *                                [0, size)
 	 */
 	public E get(final int index) {
 		final int sz = size();
 		if (index < 0 || index >= sz) {
-			throw new NoSuchElementException(
-					String.format("The specified index (%1$d) is outside the available range [0, %2$d)",
-							Integer.valueOf(index), Integer.valueOf(sz)));
+			throw new NoSuchElementException(String.format("The specified index (%1$d) is outside the available range [0, %2$d)", Integer.valueOf(index), Integer.valueOf(sz)));
 		}
 
 		final int idx = (start + index) % maxElements;
@@ -266,11 +254,9 @@ public class CircularQueue<E> extends AbstractCollection<E>
 	 * Adds the given element to this queue. If the queue is full, the least
 	 * recently added element is discarded so that a new element can be inserted.
 	 *
-	 * @param element
-	 *            the element to add
+	 * @param element the element to add
 	 * @return true, always
-	 * @throws NullPointerException
-	 *             if the given element is null
+	 * @throws NullPointerException if the given element is null
 	 */
 	@Override
 	public boolean offer(final E element) {
@@ -323,8 +309,7 @@ public class CircularQueue<E> extends AbstractCollection<E>
 	/**
 	 * Increments the internal index.
 	 *
-	 * @param index
-	 *            the index to increment
+	 * @param index the index to increment
 	 * @return the updated index
 	 */
 	private int increment(int index) {
@@ -338,8 +323,7 @@ public class CircularQueue<E> extends AbstractCollection<E>
 	/**
 	 * Decrements the internal index.
 	 *
-	 * @param index
-	 *            the index to decrement
+	 * @param index the index to decrement
 	 * @return the updated index
 	 */
 	private int decrement(int index) {

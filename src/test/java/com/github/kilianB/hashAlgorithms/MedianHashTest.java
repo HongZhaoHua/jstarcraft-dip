@@ -32,7 +32,7 @@ class MedianHashTest {
 				assertEquals(-847216249, new MedianHash(25).algorithmId());
 			});
 		}
-		
+
 		@Test
 		@DisplayName("Consistent AlgorithmIds v 2.0.0 collision")
 		public void notVersionTwo() {
@@ -43,16 +43,16 @@ class MedianHashTest {
 			});
 		}
 	}
-	
-	//Base Hashing algorithm tests
+
+	// Base Hashing algorithm tests
 	@Nested
-	class AlgorithmBaseTests extends HashTestBase{
+	class AlgorithmBaseTests extends HashTestBase {
 
 		@Override
 		protected HashingAlgorithm getInstance(int bitResolution) {
 			return new MedianHash(bitResolution);
 		}
-		
+
 		@Override
 		protected double differenceBallonHqHash() {
 			return 78;
@@ -62,7 +62,7 @@ class MedianHashTest {
 		protected double normDifferenceBallonHqHash() {
 			return 78 / 132d;
 		}
-		
+
 	}
 
 }

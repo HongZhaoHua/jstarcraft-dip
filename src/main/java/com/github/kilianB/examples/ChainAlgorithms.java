@@ -34,10 +34,10 @@ public class ChainAlgorithms {
 		 * default matcher chains an average hash followed by a perceptive hash
 		 */
 		SingleImageMatcher matcher = new SingleImageMatcher();
-		
-		//Add hashing algorithms as you please. Both hashes will be queried
-		matcher.addHashingAlgorithm(new AverageHash(64),.3);
-		matcher.addHashingAlgorithm(new WaveletHash(32,3),.3);
+
+		// Add hashing algorithms as you please. Both hashes will be queried
+		matcher.addHashingAlgorithm(new AverageHash(64), .3);
+		matcher.addHashingAlgorithm(new WaveletHash(32, 3), .3);
 
 		// Lets get two images
 		BufferedImage img1 = images.get("ballon");
@@ -50,7 +50,6 @@ public class ChainAlgorithms {
 			System.out.println("Ballon & Low Quality are distinct images");
 		}
 	}
-
 
 	/**
 	 * Demonstrates how to fully configure a SingleImageMatcher. Choose own

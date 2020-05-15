@@ -10,16 +10,17 @@ import com.github.kilianB.pcg.RandomBase64;
  * 
  * The PCG family uses a linear congruential generator as the state-transition
  * function—the “CG” of PCG stands for “congruential generator”. Linear
- * congruential generators are known to be statistically weak. <p>
+ * congruential generators are known to be statistically weak.
+ * <p>
  * 
  * PCG uses a new technique called permutation functions on tuples to produce
  * output that is much more random than the RNG's internal state. The output
  * function is defined by the extending classes.
  * 
- * A paper highlighting the individual properties can be found here. <a
- * href="http://www.pcg-random.org/paper.html">http://www.pcg-random.org/paper.html</a>.
- * This class is an adaption to the original c <a
- * href="https://github.com/imneme/pcg-c">source code</a> provided by M.E.
+ * A paper highlighting the individual properties can be found here. <a href=
+ * "http://www.pcg-random.org/paper.html">http://www.pcg-random.org/paper.html</a>.
+ * This class is an adaption to the original c
+ * <a href="https://github.com/imneme/pcg-c">source code</a> provided by M.E.
  * O'Neill.
  * 
  * <b>Contract:</b> every extending class <b>must</b> implement the
@@ -32,7 +33,7 @@ import com.github.kilianB.pcg.RandomBase64;
  *
  * @see <a href="http://www.pcg-random.org/">www.pcg-random.org</a>
  */
-public abstract class RandomBaseCAS extends RandomBase64 implements Pcg{
+public abstract class RandomBaseCAS extends RandomBase64 implements Pcg {
 
 	private static final long serialVersionUID = -4396858403047759432L;
 
@@ -58,27 +59,28 @@ public abstract class RandomBaseCAS extends RandomBase64 implements Pcg{
 	/**
 	 * Create a random number generator with the given seed and stream number. The
 	 * seed defines the current state in which the rng is in and corresponds to
-	 * seeds usually found in other RNG implementations. RNGs with different seeds are
-	 * able to catch up after they exhaust their period and produce the same
-	 * numbers. <p>
+	 * seeds usually found in other RNG implementations. RNGs with different seeds
+	 * are able to catch up after they exhaust their period and produce the same
+	 * numbers.
+	 * <p>
 	 * 
 	 * Different stream numbers alter the increment of the rng and ensure distinct
-	 * state sequences <p>
+	 * state sequences
+	 * <p>
 	 * 
 	 * Only generators with the same seed AND stream numbers will produce identical
-	 * values <p>
+	 * values
+	 * <p>
 	 * 
-	 * @param seed
-	 *            used to compute the starting state of the RNG
-	 * @param streamNumber
-	 *            used to compute the increment for the lcg.
+	 * @param seed         used to compute the starting state of the RNG
+	 * @param streamNumber used to compute the increment for the lcg.
 	 */
 	public RandomBaseCAS(long seed, long streamNumber) {
 		state = new AtomicLong(0);
 		// We need to ensure
 		inc = (streamNumber << 1) | 1; // 2* + 1
 		stepRight();
-		//Won't be contested in the constructor
+		// Won't be contested in the constructor
 		state.addAndGet(seed);
 		stepRight();
 	}
@@ -88,12 +90,9 @@ public abstract class RandomBaseCAS extends RandomBase64 implements Pcg{
 	 * This will be invoked through reflection!. If no special behavior is desired
 	 * simply pass though the values.
 	 * 
-	 * @param initialState
-	 *            of the lcg
-	 * @param increment
-	 *            used in the lcg. has to be odd
-	 * @param dummy
-	 *            used to resolve signature disambiguate
+	 * @param initialState of the lcg
+	 * @param increment    used in the lcg. has to be odd
+	 * @param dummy        used to resolve signature disambiguate
 	 */
 	@Deprecated
 	protected RandomBaseCAS(long initialState, long increment, boolean dummy) {
@@ -127,7 +126,8 @@ public abstract class RandomBaseCAS extends RandomBase64 implements Pcg{
 		do {
 			oldState = state.get();
 			newState = (oldState * mult64) + inc;
-			//System.out.println("CasLoop: State" + state + " Cur Inc" + inc + " Old value: " + oldState + " NewState:" + newState );
+			// System.out.println("CasLoop: State" + state + " Cur Inc" + inc + " Old value:
+			// " + oldState + " NewState:" + newState );
 		} while (!state.compareAndSet(oldState, newState));
 
 		return oldState;
@@ -149,19 +149,20 @@ public abstract class RandomBaseCAS extends RandomBase64 implements Pcg{
 	 * 
 	 * Be aware that this relationship is only true for deterministic generation
 	 * calls. {@link #nextGaussian()} or any bound limited number generations might
-	 * loop and consume more than one step to generate a number. <p>
+	 * loop and consume more than one step to generate a number.
+	 * <p>
 	 * 
 	 * To advance n steps the function performs <code>Math.ceil( log2(n) )</code>
 	 * iterations. So you may go ahead and skip as many steps as you like without
-	 * any performance implications. <p>
+	 * any performance implications.
+	 * <p>
 	 * 
 	 * Negative indices can be used to jump backwards in time going the long way
 	 * around
 	 * 
 	 * 
-	 * @param steps
-	 *            the amount of steps to advance or in case of a negative number go
-	 *            back in history
+	 * @param steps the amount of steps to advance or in case of a negative number
+	 *              go back in history
 	 * 
 	 */
 	public void advance(long steps) {
@@ -173,7 +174,7 @@ public abstract class RandomBaseCAS extends RandomBase64 implements Pcg{
 		long cur_mult = mult64;
 
 		while (Long.compareUnsigned(steps, 0) > 0) {
-			if ((steps & 1) == 1) { 	// Last significant bit is 1
+			if ((steps & 1) == 1) { // Last significant bit is 1
 				acc_mult *= cur_mult;
 				acc_plus = acc_plus * cur_mult + cur_plus;
 			}
@@ -191,19 +192,16 @@ public abstract class RandomBaseCAS extends RandomBase64 implements Pcg{
 		} while (!state.compareAndSet(oldState, newState));
 	}
 
-	
 	/**
 	 * Construct a 32bit int from the given 64bit state using a permutation
 	 * function. The produced int will be used to construct all other datatypes
 	 * returned by this RNG.
 	 * 
-	 * @param state
-	 *            random int as produced by the internal lcg
+	 * @param state random int as produced by the internal lcg
 	 * @return a random int
 	 * 
 	 */
 	protected abstract int getInt(long state);
-
 
 	/**
 	 * Return true if this rng is a fast instance. This check is mostly used int he
@@ -226,15 +224,15 @@ public abstract class RandomBaseCAS extends RandomBase64 implements Pcg{
 	}
 
 	protected void setInc(long increment) {
-		if(increment == 0 || increment % 2 == 0) {
-			throw new IllegalArgumentException("Increment may not be 0 or even. Value: "+ increment);
+		if (increment == 0 || increment % 2 == 0) {
+			throw new IllegalArgumentException("Increment may not be 0 or even. Value: " + increment);
 		}
 		this.inc = increment;
 	}
-	
+
 	protected void setState(long initialState) {
-		//Do we need to CAS it?
-		if(this.state == null) {
+		// Do we need to CAS it?
+		if (this.state == null) {
 			this.state = new AtomicLong(initialState);
 		}
 		this.state.set(initialState);

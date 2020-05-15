@@ -7,7 +7,6 @@ import com.github.kilianB.graphics.FastPixel;
 import com.github.kilianB.graphics.ImageUtil;
 import com.github.kilianB.hashAlgorithms.HashBuilder;
 
-
 /**
  * 
  * 
@@ -51,7 +50,8 @@ public class HogHashAngularEncoded extends HogHash {
 	 *                  The gradients will be sorted into buckets equivalent of the
 	 *                  size of 180°/numBins
 	 * @throws IllegalArgumentException if width or height can't be divided by
-	 *                                  cellWidth or if any of the arguments is smaller or equal 0
+	 *                                  cellWidth or if any of the arguments is
+	 *                                  smaller or equal 0
 	 */
 	public HogHashAngularEncoded(int width, int height, int cellWidth, int numBins) {
 		super(width, height, cellWidth, numBins);

@@ -244,7 +244,6 @@ public class BinaryTreeTest {
 			assertTrue(((int) r2.value == 0 || (int) r2.value == 2));
 		}
 
-		
 		@Test
 		public void equidistant() {
 			Hash needle = TestResources.createHash("00001", 0);

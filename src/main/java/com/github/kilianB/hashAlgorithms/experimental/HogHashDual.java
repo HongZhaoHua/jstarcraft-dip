@@ -23,7 +23,7 @@ public class HogHashDual extends HogHash {
 	 * Gradients for Human Detection" by NavneetDalal and Bill Triggs
 	 * http://lear.inrialpes.fr/people/triggs/pubs/Dalal-cvpr05.pdf
 	 */
- 
+
 	private static final long serialVersionUID = 5353878339786219609L;
 
 	/**
@@ -43,12 +43,13 @@ public class HogHashDual extends HogHash {
 	 *                  The gradients will be sorted into buckets equivalent of the
 	 *                  size of 180°/numBins
 	 * @throws IllegalArgumentException if width or height can't be divided by
-	 *                                  cellWidth or if any of the arguments is smaller or equal 0
+	 *                                  cellWidth or if any of the arguments is
+	 *                                  smaller or equal 0
 	 */
 	public HogHashDual(int width, int height, int cellWidth, int numBins) {
-		super(width,height,cellWidth,numBins);
+		super(width, height, cellWidth, numBins);
 	}
-	
+
 	/**
 	 * * Create a hog hasher with the target bit resolution.
 	 * 
@@ -63,11 +64,10 @@ public class HogHashDual extends HogHash {
 	public HogHashDual(int bitResolution) {
 		super(bitResolution);
 	}
-	
+
 	@Override
 	protected BigInteger hash(BufferedImage image, HashBuilder hash) {
 
-		
 		BufferedImage bi = ImageUtil.getScaledInstance(image, width, height);
 		FastPixel fp = FastPixel.create(bi);
 

@@ -18,7 +18,7 @@ import com.github.kilianB.ArrayUtil;
  * @author Kilian
  * @since 1.3.0
  */
-public class FastPixelByte implements FastPixel{
+public class FastPixelByte implements FastPixel {
 
 	/** Full alpha constant */
 	private static final int ALPHA_MASK = 255 << 24;
@@ -34,7 +34,7 @@ public class FastPixelByte implements FastPixel{
 	protected final int width;
 	/** Height of the image */
 	protected final int height;
-	
+
 	/** Raw data */
 	private final byte[] imageData;
 
@@ -61,15 +61,14 @@ public class FastPixelByte implements FastPixel{
 			alpha = false;
 			bytesPerColor = 3;
 		}
-		
+
 		this.width = bImage.getWidth();
 		this.height = bImage.getHeight();
 	}
 
 	@Override
 	public int getRGB(int index) {
-		return (alpha ? (imageData[index++] & 0xFF) << 24 : ALPHA_MASK) | ((imageData[index++] & 0xFF))
-				| ((imageData[index++] & 0xFF) << 8) | ((imageData[index++] & 0xFF) << 16);
+		return (alpha ? (imageData[index++] & 0xFF) << 24 : ALPHA_MASK) | ((imageData[index++] & 0xFF)) | ((imageData[index++] & 0xFF) << 8) | ((imageData[index++] & 0xFF) << 16);
 	}
 
 	/**
@@ -161,7 +160,6 @@ public class FastPixelByte implements FastPixel{
 	public int getRed(int index) {
 		return imageData[index + alphaOffset + 2] & 0xFF;
 	}
-	
 
 	@Override
 	public void setRed(int index, int newRed) {
@@ -372,7 +370,7 @@ public class FastPixelByte implements FastPixel{
 	public int[] getRed1D() {
 		int[] red = new int[width * height];
 		int j = 0;
-		for (int i = 0; i < imageData.length; i += bytesPerColor,j++) {
+		for (int i = 0; i < imageData.length; i += bytesPerColor, j++) {
 			red[j] = getRed(i);
 		}
 		return red;
@@ -382,7 +380,7 @@ public class FastPixelByte implements FastPixel{
 	public int[] getGreen1D() {
 		int[] green = new int[width * height];
 		int j = 0;
-		for (int i = 0; i < imageData.length; i += bytesPerColor,j++) {
+		for (int i = 0; i < imageData.length; i += bytesPerColor, j++) {
 			green[j] = getGreen(i);
 		}
 		return green;
@@ -392,7 +390,7 @@ public class FastPixelByte implements FastPixel{
 	public int[] getBlue1D() {
 		int[] blue = new int[width * height];
 		int j = 0;
-		for (int i = 0; i < imageData.length; i += bytesPerColor,j++) {
+		for (int i = 0; i < imageData.length; i += bytesPerColor, j++) {
 			blue[j] = getBlue(i);
 		}
 		return blue;

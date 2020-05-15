@@ -47,7 +47,7 @@ public class FastPixelSlowDefault extends FastPixelImpl {
 	 */
 	public FastPixelSlowDefault(BufferedImage bImage) {
 
-		super(bImage.getWidth(),bImage.getHeight());
+		super(bImage.getWidth(), bImage.getHeight());
 		alpha = bImage.getColorModel().hasAlpha();
 
 		rgbImageData = bImage.getRGB(0, 0, width, height, null, 0, width);
@@ -289,7 +289,7 @@ public class FastPixelSlowDefault extends FastPixelImpl {
 
 	@Override
 	public int[] getLuma1D() {
-		int[] luma = new int[width*height];
+		int[] luma = new int[width * height];
 		for (int i = 0; i < rgbImageData.length; i++) {
 			luma[i] = getLuma(i);
 		}

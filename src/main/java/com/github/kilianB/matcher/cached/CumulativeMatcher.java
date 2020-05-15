@@ -142,8 +142,7 @@ public class CumulativeMatcher extends ConsecutiveMatcher {
 	public PriorityQueue<Result<BufferedImage>> getMatchingImages(BufferedImage image) {
 
 		if (steps.isEmpty())
-			throw new IllegalStateException(
-					"Please supply at least one hashing algorithm prior to invoking the match method");
+			throw new IllegalStateException("Please supply at least one hashing algorithm prior to invoking the match method");
 
 		// The maximum distance we have to search in our tree until we can't find any
 		// more images
@@ -167,8 +166,7 @@ public class CumulativeMatcher extends ConsecutiveMatcher {
 			BinaryTree<BufferedImage> binTree = binTreeMap.get(algo);
 
 			// Init temporary hashmap
-			int optimalCapacity = (int) (Math
-					.ceil((first ? binTree.getHashCount() : distanceMap.size()) / optimalLoadFactor) + 1);
+			int optimalCapacity = (int) (Math.ceil((first ? binTree.getHashCount() : distanceMap.size()) / optimalLoadFactor) + 1);
 			temporaryMap = new HashMap<>(optimalCapacity, optimalLoadFactor);
 
 			Hash needleHash = algo.hash(image);
@@ -242,13 +240,12 @@ public class CumulativeMatcher extends ConsecutiveMatcher {
 		}
 
 		// TODO note that we used the normalized distance here
-		PriorityQueue<Result<BufferedImage>> returnValues = new PriorityQueue<>(
-				new Comparator<Result<BufferedImage>>() {
-					@Override
-					public int compare(Result<BufferedImage> o1, Result<BufferedImage> o2) {
-						return Double.compare(o1.normalizedHammingDistance, o2.normalizedHammingDistance);
-					}
-				});
+		PriorityQueue<Result<BufferedImage>> returnValues = new PriorityQueue<>(new Comparator<Result<BufferedImage>>() {
+			@Override
+			public int compare(Result<BufferedImage> o1, Result<BufferedImage> o2) {
+				return Double.compare(o1.normalizedHammingDistance, o2.normalizedHammingDistance);
+			}
+		});
 
 		for (Entry<Result<BufferedImage>, Double> e : distanceMap.entrySet()) {
 			Result<BufferedImage> matchedImage = e.getKey();

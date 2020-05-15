@@ -22,7 +22,7 @@ class HogHashAngularEncodedTest {
 	@Nested
 	@DisplayName("Algorithm Id")
 	class AlgorithmId {
-		
+
 		/**
 		 * The algorithms id shall stay consistent throughout different instances of the
 		 * jvm. While simple hashcodes do not guarantee this behavior hash codes created
@@ -37,7 +37,7 @@ class HogHashAngularEncodedTest {
 				assertEquals(490852869, new HogHashAngularEncoded(25).algorithmId());
 			});
 		}
-		
+
 		@Test
 		@DisplayName("Consistent AlgorithmIds v 2.0.0 collision")
 		public void notVersionTwo() {
@@ -47,8 +47,7 @@ class HogHashAngularEncodedTest {
 				assertNotEquals(1816949282, new HogHashAngularEncoded(14).algorithmId());
 			});
 		}
-		
-		
+
 	}
 
 	@Test
@@ -66,7 +65,7 @@ class HogHashAngularEncodedTest {
 		protected HashingAlgorithm getInstance(int bitResolution) {
 			return new HogHashAngularEncoded(bitResolution);
 		}
-		
+
 		@Override
 		protected double differenceBallonHqHash() {
 			return 71;

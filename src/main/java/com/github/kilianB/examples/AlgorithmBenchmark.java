@@ -43,13 +43,13 @@ public class AlgorithmBenchmark {
 		benchmakDefaultAlgorthms();
 
 		/* Hue sat */
-		//benchmarkDefaultHueSat();
+		// benchmarkDefaultHueSat();
 
 		// Algorithms which are able to work with rotated images
 		benchmarkRotationalHashes();
 
 		// Algorithms who might be release ready in one of the following versions
-		//benchmarkExperimentalHashingAlgos();
+		// benchmarkExperimentalHashingAlgos();
 	}
 
 	/**
@@ -66,17 +66,16 @@ public class AlgorithmBenchmark {
 		matcher.addHashingAlgorithm(new AverageHash(8), 0.4);
 		matcher.addHashingAlgorithm(new AverageHash(32), 0.4);
 		matcher.addHashingAlgorithm(new AverageHash(64), 0.4);
-		
+
 		matcher.addHashingAlgorithm(new PerceptiveHash(32), 0.4);
 		matcher.addHashingAlgorithm(new PerceptiveHash(64), 0.4);
-		
+
 		matcher.addHashingAlgorithm(new MedianHash(32), 0.4);
 		matcher.addHashingAlgorithm(new MedianHash(64), 0.4);
-		
+
 		matcher.addHashingAlgorithm(new DifferenceHash(64, Precision.Simple), 0.4);
 		matcher.addHashingAlgorithm(new DifferenceHash(32, Precision.Triple), 0.4);
-		
-		
+
 		// 2. Create a benchmarker
 
 		/*
@@ -99,11 +98,11 @@ public class AlgorithmBenchmark {
 
 		/* 3.1 Display report as javafx application(charts won't be available) */
 		// ab.display();
-		
+
 		/* 3.2 To console as html file */
 		// ab.toConsole();
-		
-		/* 3.3 Output as html file (link will be printed to the console)*/
+
+		/* 3.3 Output as html file (link will be printed to the console) */
 		ab.toFile();
 	}
 
@@ -157,12 +156,12 @@ public class AlgorithmBenchmark {
 
 		/* 3.1 Display report as javafx application(charts won't be available) */
 		ab.display();
-		
+
 		/* 3.2 To console as html file */
 		// ab.toConsole();
-		
-		/* 3.3 Output as html file (link will be printed to the console)*/
-		//ab.toFile();
+
+		/* 3.3 Output as html file (link will be printed to the console) */
+		// ab.toFile();
 	}
 
 	public static void benchmarkRotationalHashes() {
@@ -180,7 +179,6 @@ public class AlgorithmBenchmark {
 		imageMatcher.addHashingAlgorithm(new RotPHash(16), 0.1);
 		imageMatcher.addHashingAlgorithm(new RotPHash(64), 0.1);
 		imageMatcher.addHashingAlgorithm(new RotPHash(128), 0.1);
-
 
 		imageMatcher.addHashingAlgorithm(new AverageHash(16), 0.4);
 		imageMatcher.addHashingAlgorithm(new AverageHash(64), 0.4);
@@ -204,9 +202,10 @@ public class AlgorithmBenchmark {
 		SingleImageMatcher imageMatcher = new SingleImageMatcher();
 
 		// 2. Create the object
-		AlgorithmBenchmarker db = new AlgorithmBenchmarker(imageMatcher, false,30,false);
+		AlgorithmBenchmarker db = new AlgorithmBenchmarker(imageMatcher, false, 30, false);
 
-		//Hashing algorithm with filter  (really slow. Benchmarking will take a long time!)
+		// Hashing algorithm with filter (really slow. Benchmarking will take a long
+		// time!)
 		AverageHash aHash = new AverageHash(32);
 		aHash.addFilter(Kernel.gaussianFilter(5, 5, 3));
 
@@ -216,18 +215,18 @@ public class AlgorithmBenchmark {
 		HogHash hog128 = new HogHash(128);
 		HogHashDual hogDual128 = new HogHashDual(128);
 		HogHashDual hogAng128 = new HogHashDual(128);
-		
-		imageMatcher.addHashingAlgorithm(aHash,0.3);
-		imageMatcher.addHashingAlgorithm(hog64,0.3);
-		imageMatcher.addHashingAlgorithm(hogDual64,0.3);
-		imageMatcher.addHashingAlgorithm(hogAng64,0.3);
-		imageMatcher.addHashingAlgorithm(hog128,0.3);
-		imageMatcher.addHashingAlgorithm(hogDual128,0.3);
-		imageMatcher.addHashingAlgorithm(hogAng128,0.3);
-		
+
+		imageMatcher.addHashingAlgorithm(aHash, 0.3);
+		imageMatcher.addHashingAlgorithm(hog64, 0.3);
+		imageMatcher.addHashingAlgorithm(hogDual64, 0.3);
+		imageMatcher.addHashingAlgorithm(hogAng64, 0.3);
+		imageMatcher.addHashingAlgorithm(hog128, 0.3);
+		imageMatcher.addHashingAlgorithm(hogDual128, 0.3);
+		imageMatcher.addHashingAlgorithm(hogAng128, 0.3);
+
 		addDefaultTestImages(db);
 
-		//db.display();
+		// db.display();
 		db.toFile();
 	}
 

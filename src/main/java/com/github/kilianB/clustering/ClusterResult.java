@@ -45,12 +45,11 @@ public class ClusterResult {
 	private HashMap<Integer, MutableDouble> sse = new HashMap<>();
 	private HashMap<Integer, MutableDouble> silhouetteCoef = new HashMap<>();
 
-	//Cohesion ...
-	
-	//Radius ... diameter
-	//density volume/points
-	
-	
+	// Cohesion ...
+
+	// Radius ... diameter
+	// density volume/points
+
 	public ClusterResult(int[] clusterIndex, double[][] data) {
 
 		int dimensions = data[0].length;
@@ -163,8 +162,7 @@ public class ClusterResult {
 	public void printInformation() {
 
 		StringBuilder sb = new StringBuilder();
-		sb.append("Observations: ").append(clusterIndex.length).append("\n").append("Number of Clusters: ")
-				.append(numberOfClusters).append("\n");
+		sb.append("Observations: ").append(clusterIndex.length).append("\n").append("Number of Clusters: ").append(numberOfClusters).append("\n");
 
 		int clusterLength = StringUtil.charsNeeded(numberOfClusters);
 		int obsLength = StringUtil.charsNeeded(clusterIndex.length);
@@ -190,8 +188,7 @@ public class ClusterResult {
 				sb.append(df.format(cStats[j].getAverage())).append(" ");
 			}
 			silouetteCoeffificient += silhouetteCoef.get(i).getValue();
-			sb.append("] Silhouette Coef: ").append(df.format(silhouetteCoef.get(i).getValue())).append(" SSE:")
-					.append(sseDf.format(sse.get(i).doubleValue())).append("\n");
+			sb.append("] Silhouette Coef: ").append(df.format(silhouetteCoef.get(i).getValue())).append(" SSE:").append(sseDf.format(sse.get(i).doubleValue())).append("\n");
 		}
 
 		sb.append("SSE: " + df.format(sseSum)).append("\n");
@@ -260,11 +257,10 @@ public class ClusterResult {
 	public List<double[]> getCluster(int cluster) {
 		return clusters.get(cluster);
 	}
-	
+
 	public DoubleSummaryStatistics[] getStats(int cluster) {
 		return stats.get(cluster);
 	}
-	
 
 	public int[] getClusterData() {
 		return clusterIndex;

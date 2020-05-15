@@ -12,28 +12,28 @@ import com.github.kilianB.hashAlgorithms.HashingAlgorithm;
  */
 public class HashUtil {
 
-	public static FuzzyHash toFuzzyHash(Hash...hashes) {
+	public static FuzzyHash toFuzzyHash(Hash... hashes) {
 		return new FuzzyHash(hashes);
 	};
-	
+
 	public static FuzzyHash toFuzzyHash(HashingAlgorithm hasher, File... imageFiles) throws IOException {
 		FuzzyHash fuzzy = new FuzzyHash();
-		for(File imgFile : imageFiles) {
+		for (File imgFile : imageFiles) {
 			fuzzy.mergeFast(hasher.hash(imgFile));
 		}
 		return fuzzy;
 	}
-	
-	public static FuzzyHash toFuzzyHash(HashingAlgorithm hasher, BufferedImage... images){
+
+	public static FuzzyHash toFuzzyHash(HashingAlgorithm hasher, BufferedImage... images) {
 		FuzzyHash fuzzy = new FuzzyHash();
-		for(BufferedImage image: images) {
+		for (BufferedImage image : images) {
 			fuzzy.mergeFast(hasher.hash(image));
 		}
 		return fuzzy;
 	}
-	
+
 	public static boolean areCompatible(Hash h0, Hash h1) {
 		return h0.getAlgorithmId() == h1.getAlgorithmId();
 	}
-	
+
 }

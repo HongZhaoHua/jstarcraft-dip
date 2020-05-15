@@ -9,8 +9,8 @@ import com.github.kilianB.pcg.fast.PcgRSFast;
 
 /**
  * Kmeans plus plus implementation. Opposed to Kmeans this algorithm
- * strategically chooses it's starting clusters to decrease iteration time at the
- * later stage
+ * strategically chooses it's starting clusters to decrease iteration time at
+ * the later stage
  * 
  * @author Kilian
  *

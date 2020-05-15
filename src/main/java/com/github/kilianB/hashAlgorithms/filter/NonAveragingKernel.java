@@ -21,14 +21,13 @@ public abstract class NonAveragingKernel extends Kernel {
 	protected NonAveragingKernel(EdgeHandlingStrategy strat) {
 		super(strat);
 	};
-	
+
 	@SuppressWarnings("deprecation")
 	public NonAveragingKernel(int width, int height) {
 		super(EdgeHandlingStrategy.EXPAND);
 
 		if (width <= 0 || width % 2 == 0 || height <= 0 || height % 2 == 0) {
-			throw new IllegalArgumentException(
-					"Currently only odd dimensional kernels are supported. Width & height have to be positive");
+			throw new IllegalArgumentException("Currently only odd dimensional kernels are supported. Width & height have to be positive");
 		}
 		// Create mask
 		double[][] mask = new double[width][height];
@@ -55,7 +54,7 @@ public abstract class NonAveragingKernel extends Kernel {
 		int width = input[0].length;
 		int height = input.length;
 
-		//double[] wValues = new double[mask.length * mask[0].length];
+		// double[] wValues = new double[mask.length * mask[0].length];
 		double[][] values = new double[2][mask.length * mask[0].length];
 
 		int index = 0;
@@ -70,7 +69,7 @@ public abstract class NonAveragingKernel extends Kernel {
 					yPixelIndex = y + yMask;
 
 					if (xPixelIndex < 0 || xPixelIndex >= width || yPixelIndex < 0 || yPixelIndex >= height) {
-						return new double[][] { {input[y][x]},{Double.MIN_VALUE}};
+						return new double[][] { { input[y][x] }, { Double.MIN_VALUE } };
 					}
 				} else {
 					xPixelIndex = edgeHandling.correctPixel(x + xMask, width);
@@ -90,7 +89,7 @@ public abstract class NonAveragingKernel extends Kernel {
 		int width = input[0].length;
 		int height = input.length;
 
-		//double[] wValues = new double[mask.length * mask[0].length];
+		// double[] wValues = new double[mask.length * mask[0].length];
 		double[][] values = new double[2][mask.length * mask[0].length];
 
 		int index = 0;
@@ -105,7 +104,7 @@ public abstract class NonAveragingKernel extends Kernel {
 					yPixelIndex = y + yMask;
 
 					if (xPixelIndex < 0 || xPixelIndex >= width || yPixelIndex < 0 || yPixelIndex >= height) {
-						return new double[][] { {input[y][x]},{0}};
+						return new double[][] { { input[y][x] }, { 0 } };
 					}
 				} else {
 					xPixelIndex = edgeHandling.correctPixel(x + xMask, width);
@@ -125,7 +124,7 @@ public abstract class NonAveragingKernel extends Kernel {
 		int width = input[0].length;
 		int height = input.length;
 
-		//double[] wValues = new double[mask.length * mask[0].length];
+		// double[] wValues = new double[mask.length * mask[0].length];
 		double[][] values = new double[2][mask.length * mask[0].length];
 
 		int index = 0;
@@ -140,7 +139,7 @@ public abstract class NonAveragingKernel extends Kernel {
 					yPixelIndex = y + yMask;
 
 					if (xPixelIndex < 0 || xPixelIndex >= width || yPixelIndex < 0 || yPixelIndex >= height) {
-						return new double[][] { {input[y][x]},{0}};
+						return new double[][] { { input[y][x] }, { 0 } };
 					}
 				} else {
 					xPixelIndex = edgeHandling.correctPixel(x + xMask, width);
@@ -149,7 +148,7 @@ public abstract class NonAveragingKernel extends Kernel {
 
 				values[0][index] = input[yPixelIndex][xPixelIndex];
 				values[1][index++] = mask[yMask + maskH][xMask + maskW] * input[yPixelIndex][xPixelIndex];
-				
+
 			}
 		}
 		return values;

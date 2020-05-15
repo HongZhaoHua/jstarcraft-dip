@@ -97,7 +97,7 @@ public class CountHashCollection<K> implements Collection<K> {
 		this();
 		this.addAll(c);
 	}
-	
+
 	@Override
 	public boolean add(K o) {
 		if (hashMap.containsKey(o)) {
@@ -190,8 +190,7 @@ public class CountHashCollection<K> implements Collection<K> {
 		Object[] values = hashMap.keySet().toArray();
 		return (K[]) values;
 	}
-	
-	
+
 	public K[] toArrayUnique(K[] array) {
 		return hashMap.keySet().toArray(array);
 	}
@@ -258,8 +257,7 @@ public class CountHashCollection<K> implements Collection<K> {
 	@SuppressWarnings("unchecked")
 	@Override
 	public <T> T[] toArray(T[] a) {
-		T[] r = a.length >= elementSize ? a
-				: (T[]) java.lang.reflect.Array.newInstance(a.getClass().getComponentType(), elementSize);
+		T[] r = a.length >= elementSize ? a : (T[]) java.lang.reflect.Array.newInstance(a.getClass().getComponentType(), elementSize);
 
 		int curOffset = 0;
 		for (Entry<K, Integer> entry : hashMap.entrySet()) {

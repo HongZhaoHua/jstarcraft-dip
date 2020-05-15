@@ -70,7 +70,7 @@ class SingleImageMatcherTest {
 		@DisplayName("Check Similarity Default")
 		public void imageMatches() {
 			SingleImageMatcher matcher = new SingleImageMatcher();
-			matcher.addHashingAlgorithm(new AverageHash(64),.4);
+			matcher.addHashingAlgorithm(new AverageHash(64), .4);
 			assertMatches(matcher);
 		}
 	}
@@ -88,11 +88,11 @@ class SingleImageMatcherTest {
 	@Test
 	public void addAndClearAlgorithms() {
 		SingleImageMatcher matcher = new SingleImageMatcher();
-		assertEquals(0,matcher.getAlgorithms().size());
+		assertEquals(0, matcher.getAlgorithms().size());
 		matcher.addHashingAlgorithm(new AverageHash(14), 0.5, true);
-		assertEquals(1,matcher.getAlgorithms().size());
+		assertEquals(1, matcher.getAlgorithms().size());
 		matcher.clearHashingAlgorithms();
-		assertEquals(0,matcher.getAlgorithms().size());
+		assertEquals(0, matcher.getAlgorithms().size());
 	}
 
 }

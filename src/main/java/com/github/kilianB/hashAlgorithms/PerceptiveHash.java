@@ -59,10 +59,7 @@ public class PerceptiveHash extends HashingAlgorithm {
 		// thread usage enabled issue warning.
 		// This does not get triggered in usual circumstances.
 		if (width * height >= CommonUtils.getThreadsBeginN_2D()) {
-			LOGGER.warning(
-					"Due to an unfortunate design decision in JTransform a threadpool will be kept alive after finishing calulation"
-							+ " possibly block jvm termination.  You see this message because calculating an unusual high bit resolution perceptive hash will likly trigger this rule."
-							+ " To quickly terminate the jvm without delay please call ConcurrencyUtils.shutdownThreadPoolAndAwaitTermination(); manually once you are done computing perceptive hashes");
+			LOGGER.warning("Due to an unfortunate design decision in JTransform a threadpool will be kept alive after finishing calulation" + " possibly block jvm termination.  You see this message because calculating an unusual high bit resolution perceptive hash will likly trigger this rule." + " To quickly terminate the jvm without delay please call ConcurrencyUtils.shutdownThreadPoolAndAwaitTermination(); manually once you are done computing perceptive hashes");
 		}
 
 	}

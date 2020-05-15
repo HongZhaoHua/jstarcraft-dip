@@ -1,21 +1,23 @@
 package com.github.kilianB.pcg.cas;
 
 /**
- * A 64 bit State PcgRNG with 32 bit output. PCG-XSH-RR <p>
+ * A 64 bit State PcgRNG with 32 bit output. PCG-XSH-RR
+ * <p>
  * 
  * The pcg family combines a linear congruential generators with a permutation
  * output function resulting in high quality pseudo random numbers. The original
- * concept was introduced by Melissa O’Neill please refer to <a
- * href="http://www.pcg-random.org/">pcg-random.org</a> for more information.
+ * concept was introduced by Melissa O’Neill please refer to
+ * <a href="http://www.pcg-random.org/">pcg-random.org</a> for more information.
  * <p>
  * 
  * The RR instance permutates the output using the following function:
  * 
  * <pre>
- * {@code
- * 	int shift = (int) (((state >>> 18) ^ state) >>> 27);
- * 	int rotation = (int) (state >>> 59);
- * 	return Integer.rotateRight(shift, rotation);
+ * {
+ *     &#64;code
+ *     int shift = (int) (((state >>> 18) ^ state) >>> 27);
+ *     int rotation = (int) (state >>> 59);
+ *     return Integer.rotateRight(shift, rotation);
  * }
  * </pre>
  * 
@@ -24,12 +26,13 @@ package com.github.kilianB.pcg.cas;
  * security, charting a middle-of-the-road path. (It’s the generator that I
  * recommend for most users.) The strategy is to perform an xorshift to improve
  * the high bits, then randomly rotate them so that all bits are full period.
- * Hence the mnemonic PCG-XSH-RR, “xorshift high (bits), random rotation”."<p>
+ * Hence the mnemonic PCG-XSH-RR, “xorshift high (bits), random rotation”."
+ * <p>
  * 
  * This implementation is thread safe utilizing CAS instructions similar to the
  * {@link java.util.Random} class. Performance wise CAS never achieves the same
- * throughput as the {@link com.github.kilianB.pcg.sync.PcgRR synchronized} or the
- * {@link com.github.kilianB.pcg.lock.PcgRRLocked locked} version.
+ * throughput as the {@link com.github.kilianB.pcg.sync.PcgRR synchronized} or
+ * the {@link com.github.kilianB.pcg.lock.PcgRRLocked locked} version.
  * 
  * @author Kilian
  * @see <a href="http://www.pcg-random.org/">www.pcg-random.org</a>
@@ -54,18 +57,19 @@ public class PcgRRCas extends RandomBaseCAS {
 	 * seed defines the current state in which the rng is in and corresponds to
 	 * seeds usually found in other RNG implementations. RNGs with different seeds
 	 * are able to catch up after they exhaust their period and produce the same
-	 * numbers. <p>
+	 * numbers.
+	 * <p>
 	 * 
 	 * Different stream numbers alter the increment of the rng and ensure distinct
-	 * state sequences <p>
+	 * state sequences
+	 * <p>
 	 * 
 	 * Only generators with the same seed AND stream numbers will produce identical
-	 * values <p>
+	 * values
+	 * <p>
 	 * 
-	 * @param seed
-	 *            used to compute the starting state of the RNG
-	 * @param streamNumber
-	 *            used to compute the increment for the lcg.
+	 * @param seed         used to compute the starting state of the RNG
+	 * @param streamNumber used to compute the increment for the lcg.
 	 */
 	public PcgRRCas(long seed, long streamNumber) {
 		super(seed, streamNumber);
@@ -80,12 +84,9 @@ public class PcgRRCas extends RandomBaseCAS {
 	 * This constructor should usually not be called manually as the seed and
 	 * increment will just be set without performing any randomization.
 	 * 
-	 * @param seed
-	 *            of the lcg. The value will be set and not altered.
-	 * @param streamNumber
-	 *            used in the lcg as increment constant.
-	 * @param dummy
-	 *            unused. Resolve signature disambiguate
+	 * @param seed         of the lcg. The value will be set and not altered.
+	 * @param streamNumber used in the lcg as increment constant.
+	 * @param dummy        unused. Resolve signature disambiguate
 	 */
 	@Deprecated
 	public PcgRRCas(long seed, long streamNumber, boolean dummy) {

@@ -253,18 +253,20 @@ public abstract class PcgBaseTest {
 			}
 		}
 
-		
 		@Test
 		public void boolProbabilityOutOfBoundsUpper() {
-			assertThrows(IllegalArgumentException.class,()->{rng.nextBoolean(1.1);});
+			assertThrows(IllegalArgumentException.class, () -> {
+				rng.nextBoolean(1.1);
+			});
 		}
-		
+
 		@Test
 		public void boolProbabilityOutOfBoundsLower() {
-			assertThrows(IllegalArgumentException.class,()->{rng.nextBoolean(-1);});
+			assertThrows(IllegalArgumentException.class, () -> {
+				rng.nextBoolean(-1);
+			});
 		}
-		
-		
+
 		/*
 		 * This is just a very very rough test.. Not sure if it even should be included
 		 */
@@ -319,10 +321,12 @@ public abstract class PcgBaseTest {
 				}
 			}
 		}
-		
+
 		@Test
 		public void longBoundInvalid() {
-			assertThrows(IllegalArgumentException.class,()->{rng.nextLong(0);});
+			assertThrows(IllegalArgumentException.class, () -> {
+				rng.nextLong(0);
+			});
 		}
 	}
 

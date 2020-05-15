@@ -45,8 +45,7 @@ public class SingleImageMatcher extends TypedImageMatcher {
 	 */
 	public boolean checkSimilarity(BufferedImage image, BufferedImage image1) {
 		if (steps.isEmpty())
-			throw new IllegalStateException(
-					"Please supply at least one hashing algorithm prior to invoking the match method");
+			throw new IllegalStateException("Please supply at least one hashing algorithm prior to invoking the match method");
 
 		for (Entry<HashingAlgorithm, AlgoSettings> entry : steps.entrySet()) {
 			Hash hash = entry.getKey().hash(image);

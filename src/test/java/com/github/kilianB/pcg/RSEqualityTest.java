@@ -54,8 +54,7 @@ public class RSEqualityTest {
 			uFast[i] = PcgRSUFast.nextBoolean();
 		}
 
-		assertAll(() -> assertArrayEquals(cas, syn), () -> assertArrayEquals(cas, lock),
-				() -> assertArrayEquals(cas, fast), () -> assertArrayEquals(cas, uFast));
+		assertAll(() -> assertArrayEquals(cas, syn), () -> assertArrayEquals(cas, lock), () -> assertArrayEquals(cas, fast), () -> assertArrayEquals(cas, uFast));
 	}
 
 	@Test
@@ -75,8 +74,7 @@ public class RSEqualityTest {
 			uFast[i] = PcgRSUFast.nextByte();
 		}
 
-		assertAll(() -> assertArrayEquals(cas, syn), () -> assertArrayEquals(cas, lock),
-				() -> assertArrayEquals(cas, fast), () -> assertArrayEquals(cas, uFast));
+		assertAll(() -> assertArrayEquals(cas, syn), () -> assertArrayEquals(cas, lock), () -> assertArrayEquals(cas, fast), () -> assertArrayEquals(cas, uFast));
 	}
 
 	@Test
@@ -94,8 +92,7 @@ public class RSEqualityTest {
 		rsFast.nextBytes(fast);
 		PcgRSUFast.nextBytes(uFast);
 
-		assertAll(() -> assertArrayEquals(cas, syn), () -> assertArrayEquals(cas, lock),
-				() -> assertArrayEquals(cas, fast), () -> assertArrayEquals(cas, uFast));
+		assertAll(() -> assertArrayEquals(cas, syn), () -> assertArrayEquals(cas, lock), () -> assertArrayEquals(cas, fast), () -> assertArrayEquals(cas, uFast));
 	}
 
 	@Test
@@ -115,8 +112,7 @@ public class RSEqualityTest {
 			uFast[i] = PcgRSUFast.nextChar();
 		}
 
-		assertAll(() -> assertArrayEquals(cas, syn), () -> assertArrayEquals(cas, lock),
-				() -> assertArrayEquals(cas, fast), () -> assertArrayEquals(cas, uFast));
+		assertAll(() -> assertArrayEquals(cas, syn), () -> assertArrayEquals(cas, lock), () -> assertArrayEquals(cas, fast), () -> assertArrayEquals(cas, uFast));
 	}
 
 	@Test
@@ -136,8 +132,7 @@ public class RSEqualityTest {
 			uFast[i] = PcgRSUFast.nextShort();
 		}
 
-		assertAll(() -> assertArrayEquals(cas, syn), () -> assertArrayEquals(cas, lock),
-				() -> assertArrayEquals(cas, fast), () -> assertArrayEquals(cas, uFast));
+		assertAll(() -> assertArrayEquals(cas, syn), () -> assertArrayEquals(cas, lock), () -> assertArrayEquals(cas, fast), () -> assertArrayEquals(cas, uFast));
 	}
 
 	@Test
@@ -157,8 +152,7 @@ public class RSEqualityTest {
 			uFast[i] = PcgRSUFast.nextInt();
 		}
 
-		assertAll(() -> assertArrayEquals(cas, syn), () -> assertArrayEquals(cas, lock),
-				() -> assertArrayEquals(cas, fast), () -> assertArrayEquals(cas, uFast));
+		assertAll(() -> assertArrayEquals(cas, syn), () -> assertArrayEquals(cas, lock), () -> assertArrayEquals(cas, fast), () -> assertArrayEquals(cas, uFast));
 	}
 
 	@Test
@@ -178,8 +172,7 @@ public class RSEqualityTest {
 			uFast[i] = PcgRSUFast.nextLong();
 		}
 
-		assertAll(() -> assertArrayEquals(cas, syn), () -> assertArrayEquals(cas, lock),
-				() -> assertArrayEquals(cas, fast), () -> assertArrayEquals(cas, uFast));
+		assertAll(() -> assertArrayEquals(cas, syn), () -> assertArrayEquals(cas, lock), () -> assertArrayEquals(cas, fast), () -> assertArrayEquals(cas, uFast));
 	}
 
 	@Test
@@ -199,8 +192,7 @@ public class RSEqualityTest {
 			uFast[i] = PcgRSUFast.nextFloat();
 		}
 
-		assertAll(() -> assertArrayEquals(cas, syn), () -> assertArrayEquals(cas, lock),
-				() -> assertArrayEquals(cas, fast), () -> assertArrayEquals(cas, uFast));
+		assertAll(() -> assertArrayEquals(cas, syn), () -> assertArrayEquals(cas, lock), () -> assertArrayEquals(cas, fast), () -> assertArrayEquals(cas, uFast));
 	}
 
 	@Test
@@ -220,8 +212,7 @@ public class RSEqualityTest {
 			uFast[i] = PcgRSUFast.nextFloat(true, false);
 		}
 
-		assertAll(() -> assertArrayEquals(cas, syn), () -> assertArrayEquals(cas, lock),
-				() -> assertArrayEquals(cas, fast), () -> assertArrayEquals(cas, uFast));
+		assertAll(() -> assertArrayEquals(cas, syn), () -> assertArrayEquals(cas, lock), () -> assertArrayEquals(cas, fast), () -> assertArrayEquals(cas, uFast));
 	}
 
 	@Test
@@ -241,8 +232,7 @@ public class RSEqualityTest {
 			uFast[i] = PcgRSUFast.nextFloat(false, true);
 		}
 
-		assertAll(() -> assertArrayEquals(cas, syn), () -> assertArrayEquals(cas, lock),
-				() -> assertArrayEquals(cas, fast), () -> assertArrayEquals(cas, uFast));
+		assertAll(() -> assertArrayEquals(cas, syn), () -> assertArrayEquals(cas, lock), () -> assertArrayEquals(cas, fast), () -> assertArrayEquals(cas, uFast));
 
 	}
 
@@ -263,8 +253,7 @@ public class RSEqualityTest {
 			uFast[i] = PcgRSUFast.nextDouble();
 		}
 
-		assertAll(() -> assertArrayEquals(cas, syn), () -> assertArrayEquals(cas, lock),
-				() -> assertArrayEquals(cas, fast), () -> assertArrayEquals(cas, uFast));
+		assertAll(() -> assertArrayEquals(cas, syn), () -> assertArrayEquals(cas, lock), () -> assertArrayEquals(cas, fast), () -> assertArrayEquals(cas, uFast));
 	}
 
 	@Test
@@ -284,8 +273,7 @@ public class RSEqualityTest {
 			uFast[i] = PcgRSUFast.nextDouble(true, false);
 		}
 
-		assertAll(() -> assertArrayEquals(cas, syn), () -> assertArrayEquals(cas, lock),
-				() -> assertArrayEquals(cas, fast), () -> assertArrayEquals(cas, uFast));
+		assertAll(() -> assertArrayEquals(cas, syn), () -> assertArrayEquals(cas, lock), () -> assertArrayEquals(cas, fast), () -> assertArrayEquals(cas, uFast));
 	}
 
 	@Test
@@ -298,15 +286,14 @@ public class RSEqualityTest {
 		double[] uFast = new double[count];
 
 		for (int i = 0; i < count; i++) {
-			cas[i] = rsCAS.nextDouble(false,true);
-			syn[i] = rsSyn.nextDouble(false,true);
-			lock[i] = rsLock.nextDouble(false,true);
-			fast[i] = rsFast.nextDouble(false,true);
-			uFast[i] = PcgRSUFast.nextDouble(false,true);
+			cas[i] = rsCAS.nextDouble(false, true);
+			syn[i] = rsSyn.nextDouble(false, true);
+			lock[i] = rsLock.nextDouble(false, true);
+			fast[i] = rsFast.nextDouble(false, true);
+			uFast[i] = PcgRSUFast.nextDouble(false, true);
 		}
 
-		assertAll(() -> assertArrayEquals(cas, syn), () -> assertArrayEquals(cas, lock),
-				() -> assertArrayEquals(cas, fast), () -> assertArrayEquals(cas, uFast));
+		assertAll(() -> assertArrayEquals(cas, syn), () -> assertArrayEquals(cas, lock), () -> assertArrayEquals(cas, fast), () -> assertArrayEquals(cas, uFast));
 	}
 
 	@Test
@@ -326,8 +313,7 @@ public class RSEqualityTest {
 			uFast[i] = PcgRSUFast.nextGaussian();
 		}
 
-		assertAll(() -> assertArrayEquals(cas, syn), () -> assertArrayEquals(cas, lock),
-				() -> assertArrayEquals(cas, fast), () -> assertArrayEquals(cas, uFast));
+		assertAll(() -> assertArrayEquals(cas, syn), () -> assertArrayEquals(cas, lock), () -> assertArrayEquals(cas, fast), () -> assertArrayEquals(cas, uFast));
 	}
 
 	@Test
@@ -340,16 +326,15 @@ public class RSEqualityTest {
 		int[] uFast = new int[count];
 
 		for (int i = 0; i < count; i++) {
-			cas[i] = rsCAS.nextInt(i+1);
-			syn[i] = rsSyn.nextInt(i+1);
-			lock[i] = rsLock.nextInt(i+1);
-			fast[i] = rsFast.nextInt(i+1);
-			uFast[i] = PcgRSUFast.nextInt(i+1);
+			cas[i] = rsCAS.nextInt(i + 1);
+			syn[i] = rsSyn.nextInt(i + 1);
+			lock[i] = rsLock.nextInt(i + 1);
+			fast[i] = rsFast.nextInt(i + 1);
+			uFast[i] = PcgRSUFast.nextInt(i + 1);
 		}
 
-		assertAll(() -> assertArrayEquals(cas, syn), () -> assertArrayEquals(cas, lock),
-				() -> assertArrayEquals(cas, fast), () -> assertArrayEquals(cas, uFast));
-		
+		assertAll(() -> assertArrayEquals(cas, syn), () -> assertArrayEquals(cas, lock), () -> assertArrayEquals(cas, fast), () -> assertArrayEquals(cas, uFast));
+
 	}
 
 	@Test
@@ -362,39 +347,42 @@ public class RSEqualityTest {
 		long[] uFast = new long[count];
 
 		for (int i = 0; i < count; i++) {
-			cas[i] = rsCAS.nextLong(i+1);
-			syn[i] = rsSyn.nextLong(i+1);
-			lock[i] = rsLock.nextLong(i+1);
-			fast[i] = rsFast.nextLong(i+1);
-			uFast[i] = PcgRSUFast.nextLong(i+1);
+			cas[i] = rsCAS.nextLong(i + 1);
+			syn[i] = rsSyn.nextLong(i + 1);
+			lock[i] = rsLock.nextLong(i + 1);
+			fast[i] = rsFast.nextLong(i + 1);
+			uFast[i] = PcgRSUFast.nextLong(i + 1);
 		}
 
-		assertAll(() -> assertArrayEquals(cas, syn), () -> assertArrayEquals(cas, lock),
-				() -> assertArrayEquals(cas, fast), () -> assertArrayEquals(cas, uFast));
+		assertAll(() -> assertArrayEquals(cas, syn), () -> assertArrayEquals(cas, lock), () -> assertArrayEquals(cas, fast), () -> assertArrayEquals(cas, uFast));
 	}
-	
+
 	@Test
 	public void distanceUnsafe() {
-		PcgRSFast fastRs = new PcgRSFast(5,5);
-		PcgRS rs = new PcgRS(5,5);
-		assertEquals(0l,fastRs.distanceUnsafe(rs));
+		PcgRSFast fastRs = new PcgRSFast(5, 5);
+		PcgRS rs = new PcgRS(5, 5);
+		assertEquals(0l, fastRs.distanceUnsafe(rs));
 	}
-	
+
 	@Test
 	public void distanceSafe() {
-		PcgRSFast fastRs = new PcgRSFast(5,5);
-		PcgRS rs = new PcgRS(5,5);
-		assertThrows(IncompatibleGeneratorException.class,()->{fastRs.distance(rs);});
-		assertThrows(IncompatibleGeneratorException.class,()->{rs.distance(fastRs);});
+		PcgRSFast fastRs = new PcgRSFast(5, 5);
+		PcgRS rs = new PcgRS(5, 5);
+		assertThrows(IncompatibleGeneratorException.class, () -> {
+			fastRs.distance(rs);
+		});
+		assertThrows(IncompatibleGeneratorException.class, () -> {
+			rs.distance(fastRs);
+		});
 	}
-	
+
 	@Test
 	public void distanceUnsafeAfterStep() {
-		PcgRSFast fastRs = new PcgRSFast(5,5);
-		PcgRS rs = new PcgRS(5,5);
+		PcgRSFast fastRs = new PcgRSFast(5, 5);
+		PcgRS rs = new PcgRS(5, 5);
 		rs.nextBoolean();
 		fastRs.nextBoolean();
-		assertEquals(0l,fastRs.distanceUnsafe(rs));
+		assertEquals(0l, fastRs.distanceUnsafe(rs));
 	}
-	
+
 }
