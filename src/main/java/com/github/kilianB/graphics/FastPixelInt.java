@@ -15,7 +15,7 @@ public class FastPixelInt extends FastPixelImpl {
 	private static final int FULL_ALPHA = 255 << 24;
 
 	/** True if the underlying image has an alpha component */
-	private boolean alpha;
+	private boolean transparency;
 
 	/** Raw data */
 	private int[] imageData;
@@ -54,7 +54,7 @@ public class FastPixelInt extends FastPixelImpl {
 			greenMask = 0x0000ff00;
 			blueMask = 0x000000ff;
 			alphaMask = 0xff000000;
-			alpha = true;
+			transparency = true;
 			break;
 		case BufferedImage.TYPE_INT_RGB:
 			redMask = 0x00ff0000;
@@ -79,7 +79,7 @@ public class FastPixelInt extends FastPixelImpl {
 
 	@Override
 	public int getRGB(int index) {
-		return (alpha ? (getTransparency(index) << 24) : FULL_ALPHA) | (getRed(index) << 16) | (getGreen(index) << 8) | (getBlue(index));
+		return (transparency ? (getTransparency(index) << 24) : FULL_ALPHA) | (getRed(index) << 16) | (getGreen(index) << 8) | (getBlue(index));
 	}
 
 	/**
@@ -127,7 +127,7 @@ public class FastPixelInt extends FastPixelImpl {
 	}
 
 	public int getTransparency(int index) {
-		if (!alpha)
+		if (!transparency)
 			return -1;
 		return (imageData[index] & alphaMask) >>> alphaOffset;
 	}
@@ -154,7 +154,7 @@ public class FastPixelInt extends FastPixelImpl {
 	 */
 	@Override
 	public int[][] getTransparencies() {
-		if (!alpha)
+		if (!transparency)
 			return null;
 		int[][] alpha = new int[width][height];
 		int x = 0;
@@ -171,37 +171,23 @@ public class FastPixelInt extends FastPixelImpl {
 	}
 
 	@Override
-	public void setTransparency(int index, int newAlpha) {
-		if (!alpha)
+	public void setTransparency(int index, int transparency) {
+		if (!this.transparency)
 			return;
-		imageData[index] |= (newAlpha << alphaOffset);
-	}
-
-	/**
-	 * Set the alpha value of the specified pixel. This method is a NOP if alpha is
-	 * not supported.
-	 * 
-	 * @param x        The x coordinate of the images' pixel
-	 * @param y        The y coordinate of the images' pixel
-	 * @param newAlpha the new alpha value in range [0-255]
-	 * @since 1.3.0
-	 */
-	@Override
-	public void setTransparency(int x, int y, int newAlpha) {
-		setTransparency(getOffset(x, y), newAlpha);
+		imageData[index] |= (transparency << alphaOffset);
 	}
 
 	/**
 	 * Set new alpha values for the entire picture
 	 * 
-	 * @param newAlpha red values in range [0-255]
+	 * @param transparencies red values in range [0-255]
 	 * @since 1.4.5
 	 */
 	@Override
-	public void setTransparencies(int[][] newAlpha) {
+	public void setTransparencies(int[][] transparencies) {
 		for (int x = 0; x < width; x++) {
 			for (int y = 0; y < height; y++) {
-				setTransparency(x, y, newAlpha[x][y]);
+				setTransparency(x, y, transparencies[x][y]);
 			}
 		}
 	}
@@ -499,7 +485,7 @@ public class FastPixelInt extends FastPixelImpl {
 
 	@Override
 	public boolean hasTransparency() {
-		return alpha;
+		return transparency;
 	}
 
 }

@@ -103,18 +103,18 @@ public class FastPixelSlowDefault extends FastPixelImpl {
 	}
 
 	@Override
-	public void setTransparency(int index, int newAlpha) {
-		int newRGB = getRGB(index) & ALPHA_MASK_INVERSE | (newAlpha << 24);
+	public void setTransparency(int index, int transparenciy) {
+		int newRGB = getRGB(index) & ALPHA_MASK_INVERSE | (transparenciy << 24);
 		rgbImageData[index] = newRGB;
 		bImage.setRGB(getX(index), getY(index), newRGB);
 	}
 
 	@Override
-	public void setTransparencies(int[][] newAlpha) {
-		for (int x = 0; x < newAlpha.length; x++) {
-			for (int y = 0; y < newAlpha[x].length; y++) {
+	public void setTransparencies(int[][] transparencies) {
+		for (int x = 0; x < transparencies.length; x++) {
+			for (int y = 0; y < transparencies[x].length; y++) {
 				int index = getOffset(x, y);
-				int newRGB = getRGB(index) & ALPHA_MASK_INVERSE | (newAlpha[x][y] << 24);
+				int newRGB = getRGB(index) & ALPHA_MASK_INVERSE | (transparencies[x][y] << 24);
 				rgbImageData[index] = newRGB;
 
 				// setAlpha(getOffset(x,y),newAlpha[x][y]);

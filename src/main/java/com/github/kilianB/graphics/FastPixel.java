@@ -110,29 +110,29 @@ public interface FastPixel {
 	 * 
 	 * @param x        The x coordinate of the images' pixel
 	 * @param y        The y coordinate of the images' pixel
-	 * @param newAlpha the new alpha value in range [0-255]
+	 * @param transparency the new alpha value in range [0-255]
 	 * @since 1.3.0
 	 */
-	default void setTransparency(int x, int y, int newAlpha) {
-		setTransparency(getOffset(x, y), newAlpha);
+	default void setTransparency(int x, int y, int transparency) {
+		setTransparency(getOffset(x, y), transparency);
 	}
 
 	/**
 	 * Set the alpha value. This method is a NOP if alpha is not supported.
 	 * 
 	 * @param index    the offset of the underlying array
-	 * @param newAlpha the new alpha value in range [0-255]
+	 * @param transparency the new alpha value in range [0-255]
 	 * @since 1.5.0
 	 */
-	void setTransparency(int index, int newAlpha);
+	void setTransparency(int index, int transparency);
 
 	/**
 	 * Set new alpha values for the entire picture
 	 * 
-	 * @param newAlpha red values in range [0-255]
+	 * @param transparencies red values in range [0-255]
 	 * @since 1.4.5
 	 */
-	void setTransparencies(int[][] newAlpha);
+	void setTransparencies(int[][] transparencies);
 
 	/**
 	 * Get the red value at the specified offset

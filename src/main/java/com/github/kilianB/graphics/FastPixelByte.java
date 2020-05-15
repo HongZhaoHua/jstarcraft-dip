@@ -24,7 +24,7 @@ public class FastPixelByte implements FastPixel {
 	private static final int ALPHA_MASK = 255 << 24;
 
 	/** True if the underlying image has an alpha component */
-	private final boolean alpha;
+	private final boolean transparency;
 	/** Offset used in case alpha is present */
 	private final int alphaOffset;
 	/** Bytes used to represent a single pixel */
@@ -54,11 +54,11 @@ public class FastPixelByte implements FastPixel {
 
 		if (bImage.getColorModel().hasAlpha()) {
 			alphaOffset = 1;
-			alpha = true;
+			transparency = true;
 			bytesPerColor = 4;
 		} else {
 			alphaOffset = 0;
-			alpha = false;
+			transparency = false;
 			bytesPerColor = 3;
 		}
 
@@ -68,7 +68,7 @@ public class FastPixelByte implements FastPixel {
 
 	@Override
 	public int getRGB(int index) {
-		return (alpha ? (imageData[index++] & 0xFF) << 24 : ALPHA_MASK) | ((imageData[index++] & 0xFF)) | ((imageData[index++] & 0xFF) << 8) | ((imageData[index++] & 0xFF) << 16);
+		return (transparency ? (imageData[index++] & 0xFF) << 24 : ALPHA_MASK) | ((imageData[index++] & 0xFF)) | ((imageData[index++] & 0xFF) << 8) | ((imageData[index++] & 0xFF) << 16);
 	}
 
 	/**
@@ -88,7 +88,7 @@ public class FastPixelByte implements FastPixel {
 		for (int i = 0; i < imageData.length; i++) {
 			// We could use the getRGB(x,y) method. but lets inline some calls
 			int argb;
-			argb = alpha ? (imageData[i++] & 0xFF) << 24 : ALPHA_MASK;
+			argb = transparency ? (imageData[i++] & 0xFF) << 24 : ALPHA_MASK;
 			// Red
 			argb |= (imageData[i++] & 0xFF) | (imageData[i++] & 0xFF) << 8 | (imageData[i] & 0xFF) << 16;
 
@@ -111,7 +111,7 @@ public class FastPixelByte implements FastPixel {
 	 */
 	@Override
 	public int[][] getTransparencies() {
-		if (!alpha)
+		if (!transparency)
 			return null;
 		int[][] alpha = new int[width][height];
 		int x = 0;
@@ -129,29 +129,29 @@ public class FastPixelByte implements FastPixel {
 
 	@Override
 	public int getTransparency(int index) {
-		if (!alpha)
+		if (!transparency)
 			return -1;
 		return imageData[index] & 0xFF;
 	}
 
 	@Override
-	public void setTransparency(int index, int newAlpha) {
-		if (!alpha)
+	public void setTransparency(int index, int transparency) {
+		if (!this.transparency)
 			return;
-		imageData[index] = (byte) (newAlpha);
+		imageData[index] = (byte) (transparency);
 	}
 
 	/**
 	 * Set new alpha values for the entire picture
 	 * 
-	 * @param newAlpha red values in range [0-255]
+	 * @param transparencies red values in range [0-255]
 	 * @since 1.4.5
 	 */
 	@Override
-	public void setTransparencies(int[][] newAlpha) {
+	public void setTransparencies(int[][] transparencies) {
 		for (int x = 0; x < width; x++) {
 			for (int y = 0; y < height; y++) {
-				setTransparency(x, y, newAlpha[x][y]);
+				setTransparency(x, y, transparencies[x][y]);
 			}
 		}
 	}
@@ -347,7 +347,7 @@ public class FastPixelByte implements FastPixel {
 
 	@Override
 	public boolean hasTransparency() {
-		return alpha;
+		return transparency;
 	}
 
 	@Override
