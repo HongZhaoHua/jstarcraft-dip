@@ -95,7 +95,7 @@ public class DifferenceHash extends HashingAlgorithm {
 		Pixel fp = Pixel.create(ImageUtil.getScaledInstance(image, width, height));
 		// Use data buffer for faster access
 
-		int[][] lum = fp.getLuma();
+		int[][] lum = fp.getLumaMatrix();
 
 		// Calculate the left to right gradient
 		for (int x = 1; x < width; x++) {
@@ -260,9 +260,9 @@ public class DifferenceHash extends HashingAlgorithm {
 							int x = w + m;
 							int y = h + n + yOffset * blockSize;
 							// bi.setRGB(y, x, bit ? black : white);
-							writer.setRed(x, y, red);
-							writer.setGreen(x, y, green);
-							writer.setBlue(x, y, blue);
+							writer.setRedScalar(x, y, red);
+							writer.setGreenScalar(x, y, green);
+							writer.setBlueScalar(x, y, blue);
 						}
 					}
 				}

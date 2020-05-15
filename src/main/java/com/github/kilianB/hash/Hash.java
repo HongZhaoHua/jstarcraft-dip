@@ -336,9 +336,9 @@ public class Hash implements Serializable {
 						int y = h + n;
 						// bi.setRGB(y, x, bit ? black : white);
 						// fp.setAverageGrayscale(x, y, gray);
-						fp.setRed(x, y, red);
-						fp.setGreen(x, y, green);
-						fp.setBlue(x, y, blue);
+						fp.setRedScalar(x, y, red);
+						fp.setGreenScalar(x, y, green);
+						fp.setBlueScalar(x, y, blue);
 					}
 				}
 			}

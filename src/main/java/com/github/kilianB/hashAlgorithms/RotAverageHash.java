@@ -108,9 +108,9 @@ public class RotAverageHash extends HashingAlgorithm {
 
 				if (initCount) {
 					count[bucket]++;
-					hashArr[bucket] += fp.getLuma(x, y);
+					hashArr[bucket] += fp.getLumaScalar(x, y);
 				} else {
-					hashArr[bucket] += (fp.getLuma(x, y) / (double) count[bucket]);
+					hashArr[bucket] += (fp.getLumaScalar(x, y) / (double) count[bucket]);
 				}
 			}
 		}

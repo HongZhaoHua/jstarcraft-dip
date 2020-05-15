@@ -116,15 +116,15 @@ public class MedianKernel extends NonAveragingKernel {
 		BufferedImage bi = new BufferedImage(input.getWidth(), input.getHeight(), input.getType());
 		Pixel fp = Pixel.create(input);
 		Pixel fpSet = Pixel.create(bi);
-		int[][] gray = fp.getAverageGrayscale();
+		int[][] gray = fp.getGrayscaleMatrix();
 
 		gray = applyInt(gray);
 
 		if (fpSet.hasTransparency()) {
-			fpSet.setTransparencies(fp.getTransparencies());
+			fpSet.setTransparencyMatrix(fp.getTransparencyMatrix());
 		}
 
-		fpSet.setAverageGrayscale(gray);
+		fpSet.setGrayscaleMatrix(gray);
 		return bi;
 	}
 

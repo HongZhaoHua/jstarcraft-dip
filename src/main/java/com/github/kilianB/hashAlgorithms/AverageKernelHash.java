@@ -98,7 +98,7 @@ public class AverageKernelHash extends AverageHash implements Serializable {
 
 		Pixel fp = Pixel.create(ImageUtil.getScaledInstance(image, width, height));
 
-		int[][] luminocity = fp.getLuma();
+		int[][] luminocity = fp.getLumaMatrix();
 
 		// Calculate the average color of the entire image
 

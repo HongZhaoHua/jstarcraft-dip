@@ -66,7 +66,7 @@ public class PerceptiveHash extends HashingAlgorithm {
 	protected BigInteger hash(BufferedImage image, HashBuilder hash) {
 		Pixel fp = Pixel.create(ImageUtil.getScaledInstance(image, width, height));
 
-		int[][] lum = fp.getLuma();
+		int[][] lum = fp.getLumaMatrix();
 
 		// int to double conversion ...
 		double[][] lumAsDouble = new double[width][height];

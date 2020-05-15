@@ -50,9 +50,9 @@ public class MedianHash extends AverageHash {
 	protected BigInteger hash(BufferedImage image, HashBuilder hash) {
 		Pixel fp = Pixel.create(ImageUtil.getScaledInstance(image, width, height));
 
-		int[] lum = fp.getLuma1D();
+		int[] lum = fp.getLumaVector();
 
-		int[][] luminocity = fp.getLuma();
+		int[][] luminocity = fp.getLumaMatrix();
 
 		// Create hash
 		return computeHash(hash, luminocity, ArrayUtil.median(lum));

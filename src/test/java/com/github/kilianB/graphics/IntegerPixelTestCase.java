@@ -94,7 +94,7 @@ class IntegerPixelTestCase {
 		Pixel fp = Pixel.create(lena);
 		for (int x = 0; x < lena.getWidth(); x++) {
 			for (int y = 0; y < lena.getHeight(); y++) {
-				assertEquals(lena.getRGB(x, y), fp.getRGB(x, y));
+				assertEquals(lena.getRGB(x, y), fp.getRgbScalar(x, y));
 			}
 		}
 	}
@@ -102,10 +102,10 @@ class IntegerPixelTestCase {
 	@Test
 	void getRGBArray() {
 		Pixel fp = Pixel.create(lena);
-		int[][] rgb = fp.getRGB();
+		int[][] rgb = fp.getRgbMatrix();
 		for (int x = 0; x < lena.getWidth(); x++) {
 			for (int y = 0; y < lena.getHeight(); y++) {
-				assertEquals(fp.getRGB(x, y), rgb[x][y]);
+				assertEquals(fp.getRgbScalar(x, y), rgb[x][y]);
 			}
 		}
 	}
@@ -116,7 +116,7 @@ class IntegerPixelTestCase {
 		for (int x = 0; x < lena.getWidth(); x++) {
 			for (int y = 0; y < lena.getHeight(); y++) {
 				int[] comp = ColorUtil.argbToComponents(lena.getRGB(x, y));
-				assertEquals(comp[1], fp.getRed(x, y));
+				assertEquals(comp[1], fp.getRedScalar(x, y));
 			}
 		}
 	}
@@ -124,10 +124,10 @@ class IntegerPixelTestCase {
 	@Test
 	void redArray() {
 		Pixel fp = Pixel.create(lena);
-		int[][] red = fp.getRed();
+		int[][] red = fp.getRedMatrix();
 		for (int x = 0; x < lena.getWidth(); x++) {
 			for (int y = 0; y < lena.getHeight(); y++) {
-				assertEquals(fp.getRed(x, y), red[x][y]);
+				assertEquals(fp.getRedScalar(x, y), red[x][y]);
 			}
 		}
 	}
@@ -136,14 +136,14 @@ class IntegerPixelTestCase {
 	void setRed() {
 		BufferedImage bi = new BufferedImage(10, 10, BufferedImage.TYPE_INT_ARGB);
 		Pixel fp = Pixel.create(bi);
-		fp.setRed(0, 0, 255);
+		fp.setRedScalar(0, 0, 255);
 
 		assertAll(() -> {
-			assertEquals(255, fp.getRed(0, 0));
+			assertEquals(255, fp.getRedScalar(0, 0));
 		}, () -> {
-			assertEquals(0, fp.getGreen(0, 0));
+			assertEquals(0, fp.getGreenScalar(0, 0));
 		}, () -> {
-			assertEquals(0, fp.getBlue(0, 0));
+			assertEquals(0, fp.getBlueScalar(0, 0));
 		});
 	}
 
@@ -162,8 +162,8 @@ class IntegerPixelTestCase {
 				return (int) (len * temp + index * lenFa);
 			});
 		}
-		fp.setRed(values);
-		assertArrayEquals(values, fp.getRed());
+		fp.setRedMatrix(values);
+		assertArrayEquals(values, fp.getRedMatrix());
 	}
 
 	@Test
@@ -172,7 +172,7 @@ class IntegerPixelTestCase {
 		for (int x = 0; x < lena.getWidth(); x++) {
 			for (int y = 0; y < lena.getHeight(); y++) {
 				int[] comp = ColorUtil.argbToComponents(lena.getRGB(x, y));
-				assertEquals(comp[2], fp.getGreen(x, y));
+				assertEquals(comp[2], fp.getGreenScalar(x, y));
 			}
 		}
 	}
@@ -180,10 +180,10 @@ class IntegerPixelTestCase {
 	@Test
 	void greenArray() {
 		Pixel fp = Pixel.create(lena);
-		int[][] green = fp.getGreen();
+		int[][] green = fp.getGreenMatrix();
 		for (int x = 0; x < lena.getWidth(); x++) {
 			for (int y = 0; y < lena.getHeight(); y++) {
-				assertEquals(fp.getGreen(x, y), green[x][y]);
+				assertEquals(fp.getGreenScalar(x, y), green[x][y]);
 			}
 		}
 	}
@@ -191,8 +191,8 @@ class IntegerPixelTestCase {
 	@Test
 	void blueArray1D() {
 		Pixel fp = Pixel.create(lena);
-		int[] green = fp.getBlue1D();
-		int[][] green2D = fp.getBlue();
+		int[] green = fp.getBlueVector();
+		int[][] green2D = fp.getBlueMatrix();
 		int i = 0;
 
 		for (int y = 0; y < lena.getHeight(); y++) {
@@ -206,14 +206,14 @@ class IntegerPixelTestCase {
 	void setGreen() {
 		BufferedImage bi = new BufferedImage(10, 10, BufferedImage.TYPE_INT_ARGB);
 		Pixel fp = Pixel.create(bi);
-		fp.setGreen(0, 0, 255);
+		fp.setGreenScalar(0, 0, 255);
 
 		assertAll(() -> {
-			assertEquals(0, fp.getRed(0, 0));
+			assertEquals(0, fp.getRedScalar(0, 0));
 		}, () -> {
-			assertEquals(255, fp.getGreen(0, 0));
+			assertEquals(255, fp.getGreenScalar(0, 0));
 		}, () -> {
-			assertEquals(0, fp.getBlue(0, 0));
+			assertEquals(0, fp.getBlueScalar(0, 0));
 		});
 	}
 
@@ -232,8 +232,8 @@ class IntegerPixelTestCase {
 				return (int) (len * temp + index * lenFa);
 			});
 		}
-		fp.setGreen(values);
-		assertArrayEquals(values, fp.getGreen());
+		fp.setGreenMatrix(values);
+		assertArrayEquals(values, fp.getGreenMatrix());
 	}
 
 	@Test
@@ -242,7 +242,7 @@ class IntegerPixelTestCase {
 		for (int x = 0; x < lena.getWidth(); x++) {
 			for (int y = 0; y < lena.getHeight(); y++) {
 				int[] comp = ColorUtil.argbToComponents(lena.getRGB(x, y));
-				assertEquals(comp[3], fp.getBlue(x, y));
+				assertEquals(comp[3], fp.getBlueScalar(x, y));
 			}
 		}
 	}
@@ -250,10 +250,10 @@ class IntegerPixelTestCase {
 	@Test
 	void blueArray() {
 		Pixel fp = Pixel.create(lena);
-		int[][] blue = fp.getBlue();
+		int[][] blue = fp.getBlueMatrix();
 		for (int x = 0; x < lena.getWidth(); x++) {
 			for (int y = 0; y < lena.getHeight(); y++) {
-				assertEquals(fp.getBlue(x, y), blue[x][y]);
+				assertEquals(fp.getBlueScalar(x, y), blue[x][y]);
 			}
 		}
 	}
@@ -262,14 +262,14 @@ class IntegerPixelTestCase {
 	void setBlue() {
 		BufferedImage bi = new BufferedImage(10, 10, BufferedImage.TYPE_INT_ARGB);
 		Pixel fp = Pixel.create(bi);
-		fp.setBlue(0, 0, 255);
+		fp.setBlueScalar(0, 0, 255);
 
 		assertAll(() -> {
-			assertEquals(0, fp.getRed(0, 0));
+			assertEquals(0, fp.getRedScalar(0, 0));
 		}, () -> {
-			assertEquals(0, fp.getGreen(0, 0));
+			assertEquals(0, fp.getGreenScalar(0, 0));
 		}, () -> {
-			assertEquals(255, fp.getBlue(0, 0));
+			assertEquals(255, fp.getBlueScalar(0, 0));
 		});
 	}
 
@@ -288,8 +288,8 @@ class IntegerPixelTestCase {
 				return (int) (len * temp + index * lenFa);
 			});
 		}
-		fp.setBlue(values);
-		assertArrayEquals(values, fp.getBlue());
+		fp.setBlueMatrix(values);
+		assertArrayEquals(values, fp.getBlueMatrix());
 	}
 
 	@Test
@@ -297,7 +297,7 @@ class IntegerPixelTestCase {
 		Pixel fp = Pixel.create(brownOpacity);
 		for (int x = 0; x < brownOpacity.getWidth(); x++) {
 			for (int y = 0; y < brownOpacity.getHeight(); y++) {
-				assertEquals(brownOpacity.getRGB(x, y), fp.getRGB(x, y));
+				assertEquals(brownOpacity.getRGB(x, y), fp.getRgbScalar(x, y));
 			}
 		}
 	}
@@ -308,7 +308,7 @@ class IntegerPixelTestCase {
 		for (int x = 0; x < brownOpacity.getWidth(); x++) {
 			for (int y = 0; y < brownOpacity.getHeight(); y++) {
 				int[] comp = ColorUtil.argbToComponents(brownOpacity.getRGB(x, y));
-				assertEquals(comp[0], fp.getTransparency(x, y));
+				assertEquals(comp[0], fp.getTransparencyScalar(x, y));
 			}
 		}
 	}
@@ -319,7 +319,7 @@ class IntegerPixelTestCase {
 		for (int x = 0; x < brownOpacity.getWidth(); x++) {
 			for (int y = 0; y < brownOpacity.getHeight(); y++) {
 				int[] comp = ColorUtil.argbToComponents(brownOpacity.getRGB(x, y));
-				assertEquals(comp[1], fp.getRed(x, y));
+				assertEquals(comp[1], fp.getRedScalar(x, y));
 			}
 		}
 	}
@@ -330,7 +330,7 @@ class IntegerPixelTestCase {
 		for (int x = 0; x < brownOpacity.getWidth(); x++) {
 			for (int y = 0; y < brownOpacity.getHeight(); y++) {
 				int[] comp = ColorUtil.argbToComponents(brownOpacity.getRGB(x, y));
-				assertEquals(comp[2], fp.getGreen(x, y));
+				assertEquals(comp[2], fp.getGreenScalar(x, y));
 			}
 		}
 	}
@@ -341,7 +341,7 @@ class IntegerPixelTestCase {
 		for (int x = 0; x < brownOpacity.getWidth(); x++) {
 			for (int y = 0; y < brownOpacity.getHeight(); y++) {
 				int[] comp = ColorUtil.argbToComponents(brownOpacity.getRGB(x, y));
-				assertEquals(comp[3], fp.getBlue(x, y));
+				assertEquals(comp[3], fp.getBlueScalar(x, y));
 			}
 		}
 	}
@@ -361,19 +361,19 @@ class IntegerPixelTestCase {
 				return (int) (len * temp + index * lenFa);
 			});
 		}
-		fp.setRed(values);
-		fp.setBlue(values);
-		fp.setGreen(values);
-		fp.setTransparencies(values);
+		fp.setRedMatrix(values);
+		fp.setBlueMatrix(values);
+		fp.setGreenMatrix(values);
+		fp.setTransparencyMatrix(values);
 
 		assertAll(() -> {
-			assertArrayEquals(values, fp.getRed());
+			assertArrayEquals(values, fp.getRedMatrix());
 		}, () -> {
-			assertArrayEquals(values, fp.getGreen());
+			assertArrayEquals(values, fp.getGreenMatrix());
 		}, () -> {
-			assertArrayEquals(values, fp.getBlue());
+			assertArrayEquals(values, fp.getBlueMatrix());
 		}, () -> {
-			assertArrayEquals(values, fp.getTransparencies());
+			assertArrayEquals(values, fp.getTransparencyMatrix());
 		});
 	}
 
@@ -381,7 +381,7 @@ class IntegerPixelTestCase {
 	void rgbArray() {
 		int arg[] = lena.getRGB(0, 0, lena.getWidth(), lena.getHeight(), null, 0, lena.getWidth());
 		Pixel fp = Pixel.create(lena);
-		int[][] argFp = fp.getRGB();
+		int[][] argFp = fp.getRgbMatrix();
 		for (int x = 0; x < lena.getWidth(); x++) {
 			for (int y = 0; y < lena.getHeight(); y++) {
 				assertEquals(arg[ArrayUtil.twoDimtoOneDim(y, x, lena.getWidth())], argFp[x][y]);
@@ -398,10 +398,10 @@ class IntegerPixelTestCase {
 
 				if (y < 2) {
 					// Black
-					assertEquals(0, fp.getLuma(x, y));
+					assertEquals(0, fp.getLumaScalar(x, y));
 				} else {
 					// White
-					assertEquals(255, fp.getLuma(x, y));
+					assertEquals(255, fp.getLumaScalar(x, y));
 				}
 			}
 		}
@@ -410,10 +410,10 @@ class IntegerPixelTestCase {
 	@Test
 	void lumArray() {
 		Pixel fp = Pixel.create(lena);
-		int[][] lumArr = fp.getLuma();
+		int[][] lumArr = fp.getLumaMatrix();
 		for (int x = 0; x < lena.getWidth(); x++) {
 			for (int y = 0; y < lena.getHeight(); y++) {
-				assertEquals(fp.getLuma(x, y), lumArr[x][y]);
+				assertEquals(fp.getLumaScalar(x, y), lumArr[x][y]);
 			}
 		}
 	}
@@ -425,7 +425,7 @@ class IntegerPixelTestCase {
 		for (int x = 0; x < bw.getWidth(); x++) {
 			for (int y = 0; y < bw.getHeight(); y++) {
 
-				int lum = fp.getLuma(x, y);
+				int lum = fp.getLumaScalar(x, y);
 				if (lum < 0 || lum > 255)
 					fail("Luminosity ouside range");
 			}
@@ -438,7 +438,7 @@ class IntegerPixelTestCase {
 		// Invalid hue value. Defined as 0
 		for (int x = 0; x < bw.getWidth(); x++) {
 			for (int y = 0; y < bw.getHeight(); y++) {
-				assertEquals(0, fp.getHue(x, y));
+				assertEquals(0, fp.getHueScalar(x, y));
 			}
 		}
 	}
@@ -449,7 +449,7 @@ class IntegerPixelTestCase {
 
 		for (int x = 0; x < red.getWidth(); x++) {
 			for (int y = 0; y < red.getHeight(); y++) {
-				assertEquals(0, fp.getHue(x, y));
+				assertEquals(0, fp.getHueScalar(x, y));
 			}
 		}
 	}
@@ -459,7 +459,7 @@ class IntegerPixelTestCase {
 		Pixel fp = Pixel.create(green);
 		for (int x = 0; x < green.getWidth(); x++) {
 			for (int y = 0; y < green.getHeight(); y++) {
-				assertEquals(120, fp.getHue(x, y));
+				assertEquals(120, fp.getHueScalar(x, y));
 			}
 		}
 	}
@@ -469,7 +469,7 @@ class IntegerPixelTestCase {
 		Pixel fp = Pixel.create(blue);
 		for (int x = 0; x < blue.getWidth(); x++) {
 			for (int y = 0; y < blue.getHeight(); y++) {
-				assertEquals(240, fp.getHue(x, y));
+				assertEquals(240, fp.getHueScalar(x, y));
 			}
 		}
 	}
@@ -479,7 +479,7 @@ class IntegerPixelTestCase {
 		Pixel fp = Pixel.create(brown);
 		for (int x = 0; x < brown.getWidth(); x++) {
 			for (int y = 0; y < brown.getHeight(); y++) {
-				assertEquals(20, fp.getHue(x, y));
+				assertEquals(20, fp.getHueScalar(x, y));
 			}
 		}
 	}
@@ -490,7 +490,7 @@ class IntegerPixelTestCase {
 		// Invalid hue value. Defined as 0
 		for (int x = 0; x < bw.getWidth(); x++) {
 			for (int y = 0; y < bw.getHeight(); y++) {
-				assertEquals(0, fp.getSat(x, y));
+				assertEquals(0, fp.getSaturationScalar(x, y));
 			}
 		}
 	}
@@ -501,7 +501,7 @@ class IntegerPixelTestCase {
 
 		for (int x = 0; x < red.getWidth(); x++) {
 			for (int y = 0; y < red.getHeight(); y++) {
-				assertEquals(1, fp.getSat(x, y));
+				assertEquals(1, fp.getSaturationScalar(x, y));
 			}
 		}
 	}
@@ -511,7 +511,7 @@ class IntegerPixelTestCase {
 		Pixel fp = Pixel.create(green);
 		for (int x = 0; x < green.getWidth(); x++) {
 			for (int y = 0; y < green.getHeight(); y++) {
-				assertEquals(1, fp.getSat(x, y));
+				assertEquals(1, fp.getSaturationScalar(x, y));
 			}
 		}
 	}
@@ -521,7 +521,7 @@ class IntegerPixelTestCase {
 		Pixel fp = Pixel.create(blue);
 		for (int x = 0; x < blue.getWidth(); x++) {
 			for (int y = 0; y < blue.getHeight(); y++) {
-				assertEquals(1, fp.getSat(x, y));
+				assertEquals(1, fp.getSaturationScalar(x, y));
 			}
 		}
 	}
@@ -531,7 +531,7 @@ class IntegerPixelTestCase {
 		Pixel fp = Pixel.create(brown);
 		for (int x = 0; x < brown.getWidth(); x++) {
 			for (int y = 0; y < brown.getHeight(); y++) {
-				assertEquals(0.75, fp.getSat(x, y));
+				assertEquals(0.75, fp.getSaturationScalar(x, y));
 			}
 		}
 	}
@@ -543,10 +543,10 @@ class IntegerPixelTestCase {
 			for (int y = 0; y < bw.getHeight(); y++) {
 				if (y < 2) {
 					// Black
-					assertEquals(0, fp.getVal(x, y));
+					assertEquals(0, fp.getBrightnessScalar(x, y));
 				} else {
 					// White
-					assertEquals(255, fp.getVal(x, y));
+					assertEquals(255, fp.getBrightnessScalar(x, y));
 				}
 
 			}
@@ -559,7 +559,7 @@ class IntegerPixelTestCase {
 
 		for (int x = 0; x < red.getWidth(); x++) {
 			for (int y = 0; y < red.getHeight(); y++) {
-				assertEquals(255, fp.getVal(x, y));
+				assertEquals(255, fp.getBrightnessScalar(x, y));
 			}
 		}
 	}
@@ -569,7 +569,7 @@ class IntegerPixelTestCase {
 		Pixel fp = Pixel.create(green);
 		for (int x = 0; x < green.getWidth(); x++) {
 			for (int y = 0; y < green.getHeight(); y++) {
-				assertEquals(255, fp.getVal(x, y));
+				assertEquals(255, fp.getBrightnessScalar(x, y));
 			}
 		}
 	}
@@ -579,7 +579,7 @@ class IntegerPixelTestCase {
 		Pixel fp = Pixel.create(blue);
 		for (int x = 0; x < blue.getWidth(); x++) {
 			for (int y = 0; y < blue.getHeight(); y++) {
-				assertEquals(255, fp.getVal(x, y));
+				assertEquals(255, fp.getBrightnessScalar(x, y));
 			}
 		}
 	}
@@ -589,7 +589,7 @@ class IntegerPixelTestCase {
 		Pixel fp = Pixel.create(brown);
 		for (int x = 0; x < brown.getWidth(); x++) {
 			for (int y = 0; y < brown.getHeight(); y++) {
-				assertEquals(92, fp.getVal(x, y));
+				assertEquals(92, fp.getBrightnessScalar(x, y));
 			}
 		}
 	}

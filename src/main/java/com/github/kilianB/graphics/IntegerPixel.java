@@ -73,8 +73,8 @@ public class IntegerPixel extends AbstractPixel {
 	}
 
 	@Override
-	public int getRGB(int index) {
-		return (hasTransparency() ? (getTransparency(index) << 24) : FULL_ALPHA) | (getRed(index) << 16) | (getGreen(index) << 8) | (getBlue(index));
+	public int getRgbScalar(int index) {
+		return (hasTransparency() ? (getTransparencyScalar(index) << 24) : FULL_ALPHA) | (getRedScalar(index) << 16) | (getGreenScalar(index) << 8) | (getBlueScalar(index));
 	}
 
 	/**
@@ -92,8 +92,8 @@ public class IntegerPixel extends AbstractPixel {
 	 * @since 1.3.0
 	 */
 	@Override
-	public int getRGB(int x, int y) {
-		return getRGB(getIndex(x, y));
+	public int getRgbScalar(int x, int y) {
+		return getRgbScalar(getIndex(x, y));
 	}
 
 	/**
@@ -106,12 +106,12 @@ public class IntegerPixel extends AbstractPixel {
 	 * @since 1.3.0
 	 */
 	@Override
-	public int[][] getRGB() {
+	public int[][] getRgbMatrix() {
 		int[][] rgb = new int[width][height];
 		int x = 0;
 		int y = 0;
 		for (int i = 0; i < imageData.length; i++) {
-			rgb[x][y] = getRGB(i);
+			rgb[x][y] = getRgbScalar(i);
 			x++;
 			if (x >= width) {
 				x = 0;
@@ -121,7 +121,7 @@ public class IntegerPixel extends AbstractPixel {
 		return rgb;
 	}
 
-	public int getTransparency(int index) {
+	public int getTransparencyScalar(int index) {
 		if (!hasTransparency())
 			return -1;
 		return (imageData[index] & alphaMask) >>> alphaOffset;
@@ -136,8 +136,8 @@ public class IntegerPixel extends AbstractPixel {
 	 * @since 1.3.0
 	 */
 	@Override
-	public int getTransparency(int x, int y) {
-		return getTransparency(getIndex(x, y));
+	public int getTransparencyScalar(int x, int y) {
+		return getTransparencyScalar(getIndex(x, y));
 	}
 
 	/**
@@ -148,14 +148,14 @@ public class IntegerPixel extends AbstractPixel {
 	 * @since 1.3.0
 	 */
 	@Override
-	public int[][] getTransparencies() {
+	public int[][] getTransparencyMatrix() {
 		if (!hasTransparency())
 			return null;
 		int[][] alpha = new int[width][height];
 		int x = 0;
 		int y = 0;
 		for (int i = 0; i < imageData.length; i++) {
-			alpha[x][y] = getTransparency(i);
+			alpha[x][y] = getTransparencyScalar(i);
 			x++;
 			if (x >= width) {
 				x = 0;
@@ -166,7 +166,7 @@ public class IntegerPixel extends AbstractPixel {
 	}
 
 	@Override
-	public void setTransparency(int index, int transparency) {
+	public void setTransparencyScalar(int index, int transparency) {
 		if (!this.hasTransparency())
 			return;
 		imageData[index] |= (transparency << alphaOffset);
@@ -179,16 +179,16 @@ public class IntegerPixel extends AbstractPixel {
 	 * @since 1.4.5
 	 */
 	@Override
-	public void setTransparencies(int[][] transparencies) {
+	public void setTransparencyMatrix(int[][] transparencies) {
 		for (int x = 0; x < width; x++) {
 			for (int y = 0; y < height; y++) {
-				setTransparency(x, y, transparencies[x][y]);
+				setTransparencyScalar(x, y, transparencies[x][y]);
 			}
 		}
 	}
 
 	@Override
-	public int getRed(int index) {
+	public int getRedScalar(int index) {
 		return (imageData[index] & redMask) >>> redOffset;
 	}
 
@@ -201,8 +201,8 @@ public class IntegerPixel extends AbstractPixel {
 	 * @since 1.3.0
 	 */
 	@Override
-	public int getRed(int x, int y) {
-		return getRed(getIndex(x, y));
+	public int getRedScalar(int x, int y) {
+		return getRedScalar(getIndex(x, y));
 	}
 
 	/**
@@ -213,12 +213,12 @@ public class IntegerPixel extends AbstractPixel {
 	 * @since 1.3.0
 	 */
 	@Override
-	public int[][] getRed() {
+	public int[][] getRedMatrix() {
 		int[][] red = new int[width][height];
 		int x = 0;
 		int y = 0;
 		for (int i = 0; i < imageData.length; i++) {
-			red[x][y] = getRed(i);
+			red[x][y] = getRedScalar(i);
 			x++;
 			if (x >= width) {
 				x = 0;
@@ -229,7 +229,7 @@ public class IntegerPixel extends AbstractPixel {
 	}
 
 	@Override
-	public void setRed(int index, int newRed) {
+	public void setRedScalar(int index, int newRed) {
 		// Clear red part first
 		imageData[index] = (imageData[index] & (~redMask)) | (newRed << redOffset);
 	}
@@ -243,8 +243,8 @@ public class IntegerPixel extends AbstractPixel {
 	 * @since 1.3.0
 	 */
 	@Override
-	public void setRed(int x, int y, int newRed) {
-		setRed(getIndex(x, y), newRed);
+	public void setRedScalar(int x, int y, int newRed) {
+		setRedScalar(getIndex(x, y), newRed);
 	}
 
 	/**
@@ -254,17 +254,17 @@ public class IntegerPixel extends AbstractPixel {
 	 * @since 1.4.5
 	 */
 	@Override
-	public void setRed(int[][] newRed) {
+	public void setRedMatrix(int[][] newRed) {
 		// TODO inline method call?
 		for (int x = 0; x < width; x++) {
 			for (int y = 0; y < height; y++) {
-				setRed(x, y, newRed[x][y]);
+				setRedScalar(x, y, newRed[x][y]);
 			}
 		}
 	}
 
 	@Override
-	public int getGreen(int index) {
+	public int getGreenScalar(int index) {
 		return (imageData[index] & greenMask) >>> greenOffset;
 	}
 
@@ -277,12 +277,12 @@ public class IntegerPixel extends AbstractPixel {
 	 * @since 1.3.0
 	 */
 	@Override
-	public int getGreen(int x, int y) {
-		return getGreen(getIndex(x, y));
+	public int getGreenScalar(int x, int y) {
+		return getGreenScalar(getIndex(x, y));
 	}
 
 	@Override
-	public void setGreen(int index, int newGreen) {
+	public void setGreenScalar(int index, int newGreen) {
 		// Clear green part first
 		imageData[index] = (imageData[index] & (~greenMask)) | (newGreen << greenOffset);
 	}
@@ -296,8 +296,8 @@ public class IntegerPixel extends AbstractPixel {
 	 * @since 1.3.0
 	 */
 	@Override
-	public void setGreen(int x, int y, int newGreen) {
-		setGreen(getIndex(x, y), newGreen);
+	public void setGreenScalar(int x, int y, int newGreen) {
+		setGreenScalar(getIndex(x, y), newGreen);
 	}
 
 	/**
@@ -307,11 +307,11 @@ public class IntegerPixel extends AbstractPixel {
 	 * @since 1.4.5
 	 */
 	@Override
-	public void setGreen(int[][] newGreen) {
+	public void setGreenMatrix(int[][] newGreen) {
 		// TODO inline method call?
 		for (int x = 0; x < width; x++) {
 			for (int y = 0; y < height; y++) {
-				setGreen(x, y, newGreen[x][y]);
+				setGreenScalar(x, y, newGreen[x][y]);
 			}
 		}
 	}
@@ -324,12 +324,12 @@ public class IntegerPixel extends AbstractPixel {
 	 * @since 1.3.0
 	 */
 	@Override
-	public int[][] getGreen() {
+	public int[][] getGreenMatrix() {
 		int[][] green = new int[width][height];
 		int x = 0;
 		int y = 0;
 		for (int i = 0; i < imageData.length; i++) {
-			green[x][y] = getGreen(i);
+			green[x][y] = getGreenScalar(i);
 			x++;
 			if (x >= width) {
 				x = 0;
@@ -340,7 +340,7 @@ public class IntegerPixel extends AbstractPixel {
 	}
 
 	@Override
-	public int getBlue(int index) {
+	public int getBlueScalar(int index) {
 		return (imageData[index] & blueMask) >>> blueOffset;
 	}
 
@@ -353,12 +353,12 @@ public class IntegerPixel extends AbstractPixel {
 	 * @since 1.3.0
 	 */
 	@Override
-	public int getBlue(int x, int y) {
-		return getBlue(getIndex(x, y));
+	public int getBlueScalar(int x, int y) {
+		return getBlueScalar(getIndex(x, y));
 	}
 
 	@Override
-	public void setBlue(int index, int newBlue) {
+	public void setBlueScalar(int index, int newBlue) {
 		imageData[index] = (imageData[index] & (~blueMask)) | (newBlue << blueOffset);
 	}
 
@@ -371,8 +371,8 @@ public class IntegerPixel extends AbstractPixel {
 	 * @since 1.3.0
 	 */
 	@Override
-	public void setBlue(int x, int y, int newBlue) {
-		setBlue(getIndex(x, y), newBlue);
+	public void setBlueScalar(int x, int y, int newBlue) {
+		setBlueScalar(getIndex(x, y), newBlue);
 	}
 
 	/**
@@ -383,12 +383,12 @@ public class IntegerPixel extends AbstractPixel {
 	 * @since 1.3.0
 	 */
 	@Override
-	public int[][] getBlue() {
+	public int[][] getBlueMatrix() {
 		int[][] blue = new int[width][height];
 		int x = 0;
 		int y = 0;
 		for (int i = 0; i < imageData.length; i++) {
-			blue[x][y] = getBlue(i);
+			blue[x][y] = getBlueScalar(i);
 			x++;
 			if (x >= width) {
 				x = 0;
@@ -405,10 +405,10 @@ public class IntegerPixel extends AbstractPixel {
 	 * @since 1.4.5
 	 */
 	@Override
-	public void setBlue(int[][] newBlue) {
+	public void setBlueMatrix(int[][] newBlue) {
 		for (int x = 0; x < width; x++) {
 			for (int y = 0; y < height; y++) {
-				setBlue(x, y, newBlue[x][y]);
+				setBlueScalar(x, y, newBlue[x][y]);
 			}
 		}
 	}
@@ -416,12 +416,12 @@ public class IntegerPixel extends AbstractPixel {
 	// grayscale
 
 	@Override
-	public int[][] getAverageGrayscale() {
+	public int[][] getGrayscaleMatrix() {
 		int[][] gray = new int[width][height];
 		int x = 0;
 		int y = 0;
 		for (int i = 0; i < imageData.length; i++) {
-			gray[x][y] = getAverageGrayscale(x, y);
+			gray[x][y] = getGrayscaleScalar(x, y);
 			x++;
 			if (x >= width) {
 				x = 0;
@@ -432,10 +432,10 @@ public class IntegerPixel extends AbstractPixel {
 	}
 
 	@Override
-	public void setAverageGrayscale(int[][] newGrayValue) {
+	public void setGrayscaleMatrix(int[][] newGrayValue) {
 		for (int x = 0; x < width; x++) {
 			for (int y = 0; y < height; y++) {
-				setAverageGrayscale(x, y, newGrayValue[x][y]);
+				setGrayscaleScalar(x, y, newGrayValue[x][y]);
 			}
 		}
 	}
@@ -450,12 +450,12 @@ public class IntegerPixel extends AbstractPixel {
 	 * @since 1.3.1
 	 */
 	@Override
-	public int[][] getLuma() {
+	public int[][] getLumaMatrix() {
 		int luma[][] = new int[width][height];
 		int x = 0;
 		int y = 0;
 		for (int i = 0; i < imageData.length; i++) {
-			luma[x][y] = getLuma(i);
+			luma[x][y] = getLumaScalar(i);
 			x++;
 			if (x >= width) {
 				x = 0;
@@ -466,10 +466,10 @@ public class IntegerPixel extends AbstractPixel {
 	}
 
 	@Override
-	public int[] getLuma1D() {
+	public int[] getLumaVector() {
 		int luma[] = new int[width * height];
 		for (int i = 0; i < imageData.length; i++) {
-			luma[i] = getLuma(i);
+			luma[i] = getLumaScalar(i);
 		}
 		return luma;
 	}

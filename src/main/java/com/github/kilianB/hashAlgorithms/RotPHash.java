@@ -118,7 +118,7 @@ public class RotPHash extends HashingAlgorithm {
 				if (bucket >= buckets) {
 					continue;
 				}
-				values[bucket].add(fp.getLuma(x, y));
+				values[bucket].add(fp.getLumaScalar(x, y));
 			}
 		}
 

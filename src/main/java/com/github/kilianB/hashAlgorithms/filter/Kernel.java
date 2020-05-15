@@ -789,20 +789,20 @@ public class Kernel implements Filter {
 		BufferedImage bi = new BufferedImage(input.getWidth(), input.getHeight(), input.getType());
 		Pixel fp = Pixel.create(input);
 		Pixel fpSet = Pixel.create(bi);
-		int[][] red = fp.getRed();
-		int[][] green = fp.getGreen();
-		int[][] blue = fp.getBlue();
+		int[][] red = fp.getRedMatrix();
+		int[][] green = fp.getGreenMatrix();
+		int[][] blue = fp.getBlueMatrix();
 
 		red = applyInt(red);
 		green = applyInt(green);
 		blue = applyInt(blue);
 
-		fpSet.setRed(red);
-		fpSet.setGreen(green);
-		fpSet.setBlue(blue);
+		fpSet.setRedMatrix(red);
+		fpSet.setGreenMatrix(green);
+		fpSet.setBlueMatrix(blue);
 
 		if (fpSet.hasTransparency()) {
-			fpSet.setTransparencies(fp.getTransparencies());
+			fpSet.setTransparencyMatrix(fp.getTransparencyMatrix());
 		}
 
 		return bi;
@@ -829,9 +829,9 @@ public class Kernel implements Filter {
 			BufferedImage bi = new BufferedImage(input.getWidth(), input.getHeight(), input.getType());
 			Pixel fp = Pixel.create(input);
 			Pixel fpSet = Pixel.create(bi);
-			int[][] gray = fp.getAverageGrayscale();
+			int[][] gray = fp.getGrayscaleMatrix();
 			gray = applyInt(gray);
-			fpSet.setAverageGrayscale(gray);
+			fpSet.setGrayscaleMatrix(gray);
 			return bi;
 		}
 

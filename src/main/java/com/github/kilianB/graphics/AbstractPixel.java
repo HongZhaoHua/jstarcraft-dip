@@ -23,28 +23,28 @@ public abstract class AbstractPixel implements Pixel {
 	}
 
 	@Override
-	public int[] getRed1D() {
+	public int[] getRedVector() {
 		int[] red = new int[width * height];
 		ArrayUtil.fillArray(red, i -> {
-			return getRed(i);
+			return getRedScalar(i);
 		});
 		return red;
 	}
 
 	@Override
-	public int[] getBlue1D() {
+	public int[] getBlueVector() {
 		int[] blue = new int[width * height];
 		ArrayUtil.fillArray(blue, i -> {
-			return getBlue(i);
+			return getBlueScalar(i);
 		});
 		return blue;
 	}
 
 	@Override
-	public int[] getGreen1D() {
+	public int[] getGreenVector() {
 		int[] green = new int[width * height];
 		ArrayUtil.fillArray(green, i -> {
-			return getGreen(i);
+			return getGreenScalar(i);
 		});
 		return green;
 	}

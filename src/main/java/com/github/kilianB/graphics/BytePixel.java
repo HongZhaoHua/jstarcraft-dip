@@ -54,7 +54,7 @@ public class BytePixel extends AbstractPixel {
 	}
 
 	@Override
-	public int getRGB(int index) {
+	public int getRgbScalar(int index) {
 		return (hasTransparency() ? (imageData[index++] & 0xFF) << 24 : ALPHA_MASK) | ((imageData[index++] & 0xFF)) | ((imageData[index++] & 0xFF) << 8) | ((imageData[index++] & 0xFF) << 16);
 	}
 
@@ -68,7 +68,7 @@ public class BytePixel extends AbstractPixel {
 	 * @since 1.3.0
 	 */
 	@Override
-	public int[][] getRGB() {
+	public int[][] getRgbMatrix() {
 		int[][] rgb = new int[width][height];
 		int x = 0;
 		int y = 0;
@@ -97,7 +97,7 @@ public class BytePixel extends AbstractPixel {
 	 * @since 1.3.0
 	 */
 	@Override
-	public int[][] getTransparencies() {
+	public int[][] getTransparencyMatrix() {
 		if (!hasTransparency())
 			return null;
 		int[][] alpha = new int[width][height];
@@ -115,14 +115,14 @@ public class BytePixel extends AbstractPixel {
 	}
 
 	@Override
-	public int getTransparency(int index) {
+	public int getTransparencyScalar(int index) {
 		if (!hasTransparency())
 			return -1;
 		return imageData[index] & 0xFF;
 	}
 
 	@Override
-	public void setTransparency(int index, int transparency) {
+	public void setTransparencyScalar(int index, int transparency) {
 		if (!hasTransparency())
 			return;
 		imageData[index] = (byte) (transparency);
@@ -135,21 +135,21 @@ public class BytePixel extends AbstractPixel {
 	 * @since 1.4.5
 	 */
 	@Override
-	public void setTransparencies(int[][] transparencies) {
+	public void setTransparencyMatrix(int[][] transparencies) {
 		for (int x = 0; x < width; x++) {
 			for (int y = 0; y < height; y++) {
-				setTransparency(x, y, transparencies[x][y]);
+				setTransparencyScalar(x, y, transparencies[x][y]);
 			}
 		}
 	}
 
 	@Override
-	public int getRed(int index) {
+	public int getRedScalar(int index) {
 		return imageData[index + alphaOffset + 2] & 0xFF;
 	}
 
 	@Override
-	public void setRed(int index, int newRed) {
+	public void setRedScalar(int index, int newRed) {
 		imageData[index + alphaOffset + 2] = (byte) (newRed);
 	}
 
@@ -160,22 +160,22 @@ public class BytePixel extends AbstractPixel {
 	 * @since 1.4.5
 	 */
 	@Override
-	public void setRed(int[][] newRed) {
+	public void setRedMatrix(int[][] newRed) {
 		// TODO inline method call?
 		for (int x = 0; x < width; x++) {
 			for (int y = 0; y < height; y++) {
-				setRed(x, y, newRed[x][y]);
+				setRedScalar(x, y, newRed[x][y]);
 			}
 		}
 	}
 
 	@Override
-	public int getGreen(int index) {
+	public int getGreenScalar(int index) {
 		return imageData[index + alphaOffset + 1] & 0xFF;
 	}
 
 	@Override
-	public void setGreen(int index, int newGreen) {
+	public void setGreenScalar(int index, int newGreen) {
 		imageData[index + alphaOffset + 1] = (byte) (newGreen);
 	}
 
@@ -186,10 +186,10 @@ public class BytePixel extends AbstractPixel {
 	 * @since 1.4.5
 	 */
 	@Override
-	public void setGreen(int[][] newGreen) {
+	public void setGreenMatrix(int[][] newGreen) {
 		for (int x = 0; x < width; x++) {
 			for (int y = 0; y < height; y++) {
-				setGreen(x, y, newGreen[x][y]);
+				setGreenScalar(x, y, newGreen[x][y]);
 			}
 		}
 	}
@@ -202,12 +202,12 @@ public class BytePixel extends AbstractPixel {
 	 * @since 1.3.0
 	 */
 	@Override
-	public int[][] getGreen() {
+	public int[][] getGreenMatrix() {
 		int[][] green = new int[width][height];
 		int x = 0;
 		int y = 0;
 		for (int i = 0; i < imageData.length; i += bytesPerColor) {
-			green[x][y] = getGreen(i);
+			green[x][y] = getGreenScalar(i);
 			x++;
 			if (x >= width) {
 				x = 0;
@@ -218,12 +218,12 @@ public class BytePixel extends AbstractPixel {
 	}
 
 	@Override
-	public int getBlue(int index) {
+	public int getBlueScalar(int index) {
 		return imageData[index + alphaOffset] & 0xFF;
 	}
 
 	@Override
-	public void setBlue(int index, int newBlue) {
+	public void setBlueScalar(int index, int newBlue) {
 		imageData[index + alphaOffset] = (byte) (newBlue);
 	}
 
@@ -235,12 +235,12 @@ public class BytePixel extends AbstractPixel {
 	 * @since 1.3.0
 	 */
 	@Override
-	public int[][] getBlue() {
+	public int[][] getBlueMatrix() {
 		int[][] blue = new int[width][height];
 		int x = 0;
 		int y = 0;
 		for (int i = 0; i < imageData.length; i += bytesPerColor) {
-			blue[x][y] = getBlue(i);
+			blue[x][y] = getBlueScalar(i);
 			x++;
 			if (x >= width) {
 				x = 0;
@@ -257,11 +257,11 @@ public class BytePixel extends AbstractPixel {
 	 * @since 1.4.5
 	 */
 	@Override
-	public void setBlue(int[][] newBlue) {
+	public void setBlueMatrix(int[][] newBlue) {
 		// TODO inline method call?
 		for (int x = 0; x < width; x++) {
 			for (int y = 0; y < height; y++) {
-				setBlue(x, y, newBlue[x][y]);
+				setBlueScalar(x, y, newBlue[x][y]);
 			}
 		}
 	}
@@ -269,12 +269,12 @@ public class BytePixel extends AbstractPixel {
 	// Grayscale
 
 	@Override
-	public int[][] getAverageGrayscale() {
+	public int[][] getGrayscaleMatrix() {
 		int[][] gray = new int[width][height];
 		int x = 0;
 		int y = 0;
 		for (int i = 0; i < imageData.length; i += bytesPerColor) {
-			gray[x][y] = getAverageGrayscale(x, y);
+			gray[x][y] = getGrayscaleScalar(x, y);
 			x++;
 			if (x >= width) {
 				x = 0;
@@ -285,10 +285,10 @@ public class BytePixel extends AbstractPixel {
 	}
 
 	@Override
-	public void setAverageGrayscale(int[][] newGrayValue) {
+	public void setGrayscaleMatrix(int[][] newGrayValue) {
 		for (int x = 0; x < width; x++) {
 			for (int y = 0; y < height; y++) {
-				setAverageGrayscale(x, y, newGrayValue[x][y]);
+				setGrayscaleScalar(x, y, newGrayValue[x][y]);
 			}
 		}
 	}
@@ -303,13 +303,13 @@ public class BytePixel extends AbstractPixel {
 	 * @since 1.3.1
 	 */
 	@Override
-	public int[][] getLuma() {
+	public int[][] getLumaMatrix() {
 		int luma[][] = new int[width][height];
 		int x = 0;
 		int y = 0;
 		for (int i = 0; i < imageData.length; i += bytesPerColor) {
 
-			luma[x][y] = getLuma(i);
+			luma[x][y] = getLumaScalar(i);
 			x++;
 			if (x >= width) {
 				x = 0;
@@ -320,10 +320,10 @@ public class BytePixel extends AbstractPixel {
 	}
 
 	@Override
-	public int[] getLuma1D() {
+	public int[] getLumaVector() {
 		int luma[] = new int[width * height];
 		for (int i = 0, j = 0; i < imageData.length; i += bytesPerColor, j++) {
-			luma[j] = getLuma(i);
+			luma[j] = getLumaScalar(i);
 		}
 		return luma;
 	}
@@ -333,12 +333,12 @@ public class BytePixel extends AbstractPixel {
 	}
 
 	@Override
-	public int[][] getRed() {
+	public int[][] getRedMatrix() {
 		int[][] red = new int[width][height];
 		int x = 0;
 		int y = 0;
 		for (int i = 0; i < imageData.length; i += bytesPerColor) {
-			red[x][y] = getRed(i);
+			red[x][y] = getRedScalar(i);
 			x++;
 			if (x >= width) {
 				x = 0;
@@ -349,31 +349,31 @@ public class BytePixel extends AbstractPixel {
 	}
 
 	@Override
-	public int[] getRed1D() {
+	public int[] getRedVector() {
 		int[] red = new int[width * height];
 		int j = 0;
 		for (int i = 0; i < imageData.length; i += bytesPerColor, j++) {
-			red[j] = getRed(i);
+			red[j] = getRedScalar(i);
 		}
 		return red;
 	}
 
 	@Override
-	public int[] getGreen1D() {
+	public int[] getGreenVector() {
 		int[] green = new int[width * height];
 		int j = 0;
 		for (int i = 0; i < imageData.length; i += bytesPerColor, j++) {
-			green[j] = getGreen(i);
+			green[j] = getGreenScalar(i);
 		}
 		return green;
 	}
 
 	@Override
-	public int[] getBlue1D() {
+	public int[] getBlueVector() {
 		int[] blue = new int[width * height];
 		int j = 0;
 		for (int i = 0; i < imageData.length; i += bytesPerColor, j++) {
-			blue[j] = getBlue(i);
+			blue[j] = getBlueScalar(i);
 		}
 		return blue;
 	}

@@ -80,7 +80,7 @@ public class SobelFilter implements Filter {
 
 		Pixel fp = Pixel.create(bi);
 
-		int[][] grayscale = fp.getAverageGrayscale();
+		int[][] grayscale = fp.getGrayscaleMatrix();
 
 		int[][] xGradient = xKernel.applyInt(grayscale);
 		int[][] yGradient = yKernel.applyInt(grayscale);
@@ -106,10 +106,10 @@ public class SobelFilter implements Filter {
 		BufferedImage returnBi = new BufferedImage(bi.getWidth(), bi.getHeight(), bi.getType());
 		Pixel fpSet = Pixel.create(returnBi);
 
-		fpSet.setAverageGrayscale(result);
+		fpSet.setGrayscaleMatrix(result);
 
 		if (fpSet.hasTransparency()) {
-			fpSet.setTransparencies(fp.getTransparencies());
+			fpSet.setTransparencyMatrix(fp.getTransparencyMatrix());
 		}
 
 		return returnBi;

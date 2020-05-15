@@ -63,7 +63,7 @@ public class WaveletHash extends HashingAlgorithm {
 		// Rescale
 		Pixel fp = Pixel.create(ImageUtil.getScaledInstance(image, width, height));
 
-		int[][] luma = fp.getLuma();
+		int[][] luma = fp.getLumaMatrix();
 
 		// Compute wavelet
 

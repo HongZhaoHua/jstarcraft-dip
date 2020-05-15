@@ -81,7 +81,7 @@ public class ScharrFilter implements Filter {
 
 		Pixel fp = Pixel.create(bi);
 
-		int[][] grayscale = fp.getRed();
+		int[][] grayscale = fp.getRedMatrix();
 
 		int[][] xGradient = xKernel.applyInt(grayscale);
 		int[][] yGradient = yKernel.applyInt(grayscale);
@@ -106,10 +106,10 @@ public class ScharrFilter implements Filter {
 		BufferedImage returnBi = new BufferedImage(bi.getWidth(), bi.getHeight(), bi.getType());
 		Pixel fpSet = Pixel.create(returnBi);
 
-		fpSet.setAverageGrayscale(result);
+		fpSet.setGrayscaleMatrix(result);
 
 		if (fpSet.hasTransparency()) {
-			fpSet.setTransparencies(fp.getTransparencies());
+			fpSet.setTransparencyMatrix(fp.getTransparencyMatrix());
 		}
 
 		return returnBi;

@@ -49,17 +49,17 @@ public class DefaultPixel extends AbstractPixel {
 	}
 
 	@Override
-	public int getRGB(int index) {
+	public int getRgbScalar(int index) {
 		return rgbImageData[index];
 	}
 
 	@Override
-	public int[][] getRGB() {
+	public int[][] getRgbMatrix() {
 		int[][] rgb = new int[width][height];
 		int x = 0;
 		int y = 0;
 		for (int i = 0; i < rgbImageData.length; i++) {
-			rgb[x][y] = getRGB(i);
+			rgb[x][y] = getRgbScalar(i);
 			x++;
 			if (x >= width) {
 				x = 0;
@@ -70,7 +70,7 @@ public class DefaultPixel extends AbstractPixel {
 	}
 
 	@Override
-	public int getTransparency(int index) {
+	public int getTransparencyScalar(int index) {
 		if (!hasTransparency()) {
 			return -1;
 		} else {
@@ -79,14 +79,14 @@ public class DefaultPixel extends AbstractPixel {
 	}
 
 	@Override
-	public int[][] getTransparencies() {
+	public int[][] getTransparencyMatrix() {
 		if (!hasTransparency())
 			return null;
 		int[][] alpha = new int[width][height];
 		int x = 0;
 		int y = 0;
 		for (int i = 0; i < rgbImageData.length; i++) {
-			alpha[x][y] = getTransparency(i);
+			alpha[x][y] = getTransparencyScalar(i);
 			x++;
 			if (x >= width) {
 				x = 0;
@@ -97,18 +97,18 @@ public class DefaultPixel extends AbstractPixel {
 	}
 
 	@Override
-	public void setTransparency(int index, int transparency) {
-		int newRGB = getRGB(index) & ALPHA_MASK_INVERSE | (transparency << 24);
+	public void setTransparencyScalar(int index, int transparency) {
+		int newRGB = getRgbScalar(index) & ALPHA_MASK_INVERSE | (transparency << 24);
 		rgbImageData[index] = newRGB;
 		bImage.setRGB(getX(index), getY(index), newRGB);
 	}
 
 	@Override
-	public void setTransparencies(int[][] transparencies) {
+	public void setTransparencyMatrix(int[][] transparencies) {
 		for (int x = 0; x < transparencies.length; x++) {
 			for (int y = 0; y < transparencies[x].length; y++) {
 				int index = getIndex(x, y);
-				int newRGB = getRGB(index) & ALPHA_MASK_INVERSE | (transparencies[x][y] << 24);
+				int newRGB = getRgbScalar(index) & ALPHA_MASK_INVERSE | (transparencies[x][y] << 24);
 				rgbImageData[index] = newRGB;
 
 				// setAlpha(getOffset(x,y),newAlpha[x][y]);
@@ -118,17 +118,17 @@ public class DefaultPixel extends AbstractPixel {
 	}
 
 	@Override
-	public int getRed(int index) {
+	public int getRedScalar(int index) {
 		return (rgbImageData[index] & RED_MASK) >>> 16;
 	}
 
 	@Override
-	public int[][] getRed() {
+	public int[][] getRedMatrix() {
 		int[][] red = new int[width][height];
 		int x = 0;
 		int y = 0;
 		for (int i = 0; i < rgbImageData.length; i++) {
-			red[x][y] = getRed(i);
+			red[x][y] = getRedScalar(i);
 			x++;
 			if (x >= width) {
 				x = 0;
@@ -139,19 +139,19 @@ public class DefaultPixel extends AbstractPixel {
 	}
 
 	@Override
-	public void setRed(int index, int newRed) {
-		int newRGB = getRGB(index) & RED_MASK_INVERSE | (newRed << 16);
+	public void setRedScalar(int index, int newRed) {
+		int newRGB = getRgbScalar(index) & RED_MASK_INVERSE | (newRed << 16);
 		rgbImageData[index] = newRGB;
 		bImage.setRGB(getX(index), getY(index), newRGB);
 	}
 
 	@Override
-	public void setRed(int[][] newRed) {
+	public void setRedMatrix(int[][] newRed) {
 		for (int x = 0; x < newRed.length; x++) {
 			for (int y = 0; y < newRed[x].length; y++) {
 				// setRed(getOffset(x,y),newRed[x][y]);
 				int index = getIndex(x, y);
-				int newRGB = getRGB(index) & RED_MASK_INVERSE | (newRed[x][y] << 16);
+				int newRGB = getRgbScalar(index) & RED_MASK_INVERSE | (newRed[x][y] << 16);
 				rgbImageData[index] = newRGB;
 			}
 		}
@@ -159,24 +159,24 @@ public class DefaultPixel extends AbstractPixel {
 	}
 
 	@Override
-	public int getGreen(int index) {
+	public int getGreenScalar(int index) {
 		return (rgbImageData[index] & GREEN_MASK) >>> 8;
 	}
 
 	@Override
-	public void setGreen(int index, int newGreen) {
-		int newRGB = getRGB(index) & GREEN_MASK_INVERSE | (newGreen << 8);
+	public void setGreenScalar(int index, int newGreen) {
+		int newRGB = getRgbScalar(index) & GREEN_MASK_INVERSE | (newGreen << 8);
 		rgbImageData[index] = newRGB;
 		bImage.setRGB(getX(index), getY(index), newRGB);
 	}
 
 	@Override
-	public void setGreen(int[][] newGreen) {
+	public void setGreenMatrix(int[][] newGreen) {
 		for (int x = 0; x < newGreen.length; x++) {
 			for (int y = 0; y < newGreen[x].length; y++) {
 				// setGreen(getOffset(x,y),newRed[x][y]);
 				int index = getIndex(x, y);
-				int newRGB = getRGB(index) & GREEN_MASK_INVERSE | (newGreen[x][y] << 8);
+				int newRGB = getRgbScalar(index) & GREEN_MASK_INVERSE | (newGreen[x][y] << 8);
 				rgbImageData[index] = newRGB;
 			}
 		}
@@ -184,12 +184,12 @@ public class DefaultPixel extends AbstractPixel {
 	}
 
 	@Override
-	public int[][] getGreen() {
+	public int[][] getGreenMatrix() {
 		int[][] green = new int[width][height];
 		int x = 0;
 		int y = 0;
 		for (int i = 0; i < rgbImageData.length; i++) {
-			green[x][y] = getGreen(i);
+			green[x][y] = getGreenScalar(i);
 			x++;
 			if (x >= width) {
 				x = 0;
@@ -200,24 +200,24 @@ public class DefaultPixel extends AbstractPixel {
 	}
 
 	@Override
-	public int getBlue(int index) {
+	public int getBlueScalar(int index) {
 		return rgbImageData[index] & BLUE_MASK;
 	}
 
 	@Override
-	public void setBlue(int index, int newBlue) {
-		int newRGB = getRGB(index) & BLUE_MASK_INVERSE | (newBlue);
+	public void setBlueScalar(int index, int newBlue) {
+		int newRGB = getRgbScalar(index) & BLUE_MASK_INVERSE | (newBlue);
 		rgbImageData[index] = newRGB;
 		bImage.setRGB(getX(index), getY(index), newRGB);
 	}
 
 	@Override
-	public int[][] getBlue() {
+	public int[][] getBlueMatrix() {
 		int[][] blue = new int[width][height];
 		int x = 0;
 		int y = 0;
 		for (int i = 0; i < rgbImageData.length; i++) {
-			blue[x][y] = getBlue(i);
+			blue[x][y] = getBlueScalar(i);
 			x++;
 			if (x >= width) {
 				x = 0;
@@ -228,11 +228,11 @@ public class DefaultPixel extends AbstractPixel {
 	}
 
 	@Override
-	public void setBlue(int[][] newBlue) {
+	public void setBlueMatrix(int[][] newBlue) {
 		for (int x = 0; x < newBlue.length; x++) {
 			for (int y = 0; y < newBlue[x].length; y++) {
 				int index = getIndex(x, y);
-				int newRGB = getRGB(index) & BLUE_MASK_INVERSE | (newBlue[x][y]);
+				int newRGB = getRgbScalar(index) & BLUE_MASK_INVERSE | (newBlue[x][y]);
 				rgbImageData[index] = newRGB;
 			}
 		}
@@ -240,12 +240,12 @@ public class DefaultPixel extends AbstractPixel {
 	}
 
 	@Override
-	public int[][] getAverageGrayscale() {
+	public int[][] getGrayscaleMatrix() {
 		int[][] gray = new int[width][height];
 		int x = 0;
 		int y = 0;
 		for (int i = 0; i < rgbImageData.length; i++) {
-			gray[x][y] = getAverageGrayscale(i);
+			gray[x][y] = getGrayscaleScalar(i);
 			x++;
 			if (x >= width) {
 				x = 0;
@@ -256,22 +256,22 @@ public class DefaultPixel extends AbstractPixel {
 	}
 
 	@Override
-	public void setAverageGrayscale(int[][] newGrayValue) {
+	public void setGrayscaleMatrix(int[][] newGrayValue) {
 		for (int x = 0; x < newGrayValue.length; x++) {
 			for (int y = 0; y < newGrayValue[x].length; y++) {
-				this.setAverageGrayscale(x, y, newGrayValue[x][y]);
+				this.setGrayscaleScalar(x, y, newGrayValue[x][y]);
 			}
 		}
 		bImage.setRGB(0, 0, width, height, rgbImageData, 0, width);
 	}
 
 	@Override
-	public int[][] getLuma() {
+	public int[][] getLumaMatrix() {
 		int[][] luma = new int[width][height];
 		int x = 0;
 		int y = 0;
 		for (int i = 0; i < rgbImageData.length; i++) {
-			luma[x][y] = getLuma(i);
+			luma[x][y] = getLumaScalar(i);
 			x++;
 			if (x >= width) {
 				x = 0;
@@ -282,10 +282,10 @@ public class DefaultPixel extends AbstractPixel {
 	}
 
 	@Override
-	public int[] getLuma1D() {
+	public int[] getLumaVector() {
 		int[] luma = new int[width * height];
 		for (int i = 0; i < rgbImageData.length; i++) {
-			luma[i] = getLuma(i);
+			luma[i] = getLumaScalar(i);
 		}
 		return luma;
 	}

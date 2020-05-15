@@ -164,7 +164,7 @@ public class HogHash extends HashingAlgorithm {
 		BufferedImage bi = ImageUtil.getScaledInstance(image, width, height);
 		Pixel fp = Pixel.create(bi);
 
-		int[][] lum = fp.getLuma();
+		int[][] lum = fp.getLumaMatrix();
 
 		// 1 Compute hisogramm
 		// Vertical Gradient
