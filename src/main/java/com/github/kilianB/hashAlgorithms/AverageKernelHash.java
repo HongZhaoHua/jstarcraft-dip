@@ -30,8 +30,6 @@ import com.github.kilianB.hashAlgorithms.filter.Kernel;
  */
 public class AverageKernelHash extends AverageHash implements Serializable {
 
-	private static final long serialVersionUID = -5234612717498362659L;
-
 	/**
 	 * The kernel filtering the luminosity of the image
 	 */

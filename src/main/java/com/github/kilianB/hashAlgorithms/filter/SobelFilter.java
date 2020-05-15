@@ -30,8 +30,6 @@ import com.github.kilianB.graphics.Pixel;
  */
 public class SobelFilter implements Filter {
 
-	private static final long serialVersionUID = -794573990315594591L;
-
 	/** Separated Gx Kernel */
 	private MultiKernel xKernel;
 	/** Separated Gy Kernel */

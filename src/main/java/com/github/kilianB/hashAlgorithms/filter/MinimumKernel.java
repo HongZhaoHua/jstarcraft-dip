@@ -41,8 +41,6 @@ import com.github.kilianB.ArrayUtil;
  */
 public class MinimumKernel extends NonAveragingKernel {
 
-	private static final long serialVersionUID = -2271995765850760974L;
-
 	/**
 	 * Create a minimum kernel with a uniform weight mask (no weighting takes place)
 	 * 

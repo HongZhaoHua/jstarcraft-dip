@@ -8,8 +8,6 @@ import com.github.kilianB.ArrayUtil;
  */
 public abstract class NonAveragingKernel extends Kernel {
 
-	private static final long serialVersionUID = -6587002283239284704L;
-
 	/**
 	 * Empty constructor used by inheriting classes which are not able to provide a
 	 * mask during first constructor call. The inheriting class promises to provide

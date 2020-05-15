@@ -17,8 +17,6 @@ import java.util.List;
  */
 public class MultiKernel extends Kernel {
 
-	private static final long serialVersionUID = -95494777151267950L;
-
 	/** The kernels to apply back to back */
 	protected List<Kernel> kernels = new ArrayList<>();
 

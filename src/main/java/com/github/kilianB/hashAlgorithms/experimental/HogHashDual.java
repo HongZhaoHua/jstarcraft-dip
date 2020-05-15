@@ -24,8 +24,6 @@ public class HogHashDual extends HogHash {
 	 * http://lear.inrialpes.fr/people/triggs/pubs/Dalal-cvpr05.pdf
 	 */
 
-	private static final long serialVersionUID = 5353878339786219609L;
-
 	/**
 	 * Create a hog hasher with parameters specific to the hog feature detection
 	 * algorithm.

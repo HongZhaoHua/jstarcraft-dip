@@ -136,54 +136,6 @@ public abstract class HashTestBase {
 	}
 
 	@Nested
-	@DisplayName("Serialization")
-	class Serizalization {
-
-		HashingAlgorithm originalAlgo;
-		HashingAlgorithm deserializedAlgo;
-
-		@BeforeEach
-		public void serializeAlgo() {
-			originalAlgo = getInstance(32);
-
-			File serFile = new File(originalAlgo.getClass().getName() + ".ser");
-
-			// Write to file
-			try (ObjectOutputStream os = new ObjectOutputStream(new FileOutputStream(serFile))) {
-				os.writeObject(originalAlgo);
-			} catch (IOException e) {
-				e.printStackTrace();
-			}
-			// Read from file
-			try (ObjectInputStream is = new ObjectInputStream(new FileInputStream(serFile))) {
-				deserializedAlgo = (HashingAlgorithm) is.readObject();
-			} catch (IOException e) {
-				e.printStackTrace();
-			} catch (ClassNotFoundException e) {
-				e.printStackTrace();
-			} finally {
-				if (serFile.exists()) {
-					serFile.delete();
-				}
-			}
-		}
-
-		@Test
-		public void consistentId() {
-			assertEquals(originalAlgo.algorithmId(), deserializedAlgo.algorithmId());
-		}
-
-		@Test
-		public void consistentHash() {
-			// Algorithm id is checked in the method beforehand
-			assertEquals(originalAlgo.hash(ballon).getHashValue(), deserializedAlgo.hash(ballon).getHashValue());
-		}
-
-		// TODO serialize algo with different filters
-
-	}
-
-	@Nested
 	class HashTest {
 		/**
 		 * The hashes produced by the same algorithms shall return the same hash on

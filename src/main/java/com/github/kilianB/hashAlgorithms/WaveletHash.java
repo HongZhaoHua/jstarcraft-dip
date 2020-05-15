@@ -4,8 +4,8 @@ import java.awt.image.BufferedImage;
 import java.math.BigInteger;
 import java.util.Objects;
 
-import com.github.kilianB.graphics.Pixel;
 import com.github.kilianB.graphics.ImageUtil;
+import com.github.kilianB.graphics.Pixel;
 
 /**
  * Calculate a hash based on iterative application of a haar wavelet on the
@@ -18,8 +18,6 @@ import com.github.kilianB.graphics.ImageUtil;
  * @since 3.0.0
  */
 public class WaveletHash extends HashingAlgorithm {
-
-	private static final long serialVersionUID = -2259243765925949874L;
 
 	/**
 	 * The width of the rescaled image

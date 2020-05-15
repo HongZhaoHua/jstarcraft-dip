@@ -16,8 +16,8 @@ import com.github.kilianB.Experimental;
 import com.github.kilianB.MathUtil;
 import com.github.kilianB.Require;
 import com.github.kilianB.graphics.ColorUtil;
-import com.github.kilianB.graphics.Pixel;
 import com.github.kilianB.graphics.ImageUtil;
+import com.github.kilianB.graphics.Pixel;
 import com.github.kilianB.hashAlgorithms.HashBuilder;
 import com.github.kilianB.hashAlgorithms.HashingAlgorithm;
 
@@ -39,8 +39,6 @@ public class HogHash extends HashingAlgorithm {
 	 * Gradients for Human Detection" by NavneetDalal and Bill Triggs
 	 * http://lear.inrialpes.fr/people/triggs/pubs/Dalal-cvpr05.pdf
 	 */
-
-	protected static final long serialVersionUID = 5353878339786219609L;
 
 	/** The width of the rescaled image */
 	protected int width;

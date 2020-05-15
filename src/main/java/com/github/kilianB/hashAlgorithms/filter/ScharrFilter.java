@@ -30,8 +30,6 @@ import com.github.kilianB.graphics.Pixel;
  */
 public class ScharrFilter implements Filter {
 
-	private static final long serialVersionUID = 7737512505762187137L;
-
 	/** Separated Gx Kernel */
 	private MultiKernel xKernel;
 	/** Separated Gy Kernel */

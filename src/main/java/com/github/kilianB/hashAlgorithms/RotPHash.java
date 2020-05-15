@@ -27,8 +27,6 @@ import com.github.kilianB.graphics.ImageUtil;
  */
 public class RotPHash extends HashingAlgorithm {
 
-	private static final long serialVersionUID = -7498910506857652806L;
-
 	/** If parts of the key shall be truncated */
 	private final boolean truncateKey;
 

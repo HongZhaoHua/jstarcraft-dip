@@ -3,7 +3,6 @@ package com.github.kilianB.hashAlgorithms;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
-import java.io.Serializable;
 import java.math.BigInteger;
 import java.util.ArrayList;
 import java.util.List;
@@ -35,12 +34,10 @@ import com.github.kilianB.hashAlgorithms.filter.Filter;
  * @since 1.0.0
  */
 
-public abstract class HashingAlgorithm implements Serializable {
+public abstract class HashingAlgorithm {
 
 	// maybe move to bitsets//Mutable inetegers? not efficient for small keys?
 	protected List<Filter> preProcessing = new ArrayList<>();
-
-	private static final long serialVersionUID = 3L;
 
 	/**
 	 * The target bit resolution supplied during algorithm creation. This number

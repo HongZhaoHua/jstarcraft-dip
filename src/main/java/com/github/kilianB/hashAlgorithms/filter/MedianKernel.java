@@ -45,8 +45,6 @@ import com.github.kilianB.graphics.Pixel;
  */
 public class MedianKernel extends NonAveragingKernel {
 
-	private static final long serialVersionUID = 5756361510407136992L;
-
 	/**
 	 * Create a median kernel with a uniform weight mask (no weighting takes place)
 	 * 

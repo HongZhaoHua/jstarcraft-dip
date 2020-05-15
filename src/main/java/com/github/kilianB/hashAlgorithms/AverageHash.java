@@ -17,8 +17,6 @@ import com.github.kilianB.graphics.ImageUtil;
  */
 public class AverageHash extends HashingAlgorithm {
 
-	private static final long serialVersionUID = -5234612717498362659L;
-
 	/**
 	 * The height and width of the scaled instance used to compute the hash
 	 */

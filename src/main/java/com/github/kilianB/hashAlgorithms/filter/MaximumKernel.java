@@ -37,8 +37,6 @@ import com.github.kilianB.ArrayUtil;
  */
 public class MaximumKernel extends NonAveragingKernel {
 
-	private static final long serialVersionUID = 4302400514104308983L;
-
 	/**
 	 * Create a maximum kernel with no weight matrix
 	 * 

@@ -348,4 +348,34 @@ public class BytePixel extends AbstractPixel {
 		return red;
 	}
 
+	@Override
+	public int[] getRed1D() {
+		int[] red = new int[width * height];
+		int j = 0;
+		for (int i = 0; i < imageData.length; i += bytesPerColor, j++) {
+			red[j] = getRed(i);
+		}
+		return red;
+	}
+
+	@Override
+	public int[] getGreen1D() {
+		int[] green = new int[width * height];
+		int j = 0;
+		for (int i = 0; i < imageData.length; i += bytesPerColor, j++) {
+			green[j] = getGreen(i);
+		}
+		return green;
+	}
+
+	@Override
+	public int[] getBlue1D() {
+		int[] blue = new int[width * height];
+		int j = 0;
+		for (int i = 0; i < imageData.length; i += bytesPerColor, j++) {
+			blue[j] = getBlue(i);
+		}
+		return blue;
+	}
+
 }

@@ -1,7 +1,6 @@
 package com.github.kilianB.hashAlgorithms.filter;
 
 import java.awt.image.BufferedImage;
-import java.io.Serializable;
 import java.util.Arrays;
 import java.util.function.BiFunction;
 
@@ -37,9 +36,7 @@ import com.github.kilianB.graphics.Pixel;
  * @author Kilian
  * @since 2.0.0
  */
-public class Kernel implements Serializable, Filter {
-
-	private static final long serialVersionUID = -3490082941059458531L;
+public class Kernel implements Filter {
 
 	/** Kernel mask applied to the pixels */
 	protected double[][] mask;
@@ -819,8 +816,6 @@ public class Kernel implements Serializable, Filter {
 	 *
 	 */
 	public static class GrayScaleFilter extends Kernel {
-
-		private static final long serialVersionUID = -1079407275717629013L;
 
 		/**
 		 * @param mask kernel mask

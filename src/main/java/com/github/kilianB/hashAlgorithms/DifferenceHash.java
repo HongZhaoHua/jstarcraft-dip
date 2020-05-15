@@ -20,8 +20,6 @@ import javafx.scene.paint.Color;
  */
 public class DifferenceHash extends HashingAlgorithm {
 
-	private static final long serialVersionUID = 7236596241664072005L;
-
 	/**
 	 * Algorithm precision used during calculation.
 	 * 

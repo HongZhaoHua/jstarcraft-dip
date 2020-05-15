@@ -33,8 +33,6 @@ import com.github.kilianB.graphics.ImageUtil;
  */
 public class RotAverageHash extends HashingAlgorithm {
 
-	private static final long serialVersionUID = 1L;
-
 	/** Width of the rescaled image */
 	private int width;
 

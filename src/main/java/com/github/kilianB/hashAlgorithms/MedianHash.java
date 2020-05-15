@@ -23,8 +23,6 @@ import com.github.kilianB.graphics.ImageUtil;
  */
 public class MedianHash extends AverageHash {
 
-	private static final long serialVersionUID = -5234612717498362659L;
-
 	/**
 	 * @param bitResolution The bit resolution specifies the final length of the
 	 *                      generated hash. A higher resolution will increase

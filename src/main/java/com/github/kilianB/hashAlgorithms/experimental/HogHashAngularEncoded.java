@@ -16,8 +16,6 @@ import com.github.kilianB.hashAlgorithms.HashBuilder;
  */
 public class HogHashAngularEncoded extends HogHash {
 
-	private static final long serialVersionUID = 8174228394380201299L;
-
 	/**
 	 * * Create a hog hasher with the target bit resolution.
 	 * 

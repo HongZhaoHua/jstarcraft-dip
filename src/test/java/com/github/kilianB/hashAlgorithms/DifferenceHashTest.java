@@ -11,15 +11,8 @@ import static org.junit.jupiter.api.Assertions.assertNotEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import java.awt.image.BufferedImage;
-import java.io.File;
-import java.io.FileInputStream;
-import java.io.FileOutputStream;
-import java.io.IOException;
-import java.io.ObjectInputStream;
-import java.io.ObjectOutputStream;
 import java.util.stream.Stream;
 
-import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Nested;
 import org.junit.jupiter.api.Test;
@@ -123,50 +116,6 @@ class DifferenceHashTest {
 		BufferedImage imageOfHash = ballonHash.toImage(10);
 		Hash hashedImage = hasher.hash(imageOfHash);
 		assertTrue(ballonHash.normalizedHammingDistance(hashedImage) > 0.8d);
-	}
-
-	@Nested
-	@DisplayName("Serialization")
-	class Serizalization {
-
-		private HashingAlgorithm originalAlgo;
-		private HashingAlgorithm deserializedAlgo;
-
-		@BeforeEach
-		public void serializeAlgo() {
-			originalAlgo = new DifferenceHash(32, Precision.Double);
-
-			File serFile = new File("AverageHash.ser");
-
-			// Write to file
-			try (ObjectOutputStream os = new ObjectOutputStream(new FileOutputStream(serFile))) {
-				os.writeObject(originalAlgo);
-			} catch (IOException e) {
-				e.printStackTrace();
-			}
-			// Read from file
-			try (ObjectInputStream is = new ObjectInputStream(new FileInputStream(serFile))) {
-				deserializedAlgo = (HashingAlgorithm) is.readObject();
-			} catch (IOException e) {
-				e.printStackTrace();
-			} catch (ClassNotFoundException e) {
-				e.printStackTrace();
-			} finally {
-				if (serFile.exists()) {
-					serFile.delete();
-				}
-			}
-		}
-
-		@Test
-		public void consistentId() {
-			assertEquals(originalAlgo.algorithmId(), deserializedAlgo.algorithmId());
-		}
-
-		@Test
-		public void consistentHash() {
-			assertEquals(originalAlgo.hash(ballon), deserializedAlgo.hash(ballon));
-		}
 	}
 
 	@Test

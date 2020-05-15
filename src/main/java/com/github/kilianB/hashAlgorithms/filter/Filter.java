@@ -10,7 +10,7 @@ import java.io.Serializable;
  * @author Kilian
  * @since 2.0.0
  */
-public interface Filter extends Serializable {
+public interface Filter {
 
 	/**
 	 * Apply the filter to the input image and return an altered copy

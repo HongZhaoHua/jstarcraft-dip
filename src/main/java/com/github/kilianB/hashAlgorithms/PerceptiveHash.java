@@ -35,8 +35,6 @@ import com.github.kilianB.graphics.ImageUtil;
  */
 public class PerceptiveHash extends HashingAlgorithm {
 
-	private static final long serialVersionUID = 8409228150836051697L;
-
 	private static final Logger LOGGER = Logger.getLogger(PerceptiveHash.class.getSimpleName());
 
 	/**
