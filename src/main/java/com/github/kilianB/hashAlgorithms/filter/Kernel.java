@@ -8,7 +8,7 @@ import java.util.function.BiFunction;
 import com.github.kilianB.ArrayUtil;
 import com.github.kilianB.MiscUtil;
 import com.github.kilianB.Require;
-import com.github.kilianB.graphics.FastPixel;
+import com.github.kilianB.graphics.Pixel;
 
 /**
  * Kernel operations are shifting window masks applied to data point of an array
@@ -790,8 +790,8 @@ public class Kernel implements Serializable, Filter {
 	@Override
 	public BufferedImage filter(BufferedImage input) {
 		BufferedImage bi = new BufferedImage(input.getWidth(), input.getHeight(), input.getType());
-		FastPixel fp = FastPixel.create(input);
-		FastPixel fpSet = FastPixel.create(bi);
+		Pixel fp = Pixel.create(input);
+		Pixel fpSet = Pixel.create(bi);
 		int[][] red = fp.getRed();
 		int[][] green = fp.getGreen();
 		int[][] blue = fp.getBlue();
@@ -832,8 +832,8 @@ public class Kernel implements Serializable, Filter {
 		@Override
 		public BufferedImage filter(BufferedImage input) {
 			BufferedImage bi = new BufferedImage(input.getWidth(), input.getHeight(), input.getType());
-			FastPixel fp = FastPixel.create(input);
-			FastPixel fpSet = FastPixel.create(bi);
+			Pixel fp = Pixel.create(input);
+			Pixel fpSet = Pixel.create(bi);
 			int[][] gray = fp.getAverageGrayscale();
 			gray = applyInt(gray);
 			fpSet.setAverageGrayscale(gray);

@@ -4,7 +4,7 @@ import java.awt.image.BufferedImage;
 import java.math.BigInteger;
 
 import com.github.kilianB.ArrayUtil;
-import com.github.kilianB.graphics.FastPixel;
+import com.github.kilianB.graphics.Pixel;
 import com.github.kilianB.graphics.ImageUtil;
 
 /**
@@ -48,7 +48,7 @@ public class AverageColorHash extends AverageHash {
 
 	@Override
 	protected BigInteger hash(BufferedImage image, HashBuilder hash) {
-		FastPixel fp = FastPixel.create(ImageUtil.getScaledInstance(image, width, height));
+		Pixel fp = Pixel.create(ImageUtil.getScaledInstance(image, width, height));
 
 		int[][] grayscale = fp.getAverageGrayscale();
 

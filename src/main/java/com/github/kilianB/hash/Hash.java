@@ -12,7 +12,7 @@ import java.math.BigInteger;
 
 import com.github.kilianB.Require;
 import com.github.kilianB.StringUtil;
-import com.github.kilianB.graphics.FastPixel;
+import com.github.kilianB.graphics.Pixel;
 import com.github.kilianB.hashAlgorithms.HashingAlgorithm;
 
 import javafx.scene.paint.Color;
@@ -320,7 +320,7 @@ public class Hash implements Serializable {
 
 		BufferedImage bi = new BufferedImage(blockSize * width, blockSize * height, BufferedImage.TYPE_3BYTE_BGR);
 
-		FastPixel fp = FastPixel.create(bi);
+		Pixel fp = Pixel.create(bi);
 
 		int i = 0;
 		for (int w = 0; w < width * blockSize; w = w + blockSize) {

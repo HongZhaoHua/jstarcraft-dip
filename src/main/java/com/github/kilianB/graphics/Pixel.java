@@ -13,9 +13,9 @@ import java.util.logging.Logger;
  * @author Kilian
  *
  */
-public interface FastPixel {
+public interface Pixel {
 
-	static final Logger LOGGER = Logger.getLogger(FastPixel.class.getSimpleName());
+	static final Logger LOGGER = Logger.getLogger(Pixel.class.getSimpleName());
 
 	/**
 	 * Return a fast pixel instance mapped to the buffered image type
@@ -23,20 +23,20 @@ public interface FastPixel {
 	 * @param bufferedImage the buffered image to create a fast pixel instance for
 	 * @return an instantiated FastPixelObject
 	 */
-	public static FastPixel create(BufferedImage bufferedImage) {
+	public static Pixel create(BufferedImage bufferedImage) {
 
 		switch (bufferedImage.getType()) {
 
 		case BufferedImage.TYPE_3BYTE_BGR:
 		case BufferedImage.TYPE_4BYTE_ABGR:
-			return new FastPixelByte(bufferedImage);
+			return new BytePixel(bufferedImage);
 		case BufferedImage.TYPE_INT_BGR:
 		case BufferedImage.TYPE_INT_ARGB:
 		case BufferedImage.TYPE_INT_RGB:
-			return new FastPixelInt(bufferedImage);
+			return new IntegerPixel(bufferedImage);
 		default:
 			LOGGER.info("No fast implementation available for " + bufferedImage.getType() + ". Fallback to slow default variant.");
-			return new FastPixelSlowDefault(bufferedImage);
+			return new DefaultPixel(bufferedImage);
 //			throw new UnsupportedOperationException(
 //					"The image type is currently not supported: " + bufferedImage.getType());
 //		
@@ -108,8 +108,8 @@ public interface FastPixel {
 	 * Set the alpha value of the specified pixel. This method is a NOP if alpha is
 	 * not supported.
 	 * 
-	 * @param x        The x coordinate of the images' pixel
-	 * @param y        The y coordinate of the images' pixel
+	 * @param x            The x coordinate of the images' pixel
+	 * @param y            The y coordinate of the images' pixel
 	 * @param transparency the new alpha value in range [0-255]
 	 * @since 1.3.0
 	 */
@@ -120,7 +120,7 @@ public interface FastPixel {
 	/**
 	 * Set the alpha value. This method is a NOP if alpha is not supported.
 	 * 
-	 * @param index    the offset of the underlying array
+	 * @param index        the offset of the underlying array
 	 * @param transparency the new alpha value in range [0-255]
 	 * @since 1.5.0
 	 */

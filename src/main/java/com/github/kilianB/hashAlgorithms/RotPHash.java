@@ -9,7 +9,7 @@ import java.util.Objects;
 
 import org.jtransforms.dct.DoubleDCT_1D;
 
-import com.github.kilianB.graphics.FastPixel;
+import com.github.kilianB.graphics.Pixel;
 import com.github.kilianB.graphics.ImageUtil;
 
 /**
@@ -102,7 +102,7 @@ public class RotPHash extends HashingAlgorithm {
 		// 0. Preprocessing. Extract Luminosity
 		BufferedImage transformed = ImageUtil.getScaledInstance(image, width, height);
 		// Fast pixel access. Order 10x faster than jdk internal
-		FastPixel fp = FastPixel.create(transformed);
+		Pixel fp = Pixel.create(transformed);
 
 		@SuppressWarnings("unchecked")
 		List<Integer>[] values = new List[buckets];

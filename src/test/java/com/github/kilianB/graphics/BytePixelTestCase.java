@@ -20,7 +20,7 @@ import org.junit.jupiter.api.Test;
 import com.github.kilianB.ArrayUtil;
 
 @Nested
-class FastPixelByteTest {
+class BytePixelTestCase {
 
 	// No alpha image
 	private static BufferedImage lena;
@@ -42,13 +42,13 @@ class FastPixelByteTest {
 	@BeforeAll
 	static void loadImage() {
 		try {
-			lena = ImageIO.read(FastPixelByteTest.class.getClassLoader().getResourceAsStream("Lena.png"));
-			bw = ImageIO.read(FastPixelByteTest.class.getClassLoader().getResourceAsStream("BlackWhite.png"));
-			red = ImageIO.read(FastPixelByteTest.class.getClassLoader().getResourceAsStream("red.png"));
-			green = ImageIO.read(FastPixelByteTest.class.getClassLoader().getResourceAsStream("green.png"));
-			blue = ImageIO.read(FastPixelByteTest.class.getClassLoader().getResourceAsStream("blue.png"));
-			brown = ImageIO.read(FastPixelByteTest.class.getClassLoader().getResourceAsStream("brown.png"));
-			brownOpacity = ImageIO.read(FastPixelByteTest.class.getClassLoader().getResourceAsStream("brownOpacity.png"));
+			lena = ImageIO.read(BytePixelTestCase.class.getClassLoader().getResourceAsStream("Lena.png"));
+			bw = ImageIO.read(BytePixelTestCase.class.getClassLoader().getResourceAsStream("BlackWhite.png"));
+			red = ImageIO.read(BytePixelTestCase.class.getClassLoader().getResourceAsStream("red.png"));
+			green = ImageIO.read(BytePixelTestCase.class.getClassLoader().getResourceAsStream("green.png"));
+			blue = ImageIO.read(BytePixelTestCase.class.getClassLoader().getResourceAsStream("blue.png"));
+			brown = ImageIO.read(BytePixelTestCase.class.getClassLoader().getResourceAsStream("brown.png"));
+			brownOpacity = ImageIO.read(BytePixelTestCase.class.getClassLoader().getResourceAsStream("brownOpacity.png"));
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
@@ -56,28 +56,28 @@ class FastPixelByteTest {
 
 	@Test
 	void factoryCorrectClass() {
-		assertEquals(FastPixelByte.class, FastPixel.create(lena).getClass());
-		assertEquals(FastPixelByte.class, FastPixel.create(bw).getClass());
-		assertEquals(FastPixelByte.class, FastPixel.create(red).getClass());
-		assertEquals(FastPixelByte.class, FastPixel.create(green).getClass());
-		assertEquals(FastPixelByte.class, FastPixel.create(blue).getClass());
-		assertEquals(FastPixelByte.class, FastPixel.create(brown).getClass());
-		assertEquals(FastPixelByte.class, FastPixel.create(brownOpacity).getClass());
+		assertEquals(BytePixel.class, Pixel.create(lena).getClass());
+		assertEquals(BytePixel.class, Pixel.create(bw).getClass());
+		assertEquals(BytePixel.class, Pixel.create(red).getClass());
+		assertEquals(BytePixel.class, Pixel.create(green).getClass());
+		assertEquals(BytePixel.class, Pixel.create(blue).getClass());
+		assertEquals(BytePixel.class, Pixel.create(brown).getClass());
+		assertEquals(BytePixel.class, Pixel.create(brownOpacity).getClass());
 	}
 
 	@Test
 	void hasAlphaFalse() {
-		assertFalse(FastPixel.create(brown).hasTransparency());
+		assertFalse(Pixel.create(brown).hasTransparency());
 	}
 
 	@Test
 	void hasAlphaTrue() {
-		assertTrue(FastPixel.create(brownOpacity).hasTransparency());
+		assertTrue(Pixel.create(brownOpacity).hasTransparency());
 	}
 
 	@Test
 	void getRGB() {
-		FastPixel fp = FastPixel.create(lena);
+		Pixel fp = Pixel.create(lena);
 		for (int x = 0; x < lena.getWidth(); x++) {
 			for (int y = 0; y < lena.getHeight(); y++) {
 				assertEquals(lena.getRGB(x, y), fp.getRGB(x, y));
@@ -87,7 +87,7 @@ class FastPixelByteTest {
 
 	@Test
 	void getRGBArray() {
-		FastPixel fp = FastPixel.create(lena);
+		Pixel fp = Pixel.create(lena);
 		int[][] rgb = fp.getRGB();
 		for (int x = 0; x < lena.getWidth(); x++) {
 			for (int y = 0; y < lena.getHeight(); y++) {
@@ -98,7 +98,7 @@ class FastPixelByteTest {
 
 	@Test
 	void red() {
-		FastPixel fp = FastPixel.create(lena);
+		Pixel fp = Pixel.create(lena);
 		for (int x = 0; x < lena.getWidth(); x++) {
 			for (int y = 0; y < lena.getHeight(); y++) {
 				int[] comp = ColorUtil.argbToComponents(lena.getRGB(x, y));
@@ -109,7 +109,7 @@ class FastPixelByteTest {
 
 	@Test
 	void redArray() {
-		FastPixel fp = FastPixel.create(lena);
+		Pixel fp = Pixel.create(lena);
 		int[][] red = fp.getRed();
 		for (int x = 0; x < lena.getWidth(); x++) {
 			for (int y = 0; y < lena.getHeight(); y++) {
@@ -121,7 +121,7 @@ class FastPixelByteTest {
 	@Test
 	void setRed() {
 		BufferedImage bi = new BufferedImage(10, 10, BufferedImage.TYPE_3BYTE_BGR);
-		FastPixel fp = FastPixel.create(bi);
+		Pixel fp = Pixel.create(bi);
 		fp.setRed(0, 0, 255);
 
 		assertAll(() -> {
@@ -138,7 +138,7 @@ class FastPixelByteTest {
 		int w = 10;
 		int h = 10;
 		BufferedImage bi = new BufferedImage(w, h, BufferedImage.TYPE_3BYTE_BGR);
-		FastPixel fp = FastPixel.create(bi);
+		Pixel fp = Pixel.create(bi);
 		int[][] values = new int[w][h];
 		double len = 255 / (double) w;
 		double lenFa = len / h;
@@ -154,7 +154,7 @@ class FastPixelByteTest {
 
 	@Test
 	void green() {
-		FastPixel fp = FastPixel.create(lena);
+		Pixel fp = Pixel.create(lena);
 		for (int x = 0; x < lena.getWidth(); x++) {
 			for (int y = 0; y < lena.getHeight(); y++) {
 				int[] comp = ColorUtil.argbToComponents(lena.getRGB(x, y));
@@ -165,7 +165,7 @@ class FastPixelByteTest {
 
 	@Test
 	void greenArray() {
-		FastPixel fp = FastPixel.create(lena);
+		Pixel fp = Pixel.create(lena);
 		int[][] green = fp.getGreen();
 		for (int x = 0; x < lena.getWidth(); x++) {
 			for (int y = 0; y < lena.getHeight(); y++) {
@@ -177,7 +177,7 @@ class FastPixelByteTest {
 	@Test
 	void setGreen() {
 		BufferedImage bi = new BufferedImage(10, 10, BufferedImage.TYPE_3BYTE_BGR);
-		FastPixel fp = FastPixel.create(bi);
+		Pixel fp = Pixel.create(bi);
 		fp.setGreen(0, 0, 255);
 
 		assertAll(() -> {
@@ -194,7 +194,7 @@ class FastPixelByteTest {
 		int w = 10;
 		int h = 10;
 		BufferedImage bi = new BufferedImage(w, h, BufferedImage.TYPE_3BYTE_BGR);
-		FastPixel fp = FastPixel.create(bi);
+		Pixel fp = Pixel.create(bi);
 		int[][] values = new int[w][h];
 		double len = 255 / (double) w;
 		double lenFa = len / h;
@@ -210,7 +210,7 @@ class FastPixelByteTest {
 
 	@Test
 	void blue() {
-		FastPixel fp = FastPixel.create(lena);
+		Pixel fp = Pixel.create(lena);
 		for (int x = 0; x < lena.getWidth(); x++) {
 			for (int y = 0; y < lena.getHeight(); y++) {
 				int[] comp = ColorUtil.argbToComponents(lena.getRGB(x, y));
@@ -221,7 +221,7 @@ class FastPixelByteTest {
 
 	@Test
 	void blueArray() {
-		FastPixel fp = FastPixel.create(lena);
+		Pixel fp = Pixel.create(lena);
 		int[][] blue = fp.getBlue();
 		for (int x = 0; x < lena.getWidth(); x++) {
 			for (int y = 0; y < lena.getHeight(); y++) {
@@ -232,7 +232,7 @@ class FastPixelByteTest {
 
 	@Test
 	void blueArray1D() {
-		FastPixel fp = FastPixel.create(lena);
+		Pixel fp = Pixel.create(lena);
 		int[] blue = fp.getBlue1D();
 		int[][] blue2D = fp.getBlue();
 		int i = 0;
@@ -247,7 +247,7 @@ class FastPixelByteTest {
 	@Test
 	void setBlue() {
 		BufferedImage bi = new BufferedImage(10, 10, BufferedImage.TYPE_3BYTE_BGR);
-		FastPixel fp = FastPixel.create(bi);
+		Pixel fp = Pixel.create(bi);
 		fp.setBlue(0, 0, 255);
 
 		assertAll(() -> {
@@ -264,7 +264,7 @@ class FastPixelByteTest {
 		int w = 10;
 		int h = 10;
 		BufferedImage bi = new BufferedImage(w, h, BufferedImage.TYPE_3BYTE_BGR);
-		FastPixel fp = FastPixel.create(bi);
+		Pixel fp = Pixel.create(bi);
 		int[][] values = new int[w][h];
 		double len = 255 / (double) w;
 		double lenFa = len / h;
@@ -280,7 +280,7 @@ class FastPixelByteTest {
 
 	@Test
 	void getRGBOpaque() {
-		FastPixel fp = FastPixel.create(brownOpacity);
+		Pixel fp = Pixel.create(brownOpacity);
 		for (int x = 0; x < brownOpacity.getWidth(); x++) {
 			for (int y = 0; y < brownOpacity.getHeight(); y++) {
 				assertEquals(brownOpacity.getRGB(x, y), fp.getRGB(x, y));
@@ -290,7 +290,7 @@ class FastPixelByteTest {
 
 	@Test
 	void alphaOpaque() {
-		FastPixel fp = FastPixel.create(brownOpacity);
+		Pixel fp = Pixel.create(brownOpacity);
 		for (int x = 0; x < brownOpacity.getWidth(); x++) {
 			for (int y = 0; y < brownOpacity.getHeight(); y++) {
 				int[] comp = ColorUtil.argbToComponents(brownOpacity.getRGB(x, y));
@@ -301,7 +301,7 @@ class FastPixelByteTest {
 
 	@Test
 	void redOpaque() {
-		FastPixel fp = FastPixel.create(brownOpacity);
+		Pixel fp = Pixel.create(brownOpacity);
 		for (int x = 0; x < brownOpacity.getWidth(); x++) {
 			for (int y = 0; y < brownOpacity.getHeight(); y++) {
 				int[] comp = ColorUtil.argbToComponents(brownOpacity.getRGB(x, y));
@@ -312,7 +312,7 @@ class FastPixelByteTest {
 
 	@Test
 	void greenOpaque() {
-		FastPixel fp = FastPixel.create(brownOpacity);
+		Pixel fp = Pixel.create(brownOpacity);
 		for (int x = 0; x < brownOpacity.getWidth(); x++) {
 			for (int y = 0; y < brownOpacity.getHeight(); y++) {
 				int[] comp = ColorUtil.argbToComponents(brownOpacity.getRGB(x, y));
@@ -323,7 +323,7 @@ class FastPixelByteTest {
 
 	@Test
 	void blueOpaque() {
-		FastPixel fp = FastPixel.create(brownOpacity);
+		Pixel fp = Pixel.create(brownOpacity);
 		for (int x = 0; x < brownOpacity.getWidth(); x++) {
 			for (int y = 0; y < brownOpacity.getHeight(); y++) {
 				int[] comp = ColorUtil.argbToComponents(brownOpacity.getRGB(x, y));
@@ -337,7 +337,7 @@ class FastPixelByteTest {
 		int w = 1000;
 		int h = 1000;
 		BufferedImage bi = new BufferedImage(w, h, BufferedImage.TYPE_4BYTE_ABGR);
-		FastPixel fp = FastPixel.create(bi);
+		Pixel fp = Pixel.create(bi);
 		int[][] values = new int[w][h];
 		double len = 255 / (double) w;
 		double lenFa = len / h;
@@ -366,7 +366,7 @@ class FastPixelByteTest {
 	@Test
 	void rgbArray() {
 		int arg[] = lena.getRGB(0, 0, lena.getWidth(), lena.getHeight(), null, 0, lena.getWidth());
-		FastPixel fp = FastPixel.create(lena);
+		Pixel fp = Pixel.create(lena);
 		int[][] argFp = fp.getRGB();
 		for (int x = 0; x < lena.getWidth(); x++) {
 			for (int y = 0; y < lena.getHeight(); y++) {
@@ -377,7 +377,7 @@ class FastPixelByteTest {
 
 	@Test
 	void lum() {
-		FastPixel fp = FastPixel.create(bw);
+		Pixel fp = Pixel.create(bw);
 
 		for (int x = 0; x < bw.getWidth(); x++) {
 			for (int y = 0; y < bw.getHeight(); y++) {
@@ -395,7 +395,7 @@ class FastPixelByteTest {
 
 	@Test
 	void lumArray() {
-		FastPixel fp = FastPixel.create(lena);
+		Pixel fp = Pixel.create(lena);
 		int[][] lumArr = fp.getLuma();
 		for (int x = 0; x < lena.getWidth(); x++) {
 			for (int y = 0; y < lena.getHeight(); y++) {
@@ -406,7 +406,7 @@ class FastPixelByteTest {
 
 	@Test
 	void lumInRange() {
-		FastPixel fp = FastPixel.create(lena);
+		Pixel fp = Pixel.create(lena);
 
 		for (int x = 0; x < bw.getWidth(); x++) {
 			for (int y = 0; y < bw.getHeight(); y++) {
@@ -420,7 +420,7 @@ class FastPixelByteTest {
 
 	@Test
 	void hueBlackWhite() {
-		FastPixel fp = FastPixel.create(bw);
+		Pixel fp = Pixel.create(bw);
 		// Invalid hue value. Defined as 0
 		for (int x = 0; x < bw.getWidth(); x++) {
 			for (int y = 0; y < bw.getHeight(); y++) {
@@ -431,7 +431,7 @@ class FastPixelByteTest {
 
 	@Test
 	void hueRed() {
-		FastPixel fp = FastPixel.create(red);
+		Pixel fp = Pixel.create(red);
 
 		for (int x = 0; x < red.getWidth(); x++) {
 			for (int y = 0; y < red.getHeight(); y++) {
@@ -442,7 +442,7 @@ class FastPixelByteTest {
 
 	@Test
 	void hueGreen() {
-		FastPixel fp = FastPixel.create(green);
+		Pixel fp = Pixel.create(green);
 		for (int x = 0; x < green.getWidth(); x++) {
 			for (int y = 0; y < green.getHeight(); y++) {
 				assertEquals(120, fp.getHue(x, y));
@@ -452,7 +452,7 @@ class FastPixelByteTest {
 
 	@Test
 	void hueBlue() {
-		FastPixel fp = FastPixel.create(blue);
+		Pixel fp = Pixel.create(blue);
 		for (int x = 0; x < blue.getWidth(); x++) {
 			for (int y = 0; y < blue.getHeight(); y++) {
 				assertEquals(240, fp.getHue(x, y));
@@ -462,7 +462,7 @@ class FastPixelByteTest {
 
 	@Test
 	void hueBrown() {
-		FastPixel fp = FastPixel.create(brown);
+		Pixel fp = Pixel.create(brown);
 		for (int x = 0; x < brown.getWidth(); x++) {
 			for (int y = 0; y < brown.getHeight(); y++) {
 				assertEquals(20, fp.getHue(x, y));
@@ -472,7 +472,7 @@ class FastPixelByteTest {
 
 	@Test
 	void satBlackWhite() {
-		FastPixel fp = FastPixel.create(bw);
+		Pixel fp = Pixel.create(bw);
 		// Invalid hue value. Defined as 0
 		for (int x = 0; x < bw.getWidth(); x++) {
 			for (int y = 0; y < bw.getHeight(); y++) {
@@ -483,7 +483,7 @@ class FastPixelByteTest {
 
 	@Test
 	void satRed() {
-		FastPixel fp = FastPixel.create(red);
+		Pixel fp = Pixel.create(red);
 
 		for (int x = 0; x < red.getWidth(); x++) {
 			for (int y = 0; y < red.getHeight(); y++) {
@@ -494,7 +494,7 @@ class FastPixelByteTest {
 
 	@Test
 	void satGreen() {
-		FastPixel fp = FastPixel.create(green);
+		Pixel fp = Pixel.create(green);
 		for (int x = 0; x < green.getWidth(); x++) {
 			for (int y = 0; y < green.getHeight(); y++) {
 				assertEquals(1, fp.getSat(x, y));
@@ -504,7 +504,7 @@ class FastPixelByteTest {
 
 	@Test
 	void satBlue() {
-		FastPixel fp = FastPixel.create(blue);
+		Pixel fp = Pixel.create(blue);
 		for (int x = 0; x < blue.getWidth(); x++) {
 			for (int y = 0; y < blue.getHeight(); y++) {
 				assertEquals(1, fp.getSat(x, y));
@@ -514,7 +514,7 @@ class FastPixelByteTest {
 
 	@Test
 	void satBrown() {
-		FastPixel fp = FastPixel.create(brown);
+		Pixel fp = Pixel.create(brown);
 		for (int x = 0; x < brown.getWidth(); x++) {
 			for (int y = 0; y < brown.getHeight(); y++) {
 				assertEquals(0.75, fp.getSat(x, y));
@@ -524,7 +524,7 @@ class FastPixelByteTest {
 
 	@Test
 	void valBlackWhite() {
-		FastPixel fp = FastPixel.create(bw);
+		Pixel fp = Pixel.create(bw);
 		for (int x = 0; x < bw.getWidth(); x++) {
 			for (int y = 0; y < bw.getHeight(); y++) {
 				if (y < 2) {
@@ -541,7 +541,7 @@ class FastPixelByteTest {
 
 	@Test
 	void valRed() {
-		FastPixel fp = FastPixel.create(red);
+		Pixel fp = Pixel.create(red);
 
 		for (int x = 0; x < red.getWidth(); x++) {
 			for (int y = 0; y < red.getHeight(); y++) {
@@ -552,7 +552,7 @@ class FastPixelByteTest {
 
 	@Test
 	void valGreen() {
-		FastPixel fp = FastPixel.create(green);
+		Pixel fp = Pixel.create(green);
 		for (int x = 0; x < green.getWidth(); x++) {
 			for (int y = 0; y < green.getHeight(); y++) {
 				assertEquals(255, fp.getVal(x, y));
@@ -562,7 +562,7 @@ class FastPixelByteTest {
 
 	@Test
 	void valBlue() {
-		FastPixel fp = FastPixel.create(blue);
+		Pixel fp = Pixel.create(blue);
 		for (int x = 0; x < blue.getWidth(); x++) {
 			for (int y = 0; y < blue.getHeight(); y++) {
 				assertEquals(255, fp.getVal(x, y));
@@ -572,7 +572,7 @@ class FastPixelByteTest {
 
 	@Test
 	void valBrown() {
-		FastPixel fp = FastPixel.create(brown);
+		Pixel fp = Pixel.create(brown);
 		for (int x = 0; x < brown.getWidth(); x++) {
 			for (int y = 0; y < brown.getHeight(); y++) {
 				assertEquals(92, fp.getVal(x, y));

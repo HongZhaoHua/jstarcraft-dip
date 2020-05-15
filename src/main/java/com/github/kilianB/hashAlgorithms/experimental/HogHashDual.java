@@ -3,7 +3,7 @@ package com.github.kilianB.hashAlgorithms.experimental;
 import java.awt.image.BufferedImage;
 import java.math.BigInteger;
 
-import com.github.kilianB.graphics.FastPixel;
+import com.github.kilianB.graphics.Pixel;
 import com.github.kilianB.graphics.ImageUtil;
 import com.github.kilianB.hashAlgorithms.HashBuilder;
 
@@ -69,7 +69,7 @@ public class HogHashDual extends HogHash {
 	protected BigInteger hash(BufferedImage image, HashBuilder hash) {
 
 		BufferedImage bi = ImageUtil.getScaledInstance(image, width, height);
-		FastPixel fp = FastPixel.create(bi);
+		Pixel fp = Pixel.create(bi);
 
 		int[][] lum = fp.getLuma();
 

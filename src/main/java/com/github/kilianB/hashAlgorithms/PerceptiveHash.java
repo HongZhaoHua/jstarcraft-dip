@@ -8,7 +8,7 @@ import java.util.logging.Logger;
 import org.jtransforms.dct.DoubleDCT_2D;
 import org.jtransforms.utils.CommonUtils;
 
-import com.github.kilianB.graphics.FastPixel;
+import com.github.kilianB.graphics.Pixel;
 import com.github.kilianB.graphics.ImageUtil;
 
 /**
@@ -66,7 +66,7 @@ public class PerceptiveHash extends HashingAlgorithm {
 
 	@Override
 	protected BigInteger hash(BufferedImage image, HashBuilder hash) {
-		FastPixel fp = FastPixel.create(ImageUtil.getScaledInstance(image, width, height));
+		Pixel fp = Pixel.create(ImageUtil.getScaledInstance(image, width, height));
 
 		int[][] lum = fp.getLuma();
 

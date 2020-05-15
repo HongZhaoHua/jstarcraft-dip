@@ -16,7 +16,7 @@ import com.github.kilianB.Experimental;
 import com.github.kilianB.MathUtil;
 import com.github.kilianB.Require;
 import com.github.kilianB.graphics.ColorUtil;
-import com.github.kilianB.graphics.FastPixel;
+import com.github.kilianB.graphics.Pixel;
 import com.github.kilianB.graphics.ImageUtil;
 import com.github.kilianB.hashAlgorithms.HashBuilder;
 import com.github.kilianB.hashAlgorithms.HashingAlgorithm;
@@ -164,7 +164,7 @@ public class HogHash extends HashingAlgorithm {
 	protected BigInteger hash(BufferedImage image, HashBuilder hash) {
 
 		BufferedImage bi = ImageUtil.getScaledInstance(image, width, height);
-		FastPixel fp = FastPixel.create(bi);
+		Pixel fp = Pixel.create(bi);
 
 		int[][] lum = fp.getLuma();
 

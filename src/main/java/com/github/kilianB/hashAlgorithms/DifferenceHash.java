@@ -4,7 +4,7 @@ import java.awt.image.BufferedImage;
 import java.math.BigInteger;
 import java.util.Objects;
 
-import com.github.kilianB.graphics.FastPixel;
+import com.github.kilianB.graphics.Pixel;
 import com.github.kilianB.graphics.ImageUtil;
 import com.github.kilianB.hash.Hash;
 
@@ -94,7 +94,7 @@ public class DifferenceHash extends HashingAlgorithm {
 
 	@Override
 	protected BigInteger hash(BufferedImage image, HashBuilder hash) {
-		FastPixel fp = FastPixel.create(ImageUtil.getScaledInstance(image, width, height));
+		Pixel fp = Pixel.create(ImageUtil.getScaledInstance(image, width, height));
 		// Use data buffer for faster access
 
 		int[][] lum = fp.getLuma();
@@ -224,14 +224,14 @@ public class DifferenceHash extends HashingAlgorithm {
 
 				BufferedImage bi = new BufferedImage(blockSize * width, blockSize * height, BufferedImage.TYPE_3BYTE_BGR);
 
-				FastPixel fp = FastPixel.create(bi);
+				Pixel fp = Pixel.create(bi);
 				drawDoublePrecision(fp, width, 1, height, 0, blockSize, 0, 0, bitColorIndex, colors);
 				return bi;
 			} else if (precision.equals(Precision.Double)) {
 
 				BufferedImage bi = new BufferedImage(blockSize * width, blockSize * height * 2, BufferedImage.TYPE_3BYTE_BGR);
 
-				FastPixel fp = FastPixel.create(bi);
+				Pixel fp = Pixel.create(bi);
 				drawDoublePrecision(fp, width, 1, height, 0, blockSize, 0, 0, bitColorIndex, colors);
 				drawDoublePrecision(fp, width, 0, height, 1, blockSize, hashLength / 2, height, bitColorIndex, colors);
 				return bi;
@@ -239,7 +239,7 @@ public class DifferenceHash extends HashingAlgorithm {
 
 				BufferedImage bi = new BufferedImage(blockSize * width, blockSize * height * 3, BufferedImage.TYPE_3BYTE_BGR);
 
-				FastPixel fp = FastPixel.create(bi);
+				Pixel fp = Pixel.create(bi);
 				int hashOffset = 0;
 				hashOffset += drawDoublePrecision(fp, width, 1, height, 0, blockSize, hashOffset, 0, bitColorIndex, colors);
 				hashOffset += drawDoublePrecision(fp, width, 0, height, 1, blockSize, hashOffset, height, bitColorIndex, colors);
@@ -248,7 +248,7 @@ public class DifferenceHash extends HashingAlgorithm {
 			}
 		}
 
-		private int drawDoublePrecision(FastPixel writer, int width, int wOffset, int height, int hOffset, int blockSize, int offset, int yOffset, int[] bitColorIndex, Color[] colors) {
+		private int drawDoublePrecision(Pixel writer, int width, int wOffset, int height, int hOffset, int blockSize, int offset, int yOffset, int[] bitColorIndex, Color[] colors) {
 			int i = offset;
 			for (int w = 0; w < (width - wOffset) * blockSize; w = w + blockSize) {
 				for (int h = 0; h < (height - hOffset) * blockSize; h = h + blockSize) {

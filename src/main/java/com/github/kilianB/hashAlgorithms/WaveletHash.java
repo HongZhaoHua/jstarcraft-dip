@@ -4,7 +4,7 @@ import java.awt.image.BufferedImage;
 import java.math.BigInteger;
 import java.util.Objects;
 
-import com.github.kilianB.graphics.FastPixel;
+import com.github.kilianB.graphics.Pixel;
 import com.github.kilianB.graphics.ImageUtil;
 
 /**
@@ -63,7 +63,7 @@ public class WaveletHash extends HashingAlgorithm {
 	protected BigInteger hash(BufferedImage image, HashBuilder hashBuilder) {
 
 		// Rescale
-		FastPixel fp = FastPixel.create(ImageUtil.getScaledInstance(image, width, height));
+		Pixel fp = Pixel.create(ImageUtil.getScaledInstance(image, width, height));
 
 		int[][] luma = fp.getLuma();
 

@@ -9,13 +9,10 @@ import com.github.kilianB.MathUtil;
  * @author Kilian
  *
  */
-public class FastPixelInt extends AbstractPixel {
+public class IntegerPixel extends AbstractPixel {
 
 	/** Full alpha constant */
 	private static final int FULL_ALPHA = 255 << 24;
-
-	/** True if the underlying image has an alpha component */
-	private boolean transparency;
 
 	/** Raw data */
 	private int[] imageData;
@@ -41,9 +38,8 @@ public class FastPixelInt extends AbstractPixel {
 	 * @param bImage The buffered image to extract data from
 	 * @since 1.3.0
 	 */
-	public FastPixelInt(BufferedImage bImage) {
-
-		super(bImage.getWidth(), bImage.getHeight());
+	public IntegerPixel(BufferedImage bImage) {
+		super(bImage.getWidth(), bImage.getHeight(), bImage.getColorModel().hasAlpha());
 
 		imageData = ((DataBufferInt) bImage.getRaster().getDataBuffer()).getData();
 
@@ -54,7 +50,6 @@ public class FastPixelInt extends AbstractPixel {
 			greenMask = 0x0000ff00;
 			blueMask = 0x000000ff;
 			alphaMask = 0xff000000;
-			transparency = true;
 			break;
 		case BufferedImage.TYPE_INT_RGB:
 			redMask = 0x00ff0000;
@@ -79,7 +74,7 @@ public class FastPixelInt extends AbstractPixel {
 
 	@Override
 	public int getRGB(int index) {
-		return (transparency ? (getTransparency(index) << 24) : FULL_ALPHA) | (getRed(index) << 16) | (getGreen(index) << 8) | (getBlue(index));
+		return (hasTransparency() ? (getTransparency(index) << 24) : FULL_ALPHA) | (getRed(index) << 16) | (getGreen(index) << 8) | (getBlue(index));
 	}
 
 	/**
@@ -127,7 +122,7 @@ public class FastPixelInt extends AbstractPixel {
 	}
 
 	public int getTransparency(int index) {
-		if (!transparency)
+		if (!hasTransparency())
 			return -1;
 		return (imageData[index] & alphaMask) >>> alphaOffset;
 	}
@@ -154,7 +149,7 @@ public class FastPixelInt extends AbstractPixel {
 	 */
 	@Override
 	public int[][] getTransparencies() {
-		if (!transparency)
+		if (!hasTransparency())
 			return null;
 		int[][] alpha = new int[width][height];
 		int x = 0;
@@ -172,7 +167,7 @@ public class FastPixelInt extends AbstractPixel {
 
 	@Override
 	public void setTransparency(int index, int transparency) {
-		if (!this.transparency)
+		if (!this.hasTransparency())
 			return;
 		imageData[index] |= (transparency << alphaOffset);
 	}
@@ -481,11 +476,6 @@ public class FastPixelInt extends AbstractPixel {
 
 	public int getOffset(int x, int y) {
 		return (y * width) + x;
-	}
-
-	@Override
-	public boolean hasTransparency() {
-		return transparency;
 	}
 
 }

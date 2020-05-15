@@ -6,16 +6,20 @@ import com.github.kilianB.ArrayUtil;
  * @author Kilian
  *
  */
-public abstract class AbstractPixel implements FastPixel {
+public abstract class AbstractPixel implements Pixel {
 
 	/** Width of the image */
 	protected final int width;
 	/** Height of the image */
 	protected final int height;
 
-	public AbstractPixel(int width, int height) {
+	/** True if the underlying image has an alpha component */
+	private final boolean transparency;
+
+	public AbstractPixel(int width, int height, boolean transparency) {
 		this.width = width;
 		this.height = height;
+		this.transparency = transparency;
 	}
 
 	@Override
@@ -43,6 +47,11 @@ public abstract class AbstractPixel implements FastPixel {
 			return getGreen(i);
 		});
 		return green;
+	}
+
+	@Override
+	public boolean hasTransparency() {
+		return transparency;
 	}
 
 }

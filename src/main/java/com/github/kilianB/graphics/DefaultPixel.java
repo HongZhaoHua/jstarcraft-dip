@@ -11,7 +11,7 @@ import java.awt.image.BufferedImage;
  * @author Kilian
  * @since 1.5.2
  */
-public class FastPixelSlowDefault extends AbstractPixel {
+public class DefaultPixel extends AbstractPixel {
 
 	/** Full alpha constant */
 
@@ -25,9 +25,6 @@ public class FastPixelSlowDefault extends AbstractPixel {
 	private static final int GREEN_MASK_INVERSE = FULL ^ (GREEN_MASK);
 	private static final int BLUE_MASK = 255 << 0;
 	private static final int BLUE_MASK_INVERSE = FULL ^ (BLUE_MASK);
-
-	/** True if the underlying image has an alpha component */
-	private final boolean transparency;
 
 	/** Raw data */
 	private final int[] rgbImageData;
@@ -45,13 +42,10 @@ public class FastPixelSlowDefault extends AbstractPixel {
 	 * @param bImage The buffered image to extract data from
 	 * @since 1.3.0
 	 */
-	public FastPixelSlowDefault(BufferedImage bImage) {
-
-		super(bImage.getWidth(), bImage.getHeight());
-		transparency = bImage.getColorModel().hasAlpha();
+	public DefaultPixel(BufferedImage bImage) {
+		super(bImage.getWidth(), bImage.getHeight(), bImage.getColorModel().hasAlpha());
 
 		rgbImageData = bImage.getRGB(0, 0, width, height, null, 0, width);
-
 	}
 
 	@Override
@@ -77,7 +71,7 @@ public class FastPixelSlowDefault extends AbstractPixel {
 
 	@Override
 	public int getTransparency(int index) {
-		if (!transparency) {
+		if (!hasTransparency()) {
 			return -1;
 		} else {
 			return (rgbImageData[index] & ALPHA_MASK) >>> 24;
@@ -86,7 +80,7 @@ public class FastPixelSlowDefault extends AbstractPixel {
 
 	@Override
 	public int[][] getTransparencies() {
-		if (!transparency)
+		if (!hasTransparency())
 			return null;
 		int[][] alpha = new int[width][height];
 		int x = 0;
@@ -294,11 +288,6 @@ public class FastPixelSlowDefault extends AbstractPixel {
 			luma[i] = getLuma(i);
 		}
 		return luma;
-	}
-
-	@Override
-	public boolean hasTransparency() {
-		return transparency;
 	}
 
 	@Override

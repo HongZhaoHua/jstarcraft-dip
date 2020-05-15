@@ -3,8 +3,6 @@ package com.github.kilianB.graphics;
 import java.awt.image.BufferedImage;
 import java.awt.image.DataBufferByte;
 
-import com.github.kilianB.ArrayUtil;
-
 /**
  * High performant access of RGB/YCrCb/HSV Data.
  * 
@@ -18,22 +16,15 @@ import com.github.kilianB.ArrayUtil;
  * @author Kilian
  * @since 1.3.0
  */
-public class FastPixelByte implements FastPixel {
+public class BytePixel extends AbstractPixel {
 
 	/** Full alpha constant */
 	private static final int ALPHA_MASK = 255 << 24;
 
-	/** True if the underlying image has an alpha component */
-	private final boolean transparency;
 	/** Offset used in case alpha is present */
 	private final int alphaOffset;
 	/** Bytes used to represent a single pixel */
 	private final int bytesPerColor;
-
-	/** Width of the image */
-	protected final int width;
-	/** Height of the image */
-	protected final int height;
 
 	/** Raw data */
 	private final byte[] imageData;
@@ -49,26 +40,22 @@ public class FastPixelByte implements FastPixel {
 	 * @param bImage The buffered image to extract data from
 	 * @since 1.3.0
 	 */
-	public FastPixelByte(BufferedImage bImage) {
+	public BytePixel(BufferedImage bImage) {
+		super(bImage.getWidth(), bImage.getHeight(), bImage.getColorModel().hasAlpha());
 		imageData = ((DataBufferByte) bImage.getRaster().getDataBuffer()).getData();
 
 		if (bImage.getColorModel().hasAlpha()) {
 			alphaOffset = 1;
-			transparency = true;
 			bytesPerColor = 4;
 		} else {
 			alphaOffset = 0;
-			transparency = false;
 			bytesPerColor = 3;
 		}
-
-		this.width = bImage.getWidth();
-		this.height = bImage.getHeight();
 	}
 
 	@Override
 	public int getRGB(int index) {
-		return (transparency ? (imageData[index++] & 0xFF) << 24 : ALPHA_MASK) | ((imageData[index++] & 0xFF)) | ((imageData[index++] & 0xFF) << 8) | ((imageData[index++] & 0xFF) << 16);
+		return (hasTransparency() ? (imageData[index++] & 0xFF) << 24 : ALPHA_MASK) | ((imageData[index++] & 0xFF)) | ((imageData[index++] & 0xFF) << 8) | ((imageData[index++] & 0xFF) << 16);
 	}
 
 	/**
@@ -88,7 +75,7 @@ public class FastPixelByte implements FastPixel {
 		for (int i = 0; i < imageData.length; i++) {
 			// We could use the getRGB(x,y) method. but lets inline some calls
 			int argb;
-			argb = transparency ? (imageData[i++] & 0xFF) << 24 : ALPHA_MASK;
+			argb = hasTransparency() ? (imageData[i++] & 0xFF) << 24 : ALPHA_MASK;
 			// Red
 			argb |= (imageData[i++] & 0xFF) | (imageData[i++] & 0xFF) << 8 | (imageData[i] & 0xFF) << 16;
 
@@ -111,7 +98,7 @@ public class FastPixelByte implements FastPixel {
 	 */
 	@Override
 	public int[][] getTransparencies() {
-		if (!transparency)
+		if (!hasTransparency())
 			return null;
 		int[][] alpha = new int[width][height];
 		int x = 0;
@@ -129,14 +116,14 @@ public class FastPixelByte implements FastPixel {
 
 	@Override
 	public int getTransparency(int index) {
-		if (!transparency)
+		if (!hasTransparency())
 			return -1;
 		return imageData[index] & 0xFF;
 	}
 
 	@Override
 	public void setTransparency(int index, int transparency) {
-		if (!this.transparency)
+		if (!hasTransparency())
 			return;
 		imageData[index] = (byte) (transparency);
 	}
@@ -343,11 +330,6 @@ public class FastPixelByte implements FastPixel {
 
 	public int getOffset(int x, int y) {
 		return (y * bytesPerColor * width) + (x * bytesPerColor);
-	}
-
-	@Override
-	public boolean hasTransparency() {
-		return transparency;
 	}
 
 	@Override

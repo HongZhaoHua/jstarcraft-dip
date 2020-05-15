@@ -10,7 +10,7 @@ import java.util.Objects;
 
 import com.github.kilianB.ArrayUtil;
 import com.github.kilianB.Require;
-import com.github.kilianB.graphics.FastPixel;
+import com.github.kilianB.graphics.Pixel;
 import com.github.kilianB.graphics.ImageUtil;
 import com.github.kilianB.hashAlgorithms.filter.Kernel;
 
@@ -98,7 +98,7 @@ public class AverageKernelHash extends AverageHash implements Serializable {
 	@Override
 	protected BigInteger hash(BufferedImage image, HashBuilder hash) {
 
-		FastPixel fp = FastPixel.create(ImageUtil.getScaledInstance(image, width, height));
+		Pixel fp = Pixel.create(ImageUtil.getScaledInstance(image, width, height));
 
 		int[][] luminocity = fp.getLuma();
 

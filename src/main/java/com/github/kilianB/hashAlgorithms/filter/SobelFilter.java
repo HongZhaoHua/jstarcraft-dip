@@ -3,7 +3,7 @@ package com.github.kilianB.hashAlgorithms.filter;
 import java.awt.image.BufferedImage;
 
 import com.github.kilianB.Require;
-import com.github.kilianB.graphics.FastPixel;
+import com.github.kilianB.graphics.Pixel;
 
 /**
  * 
@@ -80,7 +80,7 @@ public class SobelFilter implements Filter {
 	@Override
 	public BufferedImage filter(BufferedImage bi) {
 
-		FastPixel fp = FastPixel.create(bi);
+		Pixel fp = Pixel.create(bi);
 
 		int[][] grayscale = fp.getAverageGrayscale();
 
@@ -106,7 +106,7 @@ public class SobelFilter implements Filter {
 		}
 
 		BufferedImage returnBi = new BufferedImage(bi.getWidth(), bi.getHeight(), bi.getType());
-		FastPixel fpSet = FastPixel.create(returnBi);
+		Pixel fpSet = Pixel.create(returnBi);
 
 		fpSet.setAverageGrayscale(result);
 
