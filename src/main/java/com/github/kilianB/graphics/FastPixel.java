@@ -81,7 +81,7 @@ public interface FastPixel {
 	 * @return the alpha value in range [0-255] or -1 if alpha is not supported
 	 * @since 1.5.0
 	 */
-	int getAlpha(int index);
+	int getTransparency(int index);
 
 	/**
 	 * Get the alpha value of the specified pixel
@@ -91,8 +91,8 @@ public interface FastPixel {
 	 * @return the alpha value in range [0-255] or -1 if alpha is not supported
 	 * @since 1.3.0
 	 */
-	default int getAlpha(int x, int y) {
-		return getAlpha(getOffset(x, y));
+	default int getTransparency(int x, int y) {
+		return getTransparency(getOffset(x, y));
 	}
 
 	/**
@@ -102,7 +102,7 @@ public interface FastPixel {
 	 * @return the alpha values or null if alpha is not supported
 	 * @since 1.3.0
 	 */
-	int[][] getAlpha();
+	int[][] getTransparencies();
 
 	/**
 	 * Set the alpha value of the specified pixel. This method is a NOP if alpha is
@@ -113,8 +113,8 @@ public interface FastPixel {
 	 * @param newAlpha the new alpha value in range [0-255]
 	 * @since 1.3.0
 	 */
-	default void setAlpha(int x, int y, int newAlpha) {
-		setAlpha(getOffset(x, y), newAlpha);
+	default void setTransparency(int x, int y, int newAlpha) {
+		setTransparency(getOffset(x, y), newAlpha);
 	}
 
 	/**
@@ -124,7 +124,7 @@ public interface FastPixel {
 	 * @param newAlpha the new alpha value in range [0-255]
 	 * @since 1.5.0
 	 */
-	void setAlpha(int index, int newAlpha);
+	void setTransparency(int index, int newAlpha);
 
 	/**
 	 * Set new alpha values for the entire picture
@@ -132,7 +132,7 @@ public interface FastPixel {
 	 * @param newAlpha red values in range [0-255]
 	 * @since 1.4.5
 	 */
-	void setAlpha(int[][] newAlpha);
+	void setTransparencies(int[][] newAlpha);
 
 	/**
 	 * Get the red value at the specified offset
@@ -650,7 +650,7 @@ public interface FastPixel {
 	 * 
 	 * @return true if the image has an alpha channel. false otherwise
 	 */
-	boolean hasAlpha();
+	boolean hasTransparency();
 
 	/**
 	 * Map the x and y values to the underlying one dimensional data array

@@ -110,7 +110,7 @@ public class FastPixelByte implements FastPixel {
 	 * @since 1.3.0
 	 */
 	@Override
-	public int[][] getAlpha() {
+	public int[][] getTransparencies() {
 		if (!alpha)
 			return null;
 		int[][] alpha = new int[width][height];
@@ -128,14 +128,14 @@ public class FastPixelByte implements FastPixel {
 	}
 
 	@Override
-	public int getAlpha(int index) {
+	public int getTransparency(int index) {
 		if (!alpha)
 			return -1;
 		return imageData[index] & 0xFF;
 	}
 
 	@Override
-	public void setAlpha(int index, int newAlpha) {
+	public void setTransparency(int index, int newAlpha) {
 		if (!alpha)
 			return;
 		imageData[index] = (byte) (newAlpha);
@@ -148,10 +148,10 @@ public class FastPixelByte implements FastPixel {
 	 * @since 1.4.5
 	 */
 	@Override
-	public void setAlpha(int[][] newAlpha) {
+	public void setTransparencies(int[][] newAlpha) {
 		for (int x = 0; x < width; x++) {
 			for (int y = 0; y < height; y++) {
-				setAlpha(x, y, newAlpha[x][y]);
+				setTransparency(x, y, newAlpha[x][y]);
 			}
 		}
 	}
@@ -346,7 +346,7 @@ public class FastPixelByte implements FastPixel {
 	}
 
 	@Override
-	public boolean hasAlpha() {
+	public boolean hasTransparency() {
 		return alpha;
 	}
 

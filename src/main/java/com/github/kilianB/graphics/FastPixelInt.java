@@ -79,7 +79,7 @@ public class FastPixelInt extends FastPixelImpl {
 
 	@Override
 	public int getRGB(int index) {
-		return (alpha ? (getAlpha(index) << 24) : FULL_ALPHA) | (getRed(index) << 16) | (getGreen(index) << 8) | (getBlue(index));
+		return (alpha ? (getTransparency(index) << 24) : FULL_ALPHA) | (getRed(index) << 16) | (getGreen(index) << 8) | (getBlue(index));
 	}
 
 	/**
@@ -126,7 +126,7 @@ public class FastPixelInt extends FastPixelImpl {
 		return rgb;
 	}
 
-	public int getAlpha(int index) {
+	public int getTransparency(int index) {
 		if (!alpha)
 			return -1;
 		return (imageData[index] & alphaMask) >>> alphaOffset;
@@ -141,8 +141,8 @@ public class FastPixelInt extends FastPixelImpl {
 	 * @since 1.3.0
 	 */
 	@Override
-	public int getAlpha(int x, int y) {
-		return getAlpha(getOffset(x, y));
+	public int getTransparency(int x, int y) {
+		return getTransparency(getOffset(x, y));
 	}
 
 	/**
@@ -153,14 +153,14 @@ public class FastPixelInt extends FastPixelImpl {
 	 * @since 1.3.0
 	 */
 	@Override
-	public int[][] getAlpha() {
+	public int[][] getTransparencies() {
 		if (!alpha)
 			return null;
 		int[][] alpha = new int[width][height];
 		int x = 0;
 		int y = 0;
 		for (int i = 0; i < imageData.length; i++) {
-			alpha[x][y] = getAlpha(i);
+			alpha[x][y] = getTransparency(i);
 			x++;
 			if (x >= width) {
 				x = 0;
@@ -171,7 +171,7 @@ public class FastPixelInt extends FastPixelImpl {
 	}
 
 	@Override
-	public void setAlpha(int index, int newAlpha) {
+	public void setTransparency(int index, int newAlpha) {
 		if (!alpha)
 			return;
 		imageData[index] |= (newAlpha << alphaOffset);
@@ -187,8 +187,8 @@ public class FastPixelInt extends FastPixelImpl {
 	 * @since 1.3.0
 	 */
 	@Override
-	public void setAlpha(int x, int y, int newAlpha) {
-		setAlpha(getOffset(x, y), newAlpha);
+	public void setTransparency(int x, int y, int newAlpha) {
+		setTransparency(getOffset(x, y), newAlpha);
 	}
 
 	/**
@@ -198,10 +198,10 @@ public class FastPixelInt extends FastPixelImpl {
 	 * @since 1.4.5
 	 */
 	@Override
-	public void setAlpha(int[][] newAlpha) {
+	public void setTransparencies(int[][] newAlpha) {
 		for (int x = 0; x < width; x++) {
 			for (int y = 0; y < height; y++) {
-				setAlpha(x, y, newAlpha[x][y]);
+				setTransparency(x, y, newAlpha[x][y]);
 			}
 		}
 	}
@@ -498,7 +498,7 @@ public class FastPixelInt extends FastPixelImpl {
 	}
 
 	@Override
-	public boolean hasAlpha() {
+	public boolean hasTransparency() {
 		return alpha;
 	}
 

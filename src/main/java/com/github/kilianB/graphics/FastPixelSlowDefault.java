@@ -76,7 +76,7 @@ public class FastPixelSlowDefault extends FastPixelImpl {
 	}
 
 	@Override
-	public int getAlpha(int index) {
+	public int getTransparency(int index) {
 		if (!alpha) {
 			return -1;
 		} else {
@@ -85,14 +85,14 @@ public class FastPixelSlowDefault extends FastPixelImpl {
 	}
 
 	@Override
-	public int[][] getAlpha() {
+	public int[][] getTransparencies() {
 		if (!alpha)
 			return null;
 		int[][] alpha = new int[width][height];
 		int x = 0;
 		int y = 0;
 		for (int i = 0; i < rgbImageData.length; i++) {
-			alpha[x][y] = getAlpha(i);
+			alpha[x][y] = getTransparency(i);
 			x++;
 			if (x >= width) {
 				x = 0;
@@ -103,14 +103,14 @@ public class FastPixelSlowDefault extends FastPixelImpl {
 	}
 
 	@Override
-	public void setAlpha(int index, int newAlpha) {
+	public void setTransparency(int index, int newAlpha) {
 		int newRGB = getRGB(index) & ALPHA_MASK_INVERSE | (newAlpha << 24);
 		rgbImageData[index] = newRGB;
 		bImage.setRGB(getX(index), getY(index), newRGB);
 	}
 
 	@Override
-	public void setAlpha(int[][] newAlpha) {
+	public void setTransparencies(int[][] newAlpha) {
 		for (int x = 0; x < newAlpha.length; x++) {
 			for (int y = 0; y < newAlpha[x].length; y++) {
 				int index = getOffset(x, y);
@@ -297,7 +297,7 @@ public class FastPixelSlowDefault extends FastPixelImpl {
 	}
 
 	@Override
-	public boolean hasAlpha() {
+	public boolean hasTransparency() {
 		return alpha;
 	}
 

@@ -804,8 +804,8 @@ public class Kernel implements Serializable, Filter {
 		fpSet.setGreen(green);
 		fpSet.setBlue(blue);
 
-		if (fpSet.hasAlpha()) {
-			fpSet.setAlpha(fp.getAlpha());
+		if (fpSet.hasTransparency()) {
+			fpSet.setTransparencies(fp.getTransparencies());
 		}
 
 		return bi;

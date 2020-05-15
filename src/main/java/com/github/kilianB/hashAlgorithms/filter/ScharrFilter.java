@@ -110,8 +110,8 @@ public class ScharrFilter implements Filter {
 
 		fpSet.setAverageGrayscale(result);
 
-		if (fpSet.hasAlpha()) {
-			fpSet.setAlpha(fp.getAlpha());
+		if (fpSet.hasTransparency()) {
+			fpSet.setTransparencies(fp.getTransparencies());
 		}
 
 		return returnBi;

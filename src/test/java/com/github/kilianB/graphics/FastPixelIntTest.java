@@ -81,12 +81,12 @@ class FastPixelIntTest {
 
 	@Test
 	void hasAlphaFalse() {
-		assertFalse(FastPixel.create(brown).hasAlpha());
+		assertFalse(FastPixel.create(brown).hasTransparency());
 	}
 
 	@Test
 	void hasAlphaTrue() {
-		assertTrue(FastPixel.create(brownOpacity).hasAlpha());
+		assertTrue(FastPixel.create(brownOpacity).hasTransparency());
 	}
 
 	@Test
@@ -308,7 +308,7 @@ class FastPixelIntTest {
 		for (int x = 0; x < brownOpacity.getWidth(); x++) {
 			for (int y = 0; y < brownOpacity.getHeight(); y++) {
 				int[] comp = ColorUtil.argbToComponents(brownOpacity.getRGB(x, y));
-				assertEquals(comp[0], fp.getAlpha(x, y));
+				assertEquals(comp[0], fp.getTransparency(x, y));
 			}
 		}
 	}
@@ -364,7 +364,7 @@ class FastPixelIntTest {
 		fp.setRed(values);
 		fp.setBlue(values);
 		fp.setGreen(values);
-		fp.setAlpha(values);
+		fp.setTransparencies(values);
 
 		assertAll(() -> {
 			assertArrayEquals(values, fp.getRed());
@@ -373,7 +373,7 @@ class FastPixelIntTest {
 		}, () -> {
 			assertArrayEquals(values, fp.getBlue());
 		}, () -> {
-			assertArrayEquals(values, fp.getAlpha());
+			assertArrayEquals(values, fp.getTransparencies());
 		});
 	}
 

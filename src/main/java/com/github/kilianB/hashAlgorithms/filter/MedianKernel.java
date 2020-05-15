@@ -122,8 +122,8 @@ public class MedianKernel extends NonAveragingKernel {
 
 		gray = applyInt(gray);
 
-		if (fpSet.hasAlpha()) {
-			fpSet.setAlpha(fp.getAlpha());
+		if (fpSet.hasTransparency()) {
+			fpSet.setTransparencies(fp.getTransparencies());
 		}
 
 		fpSet.setAverageGrayscale(gray);
