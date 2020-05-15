@@ -11,7 +11,7 @@ import java.awt.image.BufferedImage;
  * @author Kilian
  * @since 1.5.2
  */
-public class FastPixelSlowDefault extends FastPixelImpl {
+public class FastPixelSlowDefault extends AbstractPixel {
 
 	/** Full alpha constant */
 

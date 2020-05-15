@@ -9,7 +9,7 @@ import com.github.kilianB.MathUtil;
  * @author Kilian
  *
  */
-public class FastPixelInt extends FastPixelImpl {
+public class FastPixelInt extends AbstractPixel {
 
 	/** Full alpha constant */
 	private static final int FULL_ALPHA = 255 << 24;

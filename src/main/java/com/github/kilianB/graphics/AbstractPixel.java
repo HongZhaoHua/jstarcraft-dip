@@ -6,14 +6,14 @@ import com.github.kilianB.ArrayUtil;
  * @author Kilian
  *
  */
-public abstract class FastPixelImpl implements FastPixel {
+public abstract class AbstractPixel implements FastPixel {
 
 	/** Width of the image */
 	protected final int width;
 	/** Height of the image */
 	protected final int height;
 
-	public FastPixelImpl(int width, int height) {
+	public AbstractPixel(int width, int height) {
 		this.width = width;
 		this.height = height;
 	}
