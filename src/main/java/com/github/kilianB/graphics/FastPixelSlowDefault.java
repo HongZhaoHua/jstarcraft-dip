@@ -27,7 +27,7 @@ public class FastPixelSlowDefault extends FastPixelImpl {
 	private static final int BLUE_MASK_INVERSE = FULL ^ (BLUE_MASK);
 
 	/** True if the underlying image has an alpha component */
-	private final boolean alpha;
+	private final boolean transparency;
 
 	/** Raw data */
 	private final int[] rgbImageData;
@@ -48,7 +48,7 @@ public class FastPixelSlowDefault extends FastPixelImpl {
 	public FastPixelSlowDefault(BufferedImage bImage) {
 
 		super(bImage.getWidth(), bImage.getHeight());
-		alpha = bImage.getColorModel().hasAlpha();
+		transparency = bImage.getColorModel().hasAlpha();
 
 		rgbImageData = bImage.getRGB(0, 0, width, height, null, 0, width);
 
@@ -77,7 +77,7 @@ public class FastPixelSlowDefault extends FastPixelImpl {
 
 	@Override
 	public int getTransparency(int index) {
-		if (!alpha) {
+		if (!transparency) {
 			return -1;
 		} else {
 			return (rgbImageData[index] & ALPHA_MASK) >>> 24;
@@ -86,7 +86,7 @@ public class FastPixelSlowDefault extends FastPixelImpl {
 
 	@Override
 	public int[][] getTransparencies() {
-		if (!alpha)
+		if (!transparency)
 			return null;
 		int[][] alpha = new int[width][height];
 		int x = 0;
@@ -103,8 +103,8 @@ public class FastPixelSlowDefault extends FastPixelImpl {
 	}
 
 	@Override
-	public void setTransparency(int index, int transparenciy) {
-		int newRGB = getRGB(index) & ALPHA_MASK_INVERSE | (transparenciy << 24);
+	public void setTransparency(int index, int transparency) {
+		int newRGB = getRGB(index) & ALPHA_MASK_INVERSE | (transparency << 24);
 		rgbImageData[index] = newRGB;
 		bImage.setRGB(getX(index), getY(index), newRGB);
 	}
@@ -298,7 +298,7 @@ public class FastPixelSlowDefault extends FastPixelImpl {
 
 	@Override
 	public boolean hasTransparency() {
-		return alpha;
+		return transparency;
 	}
 
 	@Override
