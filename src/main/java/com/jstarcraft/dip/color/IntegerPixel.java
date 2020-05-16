@@ -1,4 +1,4 @@
-package com.github.kilianB.graphics;
+package com.jstarcraft.dip.color;
 
 import java.awt.image.BufferedImage;
 import java.awt.image.DataBufferInt;

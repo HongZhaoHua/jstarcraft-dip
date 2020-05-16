@@ -9,8 +9,8 @@ import java.util.Objects;
 
 import org.jtransforms.dct.DoubleDCT_1D;
 
-import com.github.kilianB.graphics.ColorPixel;
-import com.github.kilianB.graphics.ImageUtil;
+import com.jstarcraft.dip.color.ColorPixel;
+import com.jstarcraft.dip.color.ImageUtil;
 
 /**
  * A rotational invariant hashing algorithm which is mostly immune to rotation

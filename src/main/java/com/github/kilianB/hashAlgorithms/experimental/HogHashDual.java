@@ -3,9 +3,9 @@ package com.github.kilianB.hashAlgorithms.experimental;
 import java.awt.image.BufferedImage;
 import java.math.BigInteger;
 
-import com.github.kilianB.graphics.ColorPixel;
-import com.github.kilianB.graphics.ImageUtil;
 import com.github.kilianB.hashAlgorithms.HashBuilder;
+import com.jstarcraft.dip.color.ColorPixel;
+import com.jstarcraft.dip.color.ImageUtil;
 
 /**
  * Image Hash on HOG feature descriptor. Not ready yet. Most likely use a very

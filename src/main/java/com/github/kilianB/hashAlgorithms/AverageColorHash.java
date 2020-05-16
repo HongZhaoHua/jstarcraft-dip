@@ -4,8 +4,8 @@ import java.awt.image.BufferedImage;
 import java.math.BigInteger;
 
 import com.github.kilianB.ArrayUtil;
-import com.github.kilianB.graphics.ColorPixel;
-import com.github.kilianB.graphics.ImageUtil;
+import com.jstarcraft.dip.color.ColorPixel;
+import com.jstarcraft.dip.color.ImageUtil;
 
 /**
  * Calculate a hash value based on the average rgb color in an image.

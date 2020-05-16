@@ -4,9 +4,9 @@ import java.awt.image.BufferedImage;
 import java.math.BigInteger;
 import java.util.Objects;
 
-import com.github.kilianB.graphics.ColorPixel;
-import com.github.kilianB.graphics.ImageUtil;
 import com.github.kilianB.hash.Hash;
+import com.jstarcraft.dip.color.ColorPixel;
+import com.jstarcraft.dip.color.ImageUtil;
 
 import javafx.scene.paint.Color;
 

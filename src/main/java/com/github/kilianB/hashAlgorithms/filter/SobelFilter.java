@@ -3,7 +3,7 @@ package com.github.kilianB.hashAlgorithms.filter;
 import java.awt.image.BufferedImage;
 
 import com.github.kilianB.Require;
-import com.github.kilianB.graphics.ColorPixel;
+import com.jstarcraft.dip.color.ColorPixel;
 
 /**
  * 

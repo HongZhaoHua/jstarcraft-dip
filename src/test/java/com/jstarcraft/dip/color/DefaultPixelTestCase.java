@@ -1,4 +1,4 @@
-package com.github.kilianB.graphics;
+package com.jstarcraft.dip.color;
 
 import static org.junit.jupiter.api.Assertions.assertAll;
 import static org.junit.jupiter.api.Assertions.assertArrayEquals;
@@ -9,7 +9,6 @@ import static org.junit.jupiter.api.Assertions.fail;
 
 import java.awt.image.BufferedImage;
 import java.io.IOException;
-import java.util.Arrays;
 
 import javax.imageio.ImageIO;
 
@@ -18,9 +17,14 @@ import org.junit.jupiter.api.Nested;
 import org.junit.jupiter.api.Test;
 
 import com.github.kilianB.ArrayUtil;
+import com.jstarcraft.dip.color.ColorPixel;
+import com.jstarcraft.dip.color.ColorUtil;
+import com.jstarcraft.dip.color.DefaultPixel;
+import com.jstarcraft.dip.color.ImageUtil;
+import com.jstarcraft.dip.color.ImageUtil.BImageType;
 
 @Nested
-class BytePixelTestCase {
+class DefaultPixelTestCase {
 
 	// No alpha image
 	private static BufferedImage lena;
@@ -36,19 +40,38 @@ class BytePixelTestCase {
 	// R(92)G(46)B(23) ~ H(20)S(75)V(36) //Luminosity
 	private static BufferedImage brownOpacity;
 
+	private static BufferedImage cat;
+
 	//
-	static BufferedImage bw;
+	private static BufferedImage bw;
 
 	@BeforeAll
 	static void loadImage() {
 		try {
-			lena = ImageIO.read(BytePixelTestCase.class.getClassLoader().getResourceAsStream("Lena.png"));
-			bw = ImageIO.read(BytePixelTestCase.class.getClassLoader().getResourceAsStream("BlackWhite.png"));
-			red = ImageIO.read(BytePixelTestCase.class.getClassLoader().getResourceAsStream("red.png"));
-			green = ImageIO.read(BytePixelTestCase.class.getClassLoader().getResourceAsStream("green.png"));
-			blue = ImageIO.read(BytePixelTestCase.class.getClassLoader().getResourceAsStream("blue.png"));
-			brown = ImageIO.read(BytePixelTestCase.class.getClassLoader().getResourceAsStream("brown.png"));
-			brownOpacity = ImageIO.read(BytePixelTestCase.class.getClassLoader().getResourceAsStream("brownOpacity.png"));
+			lena = ImageIO.read(DefaultPixelTestCase.class.getClassLoader().getResourceAsStream("Lena.png"));
+			lena = ImageUtil.toNewType(lena, BImageType.TYPE_USHORT_GRAY);
+
+			bw = ImageIO.read(DefaultPixelTestCase.class.getClassLoader().getResourceAsStream("BlackWhite.png"));
+			bw = ImageUtil.toNewType(bw, BImageType.TYPE_USHORT_GRAY);
+
+			red = ImageIO.read(DefaultPixelTestCase.class.getClassLoader().getResourceAsStream("red.png"));
+			red = ImageUtil.toNewType(red, BImageType.TYPE_4BYTE_ABGR_PRE);
+
+			green = ImageIO.read(DefaultPixelTestCase.class.getClassLoader().getResourceAsStream("green.png"));
+			green = ImageUtil.toNewType(green, BImageType.TYPE_4BYTE_ABGR_PRE);
+
+			blue = ImageIO.read(DefaultPixelTestCase.class.getClassLoader().getResourceAsStream("blue.png"));
+			blue = ImageUtil.toNewType(blue, BImageType.TYPE_4BYTE_ABGR_PRE);
+
+			brown = ImageIO.read(DefaultPixelTestCase.class.getClassLoader().getResourceAsStream("brown.png"));
+			brown = ImageUtil.toNewType(brown, BImageType.TYPE_4BYTE_ABGR_PRE);
+
+			brownOpacity = ImageIO.read(DefaultPixelTestCase.class.getClassLoader().getResourceAsStream("brownOpacity.png"));
+			brownOpacity = ImageUtil.toNewType(brownOpacity, BImageType.TYPE_INT_ARGB_PRE);
+
+			// Type custom
+			cat = ImageIO.read(DefaultPixelTestCase.class.getClassLoader().getResourceAsStream("catMono.png"));
+
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
@@ -56,18 +79,50 @@ class BytePixelTestCase {
 
 	@Test
 	void factoryCorrectClass() {
-		assertEquals(BytePixel.class, ColorPixel.create(lena).getClass());
-		assertEquals(BytePixel.class, ColorPixel.create(bw).getClass());
-		assertEquals(BytePixel.class, ColorPixel.create(red).getClass());
-		assertEquals(BytePixel.class, ColorPixel.create(green).getClass());
-		assertEquals(BytePixel.class, ColorPixel.create(blue).getClass());
-		assertEquals(BytePixel.class, ColorPixel.create(brown).getClass());
-		assertEquals(BytePixel.class, ColorPixel.create(brownOpacity).getClass());
+		assertEquals(DefaultPixel.class, ColorPixel.create(lena).getClass());
+		assertEquals(DefaultPixel.class, ColorPixel.create(bw).getClass());
+		assertEquals(DefaultPixel.class, ColorPixel.create(red).getClass());
+		assertEquals(DefaultPixel.class, ColorPixel.create(green).getClass());
+		assertEquals(DefaultPixel.class, ColorPixel.create(blue).getClass());
+		assertEquals(DefaultPixel.class, ColorPixel.create(brown).getClass());
+		assertEquals(DefaultPixel.class, ColorPixel.create(brownOpacity).getClass());
+		assertEquals(DefaultPixel.class, ColorPixel.create(cat).getClass());
+	}
+
+	@Nested
+	class TypeCustom {
+
+		@Test
+		void hasAlphaTrue() {
+			assertTrue(ColorPixel.create(cat).hasTransparency());
+		}
+
+		@Test
+		void getRGB() {
+			ColorPixel fp = ColorPixel.create(cat);
+			for (int x = 0; x < cat.getWidth(); x++) {
+				for (int y = 0; y < cat.getHeight(); y++) {
+					assertEquals(cat.getRGB(x, y), fp.getRgbScalar(x, y));
+				}
+			}
+		}
+
+		@Test
+		void getRGBArray() {
+			ColorPixel fp = ColorPixel.create(cat);
+			int[][] rgb = fp.getRgbMatrix();
+			for (int x = 0; x < cat.getWidth(); x++) {
+				for (int y = 0; y < cat.getHeight(); y++) {
+					assertEquals(fp.getRgbScalar(x, y), rgb[x][y]);
+				}
+			}
+		}
+
 	}
 
 	@Test
 	void hasAlphaFalse() {
-		assertFalse(ColorPixel.create(brown).hasTransparency());
+		assertFalse(ColorPixel.create(lena).hasTransparency());
 	}
 
 	@Test
@@ -120,7 +175,7 @@ class BytePixelTestCase {
 
 	@Test
 	void setRed() {
-		BufferedImage bi = new BufferedImage(10, 10, BufferedImage.TYPE_3BYTE_BGR);
+		BufferedImage bi = new BufferedImage(10, 10, BufferedImage.TYPE_INT_ARGB);
 		ColorPixel fp = ColorPixel.create(bi);
 		fp.setRedScalar(0, 0, 255);
 
@@ -137,7 +192,7 @@ class BytePixelTestCase {
 	void bulkSetRed() {
 		int w = 10;
 		int h = 10;
-		BufferedImage bi = new BufferedImage(w, h, BufferedImage.TYPE_3BYTE_BGR);
+		BufferedImage bi = new BufferedImage(w, h, BufferedImage.TYPE_INT_ARGB);
 		ColorPixel fp = ColorPixel.create(bi);
 		int[][] values = new int[w][h];
 		double len = 255 / (double) w;
@@ -176,7 +231,7 @@ class BytePixelTestCase {
 
 	@Test
 	void setGreen() {
-		BufferedImage bi = new BufferedImage(10, 10, BufferedImage.TYPE_3BYTE_BGR);
+		BufferedImage bi = new BufferedImage(10, 10, BufferedImage.TYPE_INT_ARGB);
 		ColorPixel fp = ColorPixel.create(bi);
 		fp.setGreenScalar(0, 0, 255);
 
@@ -193,7 +248,7 @@ class BytePixelTestCase {
 	void bulkSetGreen() {
 		int w = 10;
 		int h = 10;
-		BufferedImage bi = new BufferedImage(w, h, BufferedImage.TYPE_3BYTE_BGR);
+		BufferedImage bi = new BufferedImage(w, h, BufferedImage.TYPE_INT_ARGB);
 		ColorPixel fp = ColorPixel.create(bi);
 		int[][] values = new int[w][h];
 		double len = 255 / (double) w;
@@ -231,22 +286,8 @@ class BytePixelTestCase {
 	}
 
 	@Test
-	void blueArray1D() {
-		ColorPixel fp = ColorPixel.create(lena);
-		int[] blue = fp.getBlueVector();
-		int[][] blue2D = fp.getBlueMatrix();
-		int i = 0;
-
-		for (int y = 0; y < lena.getHeight(); y++) {
-			for (int x = 0; x < lena.getWidth(); x++) {
-				assertEquals(blue[i++], blue2D[x][y]);
-			}
-		}
-	}
-
-	@Test
 	void setBlue() {
-		BufferedImage bi = new BufferedImage(10, 10, BufferedImage.TYPE_3BYTE_BGR);
+		BufferedImage bi = new BufferedImage(10, 10, BufferedImage.TYPE_INT_ARGB);
 		ColorPixel fp = ColorPixel.create(bi);
 		fp.setBlueScalar(0, 0, 255);
 
@@ -263,7 +304,7 @@ class BytePixelTestCase {
 	void bulkSetBlue() {
 		int w = 10;
 		int h = 10;
-		BufferedImage bi = new BufferedImage(w, h, BufferedImage.TYPE_3BYTE_BGR);
+		BufferedImage bi = new BufferedImage(w, h, BufferedImage.TYPE_INT_ARGB);
 		ColorPixel fp = ColorPixel.create(bi);
 		int[][] values = new int[w][h];
 		double len = 255 / (double) w;
@@ -336,7 +377,7 @@ class BytePixelTestCase {
 	void bulkSetRGBA() {
 		int w = 1000;
 		int h = 1000;
-		BufferedImage bi = new BufferedImage(w, h, BufferedImage.TYPE_4BYTE_ABGR);
+		BufferedImage bi = new BufferedImage(w, h, BufferedImage.TYPE_INT_ARGB);
 		ColorPixel fp = ColorPixel.create(bi);
 		int[][] values = new int[w][h];
 		double len = 255 / (double) w;

@@ -7,7 +7,7 @@ import java.util.function.BiFunction;
 import com.github.kilianB.ArrayUtil;
 import com.github.kilianB.MiscUtil;
 import com.github.kilianB.Require;
-import com.github.kilianB.graphics.ColorPixel;
+import com.jstarcraft.dip.color.ColorPixel;
 
 /**
  * Kernel operations are shifting window masks applied to data point of an array

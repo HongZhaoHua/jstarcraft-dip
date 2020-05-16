@@ -15,11 +15,11 @@ import com.github.kilianB.ArrayUtil;
 import com.github.kilianB.Experimental;
 import com.github.kilianB.MathUtil;
 import com.github.kilianB.Require;
-import com.github.kilianB.graphics.ColorUtil;
-import com.github.kilianB.graphics.ImageUtil;
-import com.github.kilianB.graphics.ColorPixel;
 import com.github.kilianB.hashAlgorithms.HashBuilder;
 import com.github.kilianB.hashAlgorithms.HashingAlgorithm;
+import com.jstarcraft.dip.color.ColorPixel;
+import com.jstarcraft.dip.color.ColorUtil;
+import com.jstarcraft.dip.color.ImageUtil;
 
 /**
  * Image Hash on HOG feature descriptor. Not ready yet. Most likely use a very

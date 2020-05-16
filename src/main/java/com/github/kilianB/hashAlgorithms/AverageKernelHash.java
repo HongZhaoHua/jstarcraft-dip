@@ -10,9 +10,9 @@ import java.util.Objects;
 
 import com.github.kilianB.ArrayUtil;
 import com.github.kilianB.Require;
-import com.github.kilianB.graphics.ColorPixel;
-import com.github.kilianB.graphics.ImageUtil;
 import com.github.kilianB.hashAlgorithms.filter.Kernel;
+import com.jstarcraft.dip.color.ColorPixel;
+import com.jstarcraft.dip.color.ImageUtil;
 
 /**
  * Calculate a hash value based on the average luminosity in an image. The

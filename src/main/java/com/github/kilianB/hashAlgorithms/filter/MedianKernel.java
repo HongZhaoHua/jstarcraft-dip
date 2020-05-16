@@ -4,7 +4,7 @@ import java.awt.image.BufferedImage;
 import java.util.Arrays;
 
 import com.github.kilianB.ArrayUtil;
-import com.github.kilianB.graphics.ColorPixel;
+import com.jstarcraft.dip.color.ColorPixel;
 
 /**
  * A median kernel is a non linear filter scanning the image and replacing every

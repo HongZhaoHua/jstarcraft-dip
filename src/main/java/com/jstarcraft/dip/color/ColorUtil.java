@@ -1,4 +1,4 @@
-package com.github.kilianB.graphics;
+package com.jstarcraft.dip.color;
 
 import com.github.kilianB.MathUtil;
 

@@ -17,8 +17,8 @@ import com.github.kilianB.MathUtil;
 import com.github.kilianB.StringUtil;
 import com.github.kilianB.clustering.distance.DistanceFunction;
 import com.github.kilianB.clustering.distance.EuclideanDistance;
-import com.github.kilianB.graphics.ColorUtil;
 import com.github.kilianB.mutable.MutableDouble;
+import com.jstarcraft.dip.color.ColorUtil;
 
 import javafx.scene.paint.Color;
 

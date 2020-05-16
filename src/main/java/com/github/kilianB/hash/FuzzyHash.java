@@ -10,8 +10,8 @@ import java.io.ObjectOutputStream;
 import java.math.BigInteger;
 import java.util.logging.Logger;
 
-import com.github.kilianB.graphics.ColorUtil;
 import com.github.kilianB.hashAlgorithms.HashingAlgorithm;
+import com.jstarcraft.dip.color.ColorUtil;
 
 import javafx.scene.paint.Color;
 

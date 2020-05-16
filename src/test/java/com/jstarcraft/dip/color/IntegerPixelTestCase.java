@@ -1,4 +1,4 @@
-package com.github.kilianB.graphics;
+package com.jstarcraft.dip.color;
 
 import static org.junit.jupiter.api.Assertions.assertAll;
 import static org.junit.jupiter.api.Assertions.assertArrayEquals;
@@ -9,6 +9,7 @@ import static org.junit.jupiter.api.Assertions.fail;
 
 import java.awt.image.BufferedImage;
 import java.io.IOException;
+import java.util.Arrays;
 
 import javax.imageio.ImageIO;
 
@@ -17,10 +18,14 @@ import org.junit.jupiter.api.Nested;
 import org.junit.jupiter.api.Test;
 
 import com.github.kilianB.ArrayUtil;
-import com.github.kilianB.graphics.ImageUtil.BImageType;
+import com.jstarcraft.dip.color.ColorPixel;
+import com.jstarcraft.dip.color.ColorUtil;
+import com.jstarcraft.dip.color.ImageUtil;
+import com.jstarcraft.dip.color.IntegerPixel;
+import com.jstarcraft.dip.color.ImageUtil.BImageType;
 
 @Nested
-class DefaultPixelTestCase {
+class IntegerPixelTestCase {
 
 	// No alpha image
 	private static BufferedImage lena;
@@ -36,38 +41,32 @@ class DefaultPixelTestCase {
 	// R(92)G(46)B(23) ~ H(20)S(75)V(36) //Luminosity
 	private static BufferedImage brownOpacity;
 
-	private static BufferedImage cat;
-
 	//
 	private static BufferedImage bw;
 
 	@BeforeAll
 	static void loadImage() {
 		try {
-			lena = ImageIO.read(DefaultPixelTestCase.class.getClassLoader().getResourceAsStream("Lena.png"));
-			lena = ImageUtil.toNewType(lena, BImageType.TYPE_USHORT_GRAY);
+			lena = ImageIO.read(BytePixelTestCase.class.getClassLoader().getResourceAsStream("Lena.png"));
+			lena = ImageUtil.toNewType(lena, BImageType.TYPE_INT_BGR);
 
-			bw = ImageIO.read(DefaultPixelTestCase.class.getClassLoader().getResourceAsStream("BlackWhite.png"));
-			bw = ImageUtil.toNewType(bw, BImageType.TYPE_USHORT_GRAY);
+			bw = ImageIO.read(BytePixelTestCase.class.getClassLoader().getResourceAsStream("BlackWhite.png"));
+			bw = ImageUtil.toNewType(bw, BImageType.TYPE_INT_BGR);
 
-			red = ImageIO.read(DefaultPixelTestCase.class.getClassLoader().getResourceAsStream("red.png"));
-			red = ImageUtil.toNewType(red, BImageType.TYPE_4BYTE_ABGR_PRE);
+			red = ImageIO.read(BytePixelTestCase.class.getClassLoader().getResourceAsStream("red.png"));
+			red = ImageUtil.toNewType(red, BImageType.TYPE_INT_BGR);
 
-			green = ImageIO.read(DefaultPixelTestCase.class.getClassLoader().getResourceAsStream("green.png"));
-			green = ImageUtil.toNewType(green, BImageType.TYPE_4BYTE_ABGR_PRE);
+			green = ImageIO.read(BytePixelTestCase.class.getClassLoader().getResourceAsStream("green.png"));
+			green = ImageUtil.toNewType(green, BImageType.TYPE_INT_BGR);
 
-			blue = ImageIO.read(DefaultPixelTestCase.class.getClassLoader().getResourceAsStream("blue.png"));
-			blue = ImageUtil.toNewType(blue, BImageType.TYPE_4BYTE_ABGR_PRE);
+			blue = ImageIO.read(BytePixelTestCase.class.getClassLoader().getResourceAsStream("blue.png"));
+			blue = ImageUtil.toNewType(blue, BImageType.TYPE_INT_BGR);
 
-			brown = ImageIO.read(DefaultPixelTestCase.class.getClassLoader().getResourceAsStream("brown.png"));
-			brown = ImageUtil.toNewType(brown, BImageType.TYPE_4BYTE_ABGR_PRE);
+			brown = ImageIO.read(BytePixelTestCase.class.getClassLoader().getResourceAsStream("brown.png"));
+			brown = ImageUtil.toNewType(brown, BImageType.TYPE_INT_BGR);
 
-			brownOpacity = ImageIO.read(DefaultPixelTestCase.class.getClassLoader().getResourceAsStream("brownOpacity.png"));
-			brownOpacity = ImageUtil.toNewType(brownOpacity, BImageType.TYPE_INT_ARGB_PRE);
-
-			// Type custom
-			cat = ImageIO.read(DefaultPixelTestCase.class.getClassLoader().getResourceAsStream("catMono.png"));
-
+			brownOpacity = ImageIO.read(BytePixelTestCase.class.getClassLoader().getResourceAsStream("brownOpacity.png"));
+			brownOpacity = ImageUtil.toNewType(brownOpacity, BImageType.TYPE_INT_ARGB);
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
@@ -75,50 +74,18 @@ class DefaultPixelTestCase {
 
 	@Test
 	void factoryCorrectClass() {
-		assertEquals(DefaultPixel.class, ColorPixel.create(lena).getClass());
-		assertEquals(DefaultPixel.class, ColorPixel.create(bw).getClass());
-		assertEquals(DefaultPixel.class, ColorPixel.create(red).getClass());
-		assertEquals(DefaultPixel.class, ColorPixel.create(green).getClass());
-		assertEquals(DefaultPixel.class, ColorPixel.create(blue).getClass());
-		assertEquals(DefaultPixel.class, ColorPixel.create(brown).getClass());
-		assertEquals(DefaultPixel.class, ColorPixel.create(brownOpacity).getClass());
-		assertEquals(DefaultPixel.class, ColorPixel.create(cat).getClass());
-	}
-
-	@Nested
-	class TypeCustom {
-
-		@Test
-		void hasAlphaTrue() {
-			assertTrue(ColorPixel.create(cat).hasTransparency());
-		}
-
-		@Test
-		void getRGB() {
-			ColorPixel fp = ColorPixel.create(cat);
-			for (int x = 0; x < cat.getWidth(); x++) {
-				for (int y = 0; y < cat.getHeight(); y++) {
-					assertEquals(cat.getRGB(x, y), fp.getRgbScalar(x, y));
-				}
-			}
-		}
-
-		@Test
-		void getRGBArray() {
-			ColorPixel fp = ColorPixel.create(cat);
-			int[][] rgb = fp.getRgbMatrix();
-			for (int x = 0; x < cat.getWidth(); x++) {
-				for (int y = 0; y < cat.getHeight(); y++) {
-					assertEquals(fp.getRgbScalar(x, y), rgb[x][y]);
-				}
-			}
-		}
-
+		assertEquals(IntegerPixel.class, ColorPixel.create(lena).getClass());
+		assertEquals(IntegerPixel.class, ColorPixel.create(bw).getClass());
+		assertEquals(IntegerPixel.class, ColorPixel.create(red).getClass());
+		assertEquals(IntegerPixel.class, ColorPixel.create(green).getClass());
+		assertEquals(IntegerPixel.class, ColorPixel.create(blue).getClass());
+		assertEquals(IntegerPixel.class, ColorPixel.create(brown).getClass());
+		assertEquals(IntegerPixel.class, ColorPixel.create(brownOpacity).getClass());
 	}
 
 	@Test
 	void hasAlphaFalse() {
-		assertFalse(ColorPixel.create(lena).hasTransparency());
+		assertFalse(ColorPixel.create(brown).hasTransparency());
 	}
 
 	@Test
@@ -221,6 +188,20 @@ class DefaultPixelTestCase {
 		for (int x = 0; x < lena.getWidth(); x++) {
 			for (int y = 0; y < lena.getHeight(); y++) {
 				assertEquals(fp.getGreenScalar(x, y), green[x][y]);
+			}
+		}
+	}
+
+	@Test
+	void blueArray1D() {
+		ColorPixel fp = ColorPixel.create(lena);
+		int[] green = fp.getBlueVector();
+		int[][] green2D = fp.getBlueMatrix();
+		int i = 0;
+
+		for (int y = 0; y < lena.getHeight(); y++) {
+			for (int x = 0; x < lena.getWidth(); x++) {
+				assertEquals(green[i++], green2D[x][y]);
 			}
 		}
 	}

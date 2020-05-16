@@ -8,8 +8,8 @@ import java.util.logging.Logger;
 import org.jtransforms.dct.DoubleDCT_2D;
 import org.jtransforms.utils.CommonUtils;
 
-import com.github.kilianB.graphics.ColorPixel;
-import com.github.kilianB.graphics.ImageUtil;
+import com.jstarcraft.dip.color.ColorPixel;
+import com.jstarcraft.dip.color.ImageUtil;
 
 /**
  * Calculate a hash based on the frequency of an image using the DCT T2. This

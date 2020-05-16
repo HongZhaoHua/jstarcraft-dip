@@ -12,8 +12,8 @@ import java.math.BigInteger;
 
 import com.github.kilianB.Require;
 import com.github.kilianB.StringUtil;
-import com.github.kilianB.graphics.ColorPixel;
 import com.github.kilianB.hashAlgorithms.HashingAlgorithm;
+import com.jstarcraft.dip.color.ColorPixel;
 
 import javafx.scene.paint.Color;
 

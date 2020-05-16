@@ -1,4 +1,4 @@
-package com.github.kilianB.graphics;
+package com.jstarcraft.dip.color;
 
 import static org.junit.jupiter.api.Assertions.assertAll;
 import static org.junit.jupiter.api.Assertions.assertArrayEquals;
@@ -18,10 +18,12 @@ import org.junit.jupiter.api.Nested;
 import org.junit.jupiter.api.Test;
 
 import com.github.kilianB.ArrayUtil;
-import com.github.kilianB.graphics.ImageUtil.BImageType;
+import com.jstarcraft.dip.color.BytePixel;
+import com.jstarcraft.dip.color.ColorPixel;
+import com.jstarcraft.dip.color.ColorUtil;
 
 @Nested
-class IntegerPixelTestCase {
+class BytePixelTestCase {
 
 	// No alpha image
 	private static BufferedImage lena;
@@ -38,31 +40,18 @@ class IntegerPixelTestCase {
 	private static BufferedImage brownOpacity;
 
 	//
-	private static BufferedImage bw;
+	static BufferedImage bw;
 
 	@BeforeAll
 	static void loadImage() {
 		try {
 			lena = ImageIO.read(BytePixelTestCase.class.getClassLoader().getResourceAsStream("Lena.png"));
-			lena = ImageUtil.toNewType(lena, BImageType.TYPE_INT_BGR);
-
 			bw = ImageIO.read(BytePixelTestCase.class.getClassLoader().getResourceAsStream("BlackWhite.png"));
-			bw = ImageUtil.toNewType(bw, BImageType.TYPE_INT_BGR);
-
 			red = ImageIO.read(BytePixelTestCase.class.getClassLoader().getResourceAsStream("red.png"));
-			red = ImageUtil.toNewType(red, BImageType.TYPE_INT_BGR);
-
 			green = ImageIO.read(BytePixelTestCase.class.getClassLoader().getResourceAsStream("green.png"));
-			green = ImageUtil.toNewType(green, BImageType.TYPE_INT_BGR);
-
 			blue = ImageIO.read(BytePixelTestCase.class.getClassLoader().getResourceAsStream("blue.png"));
-			blue = ImageUtil.toNewType(blue, BImageType.TYPE_INT_BGR);
-
 			brown = ImageIO.read(BytePixelTestCase.class.getClassLoader().getResourceAsStream("brown.png"));
-			brown = ImageUtil.toNewType(brown, BImageType.TYPE_INT_BGR);
-
 			brownOpacity = ImageIO.read(BytePixelTestCase.class.getClassLoader().getResourceAsStream("brownOpacity.png"));
-			brownOpacity = ImageUtil.toNewType(brownOpacity, BImageType.TYPE_INT_ARGB);
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
@@ -70,13 +59,13 @@ class IntegerPixelTestCase {
 
 	@Test
 	void factoryCorrectClass() {
-		assertEquals(IntegerPixel.class, ColorPixel.create(lena).getClass());
-		assertEquals(IntegerPixel.class, ColorPixel.create(bw).getClass());
-		assertEquals(IntegerPixel.class, ColorPixel.create(red).getClass());
-		assertEquals(IntegerPixel.class, ColorPixel.create(green).getClass());
-		assertEquals(IntegerPixel.class, ColorPixel.create(blue).getClass());
-		assertEquals(IntegerPixel.class, ColorPixel.create(brown).getClass());
-		assertEquals(IntegerPixel.class, ColorPixel.create(brownOpacity).getClass());
+		assertEquals(BytePixel.class, ColorPixel.create(lena).getClass());
+		assertEquals(BytePixel.class, ColorPixel.create(bw).getClass());
+		assertEquals(BytePixel.class, ColorPixel.create(red).getClass());
+		assertEquals(BytePixel.class, ColorPixel.create(green).getClass());
+		assertEquals(BytePixel.class, ColorPixel.create(blue).getClass());
+		assertEquals(BytePixel.class, ColorPixel.create(brown).getClass());
+		assertEquals(BytePixel.class, ColorPixel.create(brownOpacity).getClass());
 	}
 
 	@Test
@@ -134,7 +123,7 @@ class IntegerPixelTestCase {
 
 	@Test
 	void setRed() {
-		BufferedImage bi = new BufferedImage(10, 10, BufferedImage.TYPE_INT_ARGB);
+		BufferedImage bi = new BufferedImage(10, 10, BufferedImage.TYPE_3BYTE_BGR);
 		ColorPixel fp = ColorPixel.create(bi);
 		fp.setRedScalar(0, 0, 255);
 
@@ -151,7 +140,7 @@ class IntegerPixelTestCase {
 	void bulkSetRed() {
 		int w = 10;
 		int h = 10;
-		BufferedImage bi = new BufferedImage(w, h, BufferedImage.TYPE_INT_ARGB);
+		BufferedImage bi = new BufferedImage(w, h, BufferedImage.TYPE_3BYTE_BGR);
 		ColorPixel fp = ColorPixel.create(bi);
 		int[][] values = new int[w][h];
 		double len = 255 / (double) w;
@@ -189,22 +178,8 @@ class IntegerPixelTestCase {
 	}
 
 	@Test
-	void blueArray1D() {
-		ColorPixel fp = ColorPixel.create(lena);
-		int[] green = fp.getBlueVector();
-		int[][] green2D = fp.getBlueMatrix();
-		int i = 0;
-
-		for (int y = 0; y < lena.getHeight(); y++) {
-			for (int x = 0; x < lena.getWidth(); x++) {
-				assertEquals(green[i++], green2D[x][y]);
-			}
-		}
-	}
-
-	@Test
 	void setGreen() {
-		BufferedImage bi = new BufferedImage(10, 10, BufferedImage.TYPE_INT_ARGB);
+		BufferedImage bi = new BufferedImage(10, 10, BufferedImage.TYPE_3BYTE_BGR);
 		ColorPixel fp = ColorPixel.create(bi);
 		fp.setGreenScalar(0, 0, 255);
 
@@ -221,7 +196,7 @@ class IntegerPixelTestCase {
 	void bulkSetGreen() {
 		int w = 10;
 		int h = 10;
-		BufferedImage bi = new BufferedImage(w, h, BufferedImage.TYPE_INT_ARGB);
+		BufferedImage bi = new BufferedImage(w, h, BufferedImage.TYPE_3BYTE_BGR);
 		ColorPixel fp = ColorPixel.create(bi);
 		int[][] values = new int[w][h];
 		double len = 255 / (double) w;
@@ -259,8 +234,22 @@ class IntegerPixelTestCase {
 	}
 
 	@Test
+	void blueArray1D() {
+		ColorPixel fp = ColorPixel.create(lena);
+		int[] blue = fp.getBlueVector();
+		int[][] blue2D = fp.getBlueMatrix();
+		int i = 0;
+
+		for (int y = 0; y < lena.getHeight(); y++) {
+			for (int x = 0; x < lena.getWidth(); x++) {
+				assertEquals(blue[i++], blue2D[x][y]);
+			}
+		}
+	}
+
+	@Test
 	void setBlue() {
-		BufferedImage bi = new BufferedImage(10, 10, BufferedImage.TYPE_INT_ARGB);
+		BufferedImage bi = new BufferedImage(10, 10, BufferedImage.TYPE_3BYTE_BGR);
 		ColorPixel fp = ColorPixel.create(bi);
 		fp.setBlueScalar(0, 0, 255);
 
@@ -277,7 +266,7 @@ class IntegerPixelTestCase {
 	void bulkSetBlue() {
 		int w = 10;
 		int h = 10;
-		BufferedImage bi = new BufferedImage(w, h, BufferedImage.TYPE_INT_ARGB);
+		BufferedImage bi = new BufferedImage(w, h, BufferedImage.TYPE_3BYTE_BGR);
 		ColorPixel fp = ColorPixel.create(bi);
 		int[][] values = new int[w][h];
 		double len = 255 / (double) w;
@@ -350,7 +339,7 @@ class IntegerPixelTestCase {
 	void bulkSetRGBA() {
 		int w = 1000;
 		int h = 1000;
-		BufferedImage bi = new BufferedImage(w, h, BufferedImage.TYPE_INT_ARGB);
+		BufferedImage bi = new BufferedImage(w, h, BufferedImage.TYPE_4BYTE_ABGR);
 		ColorPixel fp = ColorPixel.create(bi);
 		int[][] values = new int[w][h];
 		double len = 255 / (double) w;
