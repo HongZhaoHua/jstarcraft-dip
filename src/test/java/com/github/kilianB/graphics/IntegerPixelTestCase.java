@@ -70,28 +70,28 @@ class IntegerPixelTestCase {
 
 	@Test
 	void factoryCorrectClass() {
-		assertEquals(IntegerPixel.class, Pixel.create(lena).getClass());
-		assertEquals(IntegerPixel.class, Pixel.create(bw).getClass());
-		assertEquals(IntegerPixel.class, Pixel.create(red).getClass());
-		assertEquals(IntegerPixel.class, Pixel.create(green).getClass());
-		assertEquals(IntegerPixel.class, Pixel.create(blue).getClass());
-		assertEquals(IntegerPixel.class, Pixel.create(brown).getClass());
-		assertEquals(IntegerPixel.class, Pixel.create(brownOpacity).getClass());
+		assertEquals(IntegerPixel.class, ColorPixel.create(lena).getClass());
+		assertEquals(IntegerPixel.class, ColorPixel.create(bw).getClass());
+		assertEquals(IntegerPixel.class, ColorPixel.create(red).getClass());
+		assertEquals(IntegerPixel.class, ColorPixel.create(green).getClass());
+		assertEquals(IntegerPixel.class, ColorPixel.create(blue).getClass());
+		assertEquals(IntegerPixel.class, ColorPixel.create(brown).getClass());
+		assertEquals(IntegerPixel.class, ColorPixel.create(brownOpacity).getClass());
 	}
 
 	@Test
 	void hasAlphaFalse() {
-		assertFalse(Pixel.create(brown).hasTransparency());
+		assertFalse(ColorPixel.create(brown).hasTransparency());
 	}
 
 	@Test
 	void hasAlphaTrue() {
-		assertTrue(Pixel.create(brownOpacity).hasTransparency());
+		assertTrue(ColorPixel.create(brownOpacity).hasTransparency());
 	}
 
 	@Test
 	void getRGB() {
-		Pixel fp = Pixel.create(lena);
+		ColorPixel fp = ColorPixel.create(lena);
 		for (int x = 0; x < lena.getWidth(); x++) {
 			for (int y = 0; y < lena.getHeight(); y++) {
 				assertEquals(lena.getRGB(x, y), fp.getRgbScalar(x, y));
@@ -101,7 +101,7 @@ class IntegerPixelTestCase {
 
 	@Test
 	void getRGBArray() {
-		Pixel fp = Pixel.create(lena);
+		ColorPixel fp = ColorPixel.create(lena);
 		int[][] rgb = fp.getRgbMatrix();
 		for (int x = 0; x < lena.getWidth(); x++) {
 			for (int y = 0; y < lena.getHeight(); y++) {
@@ -112,7 +112,7 @@ class IntegerPixelTestCase {
 
 	@Test
 	void red() {
-		Pixel fp = Pixel.create(lena);
+		ColorPixel fp = ColorPixel.create(lena);
 		for (int x = 0; x < lena.getWidth(); x++) {
 			for (int y = 0; y < lena.getHeight(); y++) {
 				int[] comp = ColorUtil.argbToComponents(lena.getRGB(x, y));
@@ -123,7 +123,7 @@ class IntegerPixelTestCase {
 
 	@Test
 	void redArray() {
-		Pixel fp = Pixel.create(lena);
+		ColorPixel fp = ColorPixel.create(lena);
 		int[][] red = fp.getRedMatrix();
 		for (int x = 0; x < lena.getWidth(); x++) {
 			for (int y = 0; y < lena.getHeight(); y++) {
@@ -135,7 +135,7 @@ class IntegerPixelTestCase {
 	@Test
 	void setRed() {
 		BufferedImage bi = new BufferedImage(10, 10, BufferedImage.TYPE_INT_ARGB);
-		Pixel fp = Pixel.create(bi);
+		ColorPixel fp = ColorPixel.create(bi);
 		fp.setRedScalar(0, 0, 255);
 
 		assertAll(() -> {
@@ -152,7 +152,7 @@ class IntegerPixelTestCase {
 		int w = 10;
 		int h = 10;
 		BufferedImage bi = new BufferedImage(w, h, BufferedImage.TYPE_INT_ARGB);
-		Pixel fp = Pixel.create(bi);
+		ColorPixel fp = ColorPixel.create(bi);
 		int[][] values = new int[w][h];
 		double len = 255 / (double) w;
 		double lenFa = len / h;
@@ -168,7 +168,7 @@ class IntegerPixelTestCase {
 
 	@Test
 	void green() {
-		Pixel fp = Pixel.create(lena);
+		ColorPixel fp = ColorPixel.create(lena);
 		for (int x = 0; x < lena.getWidth(); x++) {
 			for (int y = 0; y < lena.getHeight(); y++) {
 				int[] comp = ColorUtil.argbToComponents(lena.getRGB(x, y));
@@ -179,7 +179,7 @@ class IntegerPixelTestCase {
 
 	@Test
 	void greenArray() {
-		Pixel fp = Pixel.create(lena);
+		ColorPixel fp = ColorPixel.create(lena);
 		int[][] green = fp.getGreenMatrix();
 		for (int x = 0; x < lena.getWidth(); x++) {
 			for (int y = 0; y < lena.getHeight(); y++) {
@@ -190,7 +190,7 @@ class IntegerPixelTestCase {
 
 	@Test
 	void blueArray1D() {
-		Pixel fp = Pixel.create(lena);
+		ColorPixel fp = ColorPixel.create(lena);
 		int[] green = fp.getBlueVector();
 		int[][] green2D = fp.getBlueMatrix();
 		int i = 0;
@@ -205,7 +205,7 @@ class IntegerPixelTestCase {
 	@Test
 	void setGreen() {
 		BufferedImage bi = new BufferedImage(10, 10, BufferedImage.TYPE_INT_ARGB);
-		Pixel fp = Pixel.create(bi);
+		ColorPixel fp = ColorPixel.create(bi);
 		fp.setGreenScalar(0, 0, 255);
 
 		assertAll(() -> {
@@ -222,7 +222,7 @@ class IntegerPixelTestCase {
 		int w = 10;
 		int h = 10;
 		BufferedImage bi = new BufferedImage(w, h, BufferedImage.TYPE_INT_ARGB);
-		Pixel fp = Pixel.create(bi);
+		ColorPixel fp = ColorPixel.create(bi);
 		int[][] values = new int[w][h];
 		double len = 255 / (double) w;
 		double lenFa = len / h;
@@ -238,7 +238,7 @@ class IntegerPixelTestCase {
 
 	@Test
 	void blue() {
-		Pixel fp = Pixel.create(lena);
+		ColorPixel fp = ColorPixel.create(lena);
 		for (int x = 0; x < lena.getWidth(); x++) {
 			for (int y = 0; y < lena.getHeight(); y++) {
 				int[] comp = ColorUtil.argbToComponents(lena.getRGB(x, y));
@@ -249,7 +249,7 @@ class IntegerPixelTestCase {
 
 	@Test
 	void blueArray() {
-		Pixel fp = Pixel.create(lena);
+		ColorPixel fp = ColorPixel.create(lena);
 		int[][] blue = fp.getBlueMatrix();
 		for (int x = 0; x < lena.getWidth(); x++) {
 			for (int y = 0; y < lena.getHeight(); y++) {
@@ -261,7 +261,7 @@ class IntegerPixelTestCase {
 	@Test
 	void setBlue() {
 		BufferedImage bi = new BufferedImage(10, 10, BufferedImage.TYPE_INT_ARGB);
-		Pixel fp = Pixel.create(bi);
+		ColorPixel fp = ColorPixel.create(bi);
 		fp.setBlueScalar(0, 0, 255);
 
 		assertAll(() -> {
@@ -278,7 +278,7 @@ class IntegerPixelTestCase {
 		int w = 10;
 		int h = 10;
 		BufferedImage bi = new BufferedImage(w, h, BufferedImage.TYPE_INT_ARGB);
-		Pixel fp = Pixel.create(bi);
+		ColorPixel fp = ColorPixel.create(bi);
 		int[][] values = new int[w][h];
 		double len = 255 / (double) w;
 		double lenFa = len / h;
@@ -294,7 +294,7 @@ class IntegerPixelTestCase {
 
 	@Test
 	void getRGBOpaque() {
-		Pixel fp = Pixel.create(brownOpacity);
+		ColorPixel fp = ColorPixel.create(brownOpacity);
 		for (int x = 0; x < brownOpacity.getWidth(); x++) {
 			for (int y = 0; y < brownOpacity.getHeight(); y++) {
 				assertEquals(brownOpacity.getRGB(x, y), fp.getRgbScalar(x, y));
@@ -304,7 +304,7 @@ class IntegerPixelTestCase {
 
 	@Test
 	void alphaOpaque() {
-		Pixel fp = Pixel.create(brownOpacity);
+		ColorPixel fp = ColorPixel.create(brownOpacity);
 		for (int x = 0; x < brownOpacity.getWidth(); x++) {
 			for (int y = 0; y < brownOpacity.getHeight(); y++) {
 				int[] comp = ColorUtil.argbToComponents(brownOpacity.getRGB(x, y));
@@ -315,7 +315,7 @@ class IntegerPixelTestCase {
 
 	@Test
 	void redOpaque() {
-		Pixel fp = Pixel.create(brownOpacity);
+		ColorPixel fp = ColorPixel.create(brownOpacity);
 		for (int x = 0; x < brownOpacity.getWidth(); x++) {
 			for (int y = 0; y < brownOpacity.getHeight(); y++) {
 				int[] comp = ColorUtil.argbToComponents(brownOpacity.getRGB(x, y));
@@ -326,7 +326,7 @@ class IntegerPixelTestCase {
 
 	@Test
 	void greenOpaque() {
-		Pixel fp = Pixel.create(brownOpacity);
+		ColorPixel fp = ColorPixel.create(brownOpacity);
 		for (int x = 0; x < brownOpacity.getWidth(); x++) {
 			for (int y = 0; y < brownOpacity.getHeight(); y++) {
 				int[] comp = ColorUtil.argbToComponents(brownOpacity.getRGB(x, y));
@@ -337,7 +337,7 @@ class IntegerPixelTestCase {
 
 	@Test
 	void blueOpaque() {
-		Pixel fp = Pixel.create(brownOpacity);
+		ColorPixel fp = ColorPixel.create(brownOpacity);
 		for (int x = 0; x < brownOpacity.getWidth(); x++) {
 			for (int y = 0; y < brownOpacity.getHeight(); y++) {
 				int[] comp = ColorUtil.argbToComponents(brownOpacity.getRGB(x, y));
@@ -351,7 +351,7 @@ class IntegerPixelTestCase {
 		int w = 1000;
 		int h = 1000;
 		BufferedImage bi = new BufferedImage(w, h, BufferedImage.TYPE_INT_ARGB);
-		Pixel fp = Pixel.create(bi);
+		ColorPixel fp = ColorPixel.create(bi);
 		int[][] values = new int[w][h];
 		double len = 255 / (double) w;
 		double lenFa = len / h;
@@ -380,7 +380,7 @@ class IntegerPixelTestCase {
 	@Test
 	void rgbArray() {
 		int arg[] = lena.getRGB(0, 0, lena.getWidth(), lena.getHeight(), null, 0, lena.getWidth());
-		Pixel fp = Pixel.create(lena);
+		ColorPixel fp = ColorPixel.create(lena);
 		int[][] argFp = fp.getRgbMatrix();
 		for (int x = 0; x < lena.getWidth(); x++) {
 			for (int y = 0; y < lena.getHeight(); y++) {
@@ -391,7 +391,7 @@ class IntegerPixelTestCase {
 
 	@Test
 	void lum() {
-		Pixel fp = Pixel.create(bw);
+		ColorPixel fp = ColorPixel.create(bw);
 
 		for (int x = 0; x < bw.getWidth(); x++) {
 			for (int y = 0; y < bw.getHeight(); y++) {
@@ -409,7 +409,7 @@ class IntegerPixelTestCase {
 
 	@Test
 	void lumArray() {
-		Pixel fp = Pixel.create(lena);
+		ColorPixel fp = ColorPixel.create(lena);
 		int[][] lumArr = fp.getLumaMatrix();
 		for (int x = 0; x < lena.getWidth(); x++) {
 			for (int y = 0; y < lena.getHeight(); y++) {
@@ -420,7 +420,7 @@ class IntegerPixelTestCase {
 
 	@Test
 	void lumInRange() {
-		Pixel fp = Pixel.create(lena);
+		ColorPixel fp = ColorPixel.create(lena);
 
 		for (int x = 0; x < bw.getWidth(); x++) {
 			for (int y = 0; y < bw.getHeight(); y++) {
@@ -434,7 +434,7 @@ class IntegerPixelTestCase {
 
 	@Test
 	void hueBlackWhite() {
-		Pixel fp = Pixel.create(bw);
+		ColorPixel fp = ColorPixel.create(bw);
 		// Invalid hue value. Defined as 0
 		for (int x = 0; x < bw.getWidth(); x++) {
 			for (int y = 0; y < bw.getHeight(); y++) {
@@ -445,7 +445,7 @@ class IntegerPixelTestCase {
 
 	@Test
 	void hueRed() {
-		Pixel fp = Pixel.create(red);
+		ColorPixel fp = ColorPixel.create(red);
 
 		for (int x = 0; x < red.getWidth(); x++) {
 			for (int y = 0; y < red.getHeight(); y++) {
@@ -456,7 +456,7 @@ class IntegerPixelTestCase {
 
 	@Test
 	void hueGreen() {
-		Pixel fp = Pixel.create(green);
+		ColorPixel fp = ColorPixel.create(green);
 		for (int x = 0; x < green.getWidth(); x++) {
 			for (int y = 0; y < green.getHeight(); y++) {
 				assertEquals(120, fp.getHueScalar(x, y));
@@ -466,7 +466,7 @@ class IntegerPixelTestCase {
 
 	@Test
 	void hueBlue() {
-		Pixel fp = Pixel.create(blue);
+		ColorPixel fp = ColorPixel.create(blue);
 		for (int x = 0; x < blue.getWidth(); x++) {
 			for (int y = 0; y < blue.getHeight(); y++) {
 				assertEquals(240, fp.getHueScalar(x, y));
@@ -476,7 +476,7 @@ class IntegerPixelTestCase {
 
 	@Test
 	void hueBrown() {
-		Pixel fp = Pixel.create(brown);
+		ColorPixel fp = ColorPixel.create(brown);
 		for (int x = 0; x < brown.getWidth(); x++) {
 			for (int y = 0; y < brown.getHeight(); y++) {
 				assertEquals(20, fp.getHueScalar(x, y));
@@ -486,7 +486,7 @@ class IntegerPixelTestCase {
 
 	@Test
 	void satBlackWhite() {
-		Pixel fp = Pixel.create(bw);
+		ColorPixel fp = ColorPixel.create(bw);
 		// Invalid hue value. Defined as 0
 		for (int x = 0; x < bw.getWidth(); x++) {
 			for (int y = 0; y < bw.getHeight(); y++) {
@@ -497,7 +497,7 @@ class IntegerPixelTestCase {
 
 	@Test
 	void satRed() {
-		Pixel fp = Pixel.create(red);
+		ColorPixel fp = ColorPixel.create(red);
 
 		for (int x = 0; x < red.getWidth(); x++) {
 			for (int y = 0; y < red.getHeight(); y++) {
@@ -508,7 +508,7 @@ class IntegerPixelTestCase {
 
 	@Test
 	void satGreen() {
-		Pixel fp = Pixel.create(green);
+		ColorPixel fp = ColorPixel.create(green);
 		for (int x = 0; x < green.getWidth(); x++) {
 			for (int y = 0; y < green.getHeight(); y++) {
 				assertEquals(1, fp.getSaturationScalar(x, y));
@@ -518,7 +518,7 @@ class IntegerPixelTestCase {
 
 	@Test
 	void satBlue() {
-		Pixel fp = Pixel.create(blue);
+		ColorPixel fp = ColorPixel.create(blue);
 		for (int x = 0; x < blue.getWidth(); x++) {
 			for (int y = 0; y < blue.getHeight(); y++) {
 				assertEquals(1, fp.getSaturationScalar(x, y));
@@ -528,7 +528,7 @@ class IntegerPixelTestCase {
 
 	@Test
 	void satBrown() {
-		Pixel fp = Pixel.create(brown);
+		ColorPixel fp = ColorPixel.create(brown);
 		for (int x = 0; x < brown.getWidth(); x++) {
 			for (int y = 0; y < brown.getHeight(); y++) {
 				assertEquals(0.75, fp.getSaturationScalar(x, y));
@@ -538,7 +538,7 @@ class IntegerPixelTestCase {
 
 	@Test
 	void valBlackWhite() {
-		Pixel fp = Pixel.create(bw);
+		ColorPixel fp = ColorPixel.create(bw);
 		for (int x = 0; x < bw.getWidth(); x++) {
 			for (int y = 0; y < bw.getHeight(); y++) {
 				if (y < 2) {
@@ -555,7 +555,7 @@ class IntegerPixelTestCase {
 
 	@Test
 	void valRed() {
-		Pixel fp = Pixel.create(red);
+		ColorPixel fp = ColorPixel.create(red);
 
 		for (int x = 0; x < red.getWidth(); x++) {
 			for (int y = 0; y < red.getHeight(); y++) {
@@ -566,7 +566,7 @@ class IntegerPixelTestCase {
 
 	@Test
 	void valGreen() {
-		Pixel fp = Pixel.create(green);
+		ColorPixel fp = ColorPixel.create(green);
 		for (int x = 0; x < green.getWidth(); x++) {
 			for (int y = 0; y < green.getHeight(); y++) {
 				assertEquals(255, fp.getBrightnessScalar(x, y));
@@ -576,7 +576,7 @@ class IntegerPixelTestCase {
 
 	@Test
 	void valBlue() {
-		Pixel fp = Pixel.create(blue);
+		ColorPixel fp = ColorPixel.create(blue);
 		for (int x = 0; x < blue.getWidth(); x++) {
 			for (int y = 0; y < blue.getHeight(); y++) {
 				assertEquals(255, fp.getBrightnessScalar(x, y));
@@ -586,7 +586,7 @@ class IntegerPixelTestCase {
 
 	@Test
 	void valBrown() {
-		Pixel fp = Pixel.create(brown);
+		ColorPixel fp = ColorPixel.create(brown);
 		for (int x = 0; x < brown.getWidth(); x++) {
 			for (int y = 0; y < brown.getHeight(); y++) {
 				assertEquals(92, fp.getBrightnessScalar(x, y));

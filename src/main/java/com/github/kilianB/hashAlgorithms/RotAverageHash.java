@@ -4,7 +4,7 @@ import java.awt.image.BufferedImage;
 import java.math.BigInteger;
 import java.util.Objects;
 
-import com.github.kilianB.graphics.Pixel;
+import com.github.kilianB.graphics.ColorPixel;
 import com.github.kilianB.graphics.ImageUtil;
 
 /**
@@ -83,7 +83,7 @@ public class RotAverageHash extends HashingAlgorithm {
 	@Override
 	protected BigInteger hash(BufferedImage image, HashBuilder hash) {
 
-		Pixel fp = Pixel.create(ImageUtil.getScaledInstance(image, width, height));
+		ColorPixel fp = ColorPixel.create(ImageUtil.getScaledInstance(image, width, height));
 
 		// We need 2 more bucket since we compare to n-1 and no values are mapped to 0
 		// bucket

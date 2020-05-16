@@ -3,7 +3,7 @@ package com.github.kilianB.hashAlgorithms.experimental;
 import java.awt.image.BufferedImage;
 import java.math.BigInteger;
 
-import com.github.kilianB.graphics.Pixel;
+import com.github.kilianB.graphics.ColorPixel;
 import com.github.kilianB.graphics.ImageUtil;
 import com.github.kilianB.hashAlgorithms.HashBuilder;
 
@@ -59,7 +59,7 @@ public class HogHashAngularEncoded extends HogHash {
 	protected BigInteger hash(BufferedImage image, HashBuilder hash) {
 
 		BufferedImage bi = ImageUtil.getScaledInstance(image, width, height);
-		Pixel fp = Pixel.create(bi);
+		ColorPixel fp = ColorPixel.create(bi);
 
 		int[][] lum = fp.getLumaMatrix();
 

@@ -5,7 +5,7 @@ import java.math.BigInteger;
 import java.util.Objects;
 
 import com.github.kilianB.graphics.ImageUtil;
-import com.github.kilianB.graphics.Pixel;
+import com.github.kilianB.graphics.ColorPixel;
 
 /**
  * Calculate a hash based on iterative application of a haar wavelet on the
@@ -61,7 +61,7 @@ public class WaveletHash extends HashingAlgorithm {
 	protected BigInteger hash(BufferedImage image, HashBuilder hashBuilder) {
 
 		// Rescale
-		Pixel fp = Pixel.create(ImageUtil.getScaledInstance(image, width, height));
+		ColorPixel fp = ColorPixel.create(ImageUtil.getScaledInstance(image, width, height));
 
 		int[][] luma = fp.getLumaMatrix();
 

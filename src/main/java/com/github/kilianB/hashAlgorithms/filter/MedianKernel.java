@@ -4,7 +4,7 @@ import java.awt.image.BufferedImage;
 import java.util.Arrays;
 
 import com.github.kilianB.ArrayUtil;
-import com.github.kilianB.graphics.Pixel;
+import com.github.kilianB.graphics.ColorPixel;
 
 /**
  * A median kernel is a non linear filter scanning the image and replacing every
@@ -114,8 +114,8 @@ public class MedianKernel extends NonAveragingKernel {
 	@Override
 	public BufferedImage filter(BufferedImage input) {
 		BufferedImage bi = new BufferedImage(input.getWidth(), input.getHeight(), input.getType());
-		Pixel fp = Pixel.create(input);
-		Pixel fpSet = Pixel.create(bi);
+		ColorPixel fp = ColorPixel.create(input);
+		ColorPixel fpSet = ColorPixel.create(bi);
 		int[][] gray = fp.getGrayscaleMatrix();
 
 		gray = applyInt(gray);

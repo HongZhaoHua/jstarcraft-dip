@@ -6,7 +6,7 @@ import com.github.kilianB.ArrayUtil;
  * @author Kilian
  *
  */
-public abstract class AbstractPixel implements Pixel {
+public abstract class AbstractPixel implements ColorPixel {
 
 	/** Width of the image */
 	protected final int width;

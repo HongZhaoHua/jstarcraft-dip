@@ -7,7 +7,7 @@ import java.util.function.BiFunction;
 import com.github.kilianB.ArrayUtil;
 import com.github.kilianB.MiscUtil;
 import com.github.kilianB.Require;
-import com.github.kilianB.graphics.Pixel;
+import com.github.kilianB.graphics.ColorPixel;
 
 /**
  * Kernel operations are shifting window masks applied to data point of an array
@@ -787,8 +787,8 @@ public class Kernel implements Filter {
 	@Override
 	public BufferedImage filter(BufferedImage input) {
 		BufferedImage bi = new BufferedImage(input.getWidth(), input.getHeight(), input.getType());
-		Pixel fp = Pixel.create(input);
-		Pixel fpSet = Pixel.create(bi);
+		ColorPixel fp = ColorPixel.create(input);
+		ColorPixel fpSet = ColorPixel.create(bi);
 		int[][] red = fp.getRedMatrix();
 		int[][] green = fp.getGreenMatrix();
 		int[][] blue = fp.getBlueMatrix();
@@ -827,8 +827,8 @@ public class Kernel implements Filter {
 		@Override
 		public BufferedImage filter(BufferedImage input) {
 			BufferedImage bi = new BufferedImage(input.getWidth(), input.getHeight(), input.getType());
-			Pixel fp = Pixel.create(input);
-			Pixel fpSet = Pixel.create(bi);
+			ColorPixel fp = ColorPixel.create(input);
+			ColorPixel fpSet = ColorPixel.create(bi);
 			int[][] gray = fp.getGrayscaleMatrix();
 			gray = applyInt(gray);
 			fpSet.setGrayscaleMatrix(gray);

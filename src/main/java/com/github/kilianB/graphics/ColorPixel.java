@@ -13,9 +13,9 @@ import java.util.logging.Logger;
  * @author Kilian
  *
  */
-public interface Pixel {
+public interface ColorPixel {
 
-	static final Logger LOGGER = Logger.getLogger(Pixel.class.getSimpleName());
+	static final Logger LOGGER = Logger.getLogger(ColorPixel.class.getSimpleName());
 
 	/**
 	 * Check if an image supports alpha values
@@ -641,7 +641,7 @@ public interface Pixel {
 	 * @param bufferedImage the buffered image to create a fast pixel instance for
 	 * @return an instantiated FastPixelObject
 	 */
-	public static Pixel create(BufferedImage bufferedImage) {
+	public static ColorPixel create(BufferedImage bufferedImage) {
 
 		switch (bufferedImage.getType()) {
 

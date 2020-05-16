@@ -4,7 +4,7 @@ import java.awt.image.BufferedImage;
 import java.math.BigInteger;
 
 import com.github.kilianB.ArrayUtil;
-import com.github.kilianB.graphics.Pixel;
+import com.github.kilianB.graphics.ColorPixel;
 import com.github.kilianB.graphics.ImageUtil;
 
 /**
@@ -48,7 +48,7 @@ public class MedianHash extends AverageHash {
 
 	@Override
 	protected BigInteger hash(BufferedImage image, HashBuilder hash) {
-		Pixel fp = Pixel.create(ImageUtil.getScaledInstance(image, width, height));
+		ColorPixel fp = ColorPixel.create(ImageUtil.getScaledInstance(image, width, height));
 
 		int[] lum = fp.getLumaVector();
 

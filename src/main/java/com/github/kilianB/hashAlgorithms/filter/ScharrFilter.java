@@ -3,7 +3,7 @@ package com.github.kilianB.hashAlgorithms.filter;
 import java.awt.image.BufferedImage;
 
 import com.github.kilianB.Require;
-import com.github.kilianB.graphics.Pixel;
+import com.github.kilianB.graphics.ColorPixel;
 
 /**
  * 
@@ -79,7 +79,7 @@ public class ScharrFilter implements Filter {
 	@Override
 	public BufferedImage filter(BufferedImage bi) {
 
-		Pixel fp = Pixel.create(bi);
+		ColorPixel fp = ColorPixel.create(bi);
 
 		int[][] grayscale = fp.getRedMatrix();
 
@@ -104,7 +104,7 @@ public class ScharrFilter implements Filter {
 		}
 
 		BufferedImage returnBi = new BufferedImage(bi.getWidth(), bi.getHeight(), bi.getType());
-		Pixel fpSet = Pixel.create(returnBi);
+		ColorPixel fpSet = ColorPixel.create(returnBi);
 
 		fpSet.setGrayscaleMatrix(result);
 
