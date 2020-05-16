@@ -66,7 +66,17 @@ public interface ColorPixel {
 	 * @return a 2d integer array containing the argb values of the image
 	 * @since 1.3.0
 	 */
-	int[][] getRgbMatrix();
+	default int[][] getRgbMatrix() {
+		int width = getWidth();
+		int height = getHeight();
+		int[][] matrix = new int[width][height];
+		for (int x = 0; x < width; x++) {
+			for (int y = 0; y < height; y++) {
+				matrix[x][y] = getRgbScalar(x, y);
+			}
+		}
+		return matrix;
+	}
 
 	/**
 	 * Get the alpha value of the specified pixel
@@ -96,7 +106,17 @@ public interface ColorPixel {
 	 * @return the alpha values or null if alpha is not supported
 	 * @since 1.3.0
 	 */
-	int[][] getTransparencyMatrix();
+	default int[][] getTransparencyMatrix() {
+		int width = getWidth();
+		int height = getHeight();
+		int[][] matrix = new int[width][height];
+		for (int x = 0; x < width; x++) {
+			for (int y = 0; y < height; y++) {
+				matrix[x][y] = getTransparencyScalar(x, y);
+			}
+		}
+		return matrix;
+	}
 
 	/**
 	 * Set the alpha value. This method is a NOP if alpha is not supported.
@@ -126,7 +146,15 @@ public interface ColorPixel {
 	 * @param matrix red values in range [0-255]
 	 * @since 1.4.5
 	 */
-	void setTransparencyMatrix(int[][] matrix);
+	default void setTransparencyMatrix(int[][] matrix) {
+		int width = getWidth();
+		int height = getHeight();
+		for (int x = 0; x < width; x++) {
+			for (int y = 0; y < height; y++) {
+				setTransparencyScalar(x, y, matrix[x][y]);
+			}
+		}
+	}
 
 	/**
 	 * Get the red value at the specified offset
@@ -156,7 +184,17 @@ public interface ColorPixel {
 	 * @return the red values
 	 * @since 1.3.0
 	 */
-	int[][] getRedMatrix();
+	default int[][] getRedMatrix() {
+		int width = getWidth();
+		int height = getHeight();
+		int[][] matrix = new int[width][height];
+		for (int x = 0; x < width; x++) {
+			for (int y = 0; y < height; y++) {
+				matrix[x][y] = getRedScalar(x, y);
+			}
+		}
+		return matrix;
+	}
 
 	/**
 	 * Get the red component of the entire image mapped to a 1d array
@@ -164,7 +202,16 @@ public interface ColorPixel {
 	 * @return the red values
 	 * @since 1.5.5
 	 */
-	int[] getRedVector();
+	default int[] getRedVector() {
+		int width = getWidth();
+		int height = getHeight();
+		int size = width * height;
+		int[] vector = new int[size];
+		for (int index = 0; index < size; index++) {
+			vector[index] = getRedScalar(index);
+		}
+		return vector;
+	}
 
 	/**
 	 * Set the red value at the specified offset
@@ -193,7 +240,15 @@ public interface ColorPixel {
 	 * @param matrix red values in range [0-255]
 	 * @since 1.4.5
 	 */
-	void setRedMatrix(int[][] matrix);
+	default void setRedMatrix(int[][] matrix) {
+		int width = getWidth();
+		int height = getHeight();
+		for (int x = 0; x < width; x++) {
+			for (int y = 0; y < height; y++) {
+				setRedScalar(x, y, matrix[x][y]);
+			}
+		}
+	}
 
 	/**
 	 * Get the green value of the specified offset
@@ -223,7 +278,34 @@ public interface ColorPixel {
 	 * @return the green values
 	 * @since 1.3.0
 	 */
-	int[][] getGreenMatrix();
+	default int[][] getGreenMatrix() {
+		int width = getWidth();
+		int height = getHeight();
+		int[][] matrix = new int[width][height];
+		for (int x = 0; x < width; x++) {
+			for (int y = 0; y < height; y++) {
+				matrix[x][y] = getGreenScalar(x, y);
+			}
+		}
+		return matrix;
+	}
+
+	/**
+	 * Get the green component of the entire image mapped to a 1d array
+	 * 
+	 * @return the green values
+	 * @since 1.5.5
+	 */
+	default int[] getGreenVector() {
+		int width = getWidth();
+		int height = getHeight();
+		int size = width * height;
+		int[] vector = new int[size];
+		for (int index = 0; index < size; index++) {
+			vector[index] = getGreenScalar(index);
+		}
+		return vector;
+	}
 
 	/**
 	 * Set the green value at the specified offset
@@ -252,15 +334,15 @@ public interface ColorPixel {
 	 * @param matrix red values in range [0-255]
 	 * @since 1.4.5
 	 */
-	void setGreenMatrix(int[][] matrix);
-
-	/**
-	 * Get the green component of the entire image mapped to a 1d array
-	 * 
-	 * @return the green values
-	 * @since 1.5.5
-	 */
-	int[] getGreenVector();
+	default void setGreenMatrix(int[][] matrix) {
+		int width = getWidth();
+		int height = getHeight();
+		for (int x = 0; x < width; x++) {
+			for (int y = 0; y < height; y++) {
+				setTransparencyScalar(x, y, matrix[x][y]);
+			}
+		}
+	}
 
 	/**
 	 * Get the blue value of the specified offset
@@ -290,7 +372,17 @@ public interface ColorPixel {
 	 * @return the blue values
 	 * @since 1.3.0
 	 */
-	int[][] getBlueMatrix();
+	default int[][] getBlueMatrix() {
+		int width = getWidth();
+		int height = getHeight();
+		int[][] matrix = new int[width][height];
+		for (int x = 0; x < width; x++) {
+			for (int y = 0; y < height; y++) {
+				matrix[x][y] = getBlueScalar(x, y);
+			}
+		}
+		return matrix;
+	}
 
 	/**
 	 * Get the blue component of the entire image mapped to a 1d array
@@ -298,7 +390,16 @@ public interface ColorPixel {
 	 * @return the red values
 	 * @since 1.5.5
 	 */
-	int[] getBlueVector();
+	default int[] getBlueVector() {
+		int width = getWidth();
+		int height = getHeight();
+		int size = width * height;
+		int[] vector = new int[size];
+		for (int index = 0; index < size; index++) {
+			vector[index] = getBlueScalar(index);
+		}
+		return vector;
+	}
 
 	void setBlueScalar(int index, int scalar);
 
@@ -320,7 +421,15 @@ public interface ColorPixel {
 	 * @param matrix red values in range [0-255]
 	 * @since 1.4.5
 	 */
-	void setBlueMatrix(int[][] matrix);
+	default void setBlueMatrix(int[][] matrix) {
+		int width = getWidth();
+		int height = getHeight();
+		for (int x = 0; x < width; x++) {
+			for (int y = 0; y < height; y++) {
+				setBlueScalar(x, y, matrix[x][y]);
+			}
+		}
+	}
 
 	// Derivatives
 
@@ -367,7 +476,17 @@ public interface ColorPixel {
 	 * @return the grayscale values in range [0 - 255]
 	 * @since 1.5.0
 	 */
-	int[][] getGrayscaleMatrix();
+	default int[][] getGrayscaleMatrix() {
+		int width = getWidth();
+		int height = getHeight();
+		int[][] matrix = new int[width][height];
+		for (int x = 0; x < width; x++) {
+			for (int y = 0; y < height; y++) {
+				matrix[x][y] = getGrayscaleScalar(x, y);
+			}
+		}
+		return matrix;
+	}
 
 	/**
 	 * Set the gray values at the specified offset
@@ -424,7 +543,15 @@ public interface ColorPixel {
 	 * @param matrix to set the pixels to range [0 - 255]
 	 * @since 1.5.0
 	 */
-	void setGrayscaleMatrix(int[][] matrix);
+	default void setGrayscaleMatrix(int[][] matrix) {
+		int width = getWidth();
+		int height = getHeight();
+		for (int x = 0; x < width; x++) {
+			for (int y = 0; y < height; y++) {
+				setGrayscaleScalar(x, y, matrix[x][y]);
+			}
+		}
+	}
 
 	// YCrCb
 	/**
@@ -460,7 +587,17 @@ public interface ColorPixel {
 	 * @return the luma component in range [0-255]
 	 * @since 1.3.1
 	 */
-	int[][] getLumaMatrix();
+	default int[][] getLumaMatrix() {
+		int width = getWidth();
+		int height = getHeight();
+		int[][] matrix = new int[width][height];
+		for (int x = 0; x < width; x++) {
+			for (int y = 0; y < height; y++) {
+				matrix[x][y] = getLumaScalar(x, y);
+			}
+		}
+		return matrix;
+	}
 
 	/**
 	 * Return the Y(Luma) component of the YCbCr color model fof the entire image
@@ -468,7 +605,16 @@ public interface ColorPixel {
 	 * 
 	 * @return the luma component in range [0-255]
 	 */
-	int[] getLumaVector();
+	default int[] getLumaVector() {
+		int width = getWidth();
+		int height = getHeight();
+		int size = width * height;
+		int[] vector = new int[size];
+		for (int index = 0; index < size; index++) {
+			vector[index] = getLumaScalar(index);
+		}
+		return vector;
+	}
 
 	default int getCrScalar(int index) {
 		int cr = (int) (getRedScalar(index) * ColorUtil.CR_RED + getGreenScalar(index) * ColorUtil.CR_GREEN + getBlueScalar(index) * ColorUtil.CR_BLUE);
@@ -524,34 +670,31 @@ public interface ColorPixel {
 	 * @since 1.5.0
 	 */
 	default int getHueScalar(int index) {
-
 		int blue = getBlueScalar(index);
 		int green = getGreenScalar(index);
 		int red = getRedScalar(index);
+		int maximum = Math.max(blue, Math.max(green, red));
+		int minimum = Math.min(blue, Math.min(green, red));
 
-		int min = Math.min(blue, Math.min(green, red));
-		int max = Math.max(blue, Math.max(green, red));
-
-		if (max == min)
+		if (maximum == minimum) {
 			return 0;
-
-		double range = max - min;
-
-		double h;
-		if (red == max) {
-			h = 60 * ((green - blue) / range);
-		} else if (green == max) {
-			h = 60 * (2 + (blue - red) / range);
-		} else {
-			h = 60 * (4 + (red - green) / range);
 		}
 
-		int hue = (int) Math.round(h);
+		float range = maximum - minimum;
+		float hue;
+		if (red == maximum) {
+			hue = 60 * ((green - blue) / range);
+		} else if (green == maximum) {
+			hue = 60 * (2 + (blue - red) / range);
+		} else {
+			hue = 60 * (4 + (red - green) / range);
+		}
 
-		if (hue < 0)
-			hue += 360;
-
-		return hue;
+		int scalar = Math.round(hue);
+		if (scalar < 0) {
+			scalar += 360;
+		}
+		return scalar;
 	}
 
 	/**
@@ -582,16 +725,16 @@ public interface ColorPixel {
 	 *         undefined colors (i.e. black)
 	 * @since 1.5.0
 	 */
-	default double getSaturationScalar(int index) {
+	default float getSaturationScalar(int index) {
 		int blue = getBlueScalar(index);
 		int green = getGreenScalar(index);
 		int red = getRedScalar(index);
-		int max = Math.max(blue, Math.max(green, red));
-		if (max == 0) {
+		int maximum = Math.max(blue, Math.max(green, red));
+		if (maximum == 0) {
 			return 0;
 		}
-		int min = Math.min(blue, Math.min(green, red));
-		return ((max - min) / (double) max);
+		int minimum = Math.min(blue, Math.min(green, red));
+		return ((maximum - minimum) / (float) maximum);
 	}
 
 	/**
@@ -609,7 +752,7 @@ public interface ColorPixel {
 	 *         undefined colors (i.e. black)
 	 * @since 1.3.0
 	 */
-	default double getSaturationScalar(int x, int y) {
+	default float getSaturationScalar(int x, int y) {
 		return getSaturationScalar(getIndex(x, y));
 	}
 
