@@ -12,17 +12,17 @@ import com.github.kilianB.MathUtil;
 public class IntegerPixel extends AbstractPixel {
 
 	/** Full alpha constant */
-	private static final int FULL_ALPHA = 255 << 24;
+	private static final int TRANSPARENCY_MASK = 255 << 24;
 
 	/** Raw data */
-	private int[] imageData;
+	private int[] pixelData;
 
+	private int transparencyMask;
 	private int redMask;
 	private int greenMask;
 	private int blueMask;
-	private int alphaMask;
 
-	private int alphaOffset;
+	private int transparencyOffset;
 	private int redOffset;
 	private int blueOffset;
 	private int greenOffset;
@@ -41,7 +41,7 @@ public class IntegerPixel extends AbstractPixel {
 	public IntegerPixel(BufferedImage bImage) {
 		super(bImage.getWidth(), bImage.getHeight(), bImage.getColorModel().hasAlpha());
 
-		imageData = ((DataBufferInt) bImage.getRaster().getDataBuffer()).getData();
+		pixelData = ((DataBufferInt) bImage.getRaster().getDataBuffer()).getData();
 
 		switch (bImage.getType()) {
 
@@ -49,32 +49,32 @@ public class IntegerPixel extends AbstractPixel {
 			redMask = 0x00ff0000;
 			greenMask = 0x0000ff00;
 			blueMask = 0x000000ff;
-			alphaMask = 0xff000000;
+			transparencyMask = 0xff000000;
 			break;
 		case BufferedImage.TYPE_INT_RGB:
 			redMask = 0x00ff0000;
 			greenMask = 0x0000ff00;
 			blueMask = 0x000000ff;
-			alphaMask = 0x00000000;
+			transparencyMask = 0x00000000;
 			break;
 		case BufferedImage.TYPE_INT_BGR:
 			redMask = 0x000000ff;
 			greenMask = 0x0000ff00;
 			blueMask = 0x00ff0000;
-			alphaMask = 0x00000000;
+			transparencyMask = 0x00000000;
 			break;
 		}
 
 		redOffset = MathUtil.getLowerShiftBitMask(redMask);
 		greenOffset = MathUtil.getLowerShiftBitMask(greenMask);
 		blueOffset = MathUtil.getLowerShiftBitMask(blueMask);
-		alphaOffset = MathUtil.getLowerShiftBitMask(alphaMask);
+		transparencyOffset = MathUtil.getLowerShiftBitMask(transparencyMask);
 
 	}
 
 	@Override
 	public int getRgbScalar(int index) {
-		return (hasTransparency() ? (getTransparencyScalar(index) << 24) : FULL_ALPHA) | (getRedScalar(index) << 16) | (getGreenScalar(index) << 8) | (getBlueScalar(index));
+		return (hasTransparency() ? (getTransparencyScalar(index) << 24) : TRANSPARENCY_MASK) | (getRedScalar(index) << 16) | (getGreenScalar(index) << 8) | (getBlueScalar(index));
 	}
 
 	/**
@@ -110,7 +110,7 @@ public class IntegerPixel extends AbstractPixel {
 		int[][] rgb = new int[width][height];
 		int x = 0;
 		int y = 0;
-		for (int i = 0; i < imageData.length; i++) {
+		for (int i = 0; i < pixelData.length; i++) {
 			rgb[x][y] = getRgbScalar(i);
 			x++;
 			if (x >= width) {
@@ -124,7 +124,7 @@ public class IntegerPixel extends AbstractPixel {
 	public int getTransparencyScalar(int index) {
 		if (!hasTransparency())
 			return -1;
-		return (imageData[index] & alphaMask) >>> alphaOffset;
+		return (pixelData[index] & transparencyMask) >>> transparencyOffset;
 	}
 
 	/**
@@ -154,7 +154,7 @@ public class IntegerPixel extends AbstractPixel {
 		int[][] alpha = new int[width][height];
 		int x = 0;
 		int y = 0;
-		for (int i = 0; i < imageData.length; i++) {
+		for (int i = 0; i < pixelData.length; i++) {
 			alpha[x][y] = getTransparencyScalar(i);
 			x++;
 			if (x >= width) {
@@ -169,7 +169,7 @@ public class IntegerPixel extends AbstractPixel {
 	public void setTransparencyScalar(int index, int transparency) {
 		if (!this.hasTransparency())
 			return;
-		imageData[index] |= (transparency << alphaOffset);
+		pixelData[index] |= (transparency << transparencyOffset);
 	}
 
 	/**
@@ -189,7 +189,7 @@ public class IntegerPixel extends AbstractPixel {
 
 	@Override
 	public int getRedScalar(int index) {
-		return (imageData[index] & redMask) >>> redOffset;
+		return (pixelData[index] & redMask) >>> redOffset;
 	}
 
 	/**
@@ -217,7 +217,7 @@ public class IntegerPixel extends AbstractPixel {
 		int[][] red = new int[width][height];
 		int x = 0;
 		int y = 0;
-		for (int i = 0; i < imageData.length; i++) {
+		for (int i = 0; i < pixelData.length; i++) {
 			red[x][y] = getRedScalar(i);
 			x++;
 			if (x >= width) {
@@ -231,7 +231,7 @@ public class IntegerPixel extends AbstractPixel {
 	@Override
 	public void setRedScalar(int index, int newRed) {
 		// Clear red part first
-		imageData[index] = (imageData[index] & (~redMask)) | (newRed << redOffset);
+		pixelData[index] = (pixelData[index] & (~redMask)) | (newRed << redOffset);
 	}
 
 	/**
@@ -265,7 +265,7 @@ public class IntegerPixel extends AbstractPixel {
 
 	@Override
 	public int getGreenScalar(int index) {
-		return (imageData[index] & greenMask) >>> greenOffset;
+		return (pixelData[index] & greenMask) >>> greenOffset;
 	}
 
 	/**
@@ -284,7 +284,7 @@ public class IntegerPixel extends AbstractPixel {
 	@Override
 	public void setGreenScalar(int index, int newGreen) {
 		// Clear green part first
-		imageData[index] = (imageData[index] & (~greenMask)) | (newGreen << greenOffset);
+		pixelData[index] = (pixelData[index] & (~greenMask)) | (newGreen << greenOffset);
 	}
 
 	/**
@@ -328,7 +328,7 @@ public class IntegerPixel extends AbstractPixel {
 		int[][] green = new int[width][height];
 		int x = 0;
 		int y = 0;
-		for (int i = 0; i < imageData.length; i++) {
+		for (int i = 0; i < pixelData.length; i++) {
 			green[x][y] = getGreenScalar(i);
 			x++;
 			if (x >= width) {
@@ -341,7 +341,7 @@ public class IntegerPixel extends AbstractPixel {
 
 	@Override
 	public int getBlueScalar(int index) {
-		return (imageData[index] & blueMask) >>> blueOffset;
+		return (pixelData[index] & blueMask) >>> blueOffset;
 	}
 
 	/**
@@ -359,7 +359,7 @@ public class IntegerPixel extends AbstractPixel {
 
 	@Override
 	public void setBlueScalar(int index, int newBlue) {
-		imageData[index] = (imageData[index] & (~blueMask)) | (newBlue << blueOffset);
+		pixelData[index] = (pixelData[index] & (~blueMask)) | (newBlue << blueOffset);
 	}
 
 	/**
@@ -387,7 +387,7 @@ public class IntegerPixel extends AbstractPixel {
 		int[][] blue = new int[width][height];
 		int x = 0;
 		int y = 0;
-		for (int i = 0; i < imageData.length; i++) {
+		for (int i = 0; i < pixelData.length; i++) {
 			blue[x][y] = getBlueScalar(i);
 			x++;
 			if (x >= width) {
@@ -420,7 +420,7 @@ public class IntegerPixel extends AbstractPixel {
 		int[][] gray = new int[width][height];
 		int x = 0;
 		int y = 0;
-		for (int i = 0; i < imageData.length; i++) {
+		for (int i = 0; i < pixelData.length; i++) {
 			gray[x][y] = getGrayscaleScalar(x, y);
 			x++;
 			if (x >= width) {
@@ -454,7 +454,7 @@ public class IntegerPixel extends AbstractPixel {
 		int luma[][] = new int[width][height];
 		int x = 0;
 		int y = 0;
-		for (int i = 0; i < imageData.length; i++) {
+		for (int i = 0; i < pixelData.length; i++) {
 			luma[x][y] = getLumaScalar(i);
 			x++;
 			if (x >= width) {
@@ -468,14 +468,10 @@ public class IntegerPixel extends AbstractPixel {
 	@Override
 	public int[] getLumaVector() {
 		int luma[] = new int[width * height];
-		for (int i = 0; i < imageData.length; i++) {
+		for (int i = 0; i < pixelData.length; i++) {
 			luma[i] = getLumaScalar(i);
 		}
 		return luma;
-	}
-
-	public int getIndex(int x, int y) {
-		return (y * width) + x;
 	}
 
 }

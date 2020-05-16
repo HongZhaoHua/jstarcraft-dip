@@ -1,7 +1,5 @@
 package com.github.kilianB.graphics;
 
-import com.github.kilianB.ArrayUtil;
-
 /**
  * @author Kilian
  *
@@ -23,6 +21,11 @@ public abstract class AbstractPixel implements ColorPixel {
 	}
 
 	@Override
+	public int getIndex(int x, int y) {
+		return (y * width) + x;
+	}
+
+	@Override
 	public int getWidth() {
 		return width;
 	}
@@ -30,33 +33,6 @@ public abstract class AbstractPixel implements ColorPixel {
 	@Override
 	public int getHeight() {
 		return height;
-	}
-
-	@Override
-	public int[] getRedVector() {
-		int[] red = new int[width * height];
-		ArrayUtil.fillArray(red, i -> {
-			return getRedScalar(i);
-		});
-		return red;
-	}
-
-	@Override
-	public int[] getBlueVector() {
-		int[] blue = new int[width * height];
-		ArrayUtil.fillArray(blue, i -> {
-			return getBlueScalar(i);
-		});
-		return blue;
-	}
-
-	@Override
-	public int[] getGreenVector() {
-		int[] green = new int[width * height];
-		ArrayUtil.fillArray(green, i -> {
-			return getGreenScalar(i);
-		});
-		return green;
 	}
 
 	@Override

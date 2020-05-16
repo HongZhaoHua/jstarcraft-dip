@@ -339,7 +339,7 @@ public interface ColorPixel {
 		int height = getHeight();
 		for (int x = 0; x < width; x++) {
 			for (int y = 0; y < height; y++) {
-				setTransparencyScalar(x, y, matrix[x][y]);
+				setGreenScalar(x, y, matrix[x][y]);
 			}
 		}
 	}
