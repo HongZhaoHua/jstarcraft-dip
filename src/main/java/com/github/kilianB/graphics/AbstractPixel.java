@@ -23,6 +23,16 @@ public abstract class AbstractPixel implements ColorPixel {
 	}
 
 	@Override
+	public int getWidth() {
+		return width;
+	}
+
+	@Override
+	public int getHeight() {
+		return height;
+	}
+
+	@Override
 	public int[] getRedVector() {
 		int[] red = new int[width * height];
 		ArrayUtil.fillArray(red, i -> {

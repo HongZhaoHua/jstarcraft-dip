@@ -18,13 +18,6 @@ public interface ColorPixel {
 	static final Logger LOGGER = Logger.getLogger(ColorPixel.class.getSimpleName());
 
 	/**
-	 * Check if an image supports alpha values
-	 * 
-	 * @return true if the image has an alpha channel. false otherwise
-	 */
-	boolean hasTransparency();
-
-	/**
 	 * Map the x and y values to the underlying one dimensional data array
 	 * 
 	 * @param x the x coordinate
@@ -32,6 +25,17 @@ public interface ColorPixel {
 	 * @return the corresponding 1d array index
 	 */
 	int getIndex(int x, int y);
+
+	int getWidth();
+
+	int getHeight();
+
+	/**
+	 * Check if an image supports alpha values
+	 * 
+	 * @return true if the image has an alpha channel. false otherwise
+	 */
+	boolean hasTransparency();
 
 	int getRgbScalar(int index);
 
