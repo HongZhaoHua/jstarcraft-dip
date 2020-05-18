@@ -110,12 +110,14 @@ class DifferenceHashTest {
 	 */
 	@Test
 	void toImageTest() {
-		HashingAlgorithm hasher = new DifferenceHash(128, Precision.Simple);
+		for (Precision precision : Precision.values()) {
+			HashingAlgorithm hasher = new DifferenceHash(128, precision);
 
-		Hash ballonHash = hasher.hash(TestResources.ballon);
-		BufferedImage imageOfHash = ballonHash.toImage(10);
-		Hash hashedImage = hasher.hash(imageOfHash);
-		assertTrue(ballonHash.normalizedHammingDistance(hashedImage) > 0.8d);
+			Hash ballonHash = hasher.hash(TestResources.ballon);
+			BufferedImage imageOfHash = ballonHash.toImage(10);
+			Hash hashedImage = hasher.hash(imageOfHash);
+			assertTrue(ballonHash.normalizedHammingDistance(hashedImage) > 0.8d);
+		}
 	}
 
 	@Test

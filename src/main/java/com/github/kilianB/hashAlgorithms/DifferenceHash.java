@@ -86,24 +86,26 @@ public class DifferenceHash extends HashingAlgorithm {
 		int[][] lum = pixel.getLuminanceMatrix();
 
 		// Calculate the left to right gradient
-		for (int x = 1; x < width; x++) {
-			for (int y = 0; y < height; y++) {
-				if (lum[x][y] >= lum[x - 1][y]) {
-					hash.prependZero();
-				} else {
-					hash.prependOne();
+		if (precision.equals(Precision.Simple)) {
+			for (int x = 1; x < width; x++) {
+				for (int y = 0; y < height; y++) {
+					if (lum[x][y] >= lum[x - 1][y]) {
+						hash.prependZero();
+					} else {
+						hash.prependOne();
+					}
 				}
 			}
 		}
 
 		// Top to bottom gradient
-		if (!precision.equals(Precision.Simple)) {
+		if (precision.equals(Precision.Double)) {
 			// We need a padding row at the top now.
 			// Caution width and height are swapped
 
 			for (int x = 0; x < width; x++) {
 				for (int y = 1; y < height; y++) {
-					if (lum[x][y] < lum[x][y - 1]) {
+					if (lum[x][y] >= lum[x][y - 1]) {
 						hash.prependZero();
 					} else {
 						hash.prependOne();
@@ -116,7 +118,7 @@ public class DifferenceHash extends HashingAlgorithm {
 		if (precision.equals(Precision.Triple)) {
 			for (int x = 1; x < width; x++) {
 				for (int y = 1; y < height; y++) {
-					if (lum[x][y] < lum[x - 1][y - 1]) {
+					if (lum[x][y] >= lum[x - 1][y - 1]) {
 						hash.prependZero();
 					} else {
 						hash.prependOne();
@@ -211,31 +213,31 @@ public class DifferenceHash extends HashingAlgorithm {
 				BufferedImage bi = new BufferedImage(blockSize * width, blockSize * height, BufferedImage.TYPE_3BYTE_BGR);
 
 				ColorPixel fp = ColorPixel.create(bi);
-				drawDoublePrecision(fp, width, 1, height, 0, blockSize, 0, 0, bitColorIndex, colors);
+				drawDoublePrecision(fp, width, 1, height, 0, blockSize, bitColorIndex, colors);
 				return bi;
 			} else if (precision.equals(Precision.Double)) {
 
-				BufferedImage bi = new BufferedImage(blockSize * width, blockSize * height * 2, BufferedImage.TYPE_3BYTE_BGR);
+				BufferedImage bi = new BufferedImage(blockSize * width, blockSize * height, BufferedImage.TYPE_3BYTE_BGR);
 
 				ColorPixel fp = ColorPixel.create(bi);
-				drawDoublePrecision(fp, width, 1, height, 0, blockSize, 0, 0, bitColorIndex, colors);
-				drawDoublePrecision(fp, width, 0, height, 1, blockSize, hashLength / 2, height, bitColorIndex, colors);
+//				drawDoublePrecision(fp, width, 1, height, 0, blockSize, 0, 0, bitColorIndex, colors);
+				drawDoublePrecision(fp, width, 0, height, 1, blockSize, bitColorIndex, colors);
 				return bi;
 			} else {
 
-				BufferedImage bi = new BufferedImage(blockSize * width, blockSize * height * 3, BufferedImage.TYPE_3BYTE_BGR);
+				BufferedImage bi = new BufferedImage(blockSize * width, blockSize * height, BufferedImage.TYPE_3BYTE_BGR);
 
 				ColorPixel fp = ColorPixel.create(bi);
 				int hashOffset = 0;
-				hashOffset += drawDoublePrecision(fp, width, 1, height, 0, blockSize, hashOffset, 0, bitColorIndex, colors);
-				hashOffset += drawDoublePrecision(fp, width, 0, height, 1, blockSize, hashOffset, height, bitColorIndex, colors);
-				drawDoublePrecision(fp, width, 1, height, 1, blockSize, hashOffset, 2 * height, bitColorIndex, colors);
+//				hashOffset += drawDoublePrecision(fp, width, 1, height, 0, blockSize, hashOffset, 0, bitColorIndex, colors);
+//				hashOffset += drawDoublePrecision(fp, width, 0, height, 1, blockSize, hashOffset, height, bitColorIndex, colors);
+				drawDoublePrecision(fp, width, 1, height, 1, blockSize, bitColorIndex, colors);
 				return bi;
 			}
 		}
 
-		private int drawDoublePrecision(ColorPixel writer, int width, int wOffset, int height, int hOffset, int blockSize, int offset, int yOffset, int[] bitColorIndex, Color[] colors) {
-			int i = offset;
+		private void drawDoublePrecision(ColorPixel writer, int width, int wOffset, int height, int hOffset, int blockSize, int[] bitColorIndex, Color[] colors) {
+			int i = 0;
 			for (int w = 0; w < (width - wOffset) * blockSize; w = w + blockSize) {
 				for (int h = 0; h < (height - hOffset) * blockSize; h = h + blockSize) {
 					Color c = colors[bitColorIndex[i++]];
@@ -246,7 +248,7 @@ public class DifferenceHash extends HashingAlgorithm {
 					for (int m = 0; m < blockSize; m++) {
 						for (int n = 0; n < blockSize; n++) {
 							int x = w + m;
-							int y = h + n + yOffset * blockSize;
+							int y = h + n;
 							// bi.setRGB(y, x, bit ? black : white);
 							writer.setRedScalar(x, y, red);
 							writer.setGreenScalar(x, y, green);
@@ -255,7 +257,6 @@ public class DifferenceHash extends HashingAlgorithm {
 					}
 				}
 			}
-			return i - offset;
 		}
 	}
 
