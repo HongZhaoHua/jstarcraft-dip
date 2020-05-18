@@ -40,15 +40,6 @@ public class DifferenceHash extends HashingAlgorithm {
 	}
 
 	/**
-	 * The height and width of the scaled instance used to compute the hash
-	 */
-	private int height;
-	/**
-	 * The height and width of the scaled instance used to compute the hash
-	 */
-	private int width;
-
-	/**
 	 * Precision used to calculate the hash
 	 */
 	private final Precision precision;
@@ -91,8 +82,7 @@ public class DifferenceHash extends HashingAlgorithm {
 	}
 
 	@Override
-	protected BigInteger hash(BufferedImage image, HashBuilder hash) {
-		ColorPixel fp = ColorPixel.create(ImageUtil.getScaledInstance(image, width, height));
+	protected BigInteger hash(ColorPixel fp, HashBuilder hash) {
 		// Use data buffer for faster access
 
 		int[][] lum = fp.getLumaMatrix();

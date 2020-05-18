@@ -1,6 +1,5 @@
 package com.github.kilianB.hashAlgorithms;
 
-import java.awt.image.BufferedImage;
 import java.math.BigInteger;
 import java.util.Objects;
 import java.util.logging.Logger;
@@ -9,7 +8,6 @@ import org.jtransforms.dct.DoubleDCT_2D;
 import org.jtransforms.utils.CommonUtils;
 
 import com.jstarcraft.dip.color.ColorPixel;
-import com.jstarcraft.dip.color.ImageUtil;
 
 /**
  * Calculate a hash based on the frequency of an image using the DCT T2. This
@@ -38,11 +36,6 @@ public class PerceptiveHash extends HashingAlgorithm {
 	private static final Logger LOGGER = Logger.getLogger(PerceptiveHash.class.getSimpleName());
 
 	/**
-	 * The height and width of the scaled instance used to compute the hash
-	 */
-	private int height, width;
-
-	/**
 	 * 
 	 * @param bitResolution The bit resolution specifies the final length of the
 	 *                      generated hash. A higher resolution will increase
@@ -63,9 +56,7 @@ public class PerceptiveHash extends HashingAlgorithm {
 	}
 
 	@Override
-	protected BigInteger hash(BufferedImage image, HashBuilder hash) {
-		ColorPixel fp = ColorPixel.create(ImageUtil.getScaledInstance(image, width, height));
-
+	protected BigInteger hash(ColorPixel fp, HashBuilder hash) {
 		int[][] lum = fp.getLumaMatrix();
 
 		// int to double conversion ...

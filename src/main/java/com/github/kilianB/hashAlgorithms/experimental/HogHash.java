@@ -19,7 +19,6 @@ import com.github.kilianB.hashAlgorithms.HashBuilder;
 import com.github.kilianB.hashAlgorithms.HashingAlgorithm;
 import com.jstarcraft.dip.color.ColorPixel;
 import com.jstarcraft.dip.color.ColorUtil;
-import com.jstarcraft.dip.color.ImageUtil;
 
 /**
  * Image Hash on HOG feature descriptor. Not ready yet. Most likely use a very
@@ -40,10 +39,6 @@ public class HogHash extends HashingAlgorithm {
 	 * http://lear.inrialpes.fr/people/triggs/pubs/Dalal-cvpr05.pdf
 	 */
 
-	/** The width of the rescaled image */
-	protected int width;
-	/** The height of the rescaled image */
-	protected int height;
 	/** The cell width/height used to compute the features */
 	protected int cellWidth;
 
@@ -159,11 +154,7 @@ public class HogHash extends HashingAlgorithm {
 	}
 
 	@Override
-	protected BigInteger hash(BufferedImage image, HashBuilder hash) {
-
-		BufferedImage bi = ImageUtil.getScaledInstance(image, width, height);
-		ColorPixel fp = ColorPixel.create(bi);
-
+	protected BigInteger hash(ColorPixel fp, HashBuilder hash) {
 		int[][] lum = fp.getLumaMatrix();
 
 		// 1 Compute hisogramm

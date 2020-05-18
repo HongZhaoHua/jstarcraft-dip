@@ -1,11 +1,9 @@
 package com.github.kilianB.hashAlgorithms;
 
-import java.awt.image.BufferedImage;
 import java.math.BigInteger;
 import java.util.Objects;
 
 import com.jstarcraft.dip.color.ColorPixel;
-import com.jstarcraft.dip.color.ImageUtil;
 
 /**
  * 
@@ -32,12 +30,6 @@ import com.jstarcraft.dip.color.ImageUtil;
  *
  */
 public class RotAverageHash extends HashingAlgorithm {
-
-	/** Width of the rescaled image */
-	private int width;
-
-	/** Height of the rescaled image */
-	private int height;
 
 	/** X Origin the pixels will be rotated around */
 	private double centerX;
@@ -81,10 +73,7 @@ public class RotAverageHash extends HashingAlgorithm {
 	}
 
 	@Override
-	protected BigInteger hash(BufferedImage image, HashBuilder hash) {
-
-		ColorPixel fp = ColorPixel.create(ImageUtil.getScaledInstance(image, width, height));
-
+	protected BigInteger hash(ColorPixel fp, HashBuilder hash) {
 		// We need 2 more bucket since we compare to n-1 and no values are mapped to 0
 		// bucket
 

@@ -94,10 +94,7 @@ public class AverageKernelHash extends AverageHash implements Serializable {
 	}
 
 	@Override
-	protected BigInteger hash(BufferedImage image, HashBuilder hash) {
-
-		ColorPixel fp = ColorPixel.create(ImageUtil.getScaledInstance(image, width, height));
-
+	protected BigInteger hash(ColorPixel fp, HashBuilder hash) {
 		int[][] luminocity = fp.getLumaMatrix();
 
 		// Calculate the average color of the entire image

@@ -13,6 +13,8 @@ import javax.imageio.ImageIO;
 import com.github.kilianB.Require;
 import com.github.kilianB.hash.Hash;
 import com.github.kilianB.hashAlgorithms.filter.Filter;
+import com.jstarcraft.dip.color.ColorPixel;
+import com.jstarcraft.dip.color.ImageUtil;
 
 /**
  * Base class for hashing algorithms returning perceptual hashes for supplied
@@ -68,6 +70,11 @@ public abstract class HashingAlgorithm {
 	protected boolean immutableState = false;
 
 	private static final String LOCKED_MODIFICATION_EXCEPTION = "Hashing algorithms may only be " + "modified as long as no hash has been generated or hashcode has been used by this object. This limitation is " + "imposed to ensure that each hash is associated with the correct algorithm id which " + "might change if the internal state of the algorithm is altered. Be aware" + " that method like getKeyResolution() already perform a hashing operation " + "and therefore invalidate further modification requests";
+
+	/**
+	 * The height and width of the scaled instance used to compute the hash
+	 */
+	protected int height, width;
 
 	/**
 	 * Promises a key with approximately bit resolution. Due to geometric
@@ -151,12 +158,13 @@ public abstract class HashingAlgorithm {
 
 		BigInteger hashValue;
 
+		ColorPixel fp = ColorPixel.create(ImageUtil.getScaledInstance(bi, width, height));
 		if (keyResolution < 0) {
 			HashBuilder hb = new HashBuilder(this.bitResolution);
-			hashValue = hash(bi, hb);
+			hashValue = hash(fp, hb);
 			keyResolution = hb.length;
 		} else {
-			hashValue = hash(bi, new HashBuilder(getKeyResolution()));
+			hashValue = hash(fp, new HashBuilder(getKeyResolution()));
 		}
 		return new Hash(hashValue, getKeyResolution(), algorithmId());
 	}
@@ -195,7 +203,7 @@ public abstract class HashingAlgorithm {
 	 * @param hashBuilder a hash builder used to construct the hash
 	 * @return the hash encoded as a big integer
 	 */
-	protected abstract BigInteger hash(BufferedImage image, HashBuilder hashBuilder);
+	protected abstract BigInteger hash(ColorPixel fp, HashBuilder hashBuilder);
 
 	/**
 	 * A unique id identifying the settings and algorithms used to generate the
@@ -266,8 +274,9 @@ public abstract class HashingAlgorithm {
 		// return value
 		if (keyResolution < 0) {
 			BufferedImage bi = new BufferedImage(1, 1, BufferedImage.TYPE_3BYTE_BGR);
+			ColorPixel fp = ColorPixel.create(ImageUtil.getScaledInstance(bi, width, height));
 			HashBuilder sb = new HashBuilder(this.bitResolution);
-			this.hash(bi, sb);
+			this.hash(fp, sb);
 			keyResolution = sb.length;
 		}
 		return keyResolution;

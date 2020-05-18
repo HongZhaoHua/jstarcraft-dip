@@ -20,15 +20,6 @@ import com.jstarcraft.dip.color.ImageUtil;
 public class WaveletHash extends HashingAlgorithm {
 
 	/**
-	 * The width of the rescaled image
-	 */
-	private int width;
-	/**
-	 * The height of the rescale image
-	 */
-	private int height;
-
-	/**
 	 * The number of times to feed the data back into the wavlet function
 	 */
 	private int cycles;
@@ -58,11 +49,7 @@ public class WaveletHash extends HashingAlgorithm {
 	}
 
 	@Override
-	protected BigInteger hash(BufferedImage image, HashBuilder hashBuilder) {
-
-		// Rescale
-		ColorPixel fp = ColorPixel.create(ImageUtil.getScaledInstance(image, width, height));
-
+	protected BigInteger hash(ColorPixel fp, HashBuilder hashBuilder) {
 		int[][] luma = fp.getLumaMatrix();
 
 		// Compute wavelet

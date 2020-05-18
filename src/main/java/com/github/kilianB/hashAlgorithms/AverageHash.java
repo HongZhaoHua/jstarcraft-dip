@@ -18,11 +18,6 @@ import com.jstarcraft.dip.color.ImageUtil;
 public class AverageHash extends HashingAlgorithm {
 
 	/**
-	 * The height and width of the scaled instance used to compute the hash
-	 */
-	protected int height, width;
-
-	/**
 	 * @param bitResolution The bit resolution specifies the final length of the
 	 *                      generated hash. A higher resolution will increase
 	 *                      computation time and space requirement while being able
@@ -58,9 +53,7 @@ public class AverageHash extends HashingAlgorithm {
 	}
 
 	@Override
-	protected BigInteger hash(BufferedImage image, HashBuilder hash) {
-		ColorPixel fp = ColorPixel.create(ImageUtil.getScaledInstance(image, width, height));
-
+	protected BigInteger hash(ColorPixel fp, HashBuilder hash) {
 		int[][] luminocity = fp.getLumaMatrix();
 
 		// Calculate the average color of the entire image

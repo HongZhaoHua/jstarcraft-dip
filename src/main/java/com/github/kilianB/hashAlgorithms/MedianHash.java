@@ -1,11 +1,9 @@
 package com.github.kilianB.hashAlgorithms;
 
-import java.awt.image.BufferedImage;
 import java.math.BigInteger;
 
 import com.github.kilianB.ArrayUtil;
 import com.jstarcraft.dip.color.ColorPixel;
-import com.jstarcraft.dip.color.ImageUtil;
 
 /**
  * Calculate a hash value based on the median luminosity in an image.
@@ -47,9 +45,7 @@ public class MedianHash extends AverageHash {
 	}
 
 	@Override
-	protected BigInteger hash(BufferedImage image, HashBuilder hash) {
-		ColorPixel fp = ColorPixel.create(ImageUtil.getScaledInstance(image, width, height));
-
+	protected BigInteger hash(ColorPixel fp, HashBuilder hash) {
 		int[] lum = fp.getLumaVector();
 
 		int[][] luminocity = fp.getLumaMatrix();

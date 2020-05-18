@@ -1,11 +1,9 @@
 package com.github.kilianB.hashAlgorithms.experimental;
 
-import java.awt.image.BufferedImage;
 import java.math.BigInteger;
 
 import com.github.kilianB.hashAlgorithms.HashBuilder;
 import com.jstarcraft.dip.color.ColorPixel;
-import com.jstarcraft.dip.color.ImageUtil;
 
 /**
  * 
@@ -56,11 +54,7 @@ public class HogHashAngularEncoded extends HogHash {
 	}
 
 	@Override
-	protected BigInteger hash(BufferedImage image, HashBuilder hash) {
-
-		BufferedImage bi = ImageUtil.getScaledInstance(image, width, height);
-		ColorPixel fp = ColorPixel.create(bi);
-
+	protected BigInteger hash(ColorPixel fp, HashBuilder hash) {
 		int[][] lum = fp.getLumaMatrix();
 
 		// 1 Compute hisogramm

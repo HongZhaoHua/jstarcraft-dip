@@ -30,12 +30,6 @@ public class RotPHash extends HashingAlgorithm {
 	/** If parts of the key shall be truncated */
 	private final boolean truncateKey;
 
-	/** Width of the rescaled image */
-	private int width;
-
-	/** Height of the rescaled image */
-	private int height;
-
 	/** X Origin the pixels will be rotated around */
 	private double centerX;
 
@@ -95,12 +89,9 @@ public class RotPHash extends HashingAlgorithm {
 	}
 
 	@Override
-	protected BigInteger hash(BufferedImage image, HashBuilder hash) {
-
+	protected BigInteger hash(ColorPixel fp, HashBuilder hash) {
 		// 0. Preprocessing. Extract Luminosity
-		BufferedImage transformed = ImageUtil.getScaledInstance(image, width, height);
 		// Fast pixel access. Order 10x faster than jdk internal
-		ColorPixel fp = ColorPixel.create(transformed);
 
 		@SuppressWarnings("unchecked")
 		List<Integer>[] values = new List[buckets];
