@@ -56,8 +56,8 @@ public class PerceptiveHash extends HashingAlgorithm {
 	}
 
 	@Override
-	protected BigInteger hash(ColorPixel fp, HashBuilder hash) {
-		int[][] lum = fp.getLumaMatrix();
+	protected BigInteger hash(ColorPixel pixel, HashBuilder hash) {
+		int[][] lum = pixel.getLuminanceMatrix();
 
 		// int to double conversion ...
 		double[][] lumAsDouble = new double[width][height];

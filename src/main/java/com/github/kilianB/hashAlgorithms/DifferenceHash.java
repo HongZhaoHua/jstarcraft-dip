@@ -6,7 +6,6 @@ import java.util.Objects;
 
 import com.github.kilianB.hash.Hash;
 import com.jstarcraft.dip.color.ColorPixel;
-import com.jstarcraft.dip.color.ImageUtil;
 
 import javafx.scene.paint.Color;
 
@@ -82,10 +81,10 @@ public class DifferenceHash extends HashingAlgorithm {
 	}
 
 	@Override
-	protected BigInteger hash(ColorPixel fp, HashBuilder hash) {
+	protected BigInteger hash(ColorPixel pixel, HashBuilder hash) {
 		// Use data buffer for faster access
 
-		int[][] lum = fp.getLumaMatrix();
+		int[][] lum = pixel.getLuminanceMatrix();
 
 		// Calculate the left to right gradient
 		for (int x = 1; x < width; x++) {

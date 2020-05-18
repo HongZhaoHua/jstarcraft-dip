@@ -1,6 +1,5 @@
 package com.github.kilianB.hashAlgorithms;
 
-import java.awt.image.BufferedImage;
 import java.math.BigInteger;
 import java.util.ArrayList;
 import java.util.Collections;
@@ -10,7 +9,6 @@ import java.util.Objects;
 import org.jtransforms.dct.DoubleDCT_1D;
 
 import com.jstarcraft.dip.color.ColorPixel;
-import com.jstarcraft.dip.color.ImageUtil;
 
 /**
  * A rotational invariant hashing algorithm which is mostly immune to rotation
@@ -89,7 +87,7 @@ public class RotPHash extends HashingAlgorithm {
 	}
 
 	@Override
-	protected BigInteger hash(ColorPixel fp, HashBuilder hash) {
+	protected BigInteger hash(ColorPixel pixel, HashBuilder hash) {
 		// 0. Preprocessing. Extract Luminosity
 		// Fast pixel access. Order 10x faster than jdk internal
 
@@ -109,7 +107,7 @@ public class RotPHash extends HashingAlgorithm {
 				if (bucket >= buckets) {
 					continue;
 				}
-				values[bucket].add(fp.getLumaScalar(x, y));
+				values[bucket].add(pixel.getLuminanceScalar(x, y));
 			}
 		}
 

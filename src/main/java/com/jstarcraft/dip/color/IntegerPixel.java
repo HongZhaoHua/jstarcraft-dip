@@ -450,12 +450,12 @@ public class IntegerPixel extends AbstractPixel {
 	 * @since 1.3.1
 	 */
 	@Override
-	public int[][] getLumaMatrix() {
+	public int[][] getLuminanceMatrix() {
 		int luma[][] = new int[width][height];
 		int x = 0;
 		int y = 0;
 		for (int i = 0; i < pixelData.length; i++) {
-			luma[x][y] = getLumaScalar(i);
+			luma[x][y] = getLuminanceScalar(i);
 			x++;
 			if (x >= width) {
 				x = 0;
@@ -466,10 +466,10 @@ public class IntegerPixel extends AbstractPixel {
 	}
 
 	@Override
-	public int[] getLumaVector() {
+	public int[] getLuminanceVector() {
 		int luma[] = new int[width * height];
 		for (int i = 0; i < pixelData.length; i++) {
-			luma[i] = getLumaScalar(i);
+			luma[i] = getLuminanceScalar(i);
 		}
 		return luma;
 	}

@@ -562,9 +562,9 @@ public interface ColorPixel {
 	 * @return the luma component in range [0-255]
 	 * @since 1.3.0
 	 */
-	default int getLumaScalar(int index) {
-		int lum = (int) ((getRedScalar(index)) * ColorUtil.LUMA_RED + (getGreenScalar(index)) * ColorUtil.LUMA_GREEN + (getBlueScalar(index)) * ColorUtil.LUMA_BLUE);
-		return lum > 255 ? 255 : lum;
+	default int getLuminanceScalar(int index) {
+		int scalar = (int) ((getRedScalar(index)) * ColorUtil.LUMA_RED + (getGreenScalar(index)) * ColorUtil.LUMA_GREEN + (getBlueScalar(index)) * ColorUtil.LUMA_BLUE);
+		return scalar > 255 ? 255 : scalar;
 	}
 
 	/**
@@ -576,8 +576,8 @@ public interface ColorPixel {
 	 * @return the luma component in range [0-255]
 	 * @since 1.3.0
 	 */
-	default int getLumaScalar(int x, int y) {
-		return getLumaScalar(getIndex(x, y));
+	default int getLuminanceScalar(int x, int y) {
+		return getLuminanceScalar(getIndex(x, y));
 	}
 
 	/**
@@ -587,13 +587,13 @@ public interface ColorPixel {
 	 * @return the luma component in range [0-255]
 	 * @since 1.3.1
 	 */
-	default int[][] getLumaMatrix() {
+	default int[][] getLuminanceMatrix() {
 		int width = getWidth();
 		int height = getHeight();
 		int[][] matrix = new int[width][height];
 		for (int x = 0; x < width; x++) {
 			for (int y = 0; y < height; y++) {
-				matrix[x][y] = getLumaScalar(x, y);
+				matrix[x][y] = getLuminanceScalar(x, y);
 			}
 		}
 		return matrix;
@@ -605,13 +605,13 @@ public interface ColorPixel {
 	 * 
 	 * @return the luma component in range [0-255]
 	 */
-	default int[] getLumaVector() {
+	default int[] getLuminanceVector() {
 		int width = getWidth();
 		int height = getHeight();
 		int size = width * height;
 		int[] vector = new int[size];
 		for (int index = 0; index < size; index++) {
-			vector[index] = getLumaScalar(index);
+			vector[index] = getLuminanceScalar(index);
 		}
 		return vector;
 	}

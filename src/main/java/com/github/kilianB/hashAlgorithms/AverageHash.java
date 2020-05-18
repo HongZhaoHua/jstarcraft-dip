@@ -1,12 +1,10 @@
 package com.github.kilianB.hashAlgorithms;
 
-import java.awt.image.BufferedImage;
 import java.math.BigInteger;
 import java.util.Objects;
 
 import com.github.kilianB.ArrayUtil;
 import com.jstarcraft.dip.color.ColorPixel;
-import com.jstarcraft.dip.color.ImageUtil;
 
 /**
  * Calculate a hash value based on the average luminosity in an image.
@@ -53,8 +51,8 @@ public class AverageHash extends HashingAlgorithm {
 	}
 
 	@Override
-	protected BigInteger hash(ColorPixel fp, HashBuilder hash) {
-		int[][] luminocity = fp.getLumaMatrix();
+	protected BigInteger hash(ColorPixel pixel, HashBuilder hash) {
+		int[][] luminocity = pixel.getLuminanceMatrix();
 
 		// Calculate the average color of the entire image
 		double avgPixelValue = ArrayUtil.average(luminocity);

@@ -63,7 +63,7 @@ public class HogHashDual extends HogHash {
 
 	@Override
 	protected BigInteger hash(ColorPixel fp, HashBuilder hash) {
-		int[][] lum = fp.getLumaMatrix();
+		int[][] lum = fp.getLuminanceMatrix();
 
 		// 1 Compute hisogramm
 

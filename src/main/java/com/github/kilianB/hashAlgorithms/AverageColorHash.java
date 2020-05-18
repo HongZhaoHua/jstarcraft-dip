@@ -43,8 +43,8 @@ public class AverageColorHash extends AverageHash {
 	}
 
 	@Override
-	protected BigInteger hash(ColorPixel fp, HashBuilder hash) {
-		int[][] grayscale = fp.getGrayscaleMatrix();
+	protected BigInteger hash(ColorPixel pixel, HashBuilder hash) {
+		int[][] grayscale = pixel.getGrayscaleMatrix();
 
 		// Calculate the average color of the entire image
 		double avgPixelValue = ArrayUtil.average(grayscale);

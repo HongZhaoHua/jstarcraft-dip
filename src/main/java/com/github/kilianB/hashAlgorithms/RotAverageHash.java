@@ -73,7 +73,7 @@ public class RotAverageHash extends HashingAlgorithm {
 	}
 
 	@Override
-	protected BigInteger hash(ColorPixel fp, HashBuilder hash) {
+	protected BigInteger hash(ColorPixel pixel, HashBuilder hash) {
 		// We need 2 more bucket since we compare to n-1 and no values are mapped to 0
 		// bucket
 
@@ -97,9 +97,9 @@ public class RotAverageHash extends HashingAlgorithm {
 
 				if (initCount) {
 					count[bucket]++;
-					hashArr[bucket] += fp.getLumaScalar(x, y);
+					hashArr[bucket] += pixel.getLuminanceScalar(x, y);
 				} else {
-					hashArr[bucket] += (fp.getLumaScalar(x, y) / (double) count[bucket]);
+					hashArr[bucket] += (pixel.getLuminanceScalar(x, y) / (double) count[bucket]);
 				}
 			}
 		}

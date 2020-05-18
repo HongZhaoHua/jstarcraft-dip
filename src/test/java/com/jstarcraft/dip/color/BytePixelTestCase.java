@@ -387,10 +387,10 @@ class BytePixelTestCase {
 
 				if (y < 2) {
 					// Black
-					assertEquals(0, fp.getLumaScalar(x, y));
+					assertEquals(0, fp.getLuminanceScalar(x, y));
 				} else {
 					// White
-					assertEquals(255, fp.getLumaScalar(x, y));
+					assertEquals(255, fp.getLuminanceScalar(x, y));
 				}
 			}
 		}
@@ -399,10 +399,10 @@ class BytePixelTestCase {
 	@Test
 	void lumArray() {
 		ColorPixel fp = ColorPixel.create(lena);
-		int[][] lumArr = fp.getLumaMatrix();
+		int[][] lumArr = fp.getLuminanceMatrix();
 		for (int x = 0; x < lena.getWidth(); x++) {
 			for (int y = 0; y < lena.getHeight(); y++) {
-				assertEquals(fp.getLumaScalar(x, y), lumArr[x][y]);
+				assertEquals(fp.getLuminanceScalar(x, y), lumArr[x][y]);
 			}
 		}
 	}
@@ -414,7 +414,7 @@ class BytePixelTestCase {
 		for (int x = 0; x < bw.getWidth(); x++) {
 			for (int y = 0; y < bw.getHeight(); y++) {
 
-				int lum = fp.getLumaScalar(x, y);
+				int lum = fp.getLuminanceScalar(x, y);
 				if (lum < 0 || lum > 255)
 					fail("Luminosity ouside range");
 			}

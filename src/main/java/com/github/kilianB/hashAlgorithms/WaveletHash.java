@@ -1,11 +1,9 @@
 package com.github.kilianB.hashAlgorithms;
 
-import java.awt.image.BufferedImage;
 import java.math.BigInteger;
 import java.util.Objects;
 
 import com.jstarcraft.dip.color.ColorPixel;
-import com.jstarcraft.dip.color.ImageUtil;
 
 /**
  * Calculate a hash based on iterative application of a haar wavelet on the
@@ -49,8 +47,8 @@ public class WaveletHash extends HashingAlgorithm {
 	}
 
 	@Override
-	protected BigInteger hash(ColorPixel fp, HashBuilder hashBuilder) {
-		int[][] luma = fp.getLumaMatrix();
+	protected BigInteger hash(ColorPixel pixel, HashBuilder hashBuilder) {
+		int[][] luma = pixel.getLuminanceMatrix();
 
 		// Compute wavelet
 
