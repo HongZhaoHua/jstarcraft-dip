@@ -29,11 +29,11 @@ public class DifferenceHash extends HashingAlgorithm {
 	 *
 	 */
 	public enum Precision {
-		/** Top to bottom gradient only */
+		/** left to right gradient */
 		Horizontal,
-		/** Additionally left to right gradient */
+		/** top to bottom gradient */
 		Vertical,
-		/** Tripple precision (top-bottom, left-right, diagonally) */
+		/** diagonally gradient */
 		Diagonal
 	}
 
@@ -218,13 +218,10 @@ public class DifferenceHash extends HashingAlgorithm {
 				break;
 			}
 			case Vertical: {
-//				drawDoublePrecision(fp, width, 1, height, 0, blockSize, 0, 0, bitColorIndex, colors);
 				drawDoublePrecision(fp, width, 0, height, 1, blockSize, bitColorIndex, colors);
 				break;
 			}
 			case Diagonal: {
-//				hashOffset += drawDoublePrecision(fp, width, 1, height, 0, blockSize, hashOffset, 0, bitColorIndex, colors);
-//				hashOffset += drawDoublePrecision(fp, width, 0, height, 1, blockSize, hashOffset, height, bitColorIndex, colors);
 				drawDoublePrecision(fp, width, 1, height, 1, blockSize, bitColorIndex, colors);
 				break;
 			}
