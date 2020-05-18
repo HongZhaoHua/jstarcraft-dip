@@ -228,8 +228,8 @@ public class ColorUtil {
 		 * @return A color array with
 		 * @since 1.0.0
 		 */
-		public static Color[] getPalette(int numColors) {
-			return getPalette(numColors, Color.web("#003f5c"), Color.web("#ffa600"));
+		public static java.awt.Color[] getPalette(int numColors) {
+			return getPalette(numColors, java.awt.Color.decode("#003f5c"), java.awt.Color.decode("#ffa600"));
 		}
 
 		/**
@@ -241,14 +241,32 @@ public class ColorUtil {
 		 * @return An array containing the interpolated colors
 		 * @since 1.0.0
 		 */
-		public static Color[] getPalette(int numColors, Color startColor, Color endColor) {
+		public static java.awt.Color[] getPalette(int numColors, java.awt.Color startColor, java.awt.Color endColor) {
 
-			Color[] cols = new Color[numColors];
+			java.awt.Color[] cols = new java.awt.Color[numColors];
 			for (int i = 0; i < numColors; i++) {
 				double factor = i / (double) numColors;
-				cols[i] = startColor.interpolate(endColor, factor);
+				cols[i] = interpolate(startColor, endColor, factor);
 			}
 			return cols;
+		}
+
+		/**
+		 * @inheritDoc
+		 */
+		public static java.awt.Color interpolate(java.awt.Color startColor, java.awt.Color endValue, double t) {
+			if (t <= 0.0)
+				return startColor;
+			if (t >= 1.0)
+				return endValue;
+			float ft = (float) t;
+
+			int red = startColor.getRed() + (int) ((endValue.getRed() - startColor.getRed()) * ft);
+			int green = startColor.getGreen() + (int) ((endValue.getGreen() - startColor.getGreen()) * ft);
+			int blue = startColor.getBlue() + (int) ((endValue.getBlue() - startColor.getBlue()) * ft);
+			int alpha = startColor.getAlpha() + (int) ((endValue.getAlpha() - startColor.getAlpha()) * ft);
+
+			return new java.awt.Color(red, green, blue, alpha);
 		}
 
 		/**

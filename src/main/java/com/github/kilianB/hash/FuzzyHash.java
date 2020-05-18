@@ -1,5 +1,6 @@
 package com.github.kilianB.hash;
 
+import java.awt.Color;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.FileInputStream;
@@ -12,8 +13,6 @@ import java.util.logging.Logger;
 
 import com.github.kilianB.hashAlgorithms.HashingAlgorithm;
 import com.jstarcraft.dip.color.ColorUtil;
-
-import javafx.scene.paint.Color;
 
 /**
  * A fuzzy hash is an aggregation of multiple hashes mapped to a single mean
@@ -813,8 +812,8 @@ public class FuzzyHash extends Hash {
 		ensureUpToDateHash();
 
 		// Build color palette
-		Color[] lowerCol = ColorUtil.ColorPalette.getPalette(15, Color.web("#ff642b"), Color.web("#ffff7c"));
-		Color[] higherCol = ColorUtil.ColorPalette.getPalette(15, Color.web("#ffff7c"), Color.GREEN);
+		Color[] lowerCol = ColorUtil.ColorPalette.getPalette(15, Color.decode("#ff642b"), Color.decode("#ffff7c"));
+		Color[] higherCol = ColorUtil.ColorPalette.getPalette(15, Color.decode("#ffff7c"), Color.GREEN);
 
 		Color[] colors = new Color[lowerCol.length + higherCol.length];
 		System.arraycopy(lowerCol, 0, colors, 0, lowerCol.length);
@@ -836,8 +835,8 @@ public class FuzzyHash extends Hash {
 		ensureUpToDateHash();
 
 		// Build color palette
-		Color[] lowerCol = ColorUtil.ColorPalette.getPalette(15, Color.web("#ff642b"), Color.web("#ffff7c"));
-		Color[] higherCol = ColorUtil.ColorPalette.getPalette(15, Color.web("#ffff7c"), Color.GREEN);
+		Color[] lowerCol = ColorUtil.ColorPalette.getPalette(15, Color.decode("#ff642b"), Color.decode("#ffff7c"));
+		Color[] higherCol = ColorUtil.ColorPalette.getPalette(15, Color.decode("#ffff7c"), Color.GREEN);
 
 		Color[] colors = new Color[lowerCol.length + higherCol.length];
 		System.arraycopy(lowerCol, 0, colors, 0, lowerCol.length);

@@ -1,5 +1,6 @@
 package com.github.kilianB.hash;
 
+import java.awt.Color;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.FileInputStream;
@@ -14,8 +15,6 @@ import com.github.kilianB.Require;
 import com.github.kilianB.StringUtil;
 import com.github.kilianB.hashAlgorithms.HashingAlgorithm;
 import com.jstarcraft.dip.color.ColorPixel;
-
-import javafx.scene.paint.Color;
 
 /**
  * Hashes are bit encoded encoded values (0101011101) created from images using
@@ -326,9 +325,9 @@ public class Hash implements Serializable {
 		for (int w = 0; w < width * blockSize; w = w + blockSize) {
 			for (int h = 0; h < height * blockSize; h = h + blockSize) {
 				Color c = colors[bitColorIndex[i++]];
-				int red = (int) (c.getRed() * 255);
-				int green = (int) (c.getGreen() * 255);
-				int blue = (int) (c.getBlue() * 255);
+				int red = c.getRed();
+				int green = c.getGreen();
+				int blue = c.getBlue();
 
 				for (int m = 0; m < blockSize; m++) {
 					for (int n = 0; n < blockSize; n++) {

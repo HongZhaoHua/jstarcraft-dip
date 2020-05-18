@@ -1,13 +1,12 @@
 package com.github.kilianB.hashAlgorithms;
 
+import java.awt.Color;
 import java.awt.image.BufferedImage;
 import java.math.BigInteger;
 import java.util.Objects;
 
 import com.github.kilianB.hash.Hash;
 import com.jstarcraft.dip.color.ColorPixel;
-
-import javafx.scene.paint.Color;
 
 /**
  * Calculates a hash based on gradient tracking. This hash is cheap to compute
@@ -240,9 +239,9 @@ public class DifferenceHash extends HashingAlgorithm {
 			for (int w = 0; w < (width - wOffset) * blockSize; w = w + blockSize) {
 				for (int h = 0; h < (height - hOffset) * blockSize; h = h + blockSize) {
 					Color c = colors[bitColorIndex[i++]];
-					int red = (int) (c.getRed() * 255);
-					int green = (int) (c.getGreen() * 255);
-					int blue = (int) (c.getBlue() * 255);
+					int red = c.getRed();
+					int green = c.getGreen();
+					int blue = c.getBlue();
 
 					for (int m = 0; m < blockSize; m++) {
 						for (int n = 0; n < blockSize; n++) {
