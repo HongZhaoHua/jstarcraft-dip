@@ -73,8 +73,8 @@ public class AlgorithmBenchmark {
 		matcher.addHashingAlgorithm(new MedianHash(32), 0.4);
 		matcher.addHashingAlgorithm(new MedianHash(64), 0.4);
 
-		matcher.addHashingAlgorithm(new DifferenceHash(64, Precision.Simple), 0.4);
-		matcher.addHashingAlgorithm(new DifferenceHash(32, Precision.Triple), 0.4);
+		matcher.addHashingAlgorithm(new DifferenceHash(64, Precision.Horizontal), 0.4);
+		matcher.addHashingAlgorithm(new DifferenceHash(32, Precision.Diagonal), 0.4);
 
 		// 2. Create a benchmarker
 
@@ -119,9 +119,9 @@ public class AlgorithmBenchmark {
 		matcher.addHashingAlgorithm(new AverageHash(16), 0.4);
 		matcher.addHashingAlgorithm(new AverageHash(64), 0.4);
 
-		matcher.addHashingAlgorithm(new DifferenceHash(64, Precision.Simple), 0.3);
-		matcher.addHashingAlgorithm(new DifferenceHash(64, Precision.Double), 0.3);
-		matcher.addHashingAlgorithm(new DifferenceHash(64, Precision.Triple), 0.3);
+		matcher.addHashingAlgorithm(new DifferenceHash(64, Precision.Horizontal), 0.3);
+		matcher.addHashingAlgorithm(new DifferenceHash(64, Precision.Vertical), 0.3);
+		matcher.addHashingAlgorithm(new DifferenceHash(64, Precision.Diagonal), 0.3);
 
 		// Experimental
 		matcher.addHashingAlgorithm(new MedianHash(16), 0.4);

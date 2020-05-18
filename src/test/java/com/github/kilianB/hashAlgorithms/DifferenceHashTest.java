@@ -40,17 +40,17 @@ class DifferenceHashTest {
 		public void consistency() {
 
 			assertAll(() -> {
-				assertEquals(712227304, new DifferenceHash(14, Precision.Simple).algorithmId());
+				assertEquals(1445003830, new DifferenceHash(14, Precision.Horizontal).algorithmId());
 			}, () -> {
-				assertEquals(742703497, new DifferenceHash(25, Precision.Simple).algorithmId());
+				assertEquals(1475480023, new DifferenceHash(25, Precision.Horizontal).algorithmId());
 			}, () -> {
-				assertEquals(2030454633, new DifferenceHash(14, Precision.Double).algorithmId());
+				assertEquals(282592676, new DifferenceHash(14, Precision.Vertical).algorithmId());
 			}, () -> {
-				assertEquals(2060930826, new DifferenceHash(25, Precision.Double).algorithmId());
+				assertEquals(313068869, new DifferenceHash(25, Precision.Vertical).algorithmId());
 			}, () -> {
-				assertEquals(-1844850756, new DifferenceHash(14, Precision.Triple).algorithmId());
+				assertEquals(-1692842875, new DifferenceHash(14, Precision.Diagonal).algorithmId());
 			}, () -> {
-				assertEquals(-1814374563, new DifferenceHash(25, Precision.Triple).algorithmId());
+				assertEquals(-1662366682, new DifferenceHash(25, Precision.Diagonal).algorithmId());
 			});
 		}
 
@@ -58,17 +58,17 @@ class DifferenceHashTest {
 		@DisplayName("Consistent AlgorithmIds v 2.0.0 collision")
 		public void notVersionTwo() {
 			assertAll(() -> {
-				assertNotEquals(-115572257, new DifferenceHash(14, Precision.Simple).algorithmId());
+				assertNotEquals(-115572257, new DifferenceHash(14, Precision.Horizontal).algorithmId());
 			}, () -> {
-				assertNotEquals(-114589154, new DifferenceHash(25, Precision.Simple).algorithmId());
+				assertNotEquals(-114589154, new DifferenceHash(25, Precision.Horizontal).algorithmId());
 			}, () -> {
-				assertNotEquals(758235198, new DifferenceHash(14, Precision.Double).algorithmId());
+				assertNotEquals(758235198, new DifferenceHash(14, Precision.Vertical).algorithmId());
 			}, () -> {
-				assertNotEquals(759218301, new DifferenceHash(25, Precision.Double).algorithmId());
+				assertNotEquals(759218301, new DifferenceHash(25, Precision.Vertical).algorithmId());
 			}, () -> {
-				assertNotEquals(910320011, new DifferenceHash(14, Precision.Triple).algorithmId());
+				assertNotEquals(910320011, new DifferenceHash(14, Precision.Diagonal).algorithmId());
 			}, () -> {
-				assertNotEquals(911303114, new DifferenceHash(25, Precision.Triple).algorithmId());
+				assertNotEquals(911303114, new DifferenceHash(25, Precision.Diagonal).algorithmId());
 			});
 		}
 
@@ -76,10 +76,10 @@ class DifferenceHashTest {
 		@DisplayName("Unique AlgorithmsIds")
 		public void uniquely() {
 
-			int id0 = new DifferenceHash(2, Precision.Simple).algorithmId();
-			int id1 = new DifferenceHash(14, Precision.Simple).algorithmId();
-			int id2 = new DifferenceHash(14, Precision.Double).algorithmId();
-			int id3 = new DifferenceHash(2, Precision.Triple).algorithmId();
+			int id0 = new DifferenceHash(2, Precision.Horizontal).algorithmId();
+			int id1 = new DifferenceHash(14, Precision.Horizontal).algorithmId();
+			int id2 = new DifferenceHash(14, Precision.Vertical).algorithmId();
+			int id3 = new DifferenceHash(2, Precision.Diagonal).algorithmId();
 
 			assertAll(() -> {
 				assertNotEquals(id0, id1);
@@ -125,7 +125,7 @@ class DifferenceHashTest {
 		// To get comparable hashes the key length has to be consistent for all
 		// resolution of images
 
-		DifferenceHash d1 = new DifferenceHash(32, Precision.Simple);
+		DifferenceHash d1 = new DifferenceHash(32, Precision.Horizontal);
 
 		Hash ballonHash = d1.hash(ballon);
 		Hash copyrightHash = d1.hash(copyright);
@@ -203,14 +203,14 @@ class DifferenceHashTest {
 
 	@SuppressWarnings("unused")
 	private static Stream<HashingAlgorithm> algoInstances() {
-		return Stream.of(new DifferenceHash(32, Precision.Simple), new DifferenceHash(32, Precision.Double), new DifferenceHash(32, Precision.Triple));
+		return Stream.of(new DifferenceHash(32, Precision.Horizontal), new DifferenceHash(32, Precision.Vertical), new DifferenceHash(32, Precision.Diagonal));
 	}
 
 	@SuppressWarnings("unused")
 	private static Stream<HashingAlgorithm> algoInstancesBroad() {
 		HashingAlgorithm[] hasher = new HashingAlgorithm[98];
 		for (int i = 2; i < 100; i++) {
-			hasher[i - 2] = new DifferenceHash(i, Precision.Simple);
+			hasher[i - 2] = new DifferenceHash(i, Precision.Horizontal);
 		}
 		return Stream.of(hasher);
 	}

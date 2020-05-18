@@ -64,7 +64,7 @@ public class ChainAlgorithms {
 		 * Create multiple algorithms we want to test the images against
 		 */
 
-		HashingAlgorithm dHash = new DifferenceHash(32, Precision.Double);
+		HashingAlgorithm dHash = new DifferenceHash(32, Precision.Vertical);
 		// When shall an image be classified as a duplicate [0 - keyLenght]
 		// DHashes double precision doubles the key length supplied in the constructor
 		double dHashThreshold = .6;

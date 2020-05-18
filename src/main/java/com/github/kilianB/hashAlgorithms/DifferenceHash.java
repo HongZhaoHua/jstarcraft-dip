@@ -30,11 +30,11 @@ public class DifferenceHash extends HashingAlgorithm {
 	 */
 	public enum Precision {
 		/** Top to bottom gradient only */
-		Simple,
+		Horizontal,
 		/** Additionally left to right gradient */
-		Double,
+		Vertical,
 		/** Tripple precision (top-bottom, left-right, diagonally) */
-		Triple
+		Diagonal
 	}
 
 	/**
@@ -86,7 +86,7 @@ public class DifferenceHash extends HashingAlgorithm {
 		int[][] lum = pixel.getLuminanceMatrix();
 
 		// Calculate the left to right gradient
-		if (precision.equals(Precision.Simple)) {
+		if (precision.equals(Precision.Horizontal)) {
 			for (int x = 1; x < width; x++) {
 				for (int y = 0; y < height; y++) {
 					if (lum[x][y] >= lum[x - 1][y]) {
@@ -99,7 +99,7 @@ public class DifferenceHash extends HashingAlgorithm {
 		}
 
 		// Top to bottom gradient
-		if (precision.equals(Precision.Double)) {
+		if (precision.equals(Precision.Vertical)) {
 			// We need a padding row at the top now.
 			// Caution width and height are swapped
 
@@ -115,7 +115,7 @@ public class DifferenceHash extends HashingAlgorithm {
 		}
 
 		// Diagonally hash
-		if (precision.equals(Precision.Triple)) {
+		if (precision.equals(Precision.Diagonal)) {
 			for (int x = 1; x < width; x++) {
 				for (int y = 1; y < height; y++) {
 					if (lum[x][y] >= lum[x - 1][y - 1]) {
@@ -208,14 +208,14 @@ public class DifferenceHash extends HashingAlgorithm {
 
 		public BufferedImage toImage(int[] bitColorIndex, Color[] colors, int blockSize) {
 
-			if (precision.equals(Precision.Simple)) {
+			if (precision.equals(Precision.Horizontal)) {
 
 				BufferedImage bi = new BufferedImage(blockSize * width, blockSize * height, BufferedImage.TYPE_3BYTE_BGR);
 
 				ColorPixel fp = ColorPixel.create(bi);
 				drawDoublePrecision(fp, width, 1, height, 0, blockSize, bitColorIndex, colors);
 				return bi;
-			} else if (precision.equals(Precision.Double)) {
+			} else if (precision.equals(Precision.Vertical)) {
 
 				BufferedImage bi = new BufferedImage(blockSize * width, blockSize * height, BufferedImage.TYPE_3BYTE_BGR);
 
