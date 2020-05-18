@@ -86,45 +86,47 @@ public class DifferenceHash extends HashingAlgorithm {
 		int[][] lum = pixel.getLuminanceMatrix();
 
 		// Calculate the left to right gradient
-		if (precision.equals(Precision.Horizontal)) {
+		switch (precision) {
+		case Horizontal: {
 			for (int x = 1; x < width; x++) {
 				for (int y = 0; y < height; y++) {
-					if (lum[x][y] >= lum[x - 1][y]) {
-						hash.prependZero();
-					} else {
+					if (lum[x][y] < lum[x - 1][y]) {
 						hash.prependOne();
+					} else {
+						hash.prependZero();
 					}
 				}
 			}
+			break;
 		}
-
-		// Top to bottom gradient
-		if (precision.equals(Precision.Vertical)) {
+		case Vertical: {
+			// Top to bottom gradient
 			// We need a padding row at the top now.
 			// Caution width and height are swapped
-
 			for (int x = 0; x < width; x++) {
 				for (int y = 1; y < height; y++) {
-					if (lum[x][y] >= lum[x][y - 1]) {
-						hash.prependZero();
-					} else {
+					if (lum[x][y] < lum[x][y - 1]) {
 						hash.prependOne();
+					} else {
+						hash.prependZero();
 					}
 				}
 			}
+			break;
 		}
-
-		// Diagonally hash
-		if (precision.equals(Precision.Diagonal)) {
+		case Diagonal: {
+			// Diagonally hash
 			for (int x = 1; x < width; x++) {
 				for (int y = 1; y < height; y++) {
-					if (lum[x][y] >= lum[x - 1][y - 1]) {
-						hash.prependZero();
-					} else {
+					if (lum[x][y] < lum[x - 1][y - 1]) {
 						hash.prependOne();
+					} else {
+						hash.prependZero();
 					}
 				}
 			}
+			break;
+		}
 		}
 		return hash.toBigInteger();
 	}
@@ -207,33 +209,27 @@ public class DifferenceHash extends HashingAlgorithm {
 		}
 
 		public BufferedImage toImage(int[] bitColorIndex, Color[] colors, int blockSize) {
+			BufferedImage bi = new BufferedImage(blockSize * width, blockSize * height, BufferedImage.TYPE_3BYTE_BGR);
+			ColorPixel fp = ColorPixel.create(bi);
 
-			if (precision.equals(Precision.Horizontal)) {
-
-				BufferedImage bi = new BufferedImage(blockSize * width, blockSize * height, BufferedImage.TYPE_3BYTE_BGR);
-
-				ColorPixel fp = ColorPixel.create(bi);
+			switch (precision) {
+			case Horizontal: {
 				drawDoublePrecision(fp, width, 1, height, 0, blockSize, bitColorIndex, colors);
-				return bi;
-			} else if (precision.equals(Precision.Vertical)) {
-
-				BufferedImage bi = new BufferedImage(blockSize * width, blockSize * height, BufferedImage.TYPE_3BYTE_BGR);
-
-				ColorPixel fp = ColorPixel.create(bi);
+				break;
+			}
+			case Vertical: {
 //				drawDoublePrecision(fp, width, 1, height, 0, blockSize, 0, 0, bitColorIndex, colors);
 				drawDoublePrecision(fp, width, 0, height, 1, blockSize, bitColorIndex, colors);
-				return bi;
-			} else {
-
-				BufferedImage bi = new BufferedImage(blockSize * width, blockSize * height, BufferedImage.TYPE_3BYTE_BGR);
-
-				ColorPixel fp = ColorPixel.create(bi);
-				int hashOffset = 0;
+				break;
+			}
+			case Diagonal: {
 //				hashOffset += drawDoublePrecision(fp, width, 1, height, 0, blockSize, hashOffset, 0, bitColorIndex, colors);
 //				hashOffset += drawDoublePrecision(fp, width, 0, height, 1, blockSize, hashOffset, height, bitColorIndex, colors);
 				drawDoublePrecision(fp, width, 1, height, 1, blockSize, bitColorIndex, colors);
-				return bi;
+				break;
 			}
+			}
+			return bi;
 		}
 
 		private void drawDoublePrecision(ColorPixel writer, int width, int wOffset, int height, int hOffset, int blockSize, int[] bitColorIndex, Color[] colors) {
