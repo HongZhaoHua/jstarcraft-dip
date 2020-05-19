@@ -1,0 +1,5 @@
+HOG(Histogram of Oriented Gradients):
+https://www.jianshu.com/p/c8820deebb50
+
+Histogram Of Oriented Gradients with modifications:
+https://github.com/Visheshj123/WARTHOG
