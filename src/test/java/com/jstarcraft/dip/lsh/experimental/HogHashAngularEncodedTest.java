@@ -11,7 +11,6 @@ import org.junit.jupiter.api.Test;
 
 import com.jstarcraft.dip.lsh.HashTestBase;
 import com.jstarcraft.dip.lsh.HashingAlgorithm;
-import com.jstarcraft.dip.lsh.experimental.HogHashAngularEncoded;
 
 /**
  * @author Kilian

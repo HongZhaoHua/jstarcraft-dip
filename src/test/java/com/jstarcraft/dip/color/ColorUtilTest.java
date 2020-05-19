@@ -7,8 +7,6 @@ import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Nested;
 import org.junit.jupiter.api.Test;
 
-import com.jstarcraft.dip.color.ColorUtil;
-
 import javafx.scene.paint.Color;
 
 class ColorUtilTest {

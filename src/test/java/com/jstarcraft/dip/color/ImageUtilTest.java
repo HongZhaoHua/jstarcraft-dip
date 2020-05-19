@@ -10,8 +10,6 @@ import javax.imageio.ImageIO;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 
-import com.jstarcraft.dip.color.ImageUtil;
-
 /**
  * @author Kilian
  *

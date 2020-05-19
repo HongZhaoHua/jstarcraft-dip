@@ -8,9 +8,6 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Nested;
 import org.junit.jupiter.api.Test;
 
-import com.jstarcraft.dip.lsh.AverageColorHash;
-import com.jstarcraft.dip.lsh.HashingAlgorithm;
-
 /**
  * @author Kilian
  *

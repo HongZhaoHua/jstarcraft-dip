@@ -17,10 +17,6 @@ import org.junit.jupiter.api.Nested;
 import org.junit.jupiter.api.Test;
 
 import com.github.kilianB.ArrayUtil;
-import com.jstarcraft.dip.color.ColorPixel;
-import com.jstarcraft.dip.color.ColorUtil;
-import com.jstarcraft.dip.color.DefaultPixel;
-import com.jstarcraft.dip.color.ImageUtil;
 import com.jstarcraft.dip.color.ImageUtil.BImageType;
 
 @Nested

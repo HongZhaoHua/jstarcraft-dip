@@ -6,8 +6,6 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import org.junit.jupiter.api.Test;
 
 import com.github.kilianB.ArrayUtil;
-import com.jstarcraft.dip.lsh.kernel.Kernel;
-import com.jstarcraft.dip.lsh.kernel.MaximumKernel;
 
 /**
  * @author Kilian

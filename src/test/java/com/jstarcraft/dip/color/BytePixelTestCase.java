@@ -9,7 +9,6 @@ import static org.junit.jupiter.api.Assertions.fail;
 
 import java.awt.image.BufferedImage;
 import java.io.IOException;
-import java.util.Arrays;
 
 import javax.imageio.ImageIO;
 
@@ -18,9 +17,6 @@ import org.junit.jupiter.api.Nested;
 import org.junit.jupiter.api.Test;
 
 import com.github.kilianB.ArrayUtil;
-import com.jstarcraft.dip.color.BytePixel;
-import com.jstarcraft.dip.color.ColorPixel;
-import com.jstarcraft.dip.color.ColorUtil;
 
 @Nested
 class BytePixelTestCase {

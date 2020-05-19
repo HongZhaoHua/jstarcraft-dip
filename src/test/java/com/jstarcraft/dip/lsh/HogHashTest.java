@@ -9,7 +9,6 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Nested;
 import org.junit.jupiter.api.Test;
 
-import com.jstarcraft.dip.lsh.HashingAlgorithm;
 import com.jstarcraft.dip.lsh.experimental.HogHash;
 
 /**

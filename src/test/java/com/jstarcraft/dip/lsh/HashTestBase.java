@@ -12,15 +12,8 @@ import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import java.awt.image.BufferedImage;
-import java.io.File;
-import java.io.FileInputStream;
-import java.io.FileOutputStream;
-import java.io.IOException;
-import java.io.ObjectInputStream;
-import java.io.ObjectOutputStream;
 import java.util.stream.Stream;
 
-import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Nested;
 import org.junit.jupiter.api.Test;
@@ -30,7 +23,6 @@ import org.junit.jupiter.params.provider.MethodSource;
 import com.github.kilianB.ArrayUtil;
 import com.github.kilianB.TestResources;
 import com.jstarcraft.dip.hash.Hash;
-import com.jstarcraft.dip.lsh.HashingAlgorithm;
 import com.jstarcraft.dip.lsh.kernel.Kernel;
 
 /**

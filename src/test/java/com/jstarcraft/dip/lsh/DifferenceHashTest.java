@@ -21,8 +21,6 @@ import org.junit.jupiter.params.provider.MethodSource;
 
 import com.github.kilianB.TestResources;
 import com.jstarcraft.dip.hash.Hash;
-import com.jstarcraft.dip.lsh.DifferenceHash;
-import com.jstarcraft.dip.lsh.HashingAlgorithm;
 import com.jstarcraft.dip.lsh.DifferenceHash.Precision;
 
 //TODO  move difference hash to the default test scenarios
