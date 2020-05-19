@@ -17,8 +17,8 @@ import javax.imageio.ImageIO;
 
 import com.github.kilianB.datastructures.tree.Result;
 import com.github.kilianB.hash.Hash;
-import com.github.kilianB.hashAlgorithms.HashingAlgorithm;
 import com.github.kilianB.matcher.TypedImageMatcher;
+import com.jstarcraft.dip.lsh.HashingAlgorithm;
 
 /**
  * Persistent image matchers are a subset of

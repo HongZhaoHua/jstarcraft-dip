@@ -17,8 +17,8 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Nested;
 import org.junit.jupiter.api.Test;
 
-import com.github.kilianB.hashAlgorithms.AverageHash;
 import com.github.kilianB.matcher.exotic.SingleImageMatcher;
+import com.jstarcraft.dip.lsh.AverageHash;
 
 class SingleImageMatcherTest {
 

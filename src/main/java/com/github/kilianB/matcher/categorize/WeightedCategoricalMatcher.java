@@ -10,7 +10,7 @@ import com.github.kilianB.datastructures.KMeans;
 import com.github.kilianB.datastructures.tree.binaryTreeFuzzy.FuzzyBinaryTree;
 import com.github.kilianB.hash.FuzzyHash;
 import com.github.kilianB.hash.Hash;
-import com.github.kilianB.hashAlgorithms.HashingAlgorithm;
+import com.jstarcraft.dip.lsh.HashingAlgorithm;
 
 /**
  ** Cluster images into common categories. This matcher clusters images by

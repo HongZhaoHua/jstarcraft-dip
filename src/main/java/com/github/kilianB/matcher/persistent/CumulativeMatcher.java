@@ -11,7 +11,7 @@ import com.github.kilianB.MathUtil;
 import com.github.kilianB.datastructures.tree.Result;
 import com.github.kilianB.datastructures.tree.binaryTree.BinaryTree;
 import com.github.kilianB.hash.Hash;
-import com.github.kilianB.hashAlgorithms.HashingAlgorithm;
+import com.jstarcraft.dip.lsh.HashingAlgorithm;
 
 /**
  * Instead of early aborting if one algorithm fails like the

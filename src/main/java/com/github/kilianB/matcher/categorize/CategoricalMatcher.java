@@ -20,8 +20,8 @@ import java.util.stream.Collectors;
 import com.github.kilianB.datastructures.Pair;
 import com.github.kilianB.hash.FuzzyHash;
 import com.github.kilianB.hash.Hash;
-import com.github.kilianB.hashAlgorithms.HashingAlgorithm;
 import com.github.kilianB.matcher.categorize.supervised.LabeledImage;
+import com.jstarcraft.dip.lsh.HashingAlgorithm;
 
 /**
  * Cluster images into common categories. This matcher clusters images by

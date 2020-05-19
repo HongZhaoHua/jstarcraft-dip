@@ -13,7 +13,7 @@ import com.github.kilianB.Require;
 import com.github.kilianB.datastructures.ClusterResult;
 import com.github.kilianB.datastructures.KMeansPlusPlus;
 import com.github.kilianB.hash.Hash;
-import com.github.kilianB.hashAlgorithms.HashingAlgorithm;
+import com.jstarcraft.dip.lsh.HashingAlgorithm;
 
 /**
  * The kMeans approach requires to know the number of clusters beforehand.

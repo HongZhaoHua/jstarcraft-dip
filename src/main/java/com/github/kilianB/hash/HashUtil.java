@@ -4,7 +4,7 @@ import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
 
-import com.github.kilianB.hashAlgorithms.HashingAlgorithm;
+import com.jstarcraft.dip.lsh.HashingAlgorithm;
 
 /**
  * @author Kilian

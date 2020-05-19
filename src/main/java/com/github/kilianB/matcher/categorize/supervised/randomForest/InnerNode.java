@@ -5,7 +5,7 @@ import java.awt.image.BufferedImage;
 import com.github.kilianB.StringUtil;
 import com.github.kilianB.hash.FuzzyHash;
 import com.github.kilianB.hash.Hash;
-import com.github.kilianB.hashAlgorithms.HashingAlgorithm;
+import com.jstarcraft.dip.lsh.HashingAlgorithm;
 
 class InnerNode extends TreeNode {
 

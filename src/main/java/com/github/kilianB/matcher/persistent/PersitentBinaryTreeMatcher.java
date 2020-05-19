@@ -13,7 +13,7 @@ import java.util.logging.Logger;
 import com.github.kilianB.datastructures.tree.Result;
 import com.github.kilianB.datastructures.tree.binaryTree.BinaryTree;
 import com.github.kilianB.hash.Hash;
-import com.github.kilianB.hashAlgorithms.HashingAlgorithm;
+import com.jstarcraft.dip.lsh.HashingAlgorithm;
 
 /**
  * * Persistent image matchers are a subset of

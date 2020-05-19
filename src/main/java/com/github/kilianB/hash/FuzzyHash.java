@@ -11,8 +11,8 @@ import java.io.ObjectOutputStream;
 import java.math.BigInteger;
 import java.util.logging.Logger;
 
-import com.github.kilianB.hashAlgorithms.HashingAlgorithm;
 import com.jstarcraft.dip.color.ColorUtil;
+import com.jstarcraft.dip.lsh.HashingAlgorithm;
 
 /**
  * A fuzzy hash is an aggregation of multiple hashes mapped to a single mean

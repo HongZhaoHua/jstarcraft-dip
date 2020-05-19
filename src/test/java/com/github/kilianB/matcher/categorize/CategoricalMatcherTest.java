@@ -1,7 +1,7 @@
 package com.github.kilianB.matcher.categorize;
 
-import com.github.kilianB.hashAlgorithms.AverageHash;
-import com.github.kilianB.hashAlgorithms.HashingAlgorithm;
+import com.jstarcraft.dip.lsh.AverageHash;
+import com.jstarcraft.dip.lsh.HashingAlgorithm;
 
 /**
  * @author Kilian

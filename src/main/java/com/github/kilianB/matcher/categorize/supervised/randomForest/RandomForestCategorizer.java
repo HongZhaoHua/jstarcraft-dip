@@ -35,15 +35,15 @@ import com.github.kilianB.datastructures.Pair;
 import com.github.kilianB.datastructures.Triple;
 import com.github.kilianB.hash.FuzzyHash;
 import com.github.kilianB.hash.Hash;
-import com.github.kilianB.hashAlgorithms.AverageHash;
-import com.github.kilianB.hashAlgorithms.HashingAlgorithm;
-import com.github.kilianB.hashAlgorithms.PerceptiveHash;
-import com.github.kilianB.hashAlgorithms.RotAverageHash;
 import com.github.kilianB.matcher.PlainImageMatcher;
 import com.github.kilianB.matcher.categorize.CategoricalImageMatcher;
 import com.github.kilianB.matcher.categorize.CategorizationResult;
 import com.github.kilianB.matcher.categorize.supervised.LabeledImage;
 import com.github.kilianB.pcg.fast.PcgRSFast;
+import com.jstarcraft.dip.lsh.AverageHash;
+import com.jstarcraft.dip.lsh.HashingAlgorithm;
+import com.jstarcraft.dip.lsh.PerceptiveHash;
+import com.jstarcraft.dip.lsh.RotAverageHash;
 
 /**
  * 
