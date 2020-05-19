@@ -7,7 +7,7 @@ import java.util.HashMap;
 
 import javax.imageio.ImageIO;
 
-import com.github.kilianB.hash.Hash;
+import com.jstarcraft.dip.hash.Hash;
 import com.jstarcraft.dip.lsh.AverageHash;
 import com.jstarcraft.dip.lsh.HashingAlgorithm;
 

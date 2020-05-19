@@ -14,7 +14,7 @@ import org.junit.jupiter.api.Test;
 import com.github.kilianB.TestResources;
 import com.github.kilianB.datastructures.tree.Result;
 import com.github.kilianB.datastructures.tree.binaryTree.BinaryTree;
-import com.github.kilianB.hash.Hash;
+import com.jstarcraft.dip.hash.Hash;
 
 @SuppressWarnings({ "rawtypes", "unchecked" })
 public class BinaryTreeTest {

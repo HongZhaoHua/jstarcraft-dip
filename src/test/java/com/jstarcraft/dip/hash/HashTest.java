@@ -1,4 +1,4 @@
-package com.github.kilianB.hash;
+package com.jstarcraft.dip.hash;
 
 import static org.junit.jupiter.api.Assertions.assertAll;
 import static org.junit.jupiter.api.Assertions.assertEquals;
@@ -14,6 +14,7 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Nested;
 import org.junit.jupiter.api.Test;
 
+import com.jstarcraft.dip.hash.Hash;
 import com.jstarcraft.dip.lsh.AverageHash;
 
 class HashTest {

@@ -6,7 +6,7 @@ import java.util.PriorityQueue;
 
 import com.github.kilianB.datastructures.tree.Result;
 import com.github.kilianB.datastructures.tree.binaryTree.BinaryTree;
-import com.github.kilianB.hash.Hash;
+import com.jstarcraft.dip.hash.Hash;
 import com.jstarcraft.dip.lsh.HashingAlgorithm;
 
 /**

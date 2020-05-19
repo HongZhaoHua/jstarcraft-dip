@@ -12,9 +12,9 @@ import java.util.stream.Collectors;
 
 import com.github.kilianB.ArrayUtil;
 import com.github.kilianB.StringUtil;
-import com.github.kilianB.hash.FuzzyHash;
-import com.github.kilianB.hash.Hash;
 import com.github.kilianB.mutable.MutableDouble;
+import com.jstarcraft.dip.hash.FuzzyHash;
+import com.jstarcraft.dip.hash.Hash;
 
 /**
  * 

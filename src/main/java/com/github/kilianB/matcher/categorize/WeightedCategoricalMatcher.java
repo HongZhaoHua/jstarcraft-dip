@@ -8,8 +8,8 @@ import java.util.logging.Logger;
 import com.github.kilianB.datastructures.ClusterResult;
 import com.github.kilianB.datastructures.KMeans;
 import com.github.kilianB.datastructures.tree.binaryTreeFuzzy.FuzzyBinaryTree;
-import com.github.kilianB.hash.FuzzyHash;
-import com.github.kilianB.hash.Hash;
+import com.jstarcraft.dip.hash.FuzzyHash;
+import com.jstarcraft.dip.hash.Hash;
 import com.jstarcraft.dip.lsh.HashingAlgorithm;
 
 /**

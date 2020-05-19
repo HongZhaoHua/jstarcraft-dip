@@ -1,4 +1,4 @@
-package com.github.kilianB.hash;
+package com.jstarcraft.dip.hash;
 
 import java.awt.image.BufferedImage;
 import java.io.File;

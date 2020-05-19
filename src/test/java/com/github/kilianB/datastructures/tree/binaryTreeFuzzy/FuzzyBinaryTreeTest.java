@@ -6,8 +6,8 @@ import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 
 import com.github.kilianB.TestResources;
-import com.github.kilianB.hash.FuzzyHash;
-import com.github.kilianB.hash.Hash;
+import com.jstarcraft.dip.hash.FuzzyHash;
+import com.jstarcraft.dip.hash.Hash;
 
 /**
  * @author Kilian

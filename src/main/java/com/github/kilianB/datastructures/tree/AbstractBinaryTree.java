@@ -6,7 +6,7 @@ import java.util.PriorityQueue;
 
 import com.github.kilianB.datastructures.tree.binaryTree.Leaf;
 import com.github.kilianB.datastructures.tree.binaryTree.Node;
-import com.github.kilianB.hash.Hash;
+import com.jstarcraft.dip.hash.Hash;
 
 /**
  * @author Kilian

@@ -17,10 +17,10 @@ import java.util.logging.Logger;
 
 import com.github.kilianB.ArrayUtil;
 import com.github.kilianB.MathUtil;
-import com.github.kilianB.hash.Hash;
 import com.github.kilianB.matcher.TypedImageMatcher.AlgoSettings;
 import com.github.kilianB.matcher.categorize.supervised.LabeledImage;
 import com.github.kilianB.matcher.exotic.SingleImageMatcher;
+import com.jstarcraft.dip.hash.Hash;
 import com.jstarcraft.dip.lsh.HashingAlgorithm;
 
 import javafx.application.Application;

@@ -11,8 +11,8 @@ import com.github.kilianB.datastructures.tree.NodeInfo;
 import com.github.kilianB.datastructures.tree.Result;
 import com.github.kilianB.datastructures.tree.binaryTree.Leaf;
 import com.github.kilianB.datastructures.tree.binaryTree.Node;
-import com.github.kilianB.hash.FuzzyHash;
-import com.github.kilianB.hash.Hash;
+import com.jstarcraft.dip.hash.FuzzyHash;
+import com.jstarcraft.dip.hash.Hash;
 
 /**
  * A binary tree implementation allowing to quickly lookup

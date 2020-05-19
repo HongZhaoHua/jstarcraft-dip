@@ -5,8 +5,8 @@ import java.awt.image.BufferedImage;
 import java.math.BigInteger;
 import java.util.Objects;
 
-import com.github.kilianB.hash.Hash;
 import com.jstarcraft.dip.color.ColorPixel;
+import com.jstarcraft.dip.hash.Hash;
 
 /**
  * Calculates a hash based on gradient tracking. This hash is cheap to compute

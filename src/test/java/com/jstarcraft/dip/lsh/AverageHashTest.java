@@ -11,7 +11,7 @@ import org.junit.jupiter.api.Nested;
 import org.junit.jupiter.api.Test;
 
 import com.github.kilianB.TestResources;
-import com.github.kilianB.hash.Hash;
+import com.jstarcraft.dip.hash.Hash;
 import com.jstarcraft.dip.lsh.AverageHash;
 import com.jstarcraft.dip.lsh.HashingAlgorithm;
 

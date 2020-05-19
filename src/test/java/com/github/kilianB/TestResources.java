@@ -11,7 +11,7 @@ import javax.imageio.ImageIO;
 
 import org.junit.jupiter.api.Test;
 
-import com.github.kilianB.hash.Hash;
+import com.jstarcraft.dip.hash.Hash;
 
 /**
  * @author Kilian

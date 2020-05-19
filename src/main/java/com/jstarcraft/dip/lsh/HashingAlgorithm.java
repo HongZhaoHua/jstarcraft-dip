@@ -11,9 +11,9 @@ import java.util.Objects;
 import javax.imageio.ImageIO;
 
 import com.github.kilianB.Require;
-import com.github.kilianB.hash.Hash;
 import com.jstarcraft.dip.color.ColorPixel;
 import com.jstarcraft.dip.color.ImageUtil;
+import com.jstarcraft.dip.hash.Hash;
 import com.jstarcraft.dip.lsh.filter.Filter;
 
 /**
@@ -341,7 +341,7 @@ public abstract class HashingAlgorithm {
 	 * <p>
 	 * Some algorithms may choose to return an extended hash class to overwrite
 	 * certain behavior, in particular the
-	 * {@link com.github.kilianB.hash.Hash#toImage(int)} is likely to differ.
+	 * {@link com.jstarcraft.dip.hash.Hash#toImage(int)} is likely to differ.
 	 * 
 	 * <p>
 	 * If the algorithm does not utilize a special hash sub class this method

@@ -12,7 +12,7 @@ import java.util.Objects;
 import com.github.kilianB.Require;
 import com.github.kilianB.datastructures.ClusterResult;
 import com.github.kilianB.datastructures.KMeansPlusPlus;
-import com.github.kilianB.hash.Hash;
+import com.jstarcraft.dip.hash.Hash;
 import com.jstarcraft.dip.lsh.HashingAlgorithm;
 
 /**

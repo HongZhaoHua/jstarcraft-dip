@@ -5,7 +5,7 @@ import java.util.Collections;
 import java.util.LinkedHashMap;
 import java.util.Map;
 
-import com.github.kilianB.hash.Hash;
+import com.jstarcraft.dip.hash.Hash;
 import com.jstarcraft.dip.lsh.HashingAlgorithm;
 
 /**

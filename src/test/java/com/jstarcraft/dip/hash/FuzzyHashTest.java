@@ -1,4 +1,4 @@
-package com.github.kilianB.hash;
+package com.jstarcraft.dip.hash;
 
 import static com.github.kilianB.TestResources.ballon;
 import static org.junit.jupiter.api.Assertions.assertArrayEquals;
@@ -20,6 +20,8 @@ import org.junit.jupiter.api.Test;
 import com.github.kilianB.ArrayUtil;
 import com.github.kilianB.TestResources;
 import com.github.kilianB.pcg.fast.PcgRSFast;
+import com.jstarcraft.dip.hash.FuzzyHash;
+import com.jstarcraft.dip.hash.Hash;
 import com.jstarcraft.dip.lsh.AverageHash;
 
 /**

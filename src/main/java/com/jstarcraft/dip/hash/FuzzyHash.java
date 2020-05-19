@@ -1,4 +1,4 @@
-package com.github.kilianB.hash;
+package com.jstarcraft.dip.hash;
 
 import java.awt.Color;
 import java.awt.image.BufferedImage;
@@ -42,7 +42,7 @@ import com.jstarcraft.dip.lsh.HashingAlgorithm;
  * to the modus bit for each bit.
  * 
  * <p>
- * <b>Implnote:</b> Opposed to the original {@link com.github.kilianB.hash.Hash}
+ * <b>Implnote:</b> Opposed to the original {@link com.jstarcraft.dip.hash.Hash}
  * equals and hashcode are not overwritten to ensure correct functionality in
  * hash collections after factoring in mutable fields. To check if hashes are
  * equals calculate the distance between the hashes instead.

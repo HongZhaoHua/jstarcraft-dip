@@ -7,8 +7,8 @@ import java.util.Map.Entry;
 
 import javax.imageio.ImageIO;
 
-import com.github.kilianB.hash.Hash;
 import com.github.kilianB.matcher.TypedImageMatcher;
+import com.jstarcraft.dip.hash.Hash;
 import com.jstarcraft.dip.lsh.HashingAlgorithm;
 
 /**
