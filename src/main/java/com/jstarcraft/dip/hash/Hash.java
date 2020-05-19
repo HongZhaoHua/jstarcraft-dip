@@ -265,9 +265,8 @@ public class Hash implements Serializable {
 	 * 
 	 * <p>
 	 * Some hash algorithms may chose to construct their hashes in a non default
-	 * manner (e.g. {@link com.jstarcraft.dip.lsh.DifferenceHash}). In
-	 * this case {@link #toImage(int, HashingAlgorithm)} may help to resolve the
-	 * issue;
+	 * manner (e.g. {@link com.jstarcraft.dip.lsh.DifferenceHash}). In this case
+	 * {@link #toImage(int, HashingAlgorithm)} may help to resolve the issue;
 	 * 
 	 * @param blockSize scaling factor of each pixel in the has. each bit of the
 	 *                  hash will be represented to blockSize*blockSize pixels
