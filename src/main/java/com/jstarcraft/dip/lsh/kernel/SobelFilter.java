@@ -1,4 +1,4 @@
-package com.jstarcraft.dip.lsh.filter;
+package com.jstarcraft.dip.lsh.kernel;
 
 import java.awt.image.BufferedImage;
 

@@ -1,4 +1,4 @@
-package com.jstarcraft.dip.lsh.filter;
+package com.jstarcraft.dip.lsh.kernel;
 
 import static org.junit.jupiter.api.Assertions.assertArrayEquals;
 import static org.junit.jupiter.api.Assertions.assertEquals;
@@ -6,8 +6,8 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import org.junit.jupiter.api.Test;
 
 import com.github.kilianB.ArrayUtil;
-import com.jstarcraft.dip.lsh.filter.Kernel;
-import com.jstarcraft.dip.lsh.filter.MaximumKernel;
+import com.jstarcraft.dip.lsh.kernel.Kernel;
+import com.jstarcraft.dip.lsh.kernel.MaximumKernel;
 
 /**
  * @author Kilian

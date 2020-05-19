@@ -1,4 +1,4 @@
-package com.jstarcraft.dip.lsh.filter;
+package com.jstarcraft.dip.lsh.kernel;
 
 import static org.junit.jupiter.api.Assertions.assertAll;
 import static org.junit.jupiter.api.Assertions.assertArrayEquals;
@@ -10,8 +10,8 @@ import org.junit.jupiter.api.Nested;
 import org.junit.jupiter.api.Test;
 
 import com.github.kilianB.ArrayUtil;
-import com.jstarcraft.dip.lsh.filter.Kernel;
-import com.jstarcraft.dip.lsh.filter.Kernel.EdgeHandlingStrategy;
+import com.jstarcraft.dip.lsh.kernel.Kernel;
+import com.jstarcraft.dip.lsh.kernel.Kernel.EdgeHandlingStrategy;
 
 /**
  * @author Kilian

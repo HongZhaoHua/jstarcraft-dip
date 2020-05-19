@@ -14,7 +14,7 @@ import com.github.kilianB.Require;
 import com.jstarcraft.dip.color.ColorPixel;
 import com.jstarcraft.dip.color.ImageUtil;
 import com.jstarcraft.dip.hash.Hash;
-import com.jstarcraft.dip.lsh.filter.Filter;
+import com.jstarcraft.dip.lsh.kernel.Filter;
 
 /**
  * Base class for hashing algorithms returning perceptual hashes for supplied
@@ -283,7 +283,7 @@ public abstract class HashingAlgorithm {
 	}
 
 	/**
-	 * Add a {@link com.jstarcraft.dip.lsh.filter.Filter Filter} to this
+	 * Add a {@link com.jstarcraft.dip.lsh.kernel.Filter Filter} to this
 	 * hashing algorithm which will be used to alter the image before the hashing
 	 * operation is applied. Kernels are invoked in the order they are added and are
 	 * performed individually on all 3 RGB channels.
@@ -312,7 +312,7 @@ public abstract class HashingAlgorithm {
 
 	/**
 	 * Remove the first occurance of a
-	 * {@link com.jstarcraft.dip.lsh.filter.Filter Filter} from this
+	 * {@link com.jstarcraft.dip.lsh.kernel.Filter Filter} from this
 	 * hashing algorithm.
 	 * 
 	 * <p>

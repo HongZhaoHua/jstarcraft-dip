@@ -15,7 +15,7 @@ import com.jstarcraft.dip.lsh.DifferenceHash.Precision;
 import com.jstarcraft.dip.lsh.experimental.HogHash;
 import com.jstarcraft.dip.lsh.experimental.HogHashAngularEncoded;
 import com.jstarcraft.dip.lsh.experimental.HogHashDual;
-import com.jstarcraft.dip.lsh.filter.Kernel;
+import com.jstarcraft.dip.lsh.kernel.Kernel;
 
 /**
  * 
