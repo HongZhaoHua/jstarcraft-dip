@@ -28,7 +28,7 @@ import com.jstarcraft.dip.color.ColorPixel;
  * @see <a href="https://en.wikipedia.org/wiki/Sobel_operator">Sobel
  *      Operator</a>
  */
-public class SobelFilter implements Filter {
+public class SobelFilter implements ImageConverter {
 
 	/** Separated Gx Kernel */
 	private MultiKernel xKernel;
@@ -76,7 +76,7 @@ public class SobelFilter implements Filter {
 	}
 
 	@Override
-	public BufferedImage filter(BufferedImage bi) {
+	public BufferedImage convert(BufferedImage bi) {
 
 		ColorPixel fp = ColorPixel.create(bi);
 

@@ -36,7 +36,7 @@ import com.jstarcraft.dip.color.ColorPixel;
  * @author Kilian
  * @since 2.0.0
  */
-public class Kernel implements Filter {
+public class Kernel implements ImageConverter {
 
 	/** Kernel mask applied to the pixels */
 	protected double[][] mask;
@@ -785,7 +785,7 @@ public class Kernel implements Filter {
 	}
 
 	@Override
-	public BufferedImage filter(BufferedImage input) {
+	public BufferedImage convert(BufferedImage input) {
 		BufferedImage bi = new BufferedImage(input.getWidth(), input.getHeight(), input.getType());
 		ColorPixel fp = ColorPixel.create(input);
 		ColorPixel fpSet = ColorPixel.create(bi);
@@ -825,7 +825,7 @@ public class Kernel implements Filter {
 		}
 
 		@Override
-		public BufferedImage filter(BufferedImage input) {
+		public BufferedImage convert(BufferedImage input) {
 			BufferedImage bi = new BufferedImage(input.getWidth(), input.getHeight(), input.getType());
 			ColorPixel fp = ColorPixel.create(input);
 			ColorPixel fpSet = ColorPixel.create(bi);

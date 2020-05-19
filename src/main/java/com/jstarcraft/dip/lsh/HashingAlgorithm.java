@@ -14,7 +14,7 @@ import com.github.kilianB.Require;
 import com.jstarcraft.dip.color.ColorPixel;
 import com.jstarcraft.dip.color.ImageUtil;
 import com.jstarcraft.dip.hash.Hash;
-import com.jstarcraft.dip.lsh.kernel.Filter;
+import com.jstarcraft.dip.lsh.kernel.ImageConverter;
 
 /**
  * Base class for hashing algorithms returning perceptual hashes for supplied
@@ -39,7 +39,7 @@ import com.jstarcraft.dip.lsh.kernel.Filter;
 public abstract class HashingAlgorithm {
 
 	// maybe move to bitsets//Mutable inetegers? not efficient for small keys?
-	protected List<Filter> preProcessing = new ArrayList<>();
+	protected List<ImageConverter> preProcessing = new ArrayList<>();
 
 	/**
 	 * The target bit resolution supplied during algorithm creation. This number
@@ -146,11 +146,11 @@ public abstract class HashingAlgorithm {
 		// If we have kernels defined alter red green and blue values accordingly
 		if (!preProcessing.isEmpty()) {
 
-			for (Filter kernel : preProcessing) {
+			for (ImageConverter kernel : preProcessing) {
 				if (bi == null) {
-					bi = kernel.filter(image);
+					bi = kernel.convert(image);
 				} else {
-					bi = kernel.filter(bi);
+					bi = kernel.convert(bi);
 				}
 			}
 		}
@@ -283,7 +283,7 @@ public abstract class HashingAlgorithm {
 	}
 
 	/**
-	 * Add a {@link com.jstarcraft.dip.lsh.kernel.Filter Filter} to this
+	 * Add a {@link com.jstarcraft.dip.lsh.kernel.ImageConverter Filter} to this
 	 * hashing algorithm which will be used to alter the image before the hashing
 	 * operation is applied. Kernels are invoked in the order they are added and are
 	 * performed individually on all 3 RGB channels.
@@ -300,7 +300,7 @@ public abstract class HashingAlgorithm {
 	 *                               considered immutable.
 	 * @since 2.0.0
 	 */
-	public void addFilter(Filter filter) {
+	public void addFilter(ImageConverter filter) {
 		Objects.requireNonNull(filter);
 
 		if (immutableState) {
@@ -312,7 +312,7 @@ public abstract class HashingAlgorithm {
 
 	/**
 	 * Remove the first occurance of a
-	 * {@link com.jstarcraft.dip.lsh.kernel.Filter Filter} from this
+	 * {@link com.jstarcraft.dip.lsh.kernel.ImageConverter Filter} from this
 	 * hashing algorithm.
 	 * 
 	 * <p>
@@ -327,7 +327,7 @@ public abstract class HashingAlgorithm {
 	 *                               considered immutable.
 	 * @since 2.0.0
 	 */
-	public boolean removeFilter(Filter filter) {
+	public boolean removeFilter(ImageConverter filter) {
 
 		if (immutableState) {
 			throw new IllegalStateException(LOCKED_MODIFICATION_EXCEPTION);

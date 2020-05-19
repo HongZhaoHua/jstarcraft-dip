@@ -10,7 +10,7 @@ import java.io.Serializable;
  * @author Kilian
  * @since 2.0.0
  */
-public interface Filter {
+public interface ImageConverter {
 
 	/**
 	 * Apply the filter to the input image and return an altered copy
@@ -18,6 +18,6 @@ public interface Filter {
 	 * @param bi the input image to apply the filter on
 	 * @return the altered image
 	 */
-	public BufferedImage filter(BufferedImage bi);
+	public BufferedImage convert(BufferedImage bi);
 
 }

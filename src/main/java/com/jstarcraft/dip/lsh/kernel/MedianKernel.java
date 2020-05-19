@@ -112,7 +112,7 @@ public class MedianKernel extends NonAveragingKernel {
 	}
 
 	@Override
-	public BufferedImage filter(BufferedImage input) {
+	public BufferedImage convert(BufferedImage input) {
 		BufferedImage bi = new BufferedImage(input.getWidth(), input.getHeight(), input.getType());
 		ColorPixel fp = ColorPixel.create(input);
 		ColorPixel fpSet = ColorPixel.create(bi);
