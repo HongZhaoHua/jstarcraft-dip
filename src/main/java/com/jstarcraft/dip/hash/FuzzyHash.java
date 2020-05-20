@@ -11,7 +11,7 @@ import java.io.ObjectOutputStream;
 import java.math.BigInteger;
 import java.util.logging.Logger;
 
-import com.jstarcraft.dip.color.ColorUtil;
+import com.jstarcraft.dip.color.ColorUtility;
 import com.jstarcraft.dip.lsh.HashingAlgorithm;
 
 /**
@@ -812,8 +812,8 @@ public class FuzzyHash extends Hash {
 		ensureUpToDateHash();
 
 		// Build color palette
-		Color[] lowerCol = ColorUtil.ColorPalette.getPalette(15, Color.decode("#ff642b"), Color.decode("#ffff7c"));
-		Color[] higherCol = ColorUtil.ColorPalette.getPalette(15, Color.decode("#ffff7c"), Color.GREEN);
+		Color[] lowerCol = ColorUtility.ColorPalette.getPalette(15, Color.decode("#ff642b"), Color.decode("#ffff7c"));
+		Color[] higherCol = ColorUtility.ColorPalette.getPalette(15, Color.decode("#ffff7c"), Color.GREEN);
 
 		Color[] colors = new Color[lowerCol.length + higherCol.length];
 		System.arraycopy(lowerCol, 0, colors, 0, lowerCol.length);
@@ -835,8 +835,8 @@ public class FuzzyHash extends Hash {
 		ensureUpToDateHash();
 
 		// Build color palette
-		Color[] lowerCol = ColorUtil.ColorPalette.getPalette(15, Color.decode("#ff642b"), Color.decode("#ffff7c"));
-		Color[] higherCol = ColorUtil.ColorPalette.getPalette(15, Color.decode("#ffff7c"), Color.GREEN);
+		Color[] lowerCol = ColorUtility.ColorPalette.getPalette(15, Color.decode("#ff642b"), Color.decode("#ffff7c"));
+		Color[] higherCol = ColorUtility.ColorPalette.getPalette(15, Color.decode("#ffff7c"), Color.GREEN);
 
 		Color[] colors = new Color[lowerCol.length + higherCol.length];
 		System.arraycopy(lowerCol, 0, colors, 0, lowerCol.length);

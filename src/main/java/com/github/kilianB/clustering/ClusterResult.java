@@ -18,7 +18,7 @@ import com.github.kilianB.StringUtil;
 import com.github.kilianB.clustering.distance.DistanceFunction;
 import com.github.kilianB.clustering.distance.EuclideanDistance;
 import com.github.kilianB.mutable.MutableDouble;
-import com.jstarcraft.dip.color.ColorUtil;
+import com.jstarcraft.dip.color.ColorUtility;
 
 import javafx.scene.paint.Color;
 
@@ -219,7 +219,7 @@ public class ClusterResult {
 			}
 		}
 
-		javafx.scene.paint.Color[] c = ColorUtil.ColorPalette.getPaletteHue(numberOfClusters, Color.BLUE, Color.RED);
+		javafx.scene.paint.Color[] c = ColorUtility.ColorPalette.getPaletteHue(numberOfClusters, Color.BLUE, Color.RED);
 
 		// Scale data
 		g.fillRect(0, 0, 700, 700);
@@ -231,9 +231,9 @@ public class ClusterResult {
 
 		for (int i = -1; i < numberOfClusters; i++) {
 			if (i == -1) {
-				g.setColor(ColorUtil.fxToAwtColor(Color.GRAY));
+				g.setColor(ColorUtility.fxToAwtColor(Color.GRAY));
 			} else {
-				g.setColor(ColorUtil.fxToAwtColor(c[i]));
+				g.setColor(ColorUtility.fxToAwtColor(c[i]));
 			}
 			List<double[]> points = clusters.get(i);
 			for (double[] point : points) {

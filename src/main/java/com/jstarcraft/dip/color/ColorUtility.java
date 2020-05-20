@@ -8,7 +8,7 @@ import javafx.scene.paint.Color;
  * @author Kilian
  *
  */
-public class ColorUtil {
+public class ColorUtility {
 
 	// YCrCb constants
 

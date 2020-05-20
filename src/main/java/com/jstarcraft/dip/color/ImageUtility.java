@@ -21,7 +21,7 @@ import javafx.scene.paint.Color;
  * @author Kilian
  *
  */
-public class ImageUtil {
+public class ImageUtility {
 
 	/**
 	 * Resize the buffered image to an arbitrary dimension
@@ -181,9 +181,9 @@ public class ImageUtil {
 	 */
 	public static Color interpolateColor(Image image) {
 		BufferedImage bImage = SwingFXUtils.fromFXImage(image, null);
-		bImage = ImageUtil.getScaledInstance(bImage, 1, 1);
+		bImage = ImageUtility.getScaledInstance(bImage, 1, 1);
 		int argb = bImage.getRGB(0, 0);
-		return ColorUtil.argbToFXColor(argb);
+		return ColorUtility.argbToFXColor(argb);
 	}
 
 	/**
@@ -214,7 +214,7 @@ public class ImageUtil {
 
 		int argb = colorCount.entrySet().stream().max((entry, entry2) -> entry.getValue().compareTo(entry2.getValue())).get().getKey().intValue();
 
-		return ColorUtil.argbToFXColor(argb);
+		return ColorUtility.argbToFXColor(argb);
 	}
 
 	/**
@@ -243,7 +243,7 @@ public class ImageUtil {
 		for (int argb : pixels) {
 
 			// ARGB values are not linearly scaled. therefore square roots are necessary.
-			int[] colorComponents = ColorUtil.argbToComponents(argb);
+			int[] colorComponents = ColorUtility.argbToComponents(argb);
 
 			meanAlpha += (Math.pow(colorComponents[0], 2) / pixelCount);
 			meanRed += (Math.pow(colorComponents[1], 2) / pixelCount);
@@ -251,9 +251,9 @@ public class ImageUtil {
 			meanBlue += (Math.pow(colorComponents[3], 2) / pixelCount);
 		}
 
-		int argbMean = ColorUtil.componentsToARGB((int) Math.sqrt(meanAlpha) * 255, (int) Math.sqrt(meanRed), (int) Math.sqrt(meanGreen), (int) Math.sqrt(meanBlue));
+		int argbMean = ColorUtility.componentsToARGB((int) Math.sqrt(meanAlpha) * 255, (int) Math.sqrt(meanRed), (int) Math.sqrt(meanGreen), (int) Math.sqrt(meanBlue));
 
-		return ColorUtil.argbToFXColor(argbMean);
+		return ColorUtility.argbToFXColor(argbMean);
 	}
 
 	/**

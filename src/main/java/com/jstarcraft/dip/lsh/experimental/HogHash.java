@@ -16,7 +16,7 @@ import com.github.kilianB.Experimental;
 import com.github.kilianB.MathUtil;
 import com.github.kilianB.Require;
 import com.jstarcraft.dip.color.ColorPixel;
-import com.jstarcraft.dip.color.ColorUtil;
+import com.jstarcraft.dip.color.ColorUtility;
 import com.jstarcraft.dip.lsh.HashBuilder;
 import com.jstarcraft.dip.lsh.HashingAlgorithm;
 
@@ -387,7 +387,7 @@ public class HogHash extends HashingAlgorithm {
 					int x = (int) (xCell * cellWidth + cellWidth / 2);
 					int y = (int) (yCell * cellHeight + cellHeight / 2);
 
-					g2.setPaint(ColorUtil.getContrastColor(new Color(originalImage.getRGB(x, y))));
+					g2.setPaint(ColorUtility.getContrastColor(new Color(originalImage.getRGB(x, y))));
 
 					// Normalize to the global max
 					double lengthX = (cellWidth * hog[xCell][yCell][bin]) / globalMaximum;
@@ -461,7 +461,7 @@ public class HogHash extends HashingAlgorithm {
 					int x = (int) (xCell * cellWidth + cellWidth / 2);
 					int y = (int) (yCell * cellHeight + cellHeight / 2);
 
-					g2.setPaint(ColorUtil.getContrastColor(new Color(originalImage.getRGB(x, y))));
+					g2.setPaint(ColorUtility.getContrastColor(new Color(originalImage.getRGB(x, y))));
 
 					double lengthX = (cellWidth * normalizedHog[xCell][yCell][bin]) * 0.75d;
 					double lengthY = (cellHeight * normalizedHog[xCell][yCell][bin]) * 0.75d;

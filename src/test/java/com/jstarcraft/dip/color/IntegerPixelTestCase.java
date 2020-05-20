@@ -17,7 +17,7 @@ import org.junit.jupiter.api.Nested;
 import org.junit.jupiter.api.Test;
 
 import com.github.kilianB.ArrayUtil;
-import com.jstarcraft.dip.color.ImageUtil.BImageType;
+import com.jstarcraft.dip.color.ImageUtility.BImageType;
 
 @Nested
 class IntegerPixelTestCase {
@@ -43,25 +43,25 @@ class IntegerPixelTestCase {
 	static void loadImage() {
 		try {
 			lena = ImageIO.read(BytePixelTestCase.class.getClassLoader().getResourceAsStream("Lena.png"));
-			lena = ImageUtil.toNewType(lena, BImageType.TYPE_INT_BGR);
+			lena = ImageUtility.toNewType(lena, BImageType.TYPE_INT_BGR);
 
 			bw = ImageIO.read(BytePixelTestCase.class.getClassLoader().getResourceAsStream("BlackWhite.png"));
-			bw = ImageUtil.toNewType(bw, BImageType.TYPE_INT_BGR);
+			bw = ImageUtility.toNewType(bw, BImageType.TYPE_INT_BGR);
 
 			red = ImageIO.read(BytePixelTestCase.class.getClassLoader().getResourceAsStream("red.png"));
-			red = ImageUtil.toNewType(red, BImageType.TYPE_INT_BGR);
+			red = ImageUtility.toNewType(red, BImageType.TYPE_INT_BGR);
 
 			green = ImageIO.read(BytePixelTestCase.class.getClassLoader().getResourceAsStream("green.png"));
-			green = ImageUtil.toNewType(green, BImageType.TYPE_INT_BGR);
+			green = ImageUtility.toNewType(green, BImageType.TYPE_INT_BGR);
 
 			blue = ImageIO.read(BytePixelTestCase.class.getClassLoader().getResourceAsStream("blue.png"));
-			blue = ImageUtil.toNewType(blue, BImageType.TYPE_INT_BGR);
+			blue = ImageUtility.toNewType(blue, BImageType.TYPE_INT_BGR);
 
 			brown = ImageIO.read(BytePixelTestCase.class.getClassLoader().getResourceAsStream("brown.png"));
-			brown = ImageUtil.toNewType(brown, BImageType.TYPE_INT_BGR);
+			brown = ImageUtility.toNewType(brown, BImageType.TYPE_INT_BGR);
 
 			brownOpacity = ImageIO.read(BytePixelTestCase.class.getClassLoader().getResourceAsStream("brownOpacity.png"));
-			brownOpacity = ImageUtil.toNewType(brownOpacity, BImageType.TYPE_INT_ARGB);
+			brownOpacity = ImageUtility.toNewType(brownOpacity, BImageType.TYPE_INT_ARGB);
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
@@ -114,7 +114,7 @@ class IntegerPixelTestCase {
 		ColorPixel fp = ColorPixel.create(lena);
 		for (int x = 0; x < lena.getWidth(); x++) {
 			for (int y = 0; y < lena.getHeight(); y++) {
-				int[] comp = ColorUtil.argbToComponents(lena.getRGB(x, y));
+				int[] comp = ColorUtility.argbToComponents(lena.getRGB(x, y));
 				assertEquals(comp[1], fp.getRedScalar(x, y));
 			}
 		}
@@ -170,7 +170,7 @@ class IntegerPixelTestCase {
 		ColorPixel fp = ColorPixel.create(lena);
 		for (int x = 0; x < lena.getWidth(); x++) {
 			for (int y = 0; y < lena.getHeight(); y++) {
-				int[] comp = ColorUtil.argbToComponents(lena.getRGB(x, y));
+				int[] comp = ColorUtility.argbToComponents(lena.getRGB(x, y));
 				assertEquals(comp[2], fp.getGreenScalar(x, y));
 			}
 		}
@@ -240,7 +240,7 @@ class IntegerPixelTestCase {
 		ColorPixel fp = ColorPixel.create(lena);
 		for (int x = 0; x < lena.getWidth(); x++) {
 			for (int y = 0; y < lena.getHeight(); y++) {
-				int[] comp = ColorUtil.argbToComponents(lena.getRGB(x, y));
+				int[] comp = ColorUtility.argbToComponents(lena.getRGB(x, y));
 				assertEquals(comp[3], fp.getBlueScalar(x, y));
 			}
 		}
@@ -306,7 +306,7 @@ class IntegerPixelTestCase {
 		ColorPixel fp = ColorPixel.create(brownOpacity);
 		for (int x = 0; x < brownOpacity.getWidth(); x++) {
 			for (int y = 0; y < brownOpacity.getHeight(); y++) {
-				int[] comp = ColorUtil.argbToComponents(brownOpacity.getRGB(x, y));
+				int[] comp = ColorUtility.argbToComponents(brownOpacity.getRGB(x, y));
 				assertEquals(comp[0], fp.getTransparencyScalar(x, y));
 			}
 		}
@@ -317,7 +317,7 @@ class IntegerPixelTestCase {
 		ColorPixel fp = ColorPixel.create(brownOpacity);
 		for (int x = 0; x < brownOpacity.getWidth(); x++) {
 			for (int y = 0; y < brownOpacity.getHeight(); y++) {
-				int[] comp = ColorUtil.argbToComponents(brownOpacity.getRGB(x, y));
+				int[] comp = ColorUtility.argbToComponents(brownOpacity.getRGB(x, y));
 				assertEquals(comp[1], fp.getRedScalar(x, y));
 			}
 		}
@@ -328,7 +328,7 @@ class IntegerPixelTestCase {
 		ColorPixel fp = ColorPixel.create(brownOpacity);
 		for (int x = 0; x < brownOpacity.getWidth(); x++) {
 			for (int y = 0; y < brownOpacity.getHeight(); y++) {
-				int[] comp = ColorUtil.argbToComponents(brownOpacity.getRGB(x, y));
+				int[] comp = ColorUtility.argbToComponents(brownOpacity.getRGB(x, y));
 				assertEquals(comp[2], fp.getGreenScalar(x, y));
 			}
 		}
@@ -339,7 +339,7 @@ class IntegerPixelTestCase {
 		ColorPixel fp = ColorPixel.create(brownOpacity);
 		for (int x = 0; x < brownOpacity.getWidth(); x++) {
 			for (int y = 0; y < brownOpacity.getHeight(); y++) {
-				int[] comp = ColorUtil.argbToComponents(brownOpacity.getRGB(x, y));
+				int[] comp = ColorUtility.argbToComponents(brownOpacity.getRGB(x, y));
 				assertEquals(comp[3], fp.getBlueScalar(x, y));
 			}
 		}

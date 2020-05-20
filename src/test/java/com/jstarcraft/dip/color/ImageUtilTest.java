@@ -37,21 +37,21 @@ class ImageUtilTest {
 
 	@Test
 	void getScaledInstanceSize() {
-		BufferedImage scaled = ImageUtil.getScaledInstance(lena, 10, 10);
+		BufferedImage scaled = ImageUtility.getScaledInstance(lena, 10, 10);
 		assertEquals(10, scaled.getWidth());
 		assertEquals(10, scaled.getHeight());
 	}
 
 	@Test
 	void getScaledInstanceSizeBW() {
-		BufferedImage scaled = ImageUtil.getScaledInstance(bw, 10, 10);
+		BufferedImage scaled = ImageUtility.getScaledInstance(bw, 10, 10);
 		assertEquals(10, scaled.getWidth());
 		assertEquals(10, scaled.getHeight());
 	}
 
 	@Test
 	void getScaledInstanceCustomImage() {
-		BufferedImage scaled = ImageUtil.getScaledInstance(catCustom, 10, 10);
+		BufferedImage scaled = ImageUtility.getScaledInstance(catCustom, 10, 10);
 		assertEquals(10, scaled.getWidth());
 		assertEquals(10, scaled.getHeight());
 	}

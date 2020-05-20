@@ -563,7 +563,7 @@ public interface ColorPixel {
 	 * @since 1.3.0
 	 */
 	default int getLuminanceScalar(int index) {
-		int scalar = (int) ((getRedScalar(index)) * ColorUtil.LUMA_RED + (getGreenScalar(index)) * ColorUtil.LUMA_GREEN + (getBlueScalar(index)) * ColorUtil.LUMA_BLUE);
+		int scalar = (int) ((getRedScalar(index)) * ColorUtility.LUMA_RED + (getGreenScalar(index)) * ColorUtility.LUMA_GREEN + (getBlueScalar(index)) * ColorUtility.LUMA_BLUE);
 		return scalar > 255 ? 255 : scalar;
 	}
 
@@ -617,7 +617,7 @@ public interface ColorPixel {
 	}
 
 	default int getCrScalar(int index) {
-		int cr = (int) (getRedScalar(index) * ColorUtil.CR_RED + getGreenScalar(index) * ColorUtil.CR_GREEN + getBlueScalar(index) * ColorUtil.CR_BLUE);
+		int cr = (int) (getRedScalar(index) * ColorUtility.CR_RED + getGreenScalar(index) * ColorUtility.CR_GREEN + getBlueScalar(index) * ColorUtility.CR_BLUE);
 		return cr > 255 ? 255 : cr;
 	}
 
@@ -643,7 +643,7 @@ public interface ColorPixel {
 	 * @since 1.5.0
 	 */
 	default int getCbScalar(int index) {
-		int cb = (int) (getRedScalar(index) * ColorUtil.CB_RED + getGreenScalar(index) * ColorUtil.CB_GREEN + getBlueScalar(index) * ColorUtil.CB_BLUE);
+		int cb = (int) (getRedScalar(index) * ColorUtility.CB_RED + getGreenScalar(index) * ColorUtility.CB_GREEN + getBlueScalar(index) * ColorUtility.CB_BLUE);
 		return cb > 255 ? 255 : cb;
 	}
 

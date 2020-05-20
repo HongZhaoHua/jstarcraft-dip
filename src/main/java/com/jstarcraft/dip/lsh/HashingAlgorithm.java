@@ -12,7 +12,7 @@ import javax.imageio.ImageIO;
 
 import com.github.kilianB.Require;
 import com.jstarcraft.dip.color.ColorPixel;
-import com.jstarcraft.dip.color.ImageUtil;
+import com.jstarcraft.dip.color.ImageUtility;
 import com.jstarcraft.dip.hash.Hash;
 import com.jstarcraft.dip.lsh.kernel.ImageConverter;
 
@@ -158,7 +158,7 @@ public abstract class HashingAlgorithm {
 
 		BigInteger hashValue;
 
-		ColorPixel fp = ColorPixel.create(ImageUtil.getScaledInstance(bi, width, height));
+		ColorPixel fp = ColorPixel.create(ImageUtility.getScaledInstance(bi, width, height));
 		if (keyResolution < 0) {
 			HashBuilder hb = new HashBuilder(this.bitResolution);
 			hashValue = hash(fp, hb);
@@ -274,7 +274,7 @@ public abstract class HashingAlgorithm {
 		// return value
 		if (keyResolution < 0) {
 			BufferedImage bi = new BufferedImage(1, 1, BufferedImage.TYPE_3BYTE_BGR);
-			ColorPixel fp = ColorPixel.create(ImageUtil.getScaledInstance(bi, width, height));
+			ColorPixel fp = ColorPixel.create(ImageUtility.getScaledInstance(bi, width, height));
 			HashBuilder sb = new HashBuilder(this.bitResolution);
 			this.hash(fp, sb);
 			keyResolution = sb.length;

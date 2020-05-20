@@ -100,7 +100,7 @@ class BytePixelTestCase {
 		ColorPixel fp = ColorPixel.create(lena);
 		for (int x = 0; x < lena.getWidth(); x++) {
 			for (int y = 0; y < lena.getHeight(); y++) {
-				int[] comp = ColorUtil.argbToComponents(lena.getRGB(x, y));
+				int[] comp = ColorUtility.argbToComponents(lena.getRGB(x, y));
 				assertEquals(comp[1], fp.getRedScalar(x, y));
 			}
 		}
@@ -156,7 +156,7 @@ class BytePixelTestCase {
 		ColorPixel fp = ColorPixel.create(lena);
 		for (int x = 0; x < lena.getWidth(); x++) {
 			for (int y = 0; y < lena.getHeight(); y++) {
-				int[] comp = ColorUtil.argbToComponents(lena.getRGB(x, y));
+				int[] comp = ColorUtility.argbToComponents(lena.getRGB(x, y));
 				assertEquals(comp[2], fp.getGreenScalar(x, y));
 			}
 		}
@@ -212,7 +212,7 @@ class BytePixelTestCase {
 		ColorPixel fp = ColorPixel.create(lena);
 		for (int x = 0; x < lena.getWidth(); x++) {
 			for (int y = 0; y < lena.getHeight(); y++) {
-				int[] comp = ColorUtil.argbToComponents(lena.getRGB(x, y));
+				int[] comp = ColorUtility.argbToComponents(lena.getRGB(x, y));
 				assertEquals(comp[3], fp.getBlueScalar(x, y));
 			}
 		}
@@ -292,7 +292,7 @@ class BytePixelTestCase {
 		ColorPixel fp = ColorPixel.create(brownOpacity);
 		for (int x = 0; x < brownOpacity.getWidth(); x++) {
 			for (int y = 0; y < brownOpacity.getHeight(); y++) {
-				int[] comp = ColorUtil.argbToComponents(brownOpacity.getRGB(x, y));
+				int[] comp = ColorUtility.argbToComponents(brownOpacity.getRGB(x, y));
 				assertEquals(comp[0], fp.getTransparencyScalar(x, y));
 			}
 		}
@@ -303,7 +303,7 @@ class BytePixelTestCase {
 		ColorPixel fp = ColorPixel.create(brownOpacity);
 		for (int x = 0; x < brownOpacity.getWidth(); x++) {
 			for (int y = 0; y < brownOpacity.getHeight(); y++) {
-				int[] comp = ColorUtil.argbToComponents(brownOpacity.getRGB(x, y));
+				int[] comp = ColorUtility.argbToComponents(brownOpacity.getRGB(x, y));
 				assertEquals(comp[1], fp.getRedScalar(x, y));
 			}
 		}
@@ -314,7 +314,7 @@ class BytePixelTestCase {
 		ColorPixel fp = ColorPixel.create(brownOpacity);
 		for (int x = 0; x < brownOpacity.getWidth(); x++) {
 			for (int y = 0; y < brownOpacity.getHeight(); y++) {
-				int[] comp = ColorUtil.argbToComponents(brownOpacity.getRGB(x, y));
+				int[] comp = ColorUtility.argbToComponents(brownOpacity.getRGB(x, y));
 				assertEquals(comp[2], fp.getGreenScalar(x, y));
 			}
 		}
@@ -325,7 +325,7 @@ class BytePixelTestCase {
 		ColorPixel fp = ColorPixel.create(brownOpacity);
 		for (int x = 0; x < brownOpacity.getWidth(); x++) {
 			for (int y = 0; y < brownOpacity.getHeight(); y++) {
-				int[] comp = ColorUtil.argbToComponents(brownOpacity.getRGB(x, y));
+				int[] comp = ColorUtility.argbToComponents(brownOpacity.getRGB(x, y));
 				assertEquals(comp[3], fp.getBlueScalar(x, y));
 			}
 		}
