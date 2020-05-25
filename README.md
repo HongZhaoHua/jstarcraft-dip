@@ -15,6 +15,9 @@
 * [介绍](#介绍)
 * [特性](#特性)
 * [安装](#安装)
+    * [安装JStarCraft Core框架](#安装JStarCraft-Core框架)
+    * [安装JStarCraft AI框架](#安装JStarCraft-AI框架)
+    * [安装JStarCraft DIP引擎](#安装JStarCraft-DIP引擎)
 * [使用](#使用)
 * [架构](#架构)
 * [概念](#概念)
@@ -31,17 +34,88 @@
 
 ## 介绍
 
+**JStarCraft DIP是一个面向数字图像处理领域的轻量级引擎.遵循Apache 2.0协议.**
+
+专注于解决数字图像处理领域的几个核心问题:
+* 图像转换
+* 图像相似度
+* 目标定位
+* 目标检测
+* 图像分割
+* 图像聚类
+* 图像分类
+
+涵盖了多种数字图像处理,计算机视觉,计算机图形算法.为相关领域的研发人员提供提供满足工业级别场景要求的通用设计与参考实现,普及面向数字图像处理在Java领域的应用.
+
 ****
 
 ## 特性
+
+* 1.图像转换
+* 2.图像哈希
+* 3.目标定位
+    * 分词
+    * 词性标注
+* 4.目标检测
+    * 句法结构分析
+    * 依存关系分析
+* 5.图像分割
+* 6.图像聚类
+* 7.图像分类
 
 ****
 
 ## 安装
 
+JStarCraft RNS要求使用者具备以下环境:
+* JDK 8或者以上
+* Maven 3
+
+#### 安装JStarCraft-Core框架
+
+```shell
+git clone https://github.com/HongZhaoHua/jstarcraft-core.git
+
+mvn install -Dmaven.test.skip=true
+```
+
+#### 安装JStarCraft-AI框架
+
+```shell
+git clone https://github.com/HongZhaoHua/jstarcraft-ai.git
+
+mvn install -Dmaven.test.skip=true
+```
+
+####  安装JStarCraft-DIP引擎
+
+```shell
+git clone https://github.com/HongZhaoHua/jstarcraft-dip.git
+
+mvn install -Dmaven.test.skip=true
+```
+
 ****
 
 ## 使用
+
+#### 设置依赖
+
+* 设置Maven依赖
+
+```maven
+<dependency>
+    <groupId>com.jstarcraft</groupId>
+    <artifactId>dip</artifactId>
+    <version>1.0</version>
+</dependency>
+```
+
+* 设置Gradle依赖
+
+```gradle
+compile group: 'com.jstarcraft', name: 'dip', version: '1.0'
+```
 
 ****
 
