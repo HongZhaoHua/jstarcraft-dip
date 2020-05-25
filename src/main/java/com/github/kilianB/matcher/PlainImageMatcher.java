@@ -4,11 +4,11 @@ import java.util.Collections;
 import java.util.LinkedHashSet;
 import java.util.Set;
 
-import com.jstarcraft.dip.lsh.HashingAlgorithm;
+import com.github.kilianB.hashAlgorithms.HashingAlgorithm;
 
 /**
  * Image matchers are a collection of classes bundling the hashing operation of
- * one or multiple {@link com.jstarcraft.dip.lsh.HashingAlgorithm
+ * one or multiple {@link com.github.kilianB.hashAlgorithms.HashingAlgorithm
  * HashingAlgorithms} together and usually exposing functionalities to compare
  * multiple images with each other.
  * <p>

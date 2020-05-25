@@ -6,13 +6,13 @@ import java.util.HashMap;
 
 import javax.imageio.ImageIO;
 
+import com.github.kilianB.hashAlgorithms.AverageHash;
+import com.github.kilianB.hashAlgorithms.DifferenceHash;
+import com.github.kilianB.hashAlgorithms.HashingAlgorithm;
+import com.github.kilianB.hashAlgorithms.PerceptiveHash;
+import com.github.kilianB.hashAlgorithms.WaveletHash;
+import com.github.kilianB.hashAlgorithms.DifferenceHash.Precision;
 import com.github.kilianB.matcher.exotic.SingleImageMatcher;
-import com.jstarcraft.dip.lsh.AverageHash;
-import com.jstarcraft.dip.lsh.DifferenceHash;
-import com.jstarcraft.dip.lsh.HashingAlgorithm;
-import com.jstarcraft.dip.lsh.PerceptiveHash;
-import com.jstarcraft.dip.lsh.WaveletHash;
-import com.jstarcraft.dip.lsh.DifferenceHash.Precision;
 
 /**
  * To increase the quality of the returned results it can be useful to chain

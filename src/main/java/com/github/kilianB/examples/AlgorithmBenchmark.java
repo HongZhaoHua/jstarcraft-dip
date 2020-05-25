@@ -3,19 +3,19 @@ package com.github.kilianB.examples;
 import java.io.File;
 
 import com.github.kilianB.benchmark.AlgorithmBenchmarker;
+import com.github.kilianB.hashAlgorithms.AverageHash;
+import com.github.kilianB.hashAlgorithms.DifferenceHash;
+import com.github.kilianB.hashAlgorithms.MedianHash;
+import com.github.kilianB.hashAlgorithms.PerceptiveHash;
+import com.github.kilianB.hashAlgorithms.RotAverageHash;
+import com.github.kilianB.hashAlgorithms.RotPHash;
+import com.github.kilianB.hashAlgorithms.DifferenceHash.Precision;
+import com.github.kilianB.hashAlgorithms.experimental.HogHash;
+import com.github.kilianB.hashAlgorithms.experimental.HogHashAngularEncoded;
+import com.github.kilianB.hashAlgorithms.experimental.HogHashDual;
+import com.github.kilianB.hashAlgorithms.kernel.Kernel;
 import com.github.kilianB.matcher.categorize.supervised.LabeledImage;
 import com.github.kilianB.matcher.exotic.SingleImageMatcher;
-import com.jstarcraft.dip.lsh.AverageHash;
-import com.jstarcraft.dip.lsh.DifferenceHash;
-import com.jstarcraft.dip.lsh.MedianHash;
-import com.jstarcraft.dip.lsh.PerceptiveHash;
-import com.jstarcraft.dip.lsh.RotAverageHash;
-import com.jstarcraft.dip.lsh.RotPHash;
-import com.jstarcraft.dip.lsh.DifferenceHash.Precision;
-import com.jstarcraft.dip.lsh.experimental.HogHash;
-import com.jstarcraft.dip.lsh.experimental.HogHashAngularEncoded;
-import com.jstarcraft.dip.lsh.experimental.HogHashDual;
-import com.jstarcraft.dip.lsh.kernel.Kernel;
 
 /**
  * 

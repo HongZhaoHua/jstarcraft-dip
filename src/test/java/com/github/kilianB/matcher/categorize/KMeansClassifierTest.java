@@ -5,7 +5,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 
 import org.junit.jupiter.api.Test;
 
-import com.jstarcraft.dip.lsh.AverageHash;
+import com.github.kilianB.hashAlgorithms.AverageHash;
 
 /**
  * @author Kilian

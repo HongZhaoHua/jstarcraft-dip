@@ -14,7 +14,7 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Nested;
 import org.junit.jupiter.api.Test;
 
-import com.jstarcraft.dip.lsh.AverageHash;
+import com.github.kilianB.hashAlgorithms.AverageHash;
 
 class HashTest {
 

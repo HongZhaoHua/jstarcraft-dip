@@ -19,10 +19,10 @@ import org.junit.jupiter.api.Nested;
 import org.junit.jupiter.api.Test;
 
 import com.github.kilianB.datastructures.tree.Result;
+import com.github.kilianB.hashAlgorithms.AverageHash;
+import com.github.kilianB.hashAlgorithms.HashingAlgorithm;
+import com.github.kilianB.hashAlgorithms.PerceptiveHash;
 import com.github.kilianB.matcher.TypedImageMatcher.AlgoSettings;
-import com.jstarcraft.dip.lsh.AverageHash;
-import com.jstarcraft.dip.lsh.HashingAlgorithm;
-import com.jstarcraft.dip.lsh.PerceptiveHash;
 
 /**
  * @author Kilian

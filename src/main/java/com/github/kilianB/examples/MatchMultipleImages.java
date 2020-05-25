@@ -8,10 +8,10 @@ import javax.imageio.ImageIO;
 
 import com.github.kilianB.datastructures.tree.Result;
 import com.github.kilianB.datastructures.tree.binaryTree.BinaryTree;
+import com.github.kilianB.hashAlgorithms.AverageHash;
+import com.github.kilianB.hashAlgorithms.HashingAlgorithm;
+import com.github.kilianB.hashAlgorithms.PerceptiveHash;
 import com.github.kilianB.matcher.cached.ConsecutiveMatcher;
-import com.jstarcraft.dip.lsh.AverageHash;
-import com.jstarcraft.dip.lsh.HashingAlgorithm;
-import com.jstarcraft.dip.lsh.PerceptiveHash;
 
 /**
  * This example shows how a greater number of images can be compared to each
