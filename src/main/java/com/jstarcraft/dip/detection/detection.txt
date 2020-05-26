@@ -1,6 +1,12 @@
 SIFT与HOG特征提取:
 https://blog.csdn.net/taigw/article/details/42206311
 
+图像识别--Java中使用OpenCV提取HOG特征通过SVM训练实现图像识别:
+https://blog.csdn.net/m_wbcg/article/details/75092947
+
+SVM+HOG图片分类 Java版:
+https://blog.csdn.net/hanzhangliu_lkzy/article/details/79640901
+
 HOG(Histogram of Oriented Gradients):
 https://www.jianshu.com/p/c8820deebb50
 
