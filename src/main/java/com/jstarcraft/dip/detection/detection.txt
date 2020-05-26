@@ -1,3 +1,11 @@
+目标检测的图像特征提取:
+HOG特征:
+https://blog.csdn.net/zouxy09/article/details/7929348
+LBP特征:
+https://blog.csdn.net/zouxy09/article/details/7929531
+Haar特征:
+https://blog.csdn.net/zouxy09/article/details/7929570
+
 SIFT与HOG特征提取:
 https://blog.csdn.net/taigw/article/details/42206311
 
