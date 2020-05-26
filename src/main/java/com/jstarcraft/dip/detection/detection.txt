@@ -15,6 +15,9 @@ https://blog.csdn.net/m_wbcg/article/details/75092947
 SVM+HOG图片分类 Java版:
 https://blog.csdn.net/hanzhangliu_lkzy/article/details/79640901
 
+Java library to calculate "Histogram of Oriented Gradients" (HOG) descriptors for object detection in images:
+https://github.com/danielgimenes/jHOG
+
 HOG(Histogram of Oriented Gradients):
 https://www.jianshu.com/p/c8820deebb50
 
