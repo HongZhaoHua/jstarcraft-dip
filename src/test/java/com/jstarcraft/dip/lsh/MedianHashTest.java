@@ -8,8 +8,8 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Nested;
 import org.junit.jupiter.api.Test;
 
-import com.github.kilianB.hashAlgorithms.HashingAlgorithm;
-import com.github.kilianB.hashAlgorithms.MedianHash;
+import com.jstarcraft.dip.lsh.HashingAlgorithm;
+import com.jstarcraft.dip.lsh.MedianHash;
 
 /**
  * @author Kilian
@@ -30,9 +30,9 @@ class MedianHashTest {
 		public void consistency() {
 
 			assertAll(() -> {
-				assertEquals(-847247001, new MedianHash(14).algorithmId());
+				assertEquals(552703146, new MedianHash(14).algorithmId());
 			}, () -> {
-				assertEquals(-847216249, new MedianHash(25).algorithmId());
+				assertEquals(552733898, new MedianHash(25).algorithmId());
 			});
 		}
 

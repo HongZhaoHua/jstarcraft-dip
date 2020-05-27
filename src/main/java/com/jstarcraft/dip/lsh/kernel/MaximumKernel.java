@@ -1,4 +1,4 @@
-package com.github.kilianB.hashAlgorithms.kernel;
+package com.jstarcraft.dip.lsh.kernel;
 
 import com.github.kilianB.ArrayUtil;
 

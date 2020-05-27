@@ -20,10 +20,10 @@ import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.MethodSource;
 
 import com.github.kilianB.TestResources;
-import com.github.kilianB.hashAlgorithms.DifferenceHash;
-import com.github.kilianB.hashAlgorithms.HashingAlgorithm;
-import com.github.kilianB.hashAlgorithms.DifferenceHash.Precision;
 import com.jstarcraft.dip.hash.Hash;
+import com.jstarcraft.dip.lsh.DifferenceHash;
+import com.jstarcraft.dip.lsh.HashingAlgorithm;
+import com.jstarcraft.dip.lsh.DifferenceHash.Precision;
 
 //TODO  move difference hash to the default test scenarios
 class DifferenceHashTest {
@@ -42,17 +42,17 @@ class DifferenceHashTest {
 		public void consistency() {
 
 			assertAll(() -> {
-				assertEquals(1445003830, new DifferenceHash(14, Precision.Horizontal).algorithmId());
+				assertEquals(1799343929, new DifferenceHash(14, Precision.Horizontal).algorithmId());
 			}, () -> {
-				assertEquals(1475480023, new DifferenceHash(25, Precision.Horizontal).algorithmId());
+				assertEquals(1829820122, new DifferenceHash(25, Precision.Horizontal).algorithmId());
 			}, () -> {
-				assertEquals(282592676, new DifferenceHash(14, Precision.Vertical).algorithmId());
+				assertEquals(636932775, new DifferenceHash(14, Precision.Vertical).algorithmId());
 			}, () -> {
-				assertEquals(313068869, new DifferenceHash(25, Precision.Vertical).algorithmId());
+				assertEquals(667408968, new DifferenceHash(25, Precision.Vertical).algorithmId());
 			}, () -> {
-				assertEquals(-1692842875, new DifferenceHash(14, Precision.Diagonal).algorithmId());
+				assertEquals(-1338502776, new DifferenceHash(14, Precision.Diagonal).algorithmId());
 			}, () -> {
-				assertEquals(-1662366682, new DifferenceHash(25, Precision.Diagonal).algorithmId());
+				assertEquals(-1308026583, new DifferenceHash(25, Precision.Diagonal).algorithmId());
 			});
 		}
 

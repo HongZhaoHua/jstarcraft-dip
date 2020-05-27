@@ -8,8 +8,8 @@ import java.util.stream.Stream;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.MethodSource;
 
-import com.github.kilianB.hashAlgorithms.AverageHash;
 import com.github.kilianB.matcher.categorize.WeightedCategoricalMatcher.DimReduction;
+import com.jstarcraft.dip.lsh.AverageHash;
 
 /**
  * @author Kilian

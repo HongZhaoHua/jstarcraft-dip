@@ -11,9 +11,9 @@ import org.junit.jupiter.api.Nested;
 import org.junit.jupiter.api.Test;
 
 import com.github.kilianB.TestResources;
-import com.github.kilianB.hashAlgorithms.AverageHash;
-import com.github.kilianB.hashAlgorithms.HashingAlgorithm;
 import com.jstarcraft.dip.hash.Hash;
+import com.jstarcraft.dip.lsh.AverageHash;
+import com.jstarcraft.dip.lsh.HashingAlgorithm;
 
 class AverageHashTest {
 
@@ -29,9 +29,9 @@ class AverageHashTest {
 		@DisplayName("Consistent AlgorithmIds")
 		public void consistency() {
 			assertAll(() -> {
-				assertEquals(89815718, new AverageHash(14).algorithmId());
+				assertEquals(538597315, new AverageHash(14).algorithmId());
 			}, () -> {
-				assertEquals(89846470, new AverageHash(25).algorithmId());
+				assertEquals(538628067, new AverageHash(25).algorithmId());
 			});
 		}
 

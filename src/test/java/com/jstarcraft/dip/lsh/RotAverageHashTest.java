@@ -8,8 +8,8 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Nested;
 import org.junit.jupiter.api.Test;
 
-import com.github.kilianB.hashAlgorithms.HashingAlgorithm;
-import com.github.kilianB.hashAlgorithms.RotAverageHash;
+import com.jstarcraft.dip.lsh.HashingAlgorithm;
+import com.jstarcraft.dip.lsh.RotAverageHash;
 
 /**
  * @author Kilian
@@ -27,9 +27,9 @@ class RotAverageHashTest {
 	public void consistency() {
 
 		assertAll(() -> {
-			assertEquals(2086431459, new RotAverageHash(14).algorithmId());
+			assertEquals(1505795238, new RotAverageHash(14).algorithmId());
 		}, () -> {
-			assertEquals(2087108003, new RotAverageHash(25).algorithmId());
+			assertEquals(1506471782, new RotAverageHash(25).algorithmId());
 		});
 	}
 

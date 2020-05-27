@@ -1,4 +1,4 @@
-package com.github.kilianB.hashAlgorithms.kernel;
+package com.jstarcraft.dip.lsh.kernel;
 
 import java.awt.image.BufferedImage;
 
@@ -7,17 +7,17 @@ import com.jstarcraft.dip.color.ColorPixel;
 
 /**
  * 
- * Edge detection filter similar to the sobel operator.
+ * Edge detection filter
  * 
  * <pre>
  * 
- * 		 3     0   -3
- * Gx :	10     0   -10
- *  	 3     0   -3
+ * 		 1     0   -1
+ * Gx :	 2     0   -2
+ *  	 1     0   -1
  * 		
- * 		 3    10   3
- * Gy:	 0     0   0
- *		-3   -10  -3
+ * 		 1    2    1
+ * Gy:	 0    0    0
+ *		-1   -2   -1
  *
  * G : sqrt(Gx^2+ Gy^2)
  *
@@ -28,7 +28,7 @@ import com.jstarcraft.dip.color.ColorPixel;
  * @see <a href="https://en.wikipedia.org/wiki/Sobel_operator">Sobel
  *      Operator</a>
  */
-public class ScharrFilter implements ImageConverter {
+public class SobelFilter implements ImageConverter {
 
 	/** Separated Gx Kernel */
 	private MultiKernel xKernel;
@@ -39,12 +39,12 @@ public class ScharrFilter implements ImageConverter {
 	private double threshold;
 
 	/**
-	 * Create a scharr filter
+	 * Create a sobel filter
 	 * 
 	 * @param threshold the cutoff beneath which gray values will be set to 0. [0 -
 	 *                  1].
 	 */
-	public ScharrFilter(double threshold) {
+	public SobelFilter(double threshold) {
 
 		this.threshold = (double) Require.inRange(threshold, 0, 1, "Threshold must be in range of [0-1]");
 
@@ -57,7 +57,7 @@ public class ScharrFilter implements ImageConverter {
 		 * @formatter:on
 		 */
 
-		double[][] x0Mask = { { 3 }, { 10 }, { 3 } };
+		double[][] x0Mask = { { 1 }, { 2 }, { 1 } };
 		double[][] x1Mask = { { 1, 0, -1 } };
 
 		/*
@@ -69,11 +69,10 @@ public class ScharrFilter implements ImageConverter {
 		 */
 
 		double[][] y0Mask = { { 1 }, { 0 }, { -1 } };
-		double[][] y1Mask = { { 3, 10, 3 } };
+		double[][] y1Mask = { { 1, 2, 1 } };
 
 		xKernel = new MultiKernel(x1Mask, x0Mask);
 		yKernel = new MultiKernel(y0Mask, y1Mask);
-
 	}
 
 	@Override
@@ -81,7 +80,7 @@ public class ScharrFilter implements ImageConverter {
 
 		ColorPixel fp = ColorPixel.create(bi);
 
-		int[][] grayscale = fp.getRedMatrix();
+		int[][] grayscale = fp.getGrayscaleMatrix();
 
 		int[][] xGradient = xKernel.applyInt(grayscale);
 		int[][] yGradient = yKernel.applyInt(grayscale);
@@ -95,8 +94,9 @@ public class ScharrFilter implements ImageConverter {
 				result[x][y] = (int) Math.sqrt(xGradient[x][y] * xGradient[x][y] + yGradient[x][y] * yGradient[x][y]);
 
 				if (result[x][y] < 0) {
-					result[x][y] -= result[x][y];
+					result[x][y] = -result[x][y];
 				}
+
 				if (result[x][y] < cutOffValue) {
 					result[x][y] = 0;
 				}

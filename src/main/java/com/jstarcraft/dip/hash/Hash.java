@@ -13,8 +13,8 @@ import java.math.BigInteger;
 
 import com.github.kilianB.Require;
 import com.github.kilianB.StringUtil;
-import com.github.kilianB.hashAlgorithms.HashingAlgorithm;
 import com.jstarcraft.dip.color.ColorPixel;
+import com.jstarcraft.dip.lsh.HashingAlgorithm;
 
 /**
  * Hashes are bit encoded encoded values (0101011101) created from images using
@@ -265,7 +265,7 @@ public class Hash implements Serializable {
 	 * 
 	 * <p>
 	 * Some hash algorithms may chose to construct their hashes in a non default
-	 * manner (e.g. {@link com.github.kilianB.hashAlgorithms.DifferenceHash}). In this case
+	 * manner (e.g. {@link com.jstarcraft.dip.lsh.DifferenceHash}). In this case
 	 * {@link #toImage(int, HashingAlgorithm)} may help to resolve the issue;
 	 * 
 	 * @param blockSize scaling factor of each pixel in the has. each bit of the
@@ -289,7 +289,7 @@ public class Hash implements Serializable {
 	 * 
 	 * <p>
 	 * Some hash algorithms may chose to construct their hashes in a non default
-	 * manner (e.g. {@link com.github.kilianB.hashAlgorithms.DifferenceHash}).
+	 * manner (e.g. {@link com.jstarcraft.dip.lsh.DifferenceHash}).
 	 * 
 	 * @param blockSize scaling factor of each pixel in the has. each bit of the
 	 *                  hash will be represented to blockSize*blockSize pixels

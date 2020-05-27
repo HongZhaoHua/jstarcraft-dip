@@ -8,8 +8,8 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Nested;
 import org.junit.jupiter.api.Test;
 
-import com.github.kilianB.hashAlgorithms.HashingAlgorithm;
-import com.github.kilianB.hashAlgorithms.PerceptiveHash;
+import com.jstarcraft.dip.lsh.HashingAlgorithm;
+import com.jstarcraft.dip.lsh.PerceptiveHash;
 
 class PerceptiveHashTest {
 
@@ -27,9 +27,9 @@ class PerceptiveHashTest {
 		public void consistency() {
 
 			assertAll(() -> {
-				assertEquals(-1437024773, new PerceptiveHash(14).algorithmId()); // Was 748566082
+				assertEquals(2038088856, new PerceptiveHash(14).algorithmId()); // Was 748566082
 			}, () -> {
-				assertEquals(-1433211525, new PerceptiveHash(25).algorithmId()); // Was 748566093
+				assertEquals(2041902104, new PerceptiveHash(25).algorithmId()); // Was 748566093
 			});
 		}
 

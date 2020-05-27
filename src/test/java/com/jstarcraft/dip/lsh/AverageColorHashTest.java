@@ -8,8 +8,8 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Nested;
 import org.junit.jupiter.api.Test;
 
-import com.github.kilianB.hashAlgorithms.AverageColorHash;
-import com.github.kilianB.hashAlgorithms.HashingAlgorithm;
+import com.jstarcraft.dip.lsh.AverageColorHash;
+import com.jstarcraft.dip.lsh.HashingAlgorithm;
 
 /**
  * @author Kilian
@@ -29,9 +29,9 @@ class AverageColorHashTest {
 		@DisplayName("Consistent AlgorithmIds")
 		public void consistency() {
 			assertAll(() -> {
-				assertEquals(1901018147, new AverageColorHash(14).algorithmId());
+				assertEquals(-2039609050, new AverageColorHash(14).algorithmId());
 			}, () -> {
-				assertEquals(1901048899, new AverageColorHash(25).algorithmId());
+				assertEquals(-2039578298, new AverageColorHash(25).algorithmId());
 			});
 		}
 

@@ -3,9 +3,9 @@ package com.github.kilianB.matcher.categorize.supervised.randomForest;
 import java.awt.image.BufferedImage;
 
 import com.github.kilianB.StringUtil;
-import com.github.kilianB.hashAlgorithms.HashingAlgorithm;
 import com.jstarcraft.dip.hash.FuzzyHash;
 import com.jstarcraft.dip.hash.Hash;
+import com.jstarcraft.dip.lsh.HashingAlgorithm;
 
 class InnerNode extends TreeNode {
 

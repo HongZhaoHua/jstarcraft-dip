@@ -9,8 +9,8 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Nested;
 import org.junit.jupiter.api.Test;
 
-import com.github.kilianB.hashAlgorithms.HashingAlgorithm;
-import com.github.kilianB.hashAlgorithms.experimental.HogHash;
+import com.jstarcraft.dip.lsh.HashingAlgorithm;
+import com.jstarcraft.dip.lsh.experimental.HogHash;
 
 /**
  * @author Kilian
@@ -33,9 +33,9 @@ class HogHashTest {
 		public void consistency() {
 
 			assertAll(() -> {
-				assertEquals(-1909360295, new HogHash(14).algorithmId());
+				assertEquals(-789235684, new HogHash(14).algorithmId());
 			}, () -> {
-				assertEquals(-1850254951, new HogHash(25).algorithmId());
+				assertEquals(-730130340, new HogHash(25).algorithmId());
 			});
 		}
 

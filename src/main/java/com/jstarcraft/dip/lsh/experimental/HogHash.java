@@ -1,4 +1,4 @@
-package com.github.kilianB.hashAlgorithms.experimental;
+package com.jstarcraft.dip.lsh.experimental;
 
 import java.awt.BasicStroke;
 import java.awt.Color;
@@ -15,10 +15,10 @@ import com.github.kilianB.ArrayUtil;
 import com.github.kilianB.Experimental;
 import com.github.kilianB.MathUtil;
 import com.github.kilianB.Require;
-import com.github.kilianB.hashAlgorithms.HashBuilder;
-import com.github.kilianB.hashAlgorithms.HashingAlgorithm;
 import com.jstarcraft.dip.color.ColorPixel;
 import com.jstarcraft.dip.color.ColorUtility;
+import com.jstarcraft.dip.lsh.HashBuilder;
+import com.jstarcraft.dip.lsh.HashingAlgorithm;
 
 /**
  * Image Hash on HOG feature descriptor. Not ready yet. Most likely use a very

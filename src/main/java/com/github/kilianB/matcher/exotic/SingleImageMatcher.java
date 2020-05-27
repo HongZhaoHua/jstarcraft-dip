@@ -7,9 +7,9 @@ import java.util.Map.Entry;
 
 import javax.imageio.ImageIO;
 
-import com.github.kilianB.hashAlgorithms.HashingAlgorithm;
 import com.github.kilianB.matcher.TypedImageMatcher;
 import com.jstarcraft.dip.hash.Hash;
+import com.jstarcraft.dip.lsh.HashingAlgorithm;
 
 /**
  * Convenience class to chain multiple hashing algorithms to check if two images

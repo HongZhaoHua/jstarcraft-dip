@@ -10,10 +10,10 @@ import javax.imageio.ImageIO;
 
 import com.github.kilianB.ArrayUtil;
 import com.github.kilianB.Experimental;
-import com.github.kilianB.hashAlgorithms.HashingAlgorithm;
 import com.github.kilianB.matcher.PlainImageMatcher;
 import com.github.kilianB.pcg.fast.PcgRSFast;
 import com.jstarcraft.dip.hash.Hash;
+import com.jstarcraft.dip.lsh.HashingAlgorithm;
 
 /**
  * A bloom filter is an approximative data structure with constant space and

@@ -1,4 +1,4 @@
-package com.github.kilianB.hashAlgorithms;
+package com.jstarcraft.dip.lsh;
 
 import java.awt.image.BufferedImage;
 import java.io.File;
@@ -11,10 +11,10 @@ import java.util.Objects;
 import javax.imageio.ImageIO;
 
 import com.github.kilianB.Require;
-import com.github.kilianB.hashAlgorithms.kernel.ImageConverter;
 import com.jstarcraft.dip.color.ColorPixel;
 import com.jstarcraft.dip.color.ImageUtility;
 import com.jstarcraft.dip.hash.Hash;
+import com.jstarcraft.dip.lsh.kernel.ImageConverter;
 
 /**
  * Base class for hashing algorithms returning perceptual hashes for supplied
@@ -283,10 +283,10 @@ public abstract class HashingAlgorithm {
     }
 
     /**
-     * Add a {@link com.github.kilianB.hashAlgorithms.kernel.ImageConverter Filter}
-     * to this hashing algorithm which will be used to alter the image before the
-     * hashing operation is applied. Kernels are invoked in the order they are added
-     * and are performed individually on all 3 RGB channels.
+     * Add a {@link com.jstarcraft.dip.lsh.kernel.ImageConverter Filter} to this
+     * hashing algorithm which will be used to alter the image before the hashing
+     * operation is applied. Kernels are invoked in the order they are added and are
+     * performed individually on all 3 RGB channels.
      * 
      * <p>
      * Be aware that filters can only be added or removed until the first hash is
@@ -312,8 +312,8 @@ public abstract class HashingAlgorithm {
 
     /**
      * Remove the first occurance of a
-     * {@link com.github.kilianB.hashAlgorithms.kernel.ImageConverter Filter} from
-     * this hashing algorithm.
+     * {@link com.jstarcraft.dip.lsh.kernel.ImageConverter Filter} from this hashing
+     * algorithm.
      * 
      * <p>
      * Be aware that filters can only be added or removed until the first hash is

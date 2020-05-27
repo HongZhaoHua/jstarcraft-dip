@@ -10,8 +10,8 @@ import org.junit.jupiter.api.Nested;
 import org.junit.jupiter.api.Test;
 
 import com.github.kilianB.ArrayUtil;
-import com.github.kilianB.hashAlgorithms.kernel.Kernel;
-import com.github.kilianB.hashAlgorithms.kernel.Kernel.EdgeHandlingStrategy;
+import com.jstarcraft.dip.lsh.kernel.Kernel;
+import com.jstarcraft.dip.lsh.kernel.Kernel.EdgeHandlingStrategy;
 
 /**
  * @author Kilian

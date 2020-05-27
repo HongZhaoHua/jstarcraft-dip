@@ -1,9 +1,9 @@
-package com.github.kilianB.hashAlgorithms.experimental;
+package com.jstarcraft.dip.lsh.experimental;
 
 import java.math.BigInteger;
 
-import com.github.kilianB.hashAlgorithms.HashBuilder;
 import com.jstarcraft.dip.color.ColorPixel;
+import com.jstarcraft.dip.lsh.HashBuilder;
 
 /**
  * 

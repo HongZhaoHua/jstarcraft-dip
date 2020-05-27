@@ -9,8 +9,8 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Nested;
 import org.junit.jupiter.api.Test;
 
-import com.github.kilianB.hashAlgorithms.HashingAlgorithm;
-import com.github.kilianB.hashAlgorithms.RotPHash;
+import com.jstarcraft.dip.lsh.HashingAlgorithm;
+import com.jstarcraft.dip.lsh.RotPHash;
 
 /**
  * @author Kilian
@@ -32,9 +32,9 @@ class RotPHashTest {
 		public void consistency() {
 
 			assertAll(() -> {
-				assertEquals(-1427552469, new RotPHash(14, false).algorithmId());
+				assertEquals(1665648520, new RotPHash(14, false).algorithmId());
 			}, () -> {
-				assertEquals(-1425651611, new RotPHash(25, true).algorithmId());
+				assertEquals(1667549378, new RotPHash(25, true).algorithmId());
 			});
 		}
 
