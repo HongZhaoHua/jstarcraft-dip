@@ -1,4 +1,4 @@
-package com.github.kilianB.hashAlgorithms;
+package com.jstarcraft.dip.lsh;
 
 import static com.github.kilianB.TestResources.lenna;
 import static org.junit.jupiter.api.Assertions.assertAll;

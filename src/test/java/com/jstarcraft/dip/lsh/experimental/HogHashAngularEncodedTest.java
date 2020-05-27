@@ -1,25 +1,29 @@
-package com.github.kilianB.hashAlgorithms;
+package com.jstarcraft.dip.lsh.experimental;
 
 import static org.junit.jupiter.api.Assertions.assertAll;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotEquals;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Nested;
 import org.junit.jupiter.api.Test;
 
-import com.github.kilianB.hashAlgorithms.AverageColorHash;
 import com.github.kilianB.hashAlgorithms.HashingAlgorithm;
+import com.github.kilianB.hashAlgorithms.experimental.HogHashAngularEncoded;
+import com.jstarcraft.dip.lsh.HashTestBase;
 
 /**
  * @author Kilian
  *
  */
-class AverageColorHashTest {
+@SuppressWarnings("deprecation")
+class HogHashAngularEncodedTest {
 
 	@Nested
 	@DisplayName("Algorithm Id")
 	class AlgorithmId {
+
 		/**
 		 * The algorithms id shall stay consistent throughout different instances of the
 		 * jvm. While simple hashcodes do not guarantee this behavior hash codes created
@@ -29,9 +33,9 @@ class AverageColorHashTest {
 		@DisplayName("Consistent AlgorithmIds")
 		public void consistency() {
 			assertAll(() -> {
-				assertEquals(1901018147, new AverageColorHash(14).algorithmId());
+				assertEquals(431747525, new HogHashAngularEncoded(14).algorithmId());
 			}, () -> {
-				assertEquals(1901048899, new AverageColorHash(25).algorithmId());
+				assertEquals(490852869, new HogHashAngularEncoded(25).algorithmId());
 			});
 		}
 
@@ -39,11 +43,19 @@ class AverageColorHashTest {
 		@DisplayName("Consistent AlgorithmIds v 2.0.0 collision")
 		public void notVersionTwo() {
 			assertAll(() -> {
-				assertNotEquals(1308249156, new AverageColorHash(14).algorithmId());
+				assertNotEquals(1815042658, new HogHashAngularEncoded(14).algorithmId());
 			}, () -> {
-				assertNotEquals(1308249156, new AverageColorHash(14).algorithmId());
+				assertNotEquals(1816949282, new HogHashAngularEncoded(14).algorithmId());
 			});
 		}
+
+	}
+
+	@Test
+	public void illegalConstructor() {
+		assertThrows(IllegalArgumentException.class, () -> {
+			new HogHashAngularEncoded(2);
+		});
 	}
 
 	// Base Hashing algorithm tests
@@ -52,19 +64,18 @@ class AverageColorHashTest {
 
 		@Override
 		protected HashingAlgorithm getInstance(int bitResolution) {
-			return new AverageColorHash(bitResolution);
+			return new HogHashAngularEncoded(bitResolution);
 		}
 
 		@Override
 		protected double differenceBallonHqHash() {
-			return 76;
+			return 71;
 		}
 
 		@Override
 		protected double normDifferenceBallonHqHash() {
-			return 76 / 132d;
+			return 71 / 144d;
 		}
-
 	}
 
 }

@@ -1,4 +1,4 @@
-package com.github.kilianB.hashAlgorithms.experimental;
+package com.jstarcraft.dip.lsh.experimental;
 
 import static org.junit.jupiter.api.Assertions.assertAll;
 import static org.junit.jupiter.api.Assertions.assertEquals;
@@ -9,16 +9,16 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Nested;
 import org.junit.jupiter.api.Test;
 
-import com.github.kilianB.hashAlgorithms.HashTestBase;
 import com.github.kilianB.hashAlgorithms.HashingAlgorithm;
-import com.github.kilianB.hashAlgorithms.experimental.HogHashAngularEncoded;
+import com.github.kilianB.hashAlgorithms.experimental.HogHashDual;
+import com.jstarcraft.dip.lsh.HashTestBase;
 
 /**
  * @author Kilian
  *
  */
 @SuppressWarnings("deprecation")
-class HogHashAngularEncodedTest {
+class HogHashDualTest {
 
 	@Nested
 	@DisplayName("Algorithm Id")
@@ -32,10 +32,11 @@ class HogHashAngularEncodedTest {
 		@Test
 		@DisplayName("Consistent AlgorithmIds")
 		public void consistency() {
+
 			assertAll(() -> {
-				assertEquals(431747525, new HogHashAngularEncoded(14).algorithmId());
+				assertEquals(-1320953867, new HogHashDual(14).algorithmId());
 			}, () -> {
-				assertEquals(490852869, new HogHashAngularEncoded(25).algorithmId());
+				assertEquals(-1261848523, new HogHashDual(25).algorithmId());
 			});
 		}
 
@@ -43,18 +44,19 @@ class HogHashAngularEncodedTest {
 		@DisplayName("Consistent AlgorithmIds v 2.0.0 collision")
 		public void notVersionTwo() {
 			assertAll(() -> {
-				assertNotEquals(1815042658, new HogHashAngularEncoded(14).algorithmId());
+				assertNotEquals(234483250, new HogHashDual(14).algorithmId());
 			}, () -> {
-				assertNotEquals(1816949282, new HogHashAngularEncoded(14).algorithmId());
+				assertNotEquals(236389874, new HogHashDual(14).algorithmId());
 			});
 		}
 
 	}
 
+	@SuppressWarnings("deprecation")
 	@Test
 	public void illegalConstructor() {
 		assertThrows(IllegalArgumentException.class, () -> {
-			new HogHashAngularEncoded(2);
+			new HogHashDual(2);
 		});
 	}
 
@@ -64,17 +66,17 @@ class HogHashAngularEncodedTest {
 
 		@Override
 		protected HashingAlgorithm getInstance(int bitResolution) {
-			return new HogHashAngularEncoded(bitResolution);
+			return new HogHashDual(bitResolution);
 		}
 
 		@Override
 		protected double differenceBallonHqHash() {
-			return 71;
+			return 66;
 		}
 
 		@Override
 		protected double normDifferenceBallonHqHash() {
-			return 71 / 144d;
+			return 66 / 144d;
 		}
 	}
 

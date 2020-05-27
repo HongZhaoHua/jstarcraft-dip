@@ -1,4 +1,4 @@
-package com.github.kilianB.hashAlgorithms;
+package com.jstarcraft.dip.lsh;
 
 import static com.github.kilianB.TestResources.ballon;
 import static com.github.kilianB.TestResources.copyright;
@@ -155,7 +155,7 @@ class DifferenceHashTest {
 	@ParameterizedTest
 	@MethodSource(value = "algoInstancesBroad")
 	public void keyLengthMinimumBits(HashingAlgorithm hasher) {
-		assertTrue(hasher.hash(ballon).getBitResolution() >= hasher.bitResolution);
+		assertTrue(hasher.hash(ballon).getBitResolution() >= hasher.getBitResolution());
 	}
 
 	/**

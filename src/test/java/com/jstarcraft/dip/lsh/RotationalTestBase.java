@@ -1,4 +1,4 @@
-package com.github.kilianB.hashAlgorithms;
+package com.jstarcraft.dip.lsh;
 
 import static com.github.kilianB.TestResources.lenna;
 import static com.github.kilianB.TestResources.lenna180;
@@ -23,7 +23,7 @@ import com.jstarcraft.dip.hash.Hash;
 public abstract class RotationalTestBase extends HashTestBase {
 
 	@ParameterizedTest
-	@MethodSource(value = "com.github.kilianB.hashAlgorithms.RotationalTestBase#bitResolution")
+	@MethodSource(value = "com.jstarcraft.dip.lsh.RotationalTestBase#bitResolution")
 	public void rotatedImages(Integer bitResolution) {
 
 		HashingAlgorithm h = getInstance(bitResolution + this.offsetBitResolution());

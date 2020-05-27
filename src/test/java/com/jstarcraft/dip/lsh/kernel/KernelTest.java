@@ -1,4 +1,4 @@
-package com.github.kilianB.hashAlgorithms.kernel;
+package com.jstarcraft.dip.lsh.kernel;
 
 import static org.junit.jupiter.api.Assertions.assertAll;
 import static org.junit.jupiter.api.Assertions.assertArrayEquals;

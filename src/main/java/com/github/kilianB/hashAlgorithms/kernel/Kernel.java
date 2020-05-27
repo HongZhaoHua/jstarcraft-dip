@@ -39,7 +39,7 @@ import com.jstarcraft.dip.color.ColorPixel;
 public class Kernel implements ImageConverter {
 
 	/** Kernel mask applied to the pixels */
-	protected double[][] mask;
+    public double[][] mask;
 
 	/**
 	 * Seperable convolution to speed up masking if applicable for custom kernels
@@ -50,7 +50,7 @@ public class Kernel implements ImageConverter {
 	// private double[] seperableMaskY;
 
 	/** How are edged of the images handled */
-	protected EdgeHandlingStrategy edgeHandling;
+	public EdgeHandlingStrategy edgeHandling;
 
 	// TODO we could compute a pixel mapping map before convolution reducing method
 	// calls and maybe increase performance instead of on the fly calculation of

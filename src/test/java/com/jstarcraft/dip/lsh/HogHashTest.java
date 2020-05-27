@@ -1,17 +1,23 @@
-package com.github.kilianB.hashAlgorithms;
+package com.jstarcraft.dip.lsh;
 
 import static org.junit.jupiter.api.Assertions.assertAll;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotEquals;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Nested;
 import org.junit.jupiter.api.Test;
 
 import com.github.kilianB.hashAlgorithms.HashingAlgorithm;
-import com.github.kilianB.hashAlgorithms.PerceptiveHash;
+import com.github.kilianB.hashAlgorithms.experimental.HogHash;
 
-class PerceptiveHashTest {
+/**
+ * @author Kilian
+ *
+ */
+@SuppressWarnings("deprecation")
+class HogHashTest {
 
 	@Nested
 	@DisplayName("Algorithm Id")
@@ -19,17 +25,17 @@ class PerceptiveHashTest {
 
 		/**
 		 * The algorithms id shall stay consistent throughout different instances of the
-		 * jvm. While simple hashcodes do not guarantee this behaviour hash codes
-		 * created from strings and integers are by contract consistent.
+		 * jvm. While simple hashcodes do not guarantee this behavior hash codes created
+		 * from strings and integers are by contract consistent.
 		 */
 		@Test
 		@DisplayName("Consistent AlgorithmIds")
 		public void consistency() {
 
 			assertAll(() -> {
-				assertEquals(-1437024773, new PerceptiveHash(14).algorithmId()); // Was 748566082
+				assertEquals(-1909360295, new HogHash(14).algorithmId());
 			}, () -> {
-				assertEquals(-1433211525, new PerceptiveHash(25).algorithmId()); // Was 748566093
+				assertEquals(-1850254951, new HogHash(25).algorithmId());
 			});
 		}
 
@@ -37,11 +43,18 @@ class PerceptiveHashTest {
 		@DisplayName("Consistent AlgorithmIds v 2.0.0 collision")
 		public void notVersionTwo() {
 			assertAll(() -> {
-				assertNotEquals(1062023020, new PerceptiveHash(14).algorithmId());
+				assertNotEquals(769691726, new HogHash(14).algorithmId());
 			}, () -> {
-				assertNotEquals(1062146028, new PerceptiveHash(25).algorithmId());
+				assertNotEquals(771598350, new HogHash(25).algorithmId());
 			});
 		}
+	}
+
+	@Test
+	public void illegalConstructor() {
+		assertThrows(IllegalArgumentException.class, () -> {
+			new HogHash(2);
+		});
 	}
 
 	// Base Hashing algorithm tests
@@ -50,17 +63,23 @@ class PerceptiveHashTest {
 
 		@Override
 		protected HashingAlgorithm getInstance(int bitResolution) {
-			return new PerceptiveHash(bitResolution);
+			return new HogHash(bitResolution);
+		}
+
+		// Hog hash requires higher bit resolution. override default offset
+		@Override
+		protected int offsetBitResolution() {
+			return 10;
 		}
 
 		@Override
 		protected double differenceBallonHqHash() {
-			return 67;
+			return 50;
 		}
 
 		@Override
 		protected double normDifferenceBallonHqHash() {
-			return 67 / 132d;
+			return 50 / 144d;
 		}
 	}
 

@@ -1,4 +1,4 @@
-package com.github.kilianB.hashAlgorithms;
+package com.jstarcraft.dip.lsh;
 
 import static com.github.kilianB.TestResources.ballon;
 import static com.github.kilianB.TestResources.copyright;
@@ -102,7 +102,7 @@ public abstract class HashTestBase {
 		}
 
 		@ParameterizedTest
-		@MethodSource(value = "com.github.kilianB.hashAlgorithms.HashTestBase#bitResolutionBroad")
+		@MethodSource(value = "com.jstarcraft.dip.lsh.HashTestBase#bitResolutionBroad")
 		public void algorithmKeyLengthConsitent(Integer bitResolution) {
 			HashingAlgorithm d1 = getInstance(bitResolution);
 			Hash ballonHash = d1.hash(ballon);
@@ -115,10 +115,10 @@ public abstract class HashTestBase {
 		 * @param hasher
 		 */
 		@ParameterizedTest
-		@MethodSource(value = "com.github.kilianB.hashAlgorithms.HashTestBase#bitResolutionBroad")
+		@MethodSource(value = "com.jstarcraft.dip.lsh.HashTestBase#bitResolutionBroad")
 		public void keyLengthMinimumBits(Integer bitResolution) {
 			HashingAlgorithm hasher = getInstance(bitResolution + offsetBitResolution());
-			assertTrue(hasher.hash(ballon).getBitResolution() >= hasher.bitResolution);
+			assertTrue(hasher.hash(ballon).getBitResolution() >= hasher.getBitResolution());
 		}
 
 		@Test
@@ -138,7 +138,7 @@ public abstract class HashTestBase {
 		 * @param bitRes the bit resolution of the algorithm
 		 */
 		@ParameterizedTest
-		@MethodSource(value = "com.github.kilianB.hashAlgorithms.HashTestBase#bitResolution")
+		@MethodSource(value = "com.jstarcraft.dip.lsh.HashTestBase#bitResolution")
 		public void consitent(Integer bitRes) {
 			HashingAlgorithm h = getInstance(bitRes + offsetBitResolution());
 			assertEquals(h.hash(ballon).getHashValue(), h.hash(ballon).getHashValue());
@@ -150,7 +150,7 @@ public abstract class HashTestBase {
 		 * @param bitRes the bit resolution of the algorithm
 		 */
 		@ParameterizedTest
-		@MethodSource(value = "com.github.kilianB.hashAlgorithms.HashTestBase#bitResolution")
+		@MethodSource(value = "com.jstarcraft.dip.lsh.HashTestBase#bitResolution")
 		public void equalImage(Integer bitRes) {
 			HashingAlgorithm h = getInstance(bitRes + offsetBitResolution());
 			assertEquals(0, h.hash(ballon).hammingDistance(h.hash(ballon)));
@@ -162,7 +162,7 @@ public abstract class HashTestBase {
 		 * @param bitRes the bit resolution of the algorithm
 		 */
 		@ParameterizedTest
-		@MethodSource(value = "com.github.kilianB.hashAlgorithms.HashTestBase#bitResolution")
+		@MethodSource(value = "com.jstarcraft.dip.lsh.HashTestBase#bitResolution")
 		public void equalImageNormalized(Integer bitRes) {
 			HashingAlgorithm h = getInstance(bitRes + offsetBitResolution());
 			assertEquals(0, h.hash(ballon).hammingDistanceFast(h.hash(ballon)));
@@ -175,7 +175,7 @@ public abstract class HashTestBase {
 		 * @param bitRes the bit resolution of the algorithm
 		 */
 		@ParameterizedTest
-		@MethodSource(value = "com.github.kilianB.hashAlgorithms.HashTestBase#bitResolution")
+		@MethodSource(value = "com.jstarcraft.dip.lsh.HashTestBase#bitResolution")
 		public void unequalImage(Integer bitRes) {
 			HashingAlgorithm h = getInstance(bitRes + offsetBitResolution());
 			Hash lowQualityHash = h.hash(lowQuality);
@@ -196,7 +196,7 @@ public abstract class HashTestBase {
 		 * @param bitRes the bit resolution of the algorithm
 		 */
 		@ParameterizedTest
-		@MethodSource(value = "com.github.kilianB.hashAlgorithms.HashTestBase#bitResolution")
+		@MethodSource(value = "com.jstarcraft.dip.lsh.HashTestBase#bitResolution")
 		public void unequalImageNormalized(Integer bitRes) {
 			HashingAlgorithm h = getInstance(bitRes + offsetBitResolution());
 			Hash lowQualityHash = h.hash(lowQuality);
