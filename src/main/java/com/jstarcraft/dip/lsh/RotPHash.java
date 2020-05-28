@@ -67,7 +67,7 @@ public class RotPHash extends HashingAlgorithm {
         this.truncateKey = truncateKey;
 
         // A rough approximation to get to the desired key length.
-        buckets = (int) (Math.sqrt(this.bitResolution * 1.27)) + 3;
+        buckets = (int) (Math.sqrt(this.bitDimension * 1.27)) + 3;
         /*
          * TODO this can be calculated more accurately by computing the bucket bounds
          * (circumference of each bucket and computing the number of pixels mapped to
@@ -144,7 +144,7 @@ public class RotPHash extends HashingAlgorithm {
 
                 // We discard parts of the information of the last layer if we need a specific
                 // length key
-                if (this.truncateKey && length == bitResolution)
+                if (this.truncateKey && length == bitDimension)
                     break;
 
                 if (arr[j] >= avg) {

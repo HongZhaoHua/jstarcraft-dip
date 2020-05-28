@@ -42,6 +42,7 @@ public class WaveletHash extends HashingAlgorithm {
         super(bitResolution);
 
         this.cycles = cycles;
+
         width = (int) Math.ceil(Math.sqrt(bitResolution * Math.pow(4, cycles)));
         height = width;
     }
@@ -58,7 +59,7 @@ public class WaveletHash extends HashingAlgorithm {
 
         double avg = 0;
 
-        int subSpace = (int) Math.sqrt(this.bitResolution);
+        int subSpace = (int) Math.sqrt(this.bitDimension);
         int subSquared = subSpace * subSpace;
 
         for (int x = 0; x < subSpace; x++) {
@@ -153,7 +154,7 @@ public class WaveletHash extends HashingAlgorithm {
 
     @Override
     public String toString() {
-        return "WaveletHash [" + bitResolution + "," + cycles + "]";
+        return "WaveletHash [" + bitDimension + "," + cycles + "]";
     }
 
 }

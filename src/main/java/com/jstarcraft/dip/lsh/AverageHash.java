@@ -42,12 +42,19 @@ public class AverageHash extends HashingAlgorithm {
      */
     public AverageHash(int bitResolution) {
         super(bitResolution);
-        /*
-         * Figure out how big our resized image has to be in order to create a hash with
-         * approximately bit resolution bits while trying to stay as squared as possible
-         * to not introduce bias via stretching or shrinking the image asymmetrically.
-         */
-        computeDimension(bitResolution);
+
+        // Allow for slightly non symmetry to get closer to the true bit resolution
+        int dimension = (int) Math.round(Math.sqrt(bitResolution));
+
+        // Lets allow for a +1 or -1 asymmetry and find the most fitting value
+        int normalBound = (dimension * dimension);
+        int higherBound = (dimension * (dimension + 1));
+
+        this.height = dimension;
+        this.width = dimension;
+        if (normalBound < bitResolution || (normalBound - bitResolution) > (higherBound - bitResolution)) {
+            this.width++;
+        }
     }
 
     @Override
@@ -85,28 +92,6 @@ public class AverageHash extends HashingAlgorithm {
             }
         }
         return hash.toBigInteger();
-    }
-
-    /**
-     * Compute the dimension for the resize operation. We want to get to close to a
-     * quadratic images as possible to counteract scaling bias.
-     * 
-     * @param bitResolution the desired resolution
-     */
-    private void computeDimension(int bitResolution) {
-
-        // Allow for slightly non symmetry to get closer to the true bit resolution
-        int dimension = (int) Math.round(Math.sqrt(bitResolution));
-
-        // Lets allow for a +1 or -1 asymmetry and find the most fitting value
-        int normalBound = (dimension * dimension);
-        int higherBound = (dimension * (dimension + 1));
-
-        this.height = dimension;
-        this.width = dimension;
-        if (normalBound < bitResolution || (normalBound - bitResolution) > (higherBound - bitResolution)) {
-            this.width++;
-        }
     }
 
     @Override

@@ -45,7 +45,24 @@ public class PerceptiveHash extends HashingAlgorithm {
      */
     public PerceptiveHash(int bitResolution) {
         super(bitResolution);
-        computeDimensions(bitResolution);
+
+        // bitRes = (width/4)^2;
+        int dimension = (int) Math.round(Math.sqrt(bitResolution)) * 4;
+        // width //height
+        int normalBound = ((dimension / 4) * (dimension / 4));
+        int higherBound = ((dimension / 4) * (dimension / 4 + 1));
+
+        this.width = dimension;
+        this.height = dimension;
+
+        if (higherBound < bitResolution) {
+            this.width++;
+            this.height++;
+        } else {
+            if (normalBound < bitResolution || (normalBound - bitResolution) > (higherBound - bitResolution)) {
+                this.height += 4;
+            }
+        }
 
         // thread usage enabled issue warning.
         // This does not get triggered in usual circumstances.
@@ -103,33 +120,6 @@ public class PerceptiveHash extends HashingAlgorithm {
             }
         }
         return hash.toBigInteger();
-    }
-
-    /**
-     * Compute the dimension for the resize operation. We want to get to close to a
-     * quadratic images as possible to counteract scaling bias.
-     * 
-     * @param bitResolution the desired resolution
-     */
-    private void computeDimensions(int bitResolution) {
-
-        // bitRes = (width/4)^2;
-        int dimension = (int) Math.round(Math.sqrt(bitResolution)) * 4;
-        // width //height
-        int normalBound = ((dimension / 4) * (dimension / 4));
-        int higherBound = ((dimension / 4) * (dimension / 4 + 1));
-
-        this.width = dimension;
-        this.height = dimension;
-
-        if (higherBound < bitResolution) {
-            this.width++;
-            this.height++;
-        } else {
-            if (normalBound < bitResolution || (normalBound - bitResolution) > (higherBound - bitResolution)) {
-                this.height += 4;
-            }
-        }
     }
 
     @Override

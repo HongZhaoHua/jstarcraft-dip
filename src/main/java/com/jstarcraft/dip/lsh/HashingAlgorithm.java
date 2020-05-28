@@ -50,10 +50,10 @@ public abstract class HashingAlgorithm {
      * unless you made sure that the value actually reflects
      * 
      */
-    protected final int bitResolution;
+    protected final int bitDimension;
 
     /** The actual bit resolution of produced hashes */
-    protected int keyResolution = -1;
+    protected int keyDimension = -1;
 
     /**
      * The algorithm id of this hashing algorithm. The algorithm id specifies a
@@ -84,7 +84,7 @@ public abstract class HashingAlgorithm {
      * @param bitResolution The bit count of the final hash
      */
     public HashingAlgorithm(int bitResolution) {
-        this.bitResolution = Require.positiveValue(bitResolution, "The bit resolution for hashing algorithms has to be positive");
+        this.bitDimension = Require.positiveValue(bitResolution, "The bit resolution for hashing algorithms has to be positive");
     }
 
     /**
@@ -146,10 +146,10 @@ public abstract class HashingAlgorithm {
         immutableState = true;
         BigInteger bits;
         ColorPixel pixel = ColorPixel.create(ImageUtility.getScaledInstance(image, width, height));
-        if (keyResolution < 0) {
-            HashBuilder builder = new HashBuilder(this.bitResolution);
+        if (keyDimension < 0) {
+            HashBuilder builder = new HashBuilder(this.bitDimension);
             bits = hash(pixel, builder);
-            keyResolution = builder.length;
+            keyDimension = builder.length;
         } else {
             bits = hash(pixel, new HashBuilder(getKeyResolution()));
         }
@@ -259,14 +259,14 @@ public abstract class HashingAlgorithm {
     public int getKeyResolution() {
         // If they key resolution is not know compute a sample hash and cache it's
         // return value
-        if (keyResolution < 0) {
+        if (keyDimension < 0) {
             BufferedImage image = new BufferedImage(1, 1, BufferedImage.TYPE_3BYTE_BGR);
             ColorPixel pixel = ColorPixel.create(ImageUtility.getScaledInstance(image, width, height));
-            HashBuilder builder = new HashBuilder(this.bitResolution);
+            HashBuilder builder = new HashBuilder(this.bitDimension);
             this.hash(pixel, builder);
-            keyResolution = builder.length;
+            keyDimension = builder.length;
         }
-        return keyResolution;
+        return keyDimension;
     }
 
     /**
@@ -340,12 +340,12 @@ public abstract class HashingAlgorithm {
     }
 
     public int getBitResolution() {
-        return bitResolution;
+        return bitDimension;
     }
 
     @Override
     public String toString() {
-        return getClass().getSimpleName() + " [" + bitResolution + "]";
+        return getClass().getSimpleName() + " [" + bitDimension + "]";
     }
 
     @Override

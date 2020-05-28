@@ -74,7 +74,23 @@ public class DifferenceHash extends HashingAlgorithm {
     public DifferenceHash(int bitResolution, Precision precision) {
         super(bitResolution);
 
-        computeDimensions(bitResolution);
+        int dimension = (int) Math.round(Math.sqrt(bitResolution + 1));
+
+        // width //height
+        int normalBound = (dimension - 1) * (dimension);
+        int higherBound = (dimension - 1) * (dimension + 1);
+
+        this.width = dimension;
+        this.height = dimension;
+
+        if (higherBound < bitResolution) {
+            this.width++;
+            this.height++;
+        } else {
+            if (normalBound < bitResolution || (normalBound - bitResolution) > (higherBound - bitResolution)) {
+                this.height++;
+            }
+        }
 
         this.precision = precision;
     }
@@ -129,33 +145,6 @@ public class DifferenceHash extends HashingAlgorithm {
         }
         }
         return hash.toBigInteger();
-    }
-
-    /**
-     * Compute the dimension for the resize operation. We want to get to close to a
-     * quadratic images as possible to counteract scaling bias.
-     * 
-     * @param bitResolution the desired resolution
-     */
-    private void computeDimensions(int bitResolution) {
-        int dimension = (int) Math.round(Math.sqrt(bitResolution + 1));
-
-        // width //height
-        int normalBound = (dimension - 1) * (dimension);
-        int higherBound = (dimension - 1) * (dimension + 1);
-
-        this.width = dimension;
-        this.height = dimension;
-
-        if (higherBound < bitResolution) {
-            this.width++;
-            this.height++;
-        } else {
-            if (normalBound < bitResolution || (normalBound - bitResolution) > (higherBound - bitResolution)) {
-                this.height++;
-            }
-        }
-
     }
 
     @Override

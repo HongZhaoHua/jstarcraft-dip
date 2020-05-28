@@ -90,7 +90,7 @@ public class RotAverageHash extends HashingAlgorithm {
         // bucket
 
         // Average luminosity of the bucket
-        double hashArr[] = new double[bitResolution + 2];
+        double hashArr[] = new double[bitDimension + 2];
 
         for (int x = 0; x < width; x++) {
             for (int y = 0; y < height; y++) {
