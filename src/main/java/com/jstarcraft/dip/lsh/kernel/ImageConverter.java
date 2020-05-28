@@ -10,14 +10,20 @@ import java.io.Serializable;
  * @author Kilian
  * @since 2.0.0
  */
+/**
+ * 图像转换器
+ * 
+ * @author Birdy
+ *
+ */
 public interface ImageConverter {
 
-	/**
-	 * Apply the filter to the input image and return an altered copy
-	 * 
-	 * @param bi the input image to apply the filter on
-	 * @return the altered image
-	 */
-	public BufferedImage convert(BufferedImage bi);
+    /**
+     * Apply the filter to the input image and return an altered copy
+     * 
+     * @param image the input image to apply the filter on
+     * @return the altered image
+     */
+    public BufferedImage convert(BufferedImage image);
 
 }

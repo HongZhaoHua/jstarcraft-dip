@@ -39,7 +39,7 @@ import com.jstarcraft.dip.lsh.kernel.ImageConverter;
 public abstract class HashingAlgorithm {
 
     // maybe move to bitsets//Mutable inetegers? not efficient for small keys?
-    protected List<ImageConverter> preProcessing = new ArrayList<>();
+    protected List<ImageConverter> converters = new ArrayList<>();
 
     /**
      * The target bit resolution supplied during algorithm creation. This number
@@ -140,33 +140,23 @@ public abstract class HashingAlgorithm {
      * @see Hash
      */
     public Hash hash(BufferedImage image) {
-
-        BufferedImage bi = image;
-
         // If we have kernels defined alter red green and blue values accordingly
-        if (!preProcessing.isEmpty()) {
-
-            for (ImageConverter kernel : preProcessing) {
-                if (bi == null) {
-                    bi = kernel.convert(image);
-                } else {
-                    bi = kernel.convert(bi);
-                }
+        if (!converters.isEmpty()) {
+            for (ImageConverter kernel : converters) {
+                image = kernel.convert(image);
             }
         }
         immutableState = true;
-
-        BigInteger hashValue;
-
-        ColorPixel fp = ColorPixel.create(ImageUtility.getScaledInstance(bi, width, height));
+        BigInteger hash;
+        ColorPixel pixel = ColorPixel.create(ImageUtility.getScaledInstance(image, width, height));
         if (keyResolution < 0) {
-            HashBuilder hb = new HashBuilder(this.bitResolution);
-            hashValue = hash(fp, hb);
-            keyResolution = hb.length;
+            HashBuilder builder = new HashBuilder(this.bitResolution);
+            hash = hash(pixel, builder);
+            keyResolution = builder.length;
         } else {
-            hashValue = hash(fp, new HashBuilder(getKeyResolution()));
+            hash = hash(pixel, new HashBuilder(getKeyResolution()));
         }
-        return new Hash(hashValue, getKeyResolution(), algorithmId());
+        return new Hash(hash, getKeyResolution(), algorithmId());
     }
 
     /**
@@ -222,7 +212,7 @@ public abstract class HashingAlgorithm {
         if (algorithmId == 0) {
             algorithmId = 31 * precomputeAlgoId();
             // Make sure the algo id doesn't collide with version 2.0.0 id's
-            algorithmId = 31 * algorithmId + 5 + preProcessing.hashCode();
+            algorithmId = 31 * algorithmId + 5 + converters.hashCode();
             immutableState = true;
         }
         return algorithmId;
@@ -307,7 +297,7 @@ public abstract class HashingAlgorithm {
             throw new IllegalStateException(LOCKED_MODIFICATION_EXCEPTION);
         }
 
-        this.preProcessing.add(filter);
+        this.converters.add(filter);
     }
 
     /**
@@ -332,7 +322,7 @@ public abstract class HashingAlgorithm {
         if (immutableState) {
             throw new IllegalStateException(LOCKED_MODIFICATION_EXCEPTION);
         }
-        return this.preProcessing.remove(filter);
+        return this.converters.remove(filter);
     }
 
     /**
