@@ -223,7 +223,7 @@ public abstract class HashTestBase {
 			hasher.algorithmId();
 			Kernel k = Kernel.identityFilter();
 			assertThrows(IllegalStateException.class, () -> {
-				hasher.addFilter(k);
+				hasher.addConverter(k);
 			});
 		}
 
@@ -236,7 +236,7 @@ public abstract class HashTestBase {
 			hasher.hash(new BufferedImage(1, 1, 0x1));
 			Kernel k = Kernel.identityFilter();
 			assertThrows(IllegalStateException.class, () -> {
-				hasher.addFilter(k);
+				hasher.addConverter(k);
 			});
 		}
 
@@ -249,7 +249,7 @@ public abstract class HashTestBase {
 			hasher.algorithmId();
 			Kernel k = Kernel.identityFilter();
 			assertThrows(IllegalStateException.class, () -> {
-				hasher.removeFilter(k);
+				hasher.removeConverter(k);
 			});
 		}
 
@@ -262,7 +262,7 @@ public abstract class HashTestBase {
 			hasher.hash(new BufferedImage(1, 1, 0x1));
 			Kernel k = Kernel.identityFilter();
 			assertThrows(IllegalStateException.class, () -> {
-				hasher.removeFilter(k);
+				hasher.removeConverter(k);
 			});
 		}
 
@@ -270,7 +270,7 @@ public abstract class HashTestBase {
 		public void addFilterDistinctAlgorithmIds() {
 			HashingAlgorithm hasher = getInstance(16);
 			Kernel k = Kernel.identityFilter();
-			hasher.addFilter(k);
+			hasher.addConverter(k);
 			HashingAlgorithm hasher1 = getInstance(16);
 			assertNotEquals(hasher.algorithmId(), hasher1.algorithmId());
 		}
@@ -279,7 +279,7 @@ public abstract class HashTestBase {
 		public void addRemoveFilterSameIds() {
 			HashingAlgorithm hasher = getInstance(16);
 			Kernel k = Kernel.identityFilter();
-			hasher.addFilter(k);
+			hasher.addConverter(k);
 			HashingAlgorithm hasher1 = getInstance(16);
 			assertNotEquals(hasher.algorithmId(), hasher1.algorithmId());
 		}

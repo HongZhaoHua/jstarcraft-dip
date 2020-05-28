@@ -207,7 +207,7 @@ public class AlgorithmBenchmark {
 		// Hashing algorithm with filter (really slow. Benchmarking will take a long
 		// time!)
 		AverageHash aHash = new AverageHash(32);
-		aHash.addFilter(Kernel.gaussianFilter(5, 5, 3));
+		aHash.addConverter(Kernel.gaussianFilter(5, 5, 3));
 
 		HogHash hog64 = new HogHash(64);
 		HogHashDual hogDual64 = new HogHashDual(64);

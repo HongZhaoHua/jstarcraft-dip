@@ -84,7 +84,6 @@ public abstract class HashingAlgorithm {
      * @param bitResolution The bit count of the final hash
      */
     public HashingAlgorithm(int bitResolution) {
-
         this.bitResolution = Require.positiveValue(bitResolution, "The bit resolution for hashing algorithms has to be positive");
     }
 
@@ -100,12 +99,11 @@ public abstract class HashingAlgorithm {
      * @since 3.0.0
      */
     public Hash[] hash(BufferedImage... images) {
-        Hash[] returnValue = new Hash[images.length];
-
-        for (int i = 0; i < images.length; i++) {
-            returnValue[i] = this.hash(images[i]);
+        Hash[] hashs = new Hash[images.length];
+        for (int index = 0; index < images.length; index++) {
+            hashs[index] = this.hash(images[index]);
         }
-        return returnValue;
+        return hashs;
     }
 
     /**
@@ -114,19 +112,18 @@ public abstract class HashingAlgorithm {
      * to the similarity of the images. The lower the value the more similar the
      * images are. Equal images will produce a similarity of 0.
      * 
-     * @param imageFiles pointing to the images
+     * @param files pointing to the images
      * @return The hash representing the images
      * @throws IOException if an error occurs during loading the image
      * @see Hash
      * @since 3.0.0
      */
-    public Hash[] hash(File... imageFiles) throws IOException {
-        Hash[] returnValue = new Hash[imageFiles.length];
-
-        for (int i = 0; i < imageFiles.length; i++) {
-            returnValue[i] = this.hash(imageFiles[i]);
+    public Hash[] hash(File... files) throws IOException {
+        Hash[] hashs = new Hash[files.length];
+        for (int index = 0; index < files.length; index++) {
+            hashs[index] = this.hash(files[index]);
         }
-        return returnValue;
+        return hashs;
     }
 
     /**
@@ -147,16 +144,16 @@ public abstract class HashingAlgorithm {
             }
         }
         immutableState = true;
-        BigInteger hash;
+        BigInteger bits;
         ColorPixel pixel = ColorPixel.create(ImageUtility.getScaledInstance(image, width, height));
         if (keyResolution < 0) {
             HashBuilder builder = new HashBuilder(this.bitResolution);
-            hash = hash(pixel, builder);
+            bits = hash(pixel, builder);
             keyResolution = builder.length;
         } else {
-            hash = hash(pixel, new HashBuilder(getKeyResolution()));
+            bits = hash(pixel, new HashBuilder(getKeyResolution()));
         }
-        return new Hash(hash, getKeyResolution(), algorithmId());
+        return new Hash(bits, getKeyResolution(), algorithmId());
     }
 
     /**
@@ -165,14 +162,14 @@ public abstract class HashingAlgorithm {
      * to the similarity of the images. The lower the value the more similar the
      * images are. Equal images will produce a similarity of 0.
      * 
-     * @param imageFile The file pointing to the image
+     * @param file The file pointing to the image
      * @return The hash representing the image
      * @throws IOException if an error occurs during loading the image
      * @see Hash
      */
-    public Hash hash(File imageFile) throws IOException {
+    public Hash hash(File file) throws IOException {
         immutableState = true;
-        return hash(ImageIO.read(imageFile));
+        return hash(ImageIO.read(file));
     }
 
     /**
@@ -189,11 +186,11 @@ public abstract class HashingAlgorithm {
      * distance can be calculated due to xoring without issue the normalized
      * distance requires the potential length of the key to be known.
      * 
-     * @param image       Image whose hash will be calculated
-     * @param hashBuilder a hash builder used to construct the hash
+     * @param image   Image whose hash will be calculated
+     * @param builder a hash builder used to construct the hash
      * @return the hash encoded as a big integer
      */
-    protected abstract BigInteger hash(ColorPixel fp, HashBuilder hashBuilder);
+    protected abstract BigInteger hash(ColorPixel pixel, HashBuilder builder);
 
     /**
      * A unique id identifying the settings and algorithms used to generate the
@@ -263,11 +260,11 @@ public abstract class HashingAlgorithm {
         // If they key resolution is not know compute a sample hash and cache it's
         // return value
         if (keyResolution < 0) {
-            BufferedImage bi = new BufferedImage(1, 1, BufferedImage.TYPE_3BYTE_BGR);
-            ColorPixel fp = ColorPixel.create(ImageUtility.getScaledInstance(bi, width, height));
-            HashBuilder sb = new HashBuilder(this.bitResolution);
-            this.hash(fp, sb);
-            keyResolution = sb.length;
+            BufferedImage image = new BufferedImage(1, 1, BufferedImage.TYPE_3BYTE_BGR);
+            ColorPixel pixel = ColorPixel.create(ImageUtility.getScaledInstance(image, width, height));
+            HashBuilder builder = new HashBuilder(this.bitResolution);
+            this.hash(pixel, builder);
+            keyResolution = builder.length;
         }
         return keyResolution;
     }
@@ -284,20 +281,18 @@ public abstract class HashingAlgorithm {
      * hashcode of the object which might be used in hash collections leading to the
      * object not being found after said operation.
      * 
-     * @param filter The filter to add.
+     * @param converter The filter to add.
      * @throws NullPointerException  if filter is null
      * @throws IllegalStateException if a hash was already created and the object is
      *                               considered immutable.
      * @since 2.0.0
      */
-    public void addFilter(ImageConverter filter) {
-        Objects.requireNonNull(filter);
-
+    public void addConverter(ImageConverter converter) {
+        Objects.requireNonNull(converter);
         if (immutableState) {
             throw new IllegalStateException(LOCKED_MODIFICATION_EXCEPTION);
         }
-
-        this.converters.add(filter);
+        this.converters.add(converter);
     }
 
     /**
@@ -311,18 +306,17 @@ public abstract class HashingAlgorithm {
      * hashcode of the object which might be used in hash collections leading to the
      * object not being found after said operation.
      * 
-     * @param filter The filters to remove.
+     * @param converter The filters to remove.
      * @return true if the kernel was removed. False otherwise
      * @throws IllegalStateException if a hash was already created and the object is
      *                               considered immutable.
      * @since 2.0.0
      */
-    public boolean removeFilter(ImageConverter filter) {
-
+    public boolean removeConverter(ImageConverter converter) {
         if (immutableState) {
             throw new IllegalStateException(LOCKED_MODIFICATION_EXCEPTION);
         }
-        return this.converters.remove(filter);
+        return this.converters.remove(converter);
     }
 
     /**
@@ -360,16 +354,17 @@ public abstract class HashingAlgorithm {
     }
 
     @Override
-    public boolean equals(Object obj) {
-        if (this == obj)
+    public boolean equals(Object object) {
+        if (this == object)
             return true;
-        if (obj == null)
+        if (object == null)
             return false;
-        if (getClass() != obj.getClass())
+        if (getClass() != object.getClass())
             return false;
-        HashingAlgorithm other = (HashingAlgorithm) obj;
-        if (algorithmId() != other.algorithmId())
+        HashingAlgorithm that = (HashingAlgorithm) object;
+        if (this.algorithmId() != that.algorithmId())
             return false;
         return true;
     }
+
 }
