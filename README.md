@@ -53,6 +53,10 @@
 
 * 1.图像转换
 * 2.图像哈希
+    * 均值哈希(Average Hash)
+    * 感知哈希(Perceptual Hash)
+    * 差异哈希 (Different Hash)
+    * 小波哈希(Wavelet Hash)
 * 3.目标定位
     * 分词
     * 词性标注

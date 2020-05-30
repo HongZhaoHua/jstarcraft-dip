@@ -1,0 +1,5 @@
+图片识别:
+https://blog.csdn.net/mylovepan/category_9990627.html
+
+图像相似算法aHash、dHash、pHash解析与对比:
+https://blog.csdn.net/notzuonotdied/article/details/95727107
