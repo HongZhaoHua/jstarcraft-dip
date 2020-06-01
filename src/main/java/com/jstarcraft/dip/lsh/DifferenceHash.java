@@ -28,7 +28,7 @@ public class DifferenceHash extends HashingAlgorithm {
      * @author Kilian
      *
      */
-    public enum Precision {
+    public enum Gradient {
         /** left to right gradient */
         Horizontal,
         /** top to bottom gradient */
@@ -40,7 +40,7 @@ public class DifferenceHash extends HashingAlgorithm {
     /**
      * Precision used to calculate the hash
      */
-    private final Precision precision;
+    private final Gradient gradient;
 
     /**
      * 
@@ -59,7 +59,7 @@ public class DifferenceHash extends HashingAlgorithm {
      *                      high resolution is not always desired.</b> The bit
      *                      resolution is only an <b>approximation</b> of the final
      *                      hash length.
-     * @param precision     Algorithm precision. Allowed Values:
+     * @param gradient     Algorithm precision. Allowed Values:
      *                      <dl>
      *                      <dt>Simple:</dt>
      *                      <dd>Calculates top - bottom gradient</dd>
@@ -71,7 +71,7 @@ public class DifferenceHash extends HashingAlgorithm {
      *                      length)</dd>
      *                      </dl>
      */
-    public DifferenceHash(int bitResolution, Precision precision) {
+    public DifferenceHash(int bitResolution, Gradient gradient) {
         super(bitResolution);
 
         int dimension = (int) Math.round(Math.sqrt(bitResolution + 1));
@@ -92,21 +92,21 @@ public class DifferenceHash extends HashingAlgorithm {
             }
         }
 
-        this.precision = precision;
+        this.gradient = gradient;
     }
 
     @Override
     protected BigInteger hash(ColorPixel pixel, HashBuilder hash) {
         // Use data buffer for faster access
 
-        int[][] lum = pixel.getLuminanceMatrix();
+        int[][] luminance = pixel.getLuminanceMatrix();
 
         // Calculate the left to right gradient
-        switch (precision) {
+        switch (gradient) {
         case Horizontal: {
             for (int x = 1; x < width; x++) {
                 for (int y = 0; y < height; y++) {
-                    if (lum[x][y] < lum[x - 1][y]) {
+                    if (luminance[x][y] < luminance[x - 1][y]) {
                         hash.prependOne();
                     } else {
                         hash.prependZero();
@@ -121,7 +121,7 @@ public class DifferenceHash extends HashingAlgorithm {
             // Caution width and height are swapped
             for (int x = 0; x < width; x++) {
                 for (int y = 1; y < height; y++) {
-                    if (lum[x][y] < lum[x][y - 1]) {
+                    if (luminance[x][y] < luminance[x][y - 1]) {
                         hash.prependOne();
                     } else {
                         hash.prependZero();
@@ -134,7 +134,7 @@ public class DifferenceHash extends HashingAlgorithm {
             // Diagonally hash
             for (int x = 1; x < width; x++) {
                 for (int y = 1; y < height; y++) {
-                    if (lum[x][y] < lum[x - 1][y - 1]) {
+                    if (luminance[x][y] < luminance[x - 1][y - 1]) {
                         hash.prependOne();
                     } else {
                         hash.prependZero();
@@ -150,7 +150,7 @@ public class DifferenceHash extends HashingAlgorithm {
     @Override
     protected int precomputeAlgoId() {
         // + 1 to ensure id is incompatible to earlier version
-        return Objects.hash(getClass().getName(), height, width, this.precision.name()) * 31 + 1;
+        return Objects.hash(getClass().getName(), height, width, this.gradient.name()) * 31 + 1;
     }
 
     /*
@@ -159,12 +159,12 @@ public class DifferenceHash extends HashingAlgorithm {
      */
     @Override
     public Hash hash(BufferedImage image) {
-        return new DHash(super.hash(image), this.precision, width, height);
+        return new DHash(super.hash(image), this.gradient, width, height);
     }
 
     @Override
     public Hash createAlgorithmSpecificHash(Hash original) {
-        return new DHash(original, this.precision, width, height);
+        return new DHash(original, this.gradient, width, height);
     }
 
     /**
@@ -175,11 +175,11 @@ public class DifferenceHash extends HashingAlgorithm {
      */
     public static class DHash extends Hash {
 
-        private Precision precision;
+        private Gradient precision;
         private int width;
         private int height;
 
-        public DHash(Hash h, Precision precision, int width, int height) {
+        public DHash(Hash h, Gradient precision, int width, int height) {
             super(h.getHashValue(), h.getBitResolution(), h.getAlgorithmId());
             this.precision = precision;
             this.width = width;
@@ -242,7 +242,7 @@ public class DifferenceHash extends HashingAlgorithm {
         }
     }
 
-    public Precision getPrecision() {
-        return precision;
+    public Gradient getPrecision() {
+        return gradient;
     }
 }

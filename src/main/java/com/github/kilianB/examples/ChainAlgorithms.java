@@ -12,7 +12,7 @@ import com.jstarcraft.dip.lsh.DifferenceHash;
 import com.jstarcraft.dip.lsh.HashingAlgorithm;
 import com.jstarcraft.dip.lsh.PerceptiveHash;
 import com.jstarcraft.dip.lsh.WaveletHash;
-import com.jstarcraft.dip.lsh.DifferenceHash.Precision;
+import com.jstarcraft.dip.lsh.DifferenceHash.Gradient;
 
 /**
  * To increase the quality of the returned results it can be useful to chain
@@ -64,7 +64,7 @@ public class ChainAlgorithms {
 		 * Create multiple algorithms we want to test the images against
 		 */
 
-		HashingAlgorithm dHash = new DifferenceHash(32, Precision.Vertical);
+		HashingAlgorithm dHash = new DifferenceHash(32, Gradient.Vertical);
 		// When shall an image be classified as a duplicate [0 - keyLenght]
 		// DHashes double precision doubles the key length supplied in the constructor
 		double dHashThreshold = .6;

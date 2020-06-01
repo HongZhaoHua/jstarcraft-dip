@@ -30,7 +30,7 @@ public class AverageKernelHash extends AverageHash {
     /**
      * The kernel filtering the luminosity of the image
      */
-    private final List<Kernel> filters;
+    private final List<Kernel> kernels;
 
     /**
      * @param bitResolution The bit resolution specifies the final length of the
@@ -87,40 +87,33 @@ public class AverageKernelHash extends AverageHash {
      */
     public AverageKernelHash(int bitResolution, Kernel... kernels) {
         super(bitResolution);
-        filters = new ArrayList<Kernel>(Arrays.asList(Require.deepNonNull(kernels, "The kernel may not be null")));
+        this.kernels = new ArrayList<Kernel>(Arrays.asList(Require.deepNonNull(kernels, "The kernel may not be null")));
     }
 
     @Override
     protected BigInteger hash(ColorPixel pixel, HashBuilder hash) {
-        int[][] luminocity = pixel.getLuminanceMatrix();
+        int[][] luminance = pixel.getLuminanceMatrix();
 
         // Calculate the average color of the entire image
 
-        // Kernel filter
-        double[][] filtered = null;
-
-        for (Kernel kernel : filters) {
-            if (filtered == null) {
-                filtered = kernel.apply(luminocity);
-            } else {
-                filtered = kernel.apply(filtered);
-            }
+        for (Kernel kernel : kernels) {
+            luminance = kernel.applyInt(luminance);
         }
 
-        double avgPixelValue = ArrayUtil.average(filtered);
+        double average = ArrayUtil.average(luminance);
 
-        return computeHash(hash, filtered, avgPixelValue);
+        return computeHash(hash, luminance, average);
     }
 
     @Override
     protected int precomputeAlgoId() {
         // *31 to create a distinct id compare to v 2.0.0 bugfix
-        return Objects.hash(getClass().getName(), height, width, filters) * 31;
+        return Objects.hash(getClass().getName(), height, width, kernels) * 31;
     }
 
     @Override
     public String toString() {
-        return "AverageKernelHash [height=" + height + ", width=" + width + ", filters=" + filters + "]";
+        return "AverageKernelHash [height=" + height + ", width=" + width + ", filters=" + kernels + "]";
     }
 
 }

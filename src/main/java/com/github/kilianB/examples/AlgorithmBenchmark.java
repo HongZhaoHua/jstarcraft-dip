@@ -11,7 +11,7 @@ import com.jstarcraft.dip.lsh.MedianHash;
 import com.jstarcraft.dip.lsh.PerceptiveHash;
 import com.jstarcraft.dip.lsh.RotAverageHash;
 import com.jstarcraft.dip.lsh.RotPHash;
-import com.jstarcraft.dip.lsh.DifferenceHash.Precision;
+import com.jstarcraft.dip.lsh.DifferenceHash.Gradient;
 import com.jstarcraft.dip.lsh.experimental.HogHash;
 import com.jstarcraft.dip.lsh.experimental.HogHashAngularEncoded;
 import com.jstarcraft.dip.lsh.experimental.HogHashDual;
@@ -73,8 +73,8 @@ public class AlgorithmBenchmark {
 		matcher.addHashingAlgorithm(new MedianHash(32), 0.4);
 		matcher.addHashingAlgorithm(new MedianHash(64), 0.4);
 
-		matcher.addHashingAlgorithm(new DifferenceHash(64, Precision.Horizontal), 0.4);
-		matcher.addHashingAlgorithm(new DifferenceHash(32, Precision.Diagonal), 0.4);
+		matcher.addHashingAlgorithm(new DifferenceHash(64, Gradient.Horizontal), 0.4);
+		matcher.addHashingAlgorithm(new DifferenceHash(32, Gradient.Diagonal), 0.4);
 
 		// 2. Create a benchmarker
 
@@ -119,9 +119,9 @@ public class AlgorithmBenchmark {
 		matcher.addHashingAlgorithm(new AverageHash(16), 0.4);
 		matcher.addHashingAlgorithm(new AverageHash(64), 0.4);
 
-		matcher.addHashingAlgorithm(new DifferenceHash(64, Precision.Horizontal), 0.3);
-		matcher.addHashingAlgorithm(new DifferenceHash(64, Precision.Vertical), 0.3);
-		matcher.addHashingAlgorithm(new DifferenceHash(64, Precision.Diagonal), 0.3);
+		matcher.addHashingAlgorithm(new DifferenceHash(64, Gradient.Horizontal), 0.3);
+		matcher.addHashingAlgorithm(new DifferenceHash(64, Gradient.Vertical), 0.3);
+		matcher.addHashingAlgorithm(new DifferenceHash(64, Gradient.Diagonal), 0.3);
 
 		// Experimental
 		matcher.addHashingAlgorithm(new MedianHash(16), 0.4);

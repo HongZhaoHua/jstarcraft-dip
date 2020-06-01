@@ -59,19 +59,19 @@ public class AverageHash extends HashingAlgorithm {
 
     @Override
     protected BigInteger hash(ColorPixel pixel, HashBuilder hash) {
-        int[][] luminocity = pixel.getLuminanceMatrix();
+        int[][] luminance = pixel.getLuminanceMatrix();
 
         // Calculate the average color of the entire image
-        double avgPixelValue = ArrayUtil.average(luminocity);
+        double average = ArrayUtil.average(luminance);
 
         // Create hash
-        return computeHash(hash, luminocity, avgPixelValue);
+        return computeHash(hash, luminance, average);
     }
 
-    protected BigInteger computeHash(HashBuilder hash, double[][] pixelValue, double compareAgainst) {
+    protected BigInteger computeHash(HashBuilder hash, double[][] pixels, double compare) {
         for (int x = 0; x < width; x++) {
             for (int y = 0; y < height; y++) {
-                if (pixelValue[x][y] < compareAgainst) {
+                if (pixels[x][y] < compare) {
                     hash.prependZero();
                 } else {
                     hash.prependOne();
@@ -81,10 +81,10 @@ public class AverageHash extends HashingAlgorithm {
         return hash.toBigInteger();
     }
 
-    protected BigInteger computeHash(HashBuilder hash, int[][] pixelValue, double compareAgainst) {
+    protected BigInteger computeHash(HashBuilder hash, int[][] pixels, double compare) {
         for (int x = 0; x < width; x++) {
             for (int y = 0; y < height; y++) {
-                if (pixelValue[x][y] < compareAgainst) {
+                if (pixels[x][y] < compare) {
                     hash.prependZero();
                 } else {
                     hash.prependOne();

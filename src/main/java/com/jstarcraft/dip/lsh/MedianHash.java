@@ -46,12 +46,12 @@ public class MedianHash extends AverageHash {
 
     @Override
     protected BigInteger hash(ColorPixel pixel, HashBuilder hash) {
-        int[] lum = pixel.getLuminanceVector();
+        int[] vector = pixel.getLuminanceVector();
 
-        int[][] luminocity = pixel.getLuminanceMatrix();
+        int[][] luminance = pixel.getLuminanceMatrix();
 
         // Create hash
-        return computeHash(hash, luminocity, ArrayUtil.median(lum));
+        return computeHash(hash, luminance, ArrayUtil.median(vector));
     }
 
 }

@@ -139,8 +139,8 @@ public abstract class HashingAlgorithm {
     public Hash hash(BufferedImage image) {
         // If we have kernels defined alter red green and blue values accordingly
         if (!converters.isEmpty()) {
-            for (ImageConverter kernel : converters) {
-                image = kernel.convert(image);
+            for (ImageConverter converter : converters) {
+                image = converter.convert(image);
             }
         }
         immutableState = true;

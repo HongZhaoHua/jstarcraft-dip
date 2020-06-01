@@ -23,7 +23,7 @@ import com.github.kilianB.TestResources;
 import com.jstarcraft.dip.hash.Hash;
 import com.jstarcraft.dip.lsh.DifferenceHash;
 import com.jstarcraft.dip.lsh.HashingAlgorithm;
-import com.jstarcraft.dip.lsh.DifferenceHash.Precision;
+import com.jstarcraft.dip.lsh.DifferenceHash.Gradient;
 
 //TODO  move difference hash to the default test scenarios
 class DifferenceHashTest {
@@ -42,17 +42,17 @@ class DifferenceHashTest {
 		public void consistency() {
 
 			assertAll(() -> {
-				assertEquals(1799343929, new DifferenceHash(14, Precision.Horizontal).algorithmId());
+				assertEquals(1799343929, new DifferenceHash(14, Gradient.Horizontal).algorithmId());
 			}, () -> {
-				assertEquals(1829820122, new DifferenceHash(25, Precision.Horizontal).algorithmId());
+				assertEquals(1829820122, new DifferenceHash(25, Gradient.Horizontal).algorithmId());
 			}, () -> {
-				assertEquals(636932775, new DifferenceHash(14, Precision.Vertical).algorithmId());
+				assertEquals(636932775, new DifferenceHash(14, Gradient.Vertical).algorithmId());
 			}, () -> {
-				assertEquals(667408968, new DifferenceHash(25, Precision.Vertical).algorithmId());
+				assertEquals(667408968, new DifferenceHash(25, Gradient.Vertical).algorithmId());
 			}, () -> {
-				assertEquals(-1338502776, new DifferenceHash(14, Precision.Diagonal).algorithmId());
+				assertEquals(-1338502776, new DifferenceHash(14, Gradient.Diagonal).algorithmId());
 			}, () -> {
-				assertEquals(-1308026583, new DifferenceHash(25, Precision.Diagonal).algorithmId());
+				assertEquals(-1308026583, new DifferenceHash(25, Gradient.Diagonal).algorithmId());
 			});
 		}
 
@@ -60,17 +60,17 @@ class DifferenceHashTest {
 		@DisplayName("Consistent AlgorithmIds v 2.0.0 collision")
 		public void notVersionTwo() {
 			assertAll(() -> {
-				assertNotEquals(-115572257, new DifferenceHash(14, Precision.Horizontal).algorithmId());
+				assertNotEquals(-115572257, new DifferenceHash(14, Gradient.Horizontal).algorithmId());
 			}, () -> {
-				assertNotEquals(-114589154, new DifferenceHash(25, Precision.Horizontal).algorithmId());
+				assertNotEquals(-114589154, new DifferenceHash(25, Gradient.Horizontal).algorithmId());
 			}, () -> {
-				assertNotEquals(758235198, new DifferenceHash(14, Precision.Vertical).algorithmId());
+				assertNotEquals(758235198, new DifferenceHash(14, Gradient.Vertical).algorithmId());
 			}, () -> {
-				assertNotEquals(759218301, new DifferenceHash(25, Precision.Vertical).algorithmId());
+				assertNotEquals(759218301, new DifferenceHash(25, Gradient.Vertical).algorithmId());
 			}, () -> {
-				assertNotEquals(910320011, new DifferenceHash(14, Precision.Diagonal).algorithmId());
+				assertNotEquals(910320011, new DifferenceHash(14, Gradient.Diagonal).algorithmId());
 			}, () -> {
-				assertNotEquals(911303114, new DifferenceHash(25, Precision.Diagonal).algorithmId());
+				assertNotEquals(911303114, new DifferenceHash(25, Gradient.Diagonal).algorithmId());
 			});
 		}
 
@@ -78,10 +78,10 @@ class DifferenceHashTest {
 		@DisplayName("Unique AlgorithmsIds")
 		public void uniquely() {
 
-			int id0 = new DifferenceHash(2, Precision.Horizontal).algorithmId();
-			int id1 = new DifferenceHash(14, Precision.Horizontal).algorithmId();
-			int id2 = new DifferenceHash(14, Precision.Vertical).algorithmId();
-			int id3 = new DifferenceHash(2, Precision.Diagonal).algorithmId();
+			int id0 = new DifferenceHash(2, Gradient.Horizontal).algorithmId();
+			int id1 = new DifferenceHash(14, Gradient.Horizontal).algorithmId();
+			int id2 = new DifferenceHash(14, Gradient.Vertical).algorithmId();
+			int id3 = new DifferenceHash(2, Gradient.Diagonal).algorithmId();
 
 			assertAll(() -> {
 				assertNotEquals(id0, id1);
@@ -112,7 +112,7 @@ class DifferenceHashTest {
 	 */
 	@Test
 	void toImageTest() {
-		for (Precision precision : Precision.values()) {
+		for (Gradient precision : Gradient.values()) {
 			HashingAlgorithm hasher = new DifferenceHash(128, precision);
 
 			Hash ballonHash = hasher.hash(TestResources.ballon);
@@ -127,7 +127,7 @@ class DifferenceHashTest {
 		// To get comparable hashes the key length has to be consistent for all
 		// resolution of images
 
-		DifferenceHash d1 = new DifferenceHash(32, Precision.Horizontal);
+		DifferenceHash d1 = new DifferenceHash(32, Gradient.Horizontal);
 
 		Hash ballonHash = d1.hash(ballon);
 		Hash copyrightHash = d1.hash(copyright);
@@ -205,14 +205,14 @@ class DifferenceHashTest {
 
 	@SuppressWarnings("unused")
 	private static Stream<HashingAlgorithm> algoInstances() {
-		return Stream.of(new DifferenceHash(32, Precision.Horizontal), new DifferenceHash(32, Precision.Vertical), new DifferenceHash(32, Precision.Diagonal));
+		return Stream.of(new DifferenceHash(32, Gradient.Horizontal), new DifferenceHash(32, Gradient.Vertical), new DifferenceHash(32, Gradient.Diagonal));
 	}
 
 	@SuppressWarnings("unused")
 	private static Stream<HashingAlgorithm> algoInstancesBroad() {
 		HashingAlgorithm[] hasher = new HashingAlgorithm[98];
 		for (int i = 2; i < 100; i++) {
-			hasher[i - 2] = new DifferenceHash(i, Precision.Horizontal);
+			hasher[i - 2] = new DifferenceHash(i, Gradient.Horizontal);
 		}
 		return Stream.of(hasher);
 	}

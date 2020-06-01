@@ -47,10 +47,10 @@ public class AverageColorHash extends AverageHash {
         int[][] grayscale = pixel.getGrayscaleMatrix();
 
         // Calculate the average color of the entire image
-        double avgPixelValue = ArrayUtil.average(grayscale);
+        double average = ArrayUtil.average(grayscale);
 
         // Create hash
-        return computeHash(hash, grayscale, avgPixelValue);
+        return computeHash(hash, grayscale, average);
     }
 
 }

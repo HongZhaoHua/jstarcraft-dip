@@ -110,12 +110,12 @@ class AverageKernelHashTest {
 
         @Override
         protected double differenceBallonHqHash() {
-            return 78;
+            return 79;
         }
 
         @Override
         protected double normDifferenceBallonHqHash() {
-            return 78 / 132d;
+            return 79 / 132d;
         }
     }
 
@@ -128,12 +128,12 @@ class AverageKernelHashTest {
 
         @Override
         protected double differenceBallonHqHash() {
-            return 74;
+            return 73;
         }
 
         @Override
         protected double normDifferenceBallonHqHash() {
-            return 74 / 132d;
+            return 73 / 132d;
         }
     }
 
