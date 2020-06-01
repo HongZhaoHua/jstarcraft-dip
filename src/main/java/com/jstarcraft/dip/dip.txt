@@ -27,3 +27,6 @@ https://www.open-open.com/code/view/1453520722495
 
 This repository accompanies Java Image Processing Recipes by Nicolas Modrzyk:
 https://github.com/Apress/java-image-processing-recipes
+
+Thumbnailator - a thumbnail generation library for Java:
+https://github.com/coobird/thumbnailator
