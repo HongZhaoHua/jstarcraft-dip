@@ -9,7 +9,7 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Nested;
 import org.junit.jupiter.api.Test;
 
-import com.jstarcraft.dip.lsh.AverageKernelHash;
+import com.jstarcraft.dip.lsh.KernelHash;
 import com.jstarcraft.dip.lsh.HashingAlgorithm;
 import com.jstarcraft.dip.lsh.kernel.Kernel;
 
@@ -17,7 +17,7 @@ import com.jstarcraft.dip.lsh.kernel.Kernel;
  * @author Kilian
  *
  */
-class AverageKernelHashTest {
+class KernelHashTest {
 
     @Nested
     @DisplayName("Algorithm Id")
@@ -31,9 +31,9 @@ class AverageKernelHashTest {
         @DisplayName("Consistent AlgorithmIds")
         public void consistency() {
             assertAll(() -> {
-                assertEquals(1025797670, new AverageKernelHash(14).algorithmId());
+                assertEquals(1045402787, new KernelHash(14).algorithmId());
             }, () -> {
-                assertEquals(1055350342, new AverageKernelHash(25).algorithmId());
+                assertEquals(1074955459, new KernelHash(25).algorithmId());
             });
         }
 
@@ -41,9 +41,9 @@ class AverageKernelHashTest {
         @DisplayName("Consistent AlgorithmIds v 2.0.0 collision")
         public void notVersionTwo() {
             assertAll(() -> {
-                assertNotEquals(544576934, new AverageKernelHash(14).algorithmId());
+                assertNotEquals(544576934, new KernelHash(14).algorithmId());
             }, () -> {
-                assertNotEquals(545530246, new AverageKernelHash(14).algorithmId());
+                assertNotEquals(545530246, new KernelHash(14).algorithmId());
             });
         }
 
@@ -54,9 +54,9 @@ class AverageKernelHashTest {
         @DisplayName("NotOldIds AlgorithmIds")
         public void consistencyOld() {
             assertAll(() -> {
-                assertNotEquals(1264492988, new AverageKernelHash(14).algorithmId());
+                assertNotEquals(1264492988, new KernelHash(14).algorithmId());
             }, () -> {
-                assertNotEquals(1264523740, new AverageKernelHash(25).algorithmId());
+                assertNotEquals(1264523740, new KernelHash(25).algorithmId());
             });
         }
     }
@@ -66,16 +66,16 @@ class AverageKernelHashTest {
      */
     @Test
     public void addKernel() {
-        HashingAlgorithm h0 = new AverageKernelHash(32);
-        HashingAlgorithm h1 = new AverageKernelHash(32, Kernel.gaussianFilter(3, 3, 2));
+        HashingAlgorithm h0 = new KernelHash(32);
+        HashingAlgorithm h1 = new KernelHash(32, Kernel.gaussianFilter(3, 3, 2));
         assertNotEquals(h0.algorithmId(), h1.algorithmId());
     }
 
     @Test
     public void addMultipleKernel() {
-        HashingAlgorithm h0 = new AverageKernelHash(32);
-        HashingAlgorithm h1 = new AverageKernelHash(32, Kernel.gaussianFilter(3, 3, 2));
-        HashingAlgorithm h2 = new AverageKernelHash(32, Kernel.gaussianFilter(3, 3, 2), Kernel.boxFilterNormalized(3, 3));
+        HashingAlgorithm h0 = new KernelHash(32);
+        HashingAlgorithm h1 = new KernelHash(32, Kernel.gaussianFilter(3, 3, 2));
+        HashingAlgorithm h2 = new KernelHash(32, Kernel.gaussianFilter(3, 3, 2), Kernel.boxFilterNormalized(3, 3));
         assertNotEquals(h0.algorithmId(), h1.algorithmId());
         assertNotEquals(h0.algorithmId(), h2.algorithmId());
         assertNotEquals(h1.algorithmId(), h2.algorithmId());
@@ -87,7 +87,7 @@ class AverageKernelHashTest {
 
         @Override
         protected HashingAlgorithm getInstance(int bitResolution) {
-            return new AverageKernelHash(bitResolution);
+            return new KernelHash(bitResolution);
         }
 
         @Override
@@ -105,7 +105,7 @@ class AverageKernelHashTest {
     class AlgorithmBaseTestsWithFilter extends HashTestBase {
         @Override
         protected HashingAlgorithm getInstance(int bitResolution) {
-            return new AverageKernelHash(bitResolution, Kernel.gaussianFilter(3, 3, 2));
+            return new KernelHash(bitResolution, Kernel.gaussianFilter(3, 3, 2));
         }
 
         @Override
@@ -123,7 +123,7 @@ class AverageKernelHashTest {
     class AlgorithmBaseTestsWithMultipleFilters extends HashTestBase {
         @Override
         protected HashingAlgorithm getInstance(int bitResolution) {
-            return new AverageKernelHash(bitResolution, Kernel.gaussianFilter(3, 3, 2), Kernel.gaussianFilter(5, 3, 2));
+            return new KernelHash(bitResolution, Kernel.gaussianFilter(3, 3, 2), Kernel.gaussianFilter(5, 3, 2));
         }
 
         @Override
@@ -140,7 +140,7 @@ class AverageKernelHashTest {
     @Test
     void testToString() {
         // Contains fields with kernels
-        assertTrue(new AverageKernelHash(32).toString().contains("filters="));
+        assertTrue(new KernelHash(32).toString().contains("filters="));
     }
 
 }

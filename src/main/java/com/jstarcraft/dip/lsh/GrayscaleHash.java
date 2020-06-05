@@ -11,7 +11,8 @@ import com.jstarcraft.dip.color.ColorPixel;
  * @author Kilian
  * @since 2.0.0 similar to ahash from version 1.0.0
  */
-public class AverageColorHash extends AverageHash {
+// 参考Kilian的AverageColorHash
+public class GrayscaleHash extends AverageHash {
 
     /**
      * @param bitResolution The bit resolution specifies the final length of the
@@ -38,7 +39,7 @@ public class AverageColorHash extends AverageHash {
      *  256 = 16 x 16 = 256 bit key
      *                      </pre>
      */
-    public AverageColorHash(int bitResolution) {
+    public GrayscaleHash(int bitResolution) {
         super(bitResolution);
     }
 

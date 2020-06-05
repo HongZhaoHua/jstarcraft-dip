@@ -25,7 +25,8 @@ import com.jstarcraft.dip.lsh.kernel.Kernel;
  * @author Kilian
  *
  */
-public class AverageKernelHash extends AverageHash {
+// 参考Kilian的AverageKernelHash
+public class KernelHash extends AverageHash {
 
     /**
      * The kernel filtering the luminosity of the image
@@ -51,7 +52,7 @@ public class AverageKernelHash extends AverageHash {
      *  256 = 16 x 16 = 256 bit key
      *                      </pre>
      */
-    public AverageKernelHash(int bitResolution) {
+    public KernelHash(int bitResolution) {
         this(bitResolution, Kernel.boxFilterNormalized(3, 3));
     }
 
@@ -85,7 +86,7 @@ public class AverageKernelHash extends AverageHash {
      *                      computed kernel value the kernel should be in the same
      *                      range
      */
-    public AverageKernelHash(int bitResolution, Kernel... kernels) {
+    public KernelHash(int bitResolution, Kernel... kernels) {
         super(bitResolution);
         this.kernels = new ArrayList<Kernel>(Arrays.asList(Require.deepNonNull(kernels, "The kernel may not be null")));
     }
