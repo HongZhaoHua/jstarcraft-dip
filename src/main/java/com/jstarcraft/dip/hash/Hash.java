@@ -318,7 +318,7 @@ public class Hash implements Serializable {
 
 		BufferedImage bi = new BufferedImage(blockSize * width, blockSize * height, BufferedImage.TYPE_3BYTE_BGR);
 
-		ColorPixel fp = ColorPixel.create(bi);
+		ColorPixel fp = ColorPixel.convert(bi);
 
 		int i = 0;
 		for (int w = 0; w < width * blockSize; w = w + blockSize) {

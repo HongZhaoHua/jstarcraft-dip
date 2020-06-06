@@ -199,7 +199,7 @@ public class DifferenceHash extends HashingAlgorithm {
 
         public BufferedImage toImage(int[] bitColorIndex, Color[] colors, int blockSize) {
             BufferedImage bi = new BufferedImage(blockSize * width, blockSize * height, BufferedImage.TYPE_3BYTE_BGR);
-            ColorPixel fp = ColorPixel.create(bi);
+            ColorPixel fp = ColorPixel.convert(bi);
 
             switch (precision) {
             case Horizontal: {

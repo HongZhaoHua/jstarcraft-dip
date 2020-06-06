@@ -114,8 +114,8 @@ public class MedianKernel extends NonAveragingKernel {
 	@Override
 	public BufferedImage convert(BufferedImage input) {
 		BufferedImage bi = new BufferedImage(input.getWidth(), input.getHeight(), input.getType());
-		ColorPixel fp = ColorPixel.create(input);
-		ColorPixel fpSet = ColorPixel.create(bi);
+		ColorPixel fp = ColorPixel.convert(input);
+		ColorPixel fpSet = ColorPixel.convert(bi);
 		int[][] gray = fp.getGrayscaleMatrix();
 
 		gray = applyInt(gray);

@@ -787,8 +787,8 @@ public class Kernel implements ImageConverter {
     @Override
     public BufferedImage convert(BufferedImage input) {
         BufferedImage bi = new BufferedImage(input.getWidth(), input.getHeight(), input.getType());
-        ColorPixel fp = ColorPixel.create(input);
-        ColorPixel fpSet = ColorPixel.create(bi);
+        ColorPixel fp = ColorPixel.convert(input);
+        ColorPixel fpSet = ColorPixel.convert(bi);
         int[][] red = fp.getRedMatrix();
         int[][] green = fp.getGreenMatrix();
         int[][] blue = fp.getBlueMatrix();
@@ -827,8 +827,8 @@ public class Kernel implements ImageConverter {
         @Override
         public BufferedImage convert(BufferedImage input) {
             BufferedImage bi = new BufferedImage(input.getWidth(), input.getHeight(), input.getType());
-            ColorPixel fp = ColorPixel.create(input);
-            ColorPixel fpSet = ColorPixel.create(bi);
+            ColorPixel fp = ColorPixel.convert(input);
+            ColorPixel fpSet = ColorPixel.convert(bi);
             int[][] gray = fp.getGrayscaleMatrix();
             gray = applyInt(gray);
             fpSet.setGrayscaleMatrix(gray);

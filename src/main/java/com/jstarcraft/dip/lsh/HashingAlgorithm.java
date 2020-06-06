@@ -145,7 +145,7 @@ public abstract class HashingAlgorithm {
         }
         immutableState = true;
         BigInteger bits;
-        ColorPixel pixel = ColorPixel.create(ImageUtility.getScaledInstance(image, width, height));
+        ColorPixel pixel = ColorPixel.convert(ImageUtility.getScaledInstance(image, width, height));
         if (keyDimension < 0) {
             HashBuilder builder = new HashBuilder(this.bitDimension);
             bits = hash(pixel, builder);
@@ -261,7 +261,7 @@ public abstract class HashingAlgorithm {
         // return value
         if (keyDimension < 0) {
             BufferedImage image = new BufferedImage(1, 1, BufferedImage.TYPE_3BYTE_BGR);
-            ColorPixel pixel = ColorPixel.create(ImageUtility.getScaledInstance(image, width, height));
+            ColorPixel pixel = ColorPixel.convert(ImageUtility.getScaledInstance(image, width, height));
             HashBuilder builder = new HashBuilder(this.bitDimension);
             this.hash(pixel, builder);
             keyDimension = builder.length;

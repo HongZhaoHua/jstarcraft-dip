@@ -78,7 +78,7 @@ public class SobelFilter implements ImageConverter {
 	@Override
 	public BufferedImage convert(BufferedImage bi) {
 
-		ColorPixel fp = ColorPixel.create(bi);
+		ColorPixel fp = ColorPixel.convert(bi);
 
 		int[][] grayscale = fp.getGrayscaleMatrix();
 
@@ -104,7 +104,7 @@ public class SobelFilter implements ImageConverter {
 		}
 
 		BufferedImage returnBi = new BufferedImage(bi.getWidth(), bi.getHeight(), bi.getType());
-		ColorPixel fpSet = ColorPixel.create(returnBi);
+		ColorPixel fpSet = ColorPixel.convert(returnBi);
 
 		fpSet.setGrayscaleMatrix(result);
 
