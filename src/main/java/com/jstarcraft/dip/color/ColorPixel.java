@@ -779,7 +779,7 @@ public interface ColorPixel {
     }
 
     /**
-     * 将图像转换为相似
+     * 将图像转换为像素
      * 
      * @param image
      * @return
