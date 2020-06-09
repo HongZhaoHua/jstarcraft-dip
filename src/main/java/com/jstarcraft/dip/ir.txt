@@ -1,0 +1,11 @@
+Image Retrieval:
+https://yongyuan.name/blog/categories.html#Image%20Retrieval
+
+图像检索：Hashing图像检索源码及数据库总结:
+http://yongyuan.name/blog/codes-of-hash-for-image-retrieval.html
+
+HABIR Toolkit:
+https://github.com/willard-yuan/hashing-baseline-for-image-retrieval
+
+图像检索:
+https://www.cnblogs.com/wangguchangqing/category/1241422.html
