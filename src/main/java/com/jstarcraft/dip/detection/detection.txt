@@ -23,3 +23,7 @@ https://www.jianshu.com/p/c8820deebb50
 
 Histogram Of Oriented Gradients with modifications:
 https://github.com/Visheshj123/WARTHOG
+
+Histogram of oriented gradients (HOG) Python implementation using NumPy:
+https://github.com/ahmedfgad/HOGNumPy
+
