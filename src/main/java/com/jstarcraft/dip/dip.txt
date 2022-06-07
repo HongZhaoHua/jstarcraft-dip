@@ -7,6 +7,9 @@ https://blog.csdn.net/u011707542/article/details/79151978
 C-OCR是携程自研的OCR项目，主要包括身份证、护照、火车票、签证等旅游相关证件、材料的识别:
 https://github.com/ctripcorp/C-OCR
 
+常见二维码种类(Data Matrix、MaxiCode、Aztec、QR Code、PDF417、Vericode、Ultracode、Code 49、Code 16K):
+https://www.cnblogs.com/guorongtao/p/12921855.html
+
 二维码/条码识别、身份证识别、银行卡识别、车牌识别、图片文字识别、黄图识别、驾驶证（驾照）识别:
 https://github.com/shouzhong/Scanner
 
